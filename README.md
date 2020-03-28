@@ -6,14 +6,15 @@
 ```
 ├── backend
 │   ├── app.py
-│   └── endpoints
-│       └── __init__.py
+│   ├── endpoints
+│   │   └── __init__.py
+│   └── static
+│       └── swagger.yaml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── Pipfile
 ├── Pipfile.lock
-├── README.md
-└── requirements.pip
+└── README.md
 ```
 
 Installation
