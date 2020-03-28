@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Sample API for covid-19-moldova
+  description: Flask REST API.
+  version: 1.0.0
+servers:
+  - url: https://covid-19-moldova.firebaseapp.com
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /users:
+    get:
+      summary: Returns a list of users.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+
+  /login/{info}:
+    get:
+      description: Render login page
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+    post:
+      description: Login route and return jwt token.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: Pass user email, password
+          schema:
+            type: object
+            required:
+              - email
+              - passwd
+            properties:
+              email:
+                type: string
+                example: example@mail.com
+              passwd:
+                type: string
+                example: Admin1234      
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+        '400':
+          description: Fail to login
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                description: Reason of fail
+                example: User with this email not found
+              title:
+                type: string
+                description: Fail title.
+                example: User not found.
+
