@@ -1,23 +1,17 @@
-# compose_flask/app.py
-import argparse
 from flask import Flask
-from flask_swagger_ui import get_swaggerui_blueprint
+from endpoints import VolunteerAPI
+from mongoengine import connect
+from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
-app = Flask(__name__)
 
-
-### swagger specific ###
-SWAGGER_URL = '/swagger'
-API_URL = '/static/swagger.yaml'
-SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    API_URL,
-    config={
-        'app_name': "Python-Flask-REST"
-    }
-)
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
-### end swagger specific ###
+
+volunteer_view = VolunteerAPI.as_view('volunteers')
+app.add_url_rule('/volunteers/list/', defaults={'volunteer_id': None}, view_func=volunteer_view, methods=['GET',])
+app.add_url_rule('/volunteers/', view_func=volunteer_view, methods=['POST',])
+app.add_url_rule('/volunteers/<volunteer_id>', view_func=volunteer_view, methods=['GET', 'PUT', 'DELETE'])
+
+connect(db=DB_NAME, host=DB_HOST)
 
 
 @app.route('/')

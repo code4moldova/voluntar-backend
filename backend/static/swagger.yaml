@@ -16,23 +16,22 @@ paths:
           description: A JSON array of user names
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
-                items: 
+                items:
                   type: string
 
-  /login/{info}:
+  /volunteer/{volunteer_id}:
     get:
       description: Render login page
       responses:
         '200':    # status code
-          description: A JSON array of user names
+          description: A JSON with volunteer info
           content:
             application/json:
-              schema: 
-                type: array
-                items: 
-                  type: string
+              schema:
+                type: object
+
     post:
       description: Login route and return jwt token.
       produces:
@@ -40,7 +39,7 @@ paths:
       parameters:
         - in: body
           name: user
-          description: Pass user email, password
+          description: New volunteer info
           schema:
             type: object
             required:
@@ -52,15 +51,15 @@ paths:
                 example: example@mail.com
               passwd:
                 type: string
-                example: Admin1234      
+                example: Admin1234
       responses:
         '200':    # status code
           description: A JSON array of user names
           content:
             application/json:
-              schema: 
+              schema:
                 type: array
-                items: 
+                items:
                   type: string
         '400':
           description: Fail to login
@@ -75,4 +74,3 @@ paths:
                 type: string
                 description: Fail title.
                 example: User not found.
-

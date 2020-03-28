@@ -6,7 +6,9 @@ name = "pypi"
 [packages]
 requests = "*"
 flask = "*"
-flask_swagger_ui= "*"
+flask_swagger_ui = "*"
+mongoengine = "*"
+passlib = "*"
 
 [dev-packages]
 pylint = "*"
