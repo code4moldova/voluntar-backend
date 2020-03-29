@@ -6,14 +6,14 @@ from config import PassHash, MIN_PASSWORD_LEN
 
 class Beneficiary_requestAPI(MethodView):
 
-    def get(self, Beneficiary_request_id:str):
+    def get(self, beneficiary_request_id:str):
         try:
-            if Beneficiary_request_id:
-                Beneficiary_request = Beneficiary_request.objects(id=Beneficiary_request_id).get().clean_data()
-                return jsonify(Beneficiary_request)
+            if beneficiary_request_id:
+                beneficiary_request = Beneficiary_request.objects(id=beneficiary_request_id).get().clean_data()
+                return jsonify(beneficiary_request)
             else:
-                Beneficiary_requests = [v.clean_data() for v in Beneficiary_request.objects(is_active=True).all()]
-                return jsonify({"list": Beneficiary_requests})
+                beneficiary_requests = [v.clean_data() for v in Beneficiary_request.objects(is_active=True).all()]
+                return jsonify({"list": beneficiary_requests})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
@@ -32,11 +32,11 @@ class Beneficiary_requestAPI(MethodView):
             return jsonify({"error": str(error)}), 400
 
 
-    def delete(self, Beneficiary_request_id):
+    def delete(self, beneficiary_request_id):
         """delete a single user by id"""
-        return self.put(Beneficiary_request_id, delete=True)
+        return self.put(beneficiary_request_id, delete=True)
 
-    def put(self, Beneficiary_request_id, delete=False):
+    def put(self, beneficiary_request_id, delete=False):
         """update a single user by id"""
         update = {}
         if not delete:
@@ -48,7 +48,7 @@ class Beneficiary_requestAPI(MethodView):
             update["set__is_active"] = False
 
         try:
-            Beneficiary_request.objects(id=Beneficiary_request_id).get().update(**update)
+            Beneficiary_request.objects(id=beneficiary_request_id).get().update(**update)
             return jsonify({"response": "success"})
         except Exception as error:
             return jsonify({"error": str(error)}), 400

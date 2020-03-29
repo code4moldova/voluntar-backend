@@ -6,14 +6,14 @@ from config import PassHash, MIN_PASSWORD_LEN
 
 class BeneficiaryAPI(MethodView):
 
-    def get(self, Beneficiary_id:str):
+    def get(self, beneficiary_id:str):
         try:
-            if Beneficiary_id:
-                Beneficiary = Beneficiary.objects(id=Beneficiary_id).get().clean_data()
+            if beneficiary_id:
+                beneficiary = Beneficiary.objects(id=beneficiary_id).get().clean_data()
                 return jsonify(Beneficiary)
             else:
-                Beneficiarys = [v.clean_data() for v in Beneficiary.objects(status='new').all()]
-                return jsonify({"list": Beneficiarys})
+                beneficiaries = [v.clean_data() for v in Beneficiary.objects(is_active=True).all()]
+                return jsonify({"list": beneficiaries})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
@@ -32,11 +32,11 @@ class BeneficiaryAPI(MethodView):
             return jsonify({"error": str(error)}), 400
 
 
-    def delete(self, Beneficiary_id):
+    def delete(self, beneficiary_id):
         """delete a single user by id"""
-        return self.put(Beneficiary_id, delete=True)
+        return self.put(beneficiary_id, delete=True)
 
-    def put(self, Beneficiary_id, delete=False):
+    def put(self, beneficiary_id, delete=False):
         """update a single user by id"""
         update = {}
         if not delete:
@@ -48,7 +48,7 @@ class BeneficiaryAPI(MethodView):
             update["set__is_active"] = False
 
         try:
-            Beneficiary.objects(id=Beneficiary_id).get().update(**update)
+            Beneficiary.objects(id=beneficiary_id).get().update(**update)
             return jsonify({"response": "success"})
         except Exception as error:
             return jsonify({"error": str(error)}), 400

@@ -6,14 +6,14 @@ from config import PassHash, MIN_PASSWORD_LEN
 
 class OperatorAPI(MethodView):
 
-    def get(self, Operator_id:str):
+    def get(self, operator_id:str):
         try:
-            if Operator_id:
-                Operator = Operator.objects(id=Operator_id).get().clean_data()
-                return jsonify(Operator)
+            if operator_id:
+                operator = Operator.objects(id=operator_id).get().clean_data()
+                return jsonify(operator)
             else:
-                Operators = [v.clean_data() for v in Operator.objects(is_active=True).all()]
-                return jsonify({"list": Operators})
+                operators = [v.clean_data() for v in Operator.objects(is_active=True).all()]
+                return jsonify({"list": operators})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
@@ -32,11 +32,11 @@ class OperatorAPI(MethodView):
             return jsonify({"error": str(error)}), 400
 
 
-    def delete(self, Operator_id):
+    def delete(self, operator_id):
         """delete a single user by id"""
-        return self.put(Operator_id, delete=True)
+        return self.put(operator_id, delete=True)
 
-    def put(self, Operator_id, delete=False):
+    def put(self, operator_id, delete=False):
         """update a single user by id"""
         update = {}
         if not delete:
@@ -48,7 +48,7 @@ class OperatorAPI(MethodView):
             update["set__is_active"] = False
 
         try:
-            Operator.objects(id=Operator_id).get().update(**update)
+            Operator.objects(id=operator_id).get().update(**update)
             return jsonify({"response": "success"})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
