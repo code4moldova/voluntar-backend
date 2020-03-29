@@ -4,7 +4,7 @@ info:
   description: Flask REST API.
   version: 1.0.0
 servers:
-  - url: https://covid-19-moldova.firebaseapp.com
+  - url: http://localhost:5000
     description: Optional server description, e.g. Main (production) server
 paths:
   /users:
@@ -21,17 +21,21 @@ paths:
                 items:
                   type: string
 
-  /volunteer/{volunteer_id}:
+  /volunteers/list:
     get:
-      description: Render login page
+      summary: Returns a list of volunteers.
+      description: Optional extended description in CommonMark or HTML.
       responses:
         '200':    # status code
-          description: A JSON with volunteer info
+          description: A JSON array of user names
           content:
             application/json:
               schema:
-                type: object
+                type: array
+                items:
+                  type: string
 
+  /volunteers:
     post:
       description: Login route and return jwt token.
       produces:
@@ -44,14 +48,52 @@ paths:
             type: object
             required:
               - email
-              - passwd
+              - password
+              - address
+              - zone_address
             properties:
               email:
                 type: string
                 example: example@mail.com
-              passwd:
+              password:
                 type: string
                 example: Admin1234
+              first_name:
+                type: string
+                example: Ion
+              last_name:
+                type: string
+                example: Somename
+              phone:
+                type: integer
+                example: 10000001
+              is_active:
+                type: boolean
+                example: true
+              address:
+                type: string
+                example: stefan cel mare
+              zone_address:
+                type: string
+                example: centru
+              facebook_profile:
+                type: string
+                example: https://www.facebook.com/name
+              age:
+                type: integer
+                example: 34
+              availability:
+                type: number
+                example: 3
+              latitude:
+                type: number
+                example: 44.2
+              longitude:
+                type: number
+                example: 28.45
+              activity_types:
+                type: string
+                example: Activity0
       responses:
         '200':    # status code
           description: A JSON array of user names
