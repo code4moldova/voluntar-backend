@@ -74,3 +74,165 @@ paths:
                 type: string
                 description: Fail title.
                 example: User not found.
+
+  /beneficiary/{beneficiary_id}:
+    get:
+      description: Render login page
+      responses:
+        '200':    # status code
+          description: A JSON with beneficiary info
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      description: Login route and return jwt token.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: New beneficiary info
+          schema:
+            type: object
+            required:
+              - email
+              - passwd
+            properties:
+              email:
+                type: string
+                example: example@mail.com
+              passwd:
+                type: string
+                example: Admin1234
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Fail to login
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                description: Reason of fail
+                example: User with this email not found
+              title:
+                type: string
+                description: Fail title.
+                example: User not found.
+
+  /beneficiary_request/{beneficiary_request_id}:
+    get:
+      description: Render login page
+      responses:
+        '200':    # status code
+          description: A JSON with beneficiary_request info
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      description: Login route and return jwt token.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: New beneficiary_request info
+          schema:
+            type: object
+            required:
+              - email
+              - passwd
+            properties:
+              email:
+                type: string
+                example: example@mail.com
+              passwd:
+                type: string
+                example: Admin1234
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Fail to login
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                description: Reason of fail
+                example: User with this email not found
+              title:
+                type: string
+                description: Fail title.
+                example: User not found.
+
+  /operator/{operator_id}:
+    get:
+      description: Render login page
+      responses:
+        '200':    # status code
+          description: A JSON with operator info
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      description: Login route and return jwt token.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: New operator info
+          schema:
+            type: object
+            required:
+              - email
+              - passwd
+            properties:
+              email:
+                type: string
+                example: example@mail.com
+              passwd:
+                type: string
+                example: Admin1234
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Fail to login
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                description: Reason of fail
+                example: User with this email not found
+              title:
+                type: string
+                description: Fail title.
+                example: User not found.
