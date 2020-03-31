@@ -4,7 +4,8 @@ from mongoengine import connect
 from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
-		registerOperator, getOperators, updateOperator
+		registerOperator, getOperators, updateOperator, \
+		registerBeneficiary, getBeneficiary, updateBeneficiary
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
@@ -17,7 +18,7 @@ volunteer_view = VolunteerAPI.as_view('volunteers')
 #app.add_url_rule('/volunteers/<volunteer_id>', view_func=volunteer_view, methods=['GET', 'PUT', 'DELETE'])
 
 connect(db=DB_NAME, host=DB_HOST)
-
+ 
 #old school
 @auth.verify_password
 def verify_password(username, password):
@@ -26,7 +27,7 @@ def verify_password(username, password):
 @app.route('/api/volunteer', methods = ['POST'])
 @auth.login_required
 def new_user():
-	return registerVolunteer(request.json)
+	return registerVolunteer(request.json, auth.username())
 
 @app.route('/api/volunteer', methods = ['GET'])
 @auth.login_required
@@ -45,12 +46,12 @@ def delete_user():
 
 #operators
 @app.route('/api/operator', methods = ['POST'])
-#@auth.login_required
+@auth.login_required
 def new_operator():
-	return registerOperator(request.json)
+	return registerOperator(request.json, auth.username())
 
 @app.route('/api/operator', methods = ['GET'])
-#@auth.login_required
+@auth.login_required
 def get_operator():
 	return getOperators(request.args.get('id'))
 
@@ -71,6 +72,25 @@ def get_auth_token():
     token = getToken(auth.username())#g.user.generate_auth_token()
     return jsonify({ 'token': token.decode('ascii') })
 
+
+#beneficiari
+@app.route('/api/beneficiary', methods = ['POST'])
+@auth.login_required
+def new_beneficiary():
+	return registerBeneficiary(request.json, auth.username())
+
+@app.route('/api/beneficiary', methods = ['GET'])
+@auth.login_required
+def get_beneficiary():
+	return getBeneficiary(request.args.get('id'))
+
+
+@app.route('/api/beneficiary', methods = ['PUT'])
+@auth.login_required
+def update_beneficiary():
+	return updateBeneficiary(request.json, request.json['_id'])
+
+
 #debug part
 @app.route('/api/debug', methods = ['GET'])
 def get_user3():
@@ -78,7 +98,8 @@ def get_user3():
 
 @app.route('/')
 def hello():
-    return ("Hello world")
+	registerOperator({'email':'test@test.com','password':'adminadmin','role':'fixer', 'phone':10000001}, 'admin')
+	return ("Hello world")
 
 
 if __name__ == "__main__":

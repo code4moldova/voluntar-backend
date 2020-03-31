@@ -1,10 +1,10 @@
 from flask.views import MethodView
-from flask import jsonify, request
+from flask import jsonify, request, g
 from models import Operator
 from config import PassHash, MIN_PASSWORD_LEN
 
 
-def registerOperator(requestjson):
+def registerOperator(requestjson, created_by):
         """create a new user"""
         new_operator = requestjson
         # TODO: get authenticated operator and assignee to new Operator
@@ -12,6 +12,8 @@ def registerOperator(requestjson):
         try:
             assert len(new_operator["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_operator["password"] = PassHash.hash(new_operator["password"])
+            new_operator['created_by'] = created_by
+            assert not Operator.objects(email=new_operator['email']) , "user with this email already exists"
             comment = Operator(**new_operator)
             comment.save()
             return jsonify({"response": "success"})
@@ -55,6 +57,7 @@ def getToken(username):
     if operator:
         return operator.get().generate_auth_token()
     #print(operator)
+    #g.user = operator
     return None
 
 def verifyUser(username, password):
@@ -65,6 +68,7 @@ def verifyUser(username, password):
             return operator.get().check_password(password)
         #print(operator)
         return False
+    g.user = operator
     return True
 
 

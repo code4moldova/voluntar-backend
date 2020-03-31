@@ -58,6 +58,7 @@ class User(Document):
 
 class Operator(User):
     #created_by = ReferenceField(Operator)
+    created_by = StringField(max_length=500)
     role = StringField(choise=('operator', 'fixer'), default='fixer')
 
 class Volunteer(User):
@@ -72,6 +73,7 @@ class Volunteer(User):
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     #created_by = ReferenceField(Operator)
+    created_by = StringField(max_length=500)
 
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)
@@ -79,15 +81,19 @@ class Beneficiary(User):
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     age = IntField(min_value=16, max_value=50)
-    #created_by = ReferenceField(Operator)
-
-class Beneficiary_request(User):
+    created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=500, required=True)
     questions = StringField(max_length=500, required=True)
     activity_types = StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
+    secret = StringField(max_length=500, required=True)
     availability_volunteer = FloatField(min_value=0, max_value=12)
     #beneficiary = ReferenceField(Beneficiary)
-    #volunteer = ReferenceField(Volunteer)
+    volunteer = StringField(max_length=500)
+    fixer = StringField(max_length=500)
     
+
+class Beneficiary_request(User):
+    have_money = BooleanField(default=True)
+

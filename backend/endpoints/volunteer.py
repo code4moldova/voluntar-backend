@@ -1,10 +1,10 @@
 from flask.views import MethodView
-from flask import jsonify, request
+from flask import jsonify, request, g
 from models import Volunteer
 from config import PassHash, MIN_PASSWORD_LEN
 
 
-def registerVolunteer(requestjson):
+def registerVolunteer(requestjson, created_by):
         """create a new user"""
         new_volunteer = requestjson
         # TODO: get authenticated operator and assignee to new volunteer
@@ -12,6 +12,8 @@ def registerVolunteer(requestjson):
         try:
             assert len(new_volunteer["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_volunteer["password"] = PassHash.hash(new_volunteer["password"])
+            assert not Volunteer.objects(email=new_volunteer['email']) , "user with this email already exists"
+            new_volunteer['created_by'] = created_by#g.user.get().clean_data()['_id']
             comment = Volunteer(**new_volunteer)
             comment.save()
             return jsonify({"response": "success"})
