@@ -66,7 +66,7 @@ def delete_operator():
 	return updateOperator(request.json, request.json['_id'], True)
 
 #authentification
-@app.route('/api/token')
+@app.route('/api/token', methods = ['GET', 'POST'])
 @auth.login_required
 def get_auth_token():
     token = getToken(auth.username())#g.user.generate_auth_token()
