@@ -4,6 +4,7 @@ info:
   description: Flask REST API.
   version: 1.0.0
 servers:
+  - url: http://167.71.48.30:5000
   - url: http://localhost:5000
     description: Optional server description, e.g. Main (production) server
 securityDefinitions:   # Authorization, part 1
