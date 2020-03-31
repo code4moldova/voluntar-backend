@@ -26,7 +26,7 @@ class User(Document):
 
     meta = {'allow_inheritance': True}
 
-    def generate_auth_token(self, expiration = 600):
+    def generate_auth_token(self, expiration = 6000):
         secret = 'lalal'#app.config['SECRET_KEY']
         s = Serializer(secret, expires_in = expiration)
         return s.dumps({ 'id': str(self.id) })
