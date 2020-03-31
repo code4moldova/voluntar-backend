@@ -68,7 +68,7 @@ def verifyUser(username, password):
             return operator.get().check_password(password)
         #print(operator)
         return False
-    g.user = operator
+    #g.user = operator
     return True
 
 
