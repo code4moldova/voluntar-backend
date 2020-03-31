@@ -6,6 +6,9 @@ info:
 servers:
   - url: http://localhost:5000
     description: Optional server description, e.g. Main (production) server
+securityDefinitions:   # Authorization, part 1
+  basicAuth:
+    type: basic
 paths:
   /users:
     get:
@@ -85,6 +88,9 @@ paths:
               availability:
                 type: number
                 example: 3
+              telegram_id:
+                type: number
+                example: 34234244
               latitude:
                 type: number
                 example: 44.2

@@ -5,6 +5,9 @@ from mongoengine import (Document, StringField, IntField, EmailField, BooleanFie
                          DateTimeField, DictField, FloatField, URLField, ReferenceField)
 from config import PassHash
 
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
+
 FACEBOOK_URL_REGEX = r"http(?:s):\/\/(?:www\.)facebook\.com\/.+"
 
 class User(Document):
@@ -13,7 +16,7 @@ class User(Document):
     first_name = StringField(max_length=50, default='No_First')
     last_name = StringField(max_length=50, default='No_Last')
     email = EmailField(required=True)
-    password = StringField(required=True, min_length=200)
+    password = StringField(required=True, min_length=6)
     phone = IntField(min_value=10000000, max_value=99999999)
     created_at = DateTimeField(default=dt.now)
     # we don't delete users just deactivating them
@@ -23,6 +26,22 @@ class User(Document):
 
     meta = {'allow_inheritance': True}
 
+    def generate_auth_token(self, expiration = 600):
+        secret = 'lalal'#app.config['SECRET_KEY']
+        s = Serializer(secret, expires_in = expiration)
+        return s.dumps({ 'id': str(self.id) })
+
+    @staticmethod
+    def verify_auth_token(token):
+        s = Serializer('lalal')#app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except SignatureExpired:
+            return None # valid token, but expired
+        except BadSignature:
+            return None # invalid token
+        user = User.objects(id=data['id'])
+        return user
 
     def clean_data(self) -> dict:
         data = self.to_mongo()
@@ -30,22 +49,22 @@ class User(Document):
             del data["password"]
         if "logins" in data:
             del data["logins"]
+        data['_id'] = str(data['_id'])
         return data
 
     def check_password(self, password) -> bool:
         data = self.to_mongo()
         return PassHash.verify(password, data["password"])
 
-
 class Operator(User):
     #created_by = ReferenceField(Operator)
-    comment = StringField(max_length=500, required=True)
+    role = StringField(choise=('operator', 'fixer'), default='fixer')
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
     telegram_id = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
-    facebook_profile = URLField(url_regex=FACEBOOK_URL_REGEX)
+    facebook_profile = StringField(max_length=500, required=False)#URLField(url_regex=FACEBOOK_URL_REGEX)
     age = IntField(min_value=16, max_value=50)
     # Availability per day in hours
     availability = FloatField(min_value=0, max_value=12)

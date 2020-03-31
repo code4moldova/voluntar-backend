@@ -9,6 +9,7 @@ flask = "*"
 flask_swagger_ui = "*"
 mongoengine = "*"
 passlib = "*"
+flask_httpauth = "*"
 
 [dev-packages]
 pylint = "*"
