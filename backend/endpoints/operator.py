@@ -16,7 +16,7 @@ def registerOperator(requestjson, created_by):
             assert not Operator.objects(email=new_operator['email']) , "user with this email already exists"
             comment = Operator(**new_operator)
             comment.save()
-            return jsonify({"response": "success"})
+            return jsonify({"response": "success", 'user': comment.clean_data()})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 

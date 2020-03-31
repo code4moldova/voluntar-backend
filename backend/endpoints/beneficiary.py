@@ -16,7 +16,7 @@ def registerBeneficiary(requestjson, created_by):
             new_beneficiary['created_by'] = created_by# g.user.get().clean_data()['_id']
             comment = Beneficiary(**new_beneficiary)
             comment.save()
-            return jsonify({"response": "success"})
+            return jsonify({"response": "success", 'user': comment.clean_data()})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
