@@ -8,9 +8,12 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 		registerBeneficiary, getBeneficiary, updateBeneficiary
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
+from flask_cors import CORS
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 volunteer_view = VolunteerAPI.as_view('volunteers')
 #app.add_url_rule('/volunteers/list/', defaults={'volunteer_id': None}, view_func=volunteer_view, methods=['GET',])
