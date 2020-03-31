@@ -1,8 +1,10 @@
+from datetime import datetime as dt
+
 from flask.views import MethodView
 from flask import jsonify, request, g
 from models import Beneficiary
 from config import PassHash, MIN_PASSWORD_LEN
-
+from mongoengine import Q
 
 
 def registerBeneficiary(requestjson, created_by):
@@ -40,14 +42,38 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
-def getBeneficiary(beneficiary_id):
+def getBeneficiary(args):
         try:
-            if beneficiary_id:
-                beneficiary = Beneficiary.objects(id=beneficiary_id).get().clean_data()
+            id = args.get('id')
+            if id:
+                beneficiary = Beneficiary.objects(id=id).get().clean_data()
                 return jsonify(beneficiary)
             else:
-                beneficiary = [v.clean_data() for v in Beneficiary.objects(is_active=True).all()]
-                return jsonify({"list": beneficiary})
+                try:
+                    is_active = bool(args.get('is_active', None, bool))
+                    first_name = args.get('first_name', None, str)
+                    phone = args.get('phone', None, int)
+                    created_date_start = args.get('created_date_start', None, dt)
+                    created_date_end = args.get('created_date_end', None, dt)
+                    item_start = args.get('item_start', None, int)
+                    item_end = args.get('item_end', None, int)
+                except Exception as _:
+                    return jsonify({"error": "Incorrect arg(s)."})
+
+                ben_objs = Beneficiary.objects()
+                if(is_active):
+                    ben_objs.filter(is_active = is_active)
+                if(first_name):
+                    ben_objs.filter(first_name=first_name)
+                if(phone):
+                    ben_objs.filter(phone=phone)
+                if(created_date_start and created_date_end):
+                    ben_objs.filter((Q(created_at__gte=created_date_start) & Q(created_at__lte=created_date_end)))
+                count = ben_objs.all().count()
+                if(item_start and item_end):
+                    ben_objs.skip(item_start).limit(item_end)
+                beneficiaries = [v.clean_data() for v in ben_objs.all()]
+                return jsonify({"list": beneficiaries}, {"pagination": {"count_of_records": count}})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
