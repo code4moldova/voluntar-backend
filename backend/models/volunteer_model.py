@@ -32,6 +32,7 @@ class User(Document):
         s = Serializer(secret, expires_in = expiration)
         User.objects(id=str(self.id)).get().update(last_access=dt.now)
         obj = self.clean_data()
+        del obj['role']
         for k in obj.keys():
             if type(obj[k]) is dt:
                 del obj[k]
@@ -65,6 +66,7 @@ class User(Document):
 class Operator(User):
     created_by = StringField(max_length=500)
     role =ListField(default=['fixer'])# StringField(choise=('operator', 'fixer'), default='fixer')
+    roles =ListField(default=['fixer'])# StringField(choise=('operator', 'fixer'), default='fixer')
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
@@ -79,7 +81,7 @@ class Volunteer(User):
     availability = FloatField(min_value=0, max_value=12)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
-    activity_types = StringField(choise=('Activity0', 'Activity1'), default='Activity0')
+    activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     #created_by = ReferenceField(Operator)
     created_by = StringField(max_length=500)
     team = StringField(max_length=500)
@@ -103,7 +105,7 @@ class Beneficiary(User):
     have_money = BooleanField(default=True)
     comments = StringField(max_length=500, required=True)
     questions = StringField(max_length=500, required=True)
-    activity_types = StringField(choise=('Activity0', 'Activity1'), default='Activity0')
+    activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
     availability_volunteer = FloatField(min_value=0, max_value=12)
