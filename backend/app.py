@@ -82,7 +82,7 @@ def delete_operator():
 @auth.login_required
 def get_auth_token():
     token, data = getToken(auth.username())#g.user.generate_auth_token()
-    return jsonify({ 'token': token.decode('ascii'), 'user':data })
+    return jsonify({ 'token': token.decode('ascii') })
 
 
 #beneficiari

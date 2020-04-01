@@ -31,7 +31,11 @@ class User(Document):
         secret = 'lalal'#app.config['SECRET_KEY']
         s = Serializer(secret, expires_in = expiration)
         User.objects(id=str(self.id)).get().update(last_access=dt.now)
-        return s.dumps({ 'id': str(self.id) })
+        obj = self.clean_data()
+        for k in obj.keys():
+            if type(obj[k]) is dt:
+                del obj[k]
+        return s.dumps(obj)
 
     @staticmethod
     def verify_auth_token(token):
