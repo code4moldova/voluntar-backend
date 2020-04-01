@@ -2,7 +2,7 @@ from datetime import datetime as dt
 
 from flask.views import MethodView
 from flask import jsonify, request, g
-from models import Beneficiary
+from models import Beneficiary,Operator
 from config import PassHash, MIN_PASSWORD_LEN
 from mongoengine import Q
 

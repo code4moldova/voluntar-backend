@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask import jsonify, request, g
-from models import Volunteer, Beneficiary
+from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
 
 
