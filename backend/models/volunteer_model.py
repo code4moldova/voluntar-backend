@@ -60,7 +60,7 @@ class User(Document):
 
 class Operator(User):
     created_by = StringField(max_length=500)
-    role = StringField(choise=('operator', 'fixer'), default='fixer')
+    role =ListField(default=['fixer'])# StringField(choise=('operator', 'fixer'), default='fixer')
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
