@@ -130,7 +130,7 @@ class Beneficiary(User):
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
-    availability_volunteer = FloatField(min_value=0, max_value=12)
+    availability_volunteer = FloatField(min_value=0, max_value=24)
     #beneficiary = ReferenceField(Beneficiary)
     volunteer = StringField(max_length=500)
     fixer = StringField(max_length=500)
