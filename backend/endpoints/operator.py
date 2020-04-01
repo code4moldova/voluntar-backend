@@ -9,6 +9,9 @@ from datetime import timedelta
 def registerOperator(requestjson, created_by):
         """create a new user"""
         new_operator = requestjson
+        if len(created_by)>30:
+            user = Operator.verify_auth_token(created_by)
+            created_by = user.get().clean_data()['email']
         # TODO: get authenticated operator and assignee to new Operator
         # new_operator["created_by"] = authenticated_oprator
         try:
@@ -61,6 +64,27 @@ def getActiveOperator():#last assigned?
         return None
     return operator[0]
 
+
+
+def get_operators_by_filters(filters, pages=0, per_page=10000):
+    try:
+        item_per_age = int(per_page)
+        offset = (int(pages) - 1) * item_per_age
+        if len(filters) > 0:
+            flt  = {}
+            for k,v in filters.items():
+                flt[k]=v
+                if 'is_active' == k:
+                    flt['is_active'] = True if flt['is_active'] == '1' else False
+            obj = Operator.objects(**flt)
+            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": beneficiaries, 'count':obj.count()})
+        else:
+            obj = Operator.objects(is_active=True)
+            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": beneficiaries, 'count':obj.count()})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
 
 
 

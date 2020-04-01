@@ -5,7 +5,8 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
-		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters,getActiveOperator, get_beneficieries_by_filters
+		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters,getActiveOperator, get_beneficieries_by_filters, \
+		get_operators_by_filters
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -76,6 +77,12 @@ def update_operator():
 @auth.login_required
 def delete_operator():
 	return updateOperator(request.json, request.json['_id'], True)
+
+@app.route('/api/operator/filters', methods=['GET'])
+@app.route('/api/operator/filters/<pages>/<per_page>', methods=['GET'])
+@auth.login_required
+def get_operator_by_filters(pages=15, per_page=10):
+	return get_operators_by_filters(request.args, pages, per_page)
 
 #authentification
 @app.route('/api/token', methods = ['GET', 'POST'])
