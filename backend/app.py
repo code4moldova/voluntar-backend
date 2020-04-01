@@ -5,7 +5,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
-		registerBeneficiary, getBeneficiary, updateBeneficiary
+		registerBeneficiary, getBeneficiary, updateBeneficiary, getActiveOperator
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
@@ -72,8 +72,8 @@ def delete_operator():
 @app.route('/api/token', methods = ['GET', 'POST'])
 @auth.login_required
 def get_auth_token():
-    token = getToken(auth.username())#g.user.generate_auth_token()
-    return jsonify({ 'token': token.decode('ascii') })
+    token, data = getToken(auth.username())#g.user.generate_auth_token()
+    return jsonify({ 'token': token.decode('ascii'), 'user':data })
 
 
 #beneficiari
@@ -101,8 +101,9 @@ def get_user3():
 
 @app.route('/')
 def hello():
+	str(getActiveOperator())
 	registerOperator({'email':'test@test.com','password':'adminadmin','role':'fixer', 'phone':10000001}, 'admin')
-	return ("Hello world")
+	return ("Hello world"+str(getActiveOperator()))
 
 
 if __name__ == "__main__":

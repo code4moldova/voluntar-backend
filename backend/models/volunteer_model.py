@@ -19,6 +19,7 @@ class User(Document):
     password = StringField(required=True, min_length=6)
     phone = IntField(min_value=10000000, max_value=99999999)
     created_at = DateTimeField(default=dt.now)
+    last_access = DateTimeField(default=dt.now)
     # we don't delete users just deactivating them
     logins = ListField(default=[])
 
@@ -26,9 +27,10 @@ class User(Document):
 
     meta = {'allow_inheritance': True}
 
-    def generate_auth_token(self, expiration = 6000):
+    def generate_auth_token(self, expiration = 60000):
         secret = 'lalal'#app.config['SECRET_KEY']
         s = Serializer(secret, expires_in = expiration)
+        User.objects(id=str(self.id)).get().update(last_access=dt.now)
         return s.dumps({ 'id': str(self.id) })
 
     @staticmethod
@@ -57,9 +59,11 @@ class User(Document):
         return PassHash.verify(password, data["password"])
 
 class Operator(User):
-    #created_by = ReferenceField(Operator)
     created_by = StringField(max_length=500)
     role = StringField(choise=('operator', 'fixer'), default='fixer')
+    address = StringField(max_length=500)
+    latitude = FloatField(min_value=0, max_value=50)
+    longitude = FloatField(min_value=0, max_value=50)
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
@@ -74,6 +78,16 @@ class Volunteer(User):
     activity_types = StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     #created_by = ReferenceField(Operator)
     created_by = StringField(max_length=500)
+    team = StringField(max_length=500)
+    profesia = StringField(max_length=500)
+    comments = StringField(max_length=500)
+    last_tempreture = FloatField(min_value=36, max_value=41)
+    need_sim_unite = BooleanField(default=False)
+    new_volunteer = BooleanField(default=True)
+    black_list = BooleanField(default=False)
+    received_cards = BooleanField(default=False)
+    sent_photo = BooleanField(default=False)
+
 
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)

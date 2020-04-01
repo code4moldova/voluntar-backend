@@ -1,7 +1,9 @@
 from flask.views import MethodView
 from flask import jsonify, request, g
-from models import Operator
+from models import Operator, Beneficiary
 from config import PassHash, MIN_PASSWORD_LEN
+from datetime import datetime as dt
+from datetime import timedelta
 
 
 def registerOperator(requestjson, created_by):
@@ -51,11 +53,21 @@ def getOperators(operator_id):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
+def getActiveOperator():#last assigned?
+    operator = [[v.clean_data(), 0, v] for v in Operator.objects(is_active=True).order_by('last_access').all()]#[:10]
+    operator = [[i,Beneficiary.objects(created_by=i['_id'], created_at__gte = dt.now() - timedelta(days=2)).count(), q] for i,u,q in operator]
+    sorted(operator, key=lambda x: x[1])
+    if len(operator)==0:
+        return None
+    return operator[0]
+
+
+
 
 def getToken(username):
     operator = Operator.objects(email=username,is_active=True)#.get()#.clean_data()
     if operator:
-        return operator.get().generate_auth_token()
+        return operator.get().generate_auth_token(), operator.get().clean_data()
     #print(operator)
     #g.user = operator
     return None
