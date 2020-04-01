@@ -10,6 +10,26 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
 
 FACEBOOK_URL_REGEX = r"http(?:s):\/\/(?:www\.)facebook\.com\/.+"
 
+
+class Tags(Document):
+    # TODO: Each volunteer must have a reference to operator that was created by
+    # created_by = ReferenceField("operator")
+    select = StringField(max_length=50)
+    ro = StringField(max_length=500)
+    ru = StringField(max_length=500)
+    created_by = StringField(max_length=500)
+    en = StringField(max_length=500)
+    is_active = BooleanField(default=True)
+
+    def clean_data(self) -> dict:
+        data = self.to_mongo()
+        if "password" in data and data["password"]:
+            del data["password"]
+        if "logins" in data:
+            del data["logins"]
+        data['_id'] = str(data['_id'])
+        return data
+
 class User(Document):
     # TODO: Each volunteer must have a reference to operator that was created by
     # created_by = ReferenceField("operator")

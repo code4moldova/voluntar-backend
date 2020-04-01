@@ -7,6 +7,9 @@ from config import PassHash, MIN_PASSWORD_LEN
 def registerVolunteer(requestjson, created_by):
         """create a new user"""
         new_volunteer = requestjson
+        if len(created_by)>30:
+            user = Operator.verify_auth_token(created_by)
+            created_by = user.get().clean_data()['email']
         # TODO: get authenticated operator and assignee to new volunteer
         # new_volunteer["created_by"] = authenticated_oprator
         try:
