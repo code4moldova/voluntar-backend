@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from flask import jsonify, request, g
-from models import Volunteer
+from models import Volunteer, Beneficiary
 from config import PassHash, MIN_PASSWORD_LEN
 
 
@@ -50,6 +50,15 @@ def getVolunteers(volunteer_id):
                 return jsonify({"list": volunteers})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
+
+def getDistance(a, b):
+    return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
+
+def sort_closest(id, topk):
+    topk = int(topk)
+    user = Beneficiary.objects(id=id).get().clean_data()
+    volunteers = sorted([[str(v['id']), getDistance(v,user)] for v in Volunteer.objects(is_active=True).all()], key=lambda x: x[1])
+    return jsonify({'list':volunteers[:topk]})
 
 
 def get_volunteers_by_filters(filters, pages=0, per_page=10000):

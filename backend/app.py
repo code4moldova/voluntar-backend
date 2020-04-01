@@ -6,7 +6,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
 		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters,getActiveOperator, get_beneficieries_by_filters, \
-		get_operators_by_filters
+		get_operators_by_filters, sort_closest
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -51,6 +51,13 @@ def get_user_by_filters(pages=15, per_page=10):
 @auth.login_required
 def update_user():
 	return updateVolunteer(request.json, request.json['_id'])
+
+
+@app.route('/api/volunteer/closest', methods=['GET', 'POST'])
+@app.route('/api/volunteer/closest/<id>/<topk>', methods=['GET', "POST"])
+@auth.login_required
+def get_closest_user(id, topk):
+	return sort_closest(id, topk)
 
 @app.route('/api/volunteer', methods = ['DELETE'])
 @auth.login_required
