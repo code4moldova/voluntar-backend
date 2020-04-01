@@ -78,6 +78,22 @@ def getBeneficiary(args):
             return jsonify({"error": str(error)}), 400
 
 
+def get_beneficieries_by_filters(filters, pages=0, per_page=10000):
+    try:
+        item_per_age = int(per_page)
+        offset = (int(pages) - 1) * item_per_age
+        if len(filters) > 0:
+            obj = Beneficiary.objects(**filters)
+            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": beneficiaries, 'count':obj.count()})
+        else:
+            obj = Beneficiary.objects(is_active=True)
+            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": beneficiaries, 'count':obj.count()})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
+
 class BeneficiaryAPI(MethodView):
 
     def get(self, beneficiary_id:str):

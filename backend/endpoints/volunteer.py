@@ -52,16 +52,19 @@ def getVolunteers(volunteer_id):
             return jsonify({"error": str(error)}), 400
 
 
-def get_volunteers_by_filters(filters, pages, per_page):
+def get_volunteers_by_filters(filters, pages=0, per_page=10000):
+    #?availability__gte=4
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
-            volunteers = [v.clean_data() for v in Volunteer.objects(**filters).skip(offset).limit(item_per_age)]
-            return jsonify({"list": volunteers})
+            obj = Volunteer.objects(**filters)
+            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": volunteers, 'count':obj.count()})
         else:
-            volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).skip(offset).limit(item_per_age)]
-            return jsonify({"list": volunteers})
+            obj = Volunteer.objects(is_active=True)
+            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": volunteers, 'count':obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
