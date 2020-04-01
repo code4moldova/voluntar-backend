@@ -6,11 +6,11 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
 		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters,getActiveOperator, get_beneficieries_by_filters, \
-		get_operators_by_filters, sort_closest
+		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
-from flask_cors import CORS
+from flask_cors import CORS 
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -63,6 +63,29 @@ def get_closest_user(id, topk):
 @auth.login_required
 def delete_user():
 	return updateVolunteer(request.json, request.json['_id'], True)
+
+#tags
+
+@app.route('/api/tag', methods = ['POST'])
+@auth.login_required
+def new_tag():
+	return registerTag(request.json, auth.username())
+
+@app.route('/api/tag', methods = ['GET'])
+@app.route('/api/tag/<select>', methods=['GET'])
+@auth.login_required
+def get_tag(select='all'):
+	return getTags(request.args.get('id'), select)
+
+@app.route('/api/tag', methods = ['PUT'])
+@auth.login_required
+def update_tag():
+	return updateTag(request.json, request.json['_id'])
+
+@app.route('/api/tag', methods = ['DELETE'])
+@auth.login_required
+def delete_tag():
+	return updateTag(request.json, request.json['_id'], True)
 
 #operators
 @app.route('/api/operator', methods = ['POST'])
