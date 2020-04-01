@@ -52,6 +52,19 @@ def getVolunteers(volunteer_id):
             return jsonify({"error": str(error)}), 400
 
 
+def get_volunteers_by_filters(filters, pages, per_page):
+    try:
+        item_per_age = int(per_page)
+        offset = (int(pages) - 1) * item_per_age
+        if len(filters) > 0:
+            volunteers = [v.clean_data() for v in Volunteer.objects(**filters).skip(offset).limit(item_per_age)]
+            return jsonify({"list": volunteers})
+        else:
+            volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).skip(offset).limit(item_per_age)]
+            return jsonify({"list": volunteers})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
 
 def deleteVolunteer(requestjson, volunteer_id):
         updateVolunteer(requestjson, volunteer_id, delete=True)

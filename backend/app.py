@@ -5,7 +5,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
-		registerBeneficiary, getBeneficiary, updateBeneficiary
+		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
@@ -21,7 +21,7 @@ volunteer_view = VolunteerAPI.as_view('volunteers')
 #app.add_url_rule('/volunteers/<volunteer_id>', view_func=volunteer_view, methods=['GET', 'PUT', 'DELETE'])
 
 connect(db=DB_NAME, host=DB_HOST)
- 
+
 #old school
 @auth.verify_password
 def verify_password(username, password):
@@ -36,6 +36,14 @@ def new_user():
 @auth.login_required
 def get_user():
 	return getVolunteers(request.args.get('id'))
+
+
+@app.route('/api/volunteer/filters', methods=['GET'])
+@app.route('/api/volunteer/filters/<pages>/<per_page>', methods=['GET'])
+@auth.login_required
+def get_user_by_filters(pages=15, per_page=10):
+	return get_volunteers_by_filters(request.args, pages, per_page)
+
 
 @app.route('/api/volunteer', methods = ['PUT'])
 @auth.login_required
