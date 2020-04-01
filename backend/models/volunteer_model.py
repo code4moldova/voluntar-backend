@@ -36,6 +36,8 @@ class User(Document):
         for k in obj.keys():
             if type(obj[k]) is dt:
                 del obj[k]
+        obj['id'] = obj['_id']
+        del obj['_id']
         return s.dumps(obj)
 
     @staticmethod
