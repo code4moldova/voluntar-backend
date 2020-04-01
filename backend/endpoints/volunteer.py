@@ -43,11 +43,15 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
-def getVolunteers(volunteer_id):
+def getVolunteers(filters):
         try:
-            if volunteer_id:
+            if len(filters.getlist('id')) == 1 :
+                volunteer_id = filters.get('id')
                 volunteer = Volunteer.objects(id=volunteer_id).get().clean_data()
                 return jsonify(volunteer)
+            elif len(filters.getlist('id')) > 1:
+                volunteers = [Volunteer.objects(id=volunteer_id).get().clean_data() for volunteer_id in filters.getlist('id')]
+                return jsonify({"list": volunteers})
             else:
                 volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).all()]
                 return jsonify({"list": volunteers})

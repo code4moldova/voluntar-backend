@@ -36,8 +36,8 @@ def new_user():
 
 @app.route('/api/volunteer', methods = ['GET'])
 @auth.login_required
-def get_user():
-	return getVolunteers(request.args.get('id'))
+def get_user(): 
+	return getVolunteers(request.args)#request.args.get('id'))
 
 
 @app.route('/api/volunteer/filters', methods=['GET'])
@@ -155,7 +155,7 @@ def get_user3():
 def hello():
 	str(getActiveOperator())
 	registerOperator({'email':'test@test.com','password':'adminadmin','role':'fixer', 'phone':10000001}, 'admin')
-	return ("Hello world"+str(getActiveOperator()))
+	return ("Hello world"+str(getActiveOperator())+ '--'+str(request.args))
 
 
 if __name__ == "__main__":
