@@ -7,7 +7,7 @@ from config import PassHash, MIN_PASSWORD_LEN
 from mongoengine import Q
 
 
-def registerBeneficiary(requestjson, created_by):
+def registerBeneficiary(requestjson, created_by, fixer_id):
         """create a new user"""
         new_beneficiary = requestjson
         if len(created_by)>30:
@@ -19,6 +19,7 @@ def registerBeneficiary(requestjson, created_by):
             assert len(new_beneficiary["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_beneficiary["password"] = PassHash.hash(new_beneficiary["password"])
             new_beneficiary['created_by'] = created_by# g.user.get().clean_data()['_id']
+            new_beneficiary['fixer'] = str(fixer_id)
             comment = Beneficiary(**new_beneficiary)
             comment.save()
             return jsonify({"response": "success", 'user': comment.clean_data()})

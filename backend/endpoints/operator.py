@@ -56,15 +56,28 @@ def getOperators(operator_id):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
-def getActiveOperator():#last assigned?
-    operator = [[v.clean_data(), 0, v] for v in Operator.objects(is_active=True).order_by('last_access').all()]#[:10]
-    operator = [[i,Beneficiary.objects(created_by=i['_id'], created_at__gte = dt.now() - timedelta(days=2)).count(), q] for i,u,q in operator]
-    sorted(operator, key=lambda x: x[1])
-    if len(operator)==0:
-        return None
-    return operator[0]
 
+def get_active_operator(days=2):
+    days_diff = dt.now() - timedelta(days=days)
+    pipeline_used_fixers = [{'$match': {'status': 'done', 'created_at': {'$gte': days_diff}}},
+                            {'$sort': {'created_at': 1}},
+                            {'$group': {'_id': '$fixer', 'count': {'$sum': 1}}}]
+    fixers = []
+    for f in Beneficiary.objects().aggregate(pipeline_used_fixers):
+        fixers.append(f)
 
+    available_fixers = [v.clean_data() for v in
+                        Operator.objects(is_active=True, role='fixer', created_at__gte=days_diff)]
+    available_fixers = [{'_id': af.get('_id')} for af in available_fixers]
+    if len(fixers) == len(available_fixers):
+        return fixers[0].get('_id')
+    else:
+        fixers_ids = [val['_id'] for val in fixers]
+        for af in available_fixers:
+            fixer_id = af.get('_id')
+            if fixer_id not in fixers_ids:
+                break
+        return fixer_id
 
 def get_operators_by_filters(filters, pages=0, per_page=10000):
     try:
