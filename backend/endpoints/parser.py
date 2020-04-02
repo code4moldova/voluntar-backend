@@ -123,7 +123,7 @@ def parseRow(row):
     it['team'] = getTagId(it['team'] ,'-','team')
     it['age'] = getTagId(it['age'] ,'-','age')
     it['offer'] = getTagId(it['offer'] ,'-','offer')
-    ro, ru = it['zone_address'].split('/')
+    ro, ru = (it['zone_address'].split('/') + ['-'])[:2]
     it['zone_address'] = getTagId(ro.strip() ,ru.strip(),'sector')
     ro, ru = it['availability'].split('/')
     it['availability'] = getTagId(ro.strip() ,ru.strip(),'availability')
