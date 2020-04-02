@@ -22,8 +22,8 @@ mp ={
  'ce ECHIPA este ':'team',
  'Are nevoie cart':'need_sim_unite',
  'A trimis foto p':'sent_photo',
- 'Ultima Temperat':'last_tempreture',
- 'Activitatea de ':'profesia',
+ 'Ultima Temperat':'last_temperature',
+ 'Activitatea de ':'profession',
  'comentarii / fe':'comments',
  'Au primit legit':'received_contract',
  'Au primit carte':'received_cards',
@@ -113,8 +113,8 @@ def parseRow(row):
     last, first = parseName(it['last_name'])
     it['last_name'] = last
     it['first_name'] = first
-    it['last_tempreture'] = it['last_tempreture'].strip()
-    it['last_tempreture'] = 36 if len(it['last_tempreture'])==0 else float(it['last_tempreture'])
+    it['last_temperature'] = it['last_temperature'].strip()
+    it['last_temperature'] = 36 if len(it['last_temperature'])==0 else float(it['last_temperature'])
     it['password'] = it['phone']
     it['aggreed_terms'] = it['aggreed_terms'].find('Da')>=0
     it['new_volunteer'] = it['new_volunteer'].lower().find('nu')>=0
