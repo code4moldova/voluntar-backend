@@ -95,12 +95,13 @@ class Operator(User):
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
+    address_old = StringField(max_length=500, required=False)
     telegram_id = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
     facebook_profile = StringField(max_length=500, required=False)#URLField(url_regex=FACEBOOK_URL_REGEX)
-    age = IntField(min_value=16, max_value=50)
+    age = StringField(max_length=500, required=False)#IntField(min_value=16, max_value=50)
     # Availability per day in hours
-    availability = FloatField(min_value=0, max_value=12)
+    availability = StringField(max_length=500, required=False)#FloatField(min_value=0, max_value=12)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')
@@ -109,13 +110,17 @@ class Volunteer(User):
     team = StringField(max_length=500)
     profesia = StringField(max_length=500)
     comments = StringField(max_length=500)
+    offer = StringField(max_length=500)
+    timestamp = StringField(max_length=500)
     last_tempreture = FloatField(min_value=36, max_value=41)
     need_sim_unite = BooleanField(default=False)
     new_volunteer = BooleanField(default=False)
     black_list = BooleanField(default=False)
     received_cards = BooleanField(default=False)
+    received_contract = BooleanField(default=False)
     sent_photo = BooleanField(default=False)
-
+    aggreed_terms = BooleanField(default=False)
+    april1 = BooleanField(default=False)
 
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)
