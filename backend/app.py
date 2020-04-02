@@ -5,7 +5,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
-		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters,getActiveOperator, get_beneficieries_by_filters, \
+		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficieries_by_filters, \
 		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile
 
 from flask import jsonify, request
@@ -135,7 +135,8 @@ def get_auth_token():
 @app.route('/api/beneficiary', methods = ['POST'])
 @auth.login_required
 def new_beneficiary():
-	return registerBeneficiary(request.json, auth.username())
+    fixer_id = get_active_operator()
+    return registerBeneficiary(request.json, auth.username(), fixer_id)
 
 @app.route('/api/beneficiary', methods = ['GET'])
 @auth.login_required
@@ -162,9 +163,9 @@ def get_user3():
 
 @app.route('/')
 def hello():
-	str(getActiveOperator())
+	str(get_active_operator())
 	registerOperator({'email':'test@test.com','password':'adminadmin','role':'fixer', 'phone':10000001}, 'admin')
-	return ("Hello world"+str(getActiveOperator())+ '--'+str(request.args))
+	return ("Hello world"+str(get_active_operator())+ '--'+str(request.args))
 
 
 if __name__ == "__main__":
