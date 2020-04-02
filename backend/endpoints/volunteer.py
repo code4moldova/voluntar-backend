@@ -62,13 +62,20 @@ def getDistance(a, b):
     return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v):
     u = {}
-    for k in ['first_name','last_name','phone','email']:
+    for k in ['first_name','last_name','phone','email','activity_types']:
         u[k] =v[k]
     return u
 def sort_closest(id, topk):
     topk = int(topk)
     user = Beneficiary.objects(id=id).get().clean_data()
-    volunteers = sorted([[str(v['id']), getDistance(v,user), makejson(v)] for v in Volunteer.objects(is_active=True).all()], key=lambda x: x[1])
+    filters = {}
+    #for ac in user['activity_types']:
+    #    filters
+    #get active volunteer with same activity type, with availability>0 and not bussy with other requests
+    volunteers = sorted([[str(v['id']), getDistance(v,user), makejson(v)] for v in Volunteer.objects(is_active=True, availability__gt=0,
+                                                                                                     activity_types__in=user['activity_types']).all()\
+                            if not Beneficiary.objects(volunteer=str(v['id']),status__ne='done')
+                        ], key=lambda x: x[1])
     return jsonify({'list':volunteers[:topk]})
 
 
