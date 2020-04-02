@@ -95,6 +95,7 @@ class Operator(User):
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
+    city = StringField(max_length=500, required=True)
     address_old = StringField(max_length=500, required=False)
     telegram_id = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
@@ -102,6 +103,7 @@ class Volunteer(User):
     age = StringField(max_length=500, required=False)#IntField(min_value=16, max_value=50)
     # Availability per day in hours
     availability = StringField(max_length=500, required=False)#FloatField(min_value=0, max_value=12)
+    availability_day = StringField(max_length=500, required=False)#FloatField(min_value=0, max_value=12)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')
@@ -124,6 +126,7 @@ class Volunteer(User):
 
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)
+    city = StringField(max_length=500, required=True)
     zone_address = StringField(max_length=500, required=True)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
