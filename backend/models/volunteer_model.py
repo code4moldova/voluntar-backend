@@ -110,7 +110,7 @@ class Volunteer(User):
     #created_by = ReferenceField(Operator)
     created_by = StringField(max_length=500)
     team = StringField(max_length=500)
-    profesia = StringField(max_length=500)
+    profession = StringField(max_length=500)
     comments = StringField(max_length=500)
     offer = StringField(max_length=500)
     timestamp = StringField(max_length=500)
