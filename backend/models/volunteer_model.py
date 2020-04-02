@@ -92,10 +92,11 @@ class Operator(User):
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
+    city = StringField(max_length=500, required=False)
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
-    city = StringField(max_length=500, required=True)
+    city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
     telegram_id = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
@@ -126,7 +127,7 @@ class Volunteer(User):
 
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)
-    city = StringField(max_length=500, required=True)
+    city = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
