@@ -3,3 +3,4 @@ from .beneficiary import BeneficiaryAPI, registerBeneficiary, getBeneficiary, up
 from .tags import  registerTag, getTags, updateTag
 from .beneficiary_requests import Beneficiary_requestAPI
 from .operator import OperatorAPI, registerOperator, getOperators, updateOperator, verifyUser, getToken, getActiveOperator, get_operators_by_filters
+from .parser import parseFile
