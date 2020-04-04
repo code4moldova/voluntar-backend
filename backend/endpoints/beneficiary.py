@@ -105,7 +105,7 @@ def get_beneficieries_by_filters(filters, pages=0, per_page=10000):
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, 'count':obj.count()})
         else:
-            obj = Beneficiary.objects(is_active=True).order_by('-created_at')
+            obj = Beneficiary.objects().order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, 'count':obj.count()})
     except Exception as error:
