@@ -135,6 +135,7 @@ class Beneficiary(User):
     zone_address = StringField(max_length=500, required=True)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
+    offer = StringField(max_length=500)
     age = IntField(min_value=16, max_value=120)
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)

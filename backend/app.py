@@ -57,7 +57,7 @@ def update_user():
 @app.route('/api/volunteer/closest/<id>/<topk>', methods=['GET', "POST"])
 @auth.login_required
 def get_closest_user(id, topk):
-	return sort_closest(id, topk)
+	return sort_closest(id, topk, request.args.get('category'))
 
 @app.route('/api/volunteer', methods = ['DELETE'])
 @auth.login_required
@@ -163,9 +163,9 @@ def get_user3():
 
 @app.route('/')
 def hello():
-	str(get_active_operator())
-	registerOperator({'email':'test@test.com','password':'adminadmin','role':'fixer', 'phone':10000001}, 'admin')
-	return ("Hello world"+str(get_active_operator())+ '--'+str(request.args))
+	#str(get_active_operator())
+	return  registerOperator({'email':'test@test.com','password':'adminadmin','role':['fixer'], 'phone':10000001}, 'admin')
+	return ("Hello world"+str(get_active_operator())+ '--'+str(request.args)+'-'+str(r))
 
 
 if __name__ == "__main__":

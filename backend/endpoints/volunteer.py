@@ -66,17 +66,24 @@ def makejson(v, user):
         if k in v:
             u[k] =v[k]
     return u
-def sort_closest(id, topk):
+def sort_closest(id, topk, category):
     topk = int(topk)
     user = Beneficiary.objects(id=id).get().clean_data()
     filters = {}
     #for ac in user['activity_types']:
     #    filters
     #get active volunteer with same activity type, with availability>0 and not bussy with other requests
-    volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
-                                                                                                     activity_types__in=user['activity_types']).all()\
-                            if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
-                        ], key=lambda x: x['distance'])
+    if category is not None:
+
+        volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
+                                                                                                         offer=category).all()\
+                                if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
+                                ], key=lambda x: x['distance'])
+    else:
+        volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
+                                                                                                         activity_types__in=user['activity_types']).all()\
+                                if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
+                            ], key=lambda x: x['distance'])
     return jsonify({'list':volunteers[:topk]})
 
 
