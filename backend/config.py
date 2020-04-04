@@ -23,3 +23,4 @@ app = Flask(__name__)
 
 AJUBOT_HOST = "http://127.0.0.1"
 AJUBOT_PORT = 5001
+AJUBOT_RECEIPT_PATH = './static/images/receipts'

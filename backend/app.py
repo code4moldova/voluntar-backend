@@ -1,5 +1,5 @@
 from flask import Flask
-from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI
+from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI, telegrambot
 from mongoengine import connect
 from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
@@ -10,7 +10,7 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
-from flask_cors import CORS 
+from flask_cors import CORS
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -166,6 +166,11 @@ def hello():
 	#str(get_active_operator())
 	return  registerOperator({'email':'test@test.com','password':'adminadmin','role':['fixer'], 'phone':10000001}, 'admin')
 	return ("Hello world"+str(get_active_operator())+ '--'+str(request.args)+'-'+str(r))
+
+
+@app.route('/api/receipt', methods=['POST'])
+def upload_image():
+	return telegrambot.save_receive(request.json['beneficiary_id'], request.json['data'])
 
 
 if __name__ == "__main__":

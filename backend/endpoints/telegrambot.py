@@ -1,6 +1,12 @@
 import requests
+import io
+import base64
 from .volunteer import sort_closest
-from config import AJUBOT_HOST, AJUBOT_PORT
+from config import AJUBOT_HOST, AJUBOT_PORT, AJUBOT_RECEIPT_PATH
+from PIL import Image
+from flask import jsonify
+from datetime import datetime
+from models import Beneficiary
 
 BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
 
@@ -27,3 +33,14 @@ def send_request(beneficiary):
         except Exception as error:
             return str(error)
             pass
+
+
+def save_receive(beneficiary_id, data):
+    try:
+        image = Image.open(io.BytesIO(base64.b64decode(data.encode())))
+        save_path = f'{AJUBOT_RECEIPT_PATH}/{beneficiary_id}_{"{:%Y%m%d_%H%M%S}".format(datetime.now())}.{image.format.lower()}'
+        image.save(save_path)
+        Beneficiary.objects(id=beneficiary_id).update(sent_foto=True, path_receipt=save_path)
+        return jsonify({"response": "success"})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
