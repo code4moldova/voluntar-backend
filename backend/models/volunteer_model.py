@@ -99,12 +99,15 @@ class Volunteer(User):
     city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
     telegram_id = StringField(max_length=500, required=False)
+    telegram_chat_id = StringField(max_length=500, required=False)
+    telegram_secret = StringField(max_length=500, required=False)
     zone_address = StringField(max_length=500, required=True)
     facebook_profile = StringField(max_length=500, required=False)#URLField(url_regex=FACEBOOK_URL_REGEX)
     age = StringField(max_length=500, required=False)#IntField(min_value=16, max_value=50)
     # Availability per day in hours
-    availability = StringField(max_length=500, required=False)#FloatField(min_value=0, max_value=12)
-    availability_day = StringField(max_length=500, required=False)#FloatField(min_value=0, max_value=12)
+    availability = StringField(max_length=500, required=False)#id of type of availability(d2h per daay, 4 hour/week etc)
+    availability_day = StringField(max_length=500, required=False)#when available for the offer_beneficiary_id
+    offer_beneficiary_id = StringField(max_length=500, required=False)#offer_beneficiary_id if ok
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')
@@ -143,6 +146,7 @@ class Beneficiary(User):
     #beneficiary = ReferenceField(Beneficiary)
     volunteer = StringField(max_length=500)
     fixer = StringField(max_length=500)
+    has_symptoms = BooleanField(default=False)
     
 
 class Beneficiary_request(User):
