@@ -62,8 +62,9 @@ def getDistance(a, b):
     return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
-    for k in ['first_name','last_name','phone','email','activity_types']:
-        u[k] =v[k]
+    for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id']:
+        if k in v:
+            u[k] =v[k]
     return u
 def sort_closest(id, topk):
     topk = int(topk)
