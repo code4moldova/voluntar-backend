@@ -15,6 +15,7 @@ flask_httpauth = "*"
 [dev-packages]
 pylint = "*"
 wheel = "*"
+mongomock = ">=3.19.0"
 
 [requires]
 python_version = "3.7"
