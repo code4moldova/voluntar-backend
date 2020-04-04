@@ -23,7 +23,7 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
             new_beneficiary['fixer'] = str(fixer_id)
             comment = Beneficiary(**new_beneficiary)
             comment.save()
-            telegrambot.send_request(comment)
+            #telegrambot.send_request(comment)
             return jsonify({"response": "success", 'user': comment.clean_data()})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
@@ -43,7 +43,15 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
             update["set__is_active"] = False
 
         try:
-            Beneficiary.objects(id=beneficiary_id).get().update(**update)
+            obj = Beneficiary.objects(id=beneficiary_id).get()
+            data = obj.clean_data()
+            if ('set__is_active' in update and update['set__is_active'] and not data['is_active']) \
+                or ('set_offer' in update and update['set_offer']!=data['offer']) \
+                 or ('set_address' in update and update['set_address']!=data['address']):
+                #change to active or different volunteer category or different address
+                return jsonify(telegrambot.send_request(obj))
+                
+            obj.update(**update)
             return jsonify({"response": "success"})
         except Exception as error:
             return jsonify({"error": str(error)}), 400

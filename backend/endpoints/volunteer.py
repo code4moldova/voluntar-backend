@@ -59,10 +59,12 @@ def getVolunteers(filters):
             return jsonify({"error": str(error)}), 400
 
 def getDistance(a, b):
+    if 'longitude' not in a or 'longitude' not in b:
+        return 1000000
     return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
-    for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id']:
+    for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id', 'telegram_chat_id', 'latitude','longitude']:
         if k in v:
             u[k] =v[k]
     return u
@@ -73,8 +75,8 @@ def sort_closest(id, topk, category):
     #for ac in user['activity_types']:
     #    filters
     #get active volunteer with same activity type, with availability>0 and not bussy with other requests
-    if category is not None:
-
+    if 'offer' in user and user['offer']!='':
+        category = user['offer']
         volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
                                                                                                          offer=category).all()\
                                 if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
@@ -84,6 +86,7 @@ def sort_closest(id, topk, category):
                                                                                                          activity_types__in=user['activity_types']).all()\
                                 if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
                             ], key=lambda x: x['distance'])
+    volunteers = [i for i in volunteers if i['distance']<100000]#todo: find the best threshhold!!!
     return jsonify({'list':volunteers[:topk]})
 
 

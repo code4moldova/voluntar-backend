@@ -7,15 +7,23 @@ BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
 
 def send_request(beneficiary):
     beneficiary_id = str(beneficiary['id'])
-    payload = {
-        'request_id': beneficiary_id,
-        'beneficiary': beneficiary.first_name + ' ' + beneficiary.last_name,
-        'address': beneficiary.address,
-        'needs': beneficiary.activity_types,
-        'gotSymptoms': beneficiary.has_symptoms,
-        'safetyCode': beneficiary.secret,
-        'phoneNumber': beneficiary.phone,
-        'remarks': beneficiary.remarks,
-        'volunteers': [v['telegram_chat_id'] for v in sort_closest(beneficiary_id, 5, None).json['list']]
-    }
-    requests.post(f'{BASE_URL}/help_request', json=payload)
+    volunteers = [v['telegram_chat_id'] for v in sort_closest(beneficiary_id, 5, None).json['list'] if 'telegram_chat_id' in v]
+
+    if len(volunteers)>0:
+        payload = {
+            'request_id': beneficiary_id,
+            'beneficiary': beneficiary.first_name + ' ' + beneficiary.last_name,
+            'address': beneficiary.address,
+            'needs': beneficiary.activity_types,
+            'gotSymptoms': beneficiary.has_symptoms,
+            'safetyCode': beneficiary.secret,
+            'phoneNumber': beneficiary.phone,
+            'remarks': beneficiary.remarks,
+            'volunteers': volunteers
+        }
+        try:
+            requests.post(f'{BASE_URL}/help_request', json=payload)
+            return volunteers
+        except Exception as error:
+            return str(error)
+            pass
