@@ -152,7 +152,8 @@ class Beneficiary(User):
     fixer = StringField(max_length=500)
     has_symptoms = BooleanField(default=False)
     ask_volunteers = ListField(default=[])
-    
+    remarks = ListField(default=[])
+
 
 class Beneficiary_request(User):
     have_money = BooleanField(default=True)
