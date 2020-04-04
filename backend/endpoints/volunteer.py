@@ -61,7 +61,7 @@ def getVolunteers(filters):
 def getDistance(a, b):
     return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
-    u = {'distance':getDistance(v,user), 'id': str(v['_id'])}
+    u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
     for k in ['first_name','last_name','phone','email','activity_types']:
         u[k] =v[k]
     return u
