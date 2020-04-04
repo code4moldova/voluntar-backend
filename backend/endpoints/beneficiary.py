@@ -5,6 +5,7 @@ from flask import jsonify, request, g
 from models import Beneficiary,Operator
 from config import PassHash, MIN_PASSWORD_LEN
 from mongoengine import Q
+from endpoints import telegrambot
 
 
 def registerBeneficiary(requestjson, created_by, fixer_id):
@@ -22,6 +23,7 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
             new_beneficiary['fixer'] = str(fixer_id)
             comment = Beneficiary(**new_beneficiary)
             comment.save()
+            telegrambot.send_request(comment)
             return jsonify({"response": "success", 'user': comment.clean_data()})
         except Exception as error:
             return jsonify({"error": str(error)}), 400

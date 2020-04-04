@@ -16,6 +16,6 @@ def send_request(beneficiary):
         'safetyCode': beneficiary.secret,
         'phoneNumber': beneficiary.phone,
         'remarks': beneficiary.remarks,
-        'volunteers': [v['telegram_chat_id'] for v in sort_closest(beneficiary_id, 5).json['list']]
+        'volunteers': [v['telegram_chat_id'] for v in sort_closest(beneficiary_id, 5, None).json['list']]
     }
     requests.post(f'{BASE_URL}/help_request', json=payload)
