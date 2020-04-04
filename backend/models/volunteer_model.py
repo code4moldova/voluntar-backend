@@ -101,6 +101,7 @@ class Volunteer(User):
     telegram_id = StringField(max_length=500, required=False)
     telegram_chat_id = StringField(max_length=500, required=False)
     telegram_secret = StringField(max_length=500, required=False)
+    is_active = BooleanField(default=False)
     zone_address = StringField(max_length=500, required=True)
     facebook_profile = StringField(max_length=500, required=False)#URLField(url_regex=FACEBOOK_URL_REGEX)
     age = StringField(max_length=500, required=False)#IntField(min_value=16, max_value=50)
@@ -132,6 +133,7 @@ class Beneficiary(User):
     address = StringField(max_length=500, required=True)
     city = StringField(max_length=500, required=False)
     path_receipt = StringField(max_length=500, required=False)
+    is_active = BooleanField(default=False)
     zone_address = StringField(max_length=500, required=True)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
@@ -149,6 +151,7 @@ class Beneficiary(User):
     volunteer = StringField(max_length=500)
     fixer = StringField(max_length=500)
     has_symptoms = BooleanField(default=False)
+    ask_volunteers = ListField(default=[])
     
 
 class Beneficiary_request(User):

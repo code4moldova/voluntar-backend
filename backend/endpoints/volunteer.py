@@ -93,11 +93,15 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
-            obj = Volunteer.objects(**filters)
-            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            flt = {}
+            toBool = {'true':True, 'false': False}
+            for v,k in filters.items():
+                flt[v] = toBool[k.lower()] if k.lower() in toBool else k 
+            obj = Volunteer.objects(**flt)
+            volunteers = [v.clean_data() for v in obj.order_by('-created_at').skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, 'count':obj.count()})
         else:
-            obj = Volunteer.objects(is_active=True)
+            obj = Volunteer.objects(is_active=True).order_by('-created_at')
             volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, 'count':obj.count()})
     except Exception as error:

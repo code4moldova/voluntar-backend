@@ -87,11 +87,15 @@ def get_beneficieries_by_filters(filters, pages=0, per_page=10000):
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
-            obj = Beneficiary.objects(**filters)
+            flt = {}
+            toBool = {'true':True, 'false': False}
+            for v,k in filters.items():
+                flt[v] = toBool[k.lower()] if k.lower() in toBool else k 
+            obj = Beneficiary.objects(**flt).order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, 'count':obj.count()})
         else:
-            obj = Beneficiary.objects(is_active=True)
+            obj = Beneficiary.objects(is_active=True).order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, 'count':obj.count()})
     except Exception as error:
