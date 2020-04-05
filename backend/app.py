@@ -6,7 +6,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
 		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficieries_by_filters, \
-		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile
+		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile, updateVolunteerTG
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -50,7 +50,10 @@ def get_user_by_filters(pages=15, per_page=10):
 @app.route('/api/volunteer', methods = ['PUT'])
 @auth.login_required
 def update_user():
-	return updateVolunteer(request.json, request.json['_id'])
+	if '_id' not in request.json:
+		return updateVolunteerTG(request.json, request.json.get('telegram_chat_id'), request.json.get('phone'))
+	else:
+		return updateVolunteer(request.json, request.json['_id'])
 
 
 @app.route('/api/volunteer/closest', methods=['GET', 'POST'])

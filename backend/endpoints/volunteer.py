@@ -43,6 +43,26 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
+def updateVolunteerTG(requestjson, tg_id, phone):
+    update = {}
+    for key, value in requestjson.items():
+        if key == 'phone':
+            continue
+        if key == 'telegram_chat_id' and 'phone' not in requestjson:
+            continue
+        update[f"set__{key}"] = value
+    try:
+        if 'phone' in requestjson:
+            obj = Volunteer.objects(phone=requestjson['phone'], is_active=True)
+        else:
+            obj = Volunteer.objects(telegram_chat_id=requestjson['telegram_chat_id'], is_active=True)
+        if obj:
+            obj = [i for i in obj.all()][0]
+            obj.update(**update)            
+        return jsonify({"response": "success"})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
 def getVolunteers(filters):
         try:
             if len(filters.getlist('id')) == 1 :
