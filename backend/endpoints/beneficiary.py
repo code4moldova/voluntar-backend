@@ -49,7 +49,8 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
                 or ('set_offer' in update and update['set_offer']!=data['offer']) \
                  or ('set_address' in update and update['set_address']!=data['address']):
                 #change to active or different volunteer category or different address
-                return jsonify(telegrambot.send_request(obj))
+                #return jsonify(telegrambot.send_request(obj))
+                telegrambot.send_request(obj)
                 
             obj.update(**update)
             return jsonify({"response": "success"})
