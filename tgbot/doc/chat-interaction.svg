@@ -1,0 +1,3306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="662.14502mm"
+   height="763.22357mm"
+   viewBox="0 0 662.14502 763.22357"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="chat-interaction-v2.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker8687"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path8685" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker7711"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7709" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7376"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path7374"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker6743"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6741"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5957"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5955"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5543"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:collect="always">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path5541" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker4919"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4917"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker3828"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path3826"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker3142"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path3140"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2910"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2908"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2609"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2607"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2464"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path2462"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2406"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2404"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2354"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path2352"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2308"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2306"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker2268"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2266"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2234"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path2232"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path1953"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="672.38935"
+     inkscape:cy="1543.054"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2160"
+     inkscape:window-height="1359"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(178.13128,56.014965)">
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect834"
+       width="94.956238"
+       height="88.719627"
+       x="-82.440918"
+       y="25.948967"
+       rx="1.2523702" />
+    <g
+       id="g858"
+       transform="translate(-116.41669)">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="37.968967"
+         width="85.927155"
+         id="rect842"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text838"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan836"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-78.197144"
+       y="44.296661"
+       id="text862"><tspan
+         sodipodi:role="line"
+         id="tspan860"
+         x="-78.197144"
+         y="44.296661"
+         style="stroke-width:0.26458332px">O persoană din <tspan
+   style="font-weight:bold"
+   id="tspan5237">str. Cuza-Vodă 45</tspan> are nevoie</tspan><tspan
+         sodipodi:role="line"
+         x="-78.197144"
+         y="48.706383"
+         style="stroke-width:0.26458332px"
+         id="tspan864">de:</tspan><tspan
+         sodipodi:role="line"
+         x="-78.197144"
+         y="53.116108"
+         style="stroke-width:0.26458332px"
+         id="tspan7332">- medicamente</tspan><tspan
+         sodipodi:role="line"
+         x="-78.197144"
+         y="57.525829"
+         style="stroke-width:0.26458332px"
+         id="tspan7334">- produse alimentare</tspan><tspan
+         sodipodi:role="line"
+         x="-78.197144"
+         y="61.935551"
+         style="stroke-width:0.26458332px"
+         id="tspan866" /><tspan
+         sodipodi:role="line"
+         x="-78.197144"
+         y="66.345276"
+         style="stroke-width:0.26458332px"
+         id="tspan868">Poți ajuta?</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.80575079;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect870"
+       width="13.229842"
+       height="11.626225"
+       x="-80.74292"
+       y="96.8909"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-75.280022"
+       y="103.43355"
+       id="text874"><tspan
+         sodipodi:role="line"
+         id="tspan872"
+         x="-75.280022"
+         y="103.43355"
+         style="stroke-width:0.26458332px">Nu</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="96.8909"
+       x="-65.926254"
+       height="11.626225"
+       width="18.976137"
+       id="rect876"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text880"
+       y="104.49189"
+       x="-63.638351"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="104.49189"
+         x="-63.638351"
+         sodipodi:role="line"
+         id="tspan7292">În 30min</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect882"
+       width="18.976137"
+       height="11.626225"
+       x="-44.759605"
+       y="96.8909"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-43.530037"
+       y="104.49189"
+       id="text886"><tspan
+         sodipodi:role="line"
+         id="tspan884"
+         x="-43.530037"
+         y="104.49189"
+         style="stroke-width:0.26458332px">Într-o oră</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="96.8909"
+       x="-23.59293"
+       height="11.626225"
+       width="18.976137"
+       id="rect888"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text892"
+       y="104.49189"
+       x="-22.363377"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="104.49189"
+         x="-22.363377"
+         id="tspan890"
+         sodipodi:role="line">În 2 ore</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="137.66763"
+       x="-82.286484"
+       height="88.719627"
+       width="94.956238"
+       id="rect894"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g902"
+       transform="translate(-116.26224,111.71866)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect896"
+         width="85.927155"
+         height="28.330574"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text900"><tspan
+           sodipodi:role="line"
+           id="tspan898"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text912"
+       y="156.01532"
+       x="-78.042702"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="156.01532"
+         x="-78.042702"
+         id="tspan904"
+         sodipodi:role="line">O persoană din str. Cuza-Vodă 45 are nevoie</tspan><tspan
+         id="tspan906"
+         style="stroke-width:0.26458332px"
+         y="160.42505"
+         x="-78.042702"
+         sodipodi:role="line">de medicamente și produse alimentare.</tspan><tspan
+         id="tspan908"
+         style="stroke-width:0.26458332px"
+         y="164.83476"
+         x="-78.042702"
+         sodipodi:role="line" /><tspan
+         id="tspan910"
+         style="stroke-width:0.26458332px"
+         y="169.24449"
+         x="-78.042702"
+         sodipodi:role="line">Poți ajuta?</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2406)"
+       d="m -24.232578,114.66859 -21.15735,21.15735"
+       id="path938"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-43.829506"
+       y="123.54208"
+       id="text942"><tspan
+         sodipodi:role="line"
+         id="tspan940"
+         x="-43.829506"
+         y="123.54208"
+         style="stroke-width:0.26458332px">Nu</tspan></text>
+    <rect
+       style="opacity:1;fill:#d7eef4;fill-opacity:1;stroke:#c83737;stroke-width:0.26499999;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8199"
+       width="98.460152"
+       height="173.22726"
+       x="33.173954"
+       y="-55.882465"
+       rx="5.7948513"
+       ry="3.7421079" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path948"
+       d="m 97.475761,114.66859 -21.15735,21.15735"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2464)" />
+    <text
+       id="text952"
+       y="147.23457"
+       x="-37.695614"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(-45)"><tspan
+         style="stroke-width:0.26458332px"
+         y="147.23457"
+         x="-37.695614"
+         id="tspan950"
+         sodipodi:role="line">Confirmat</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="137.07396"
+       x="33.975758"
+       height="125.19432"
+       width="94.956238"
+       id="rect954"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       rx="0"
+       y="244.5285"
+       x="39.907097"
+       height="11.626225"
+       width="30.882387"
+       id="rect974"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.23105884;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text978"
+       y="249.48367"
+       x="42.195004"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="249.48367"
+         x="42.195004"
+         id="tspan976"
+         sodipodi:role="line">Sunt sănătos și</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="253.8934"
+         x="42.195004"
+         sodipodi:role="line"
+         id="tspan8343">fără simptome</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="244.5285"
+       x="83.298759"
+       height="11.626225"
+       width="23.322863"
+       id="rect986"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.06982887;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text990"
+       y="251.07115"
+       x="88.761665"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="251.07115"
+         x="88.761665"
+         id="tspan988"
+         sodipodi:role="line">Anulare</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,0,101.32817)"
+       id="g1031">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="43.808018"
+         width="85.927155"
+         id="rect1025"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1029"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1027"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="38.219543"
+       y="151.1884"
+       id="text1041"><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="151.1884"
+         style="stroke-width:0.26458332px"
+         id="tspan8349">Înainte de a porni la drum, gândește-te că</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="155.59813"
+         style="stroke-width:0.26458332px"
+         id="tspan8353">poți să infectezi o persoană vulnerabilă, prin</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="160.00784"
+         style="stroke-width:0.26458332px"
+         id="tspan8642">neatenție sau neglijență!</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="164.41757"
+         style="stroke-width:0.26458332px"
+         id="tspan8355" /><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="168.82729"
+         style="stroke-width:0.26458332px"
+         id="tspan8357">Ești sigur că nu ai niciun simptom:</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="173.23701"
+         style="stroke-width:0.26458332px"
+         id="tspan1251">- tuse</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="177.64673"
+         style="stroke-width:0.26458332px"
+         id="tspan8359">- febră</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="182.05646"
+         style="stroke-width:0.26458332px"
+         id="tspan1257">- respirație dificilă</tspan><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="186.46619"
+         style="stroke-width:0.26458332px"
+         id="tspan8644" /><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="190.8759"
+         style="stroke-width:0.26458332px"
+         id="tspan8646"
+         dy="-0.80180854">?</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2354)"
+       d="M 22.214508,255.63678 -65.68912,269.35779"
+       id="path1066"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-72.603157"
+       y="255.50996"
+       id="text1070"
+       transform="rotate(-7.8745246)"><tspan
+         sodipodi:role="line"
+         id="tspan1068"
+         x="-72.603157"
+         y="255.50996"
+         style="stroke-width:0.26458332px">Sănătos și fără simptome</tspan></text>
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1072"
+       width="94.956238"
+       height="125.19432"
+       x="-29.52424"
+       y="285.24069"
+       rx="1.2523702" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.23105884;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1092"
+       width="30.882387"
+       height="11.626225"
+       x="-27.826235"
+       y="392.69498"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-21.304996"
+       y="397.65009"
+       id="text1096"><tspan
+         sodipodi:role="line"
+         id="tspan1094"
+         x="-21.304996"
+         y="397.65009"
+         style="stroke-width:0.26458332px">Misiune</tspan><tspan
+         sodipodi:role="line"
+         x="-21.304996"
+         y="402.05981"
+         style="stroke-width:0.26458332px"
+         id="tspan1265">îndeplinită</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.06982887;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1098"
+       width="23.322863"
+       height="11.626225"
+       x="35.673759"
+       y="392.69498"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="41.136669"
+       y="399.23761"
+       id="text1102"><tspan
+         sodipodi:role="line"
+         id="tspan1100"
+         x="41.136669"
+         y="399.23761"
+         style="stroke-width:0.26458332px">Anulare</tspan></text>
+    <g
+       id="g1122"
+       transform="matrix(1,0,0,1.1667704,-63.500003,247.90743)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1116"
+         width="85.927155"
+         height="28.330574"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1120"><tspan
+           sodipodi:role="line"
+           id="tspan1118"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1140"
+       y="297.76761"
+       x="-25.280457"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1134"
+         style="stroke-width:0.26458332px"
+         y="297.76761"
+         x="-25.280457"
+         sodipodi:role="line">..............</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="302.17734"
+         x="-25.280457"
+         sodipodi:role="line"
+         id="tspan1237">.............</tspan><tspan
+         id="tspan1136"
+         style="stroke-width:0.26458332px"
+         y="306.58707"
+         x="-25.280457"
+         sodipodi:role="line" /><tspan
+         id="tspan1138"
+         style="stroke-width:0.26458332px"
+         y="310.99677"
+         x="-25.280457"
+         sodipodi:role="line">Anunță-mă când te-ai pornit</tspan></text>
+    <g
+       transform="translate(-56.091669,290.5126)"
+       id="g1148">
+      <rect
+         ry="3.2072344"
+         rx="1.6521603"
+         y="33.360096"
+         x="85.465797"
+         height="10.690782"
+         width="35.680481"
+         id="rect1142"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1146"
+         y="37.103565"
+         x="108.66814"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="108.66814"
+           id="tspan1144"
+           sodipodi:role="line">Vera:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="31.86952"
+       y="332.1633"
+       id="text1152"><tspan
+         sodipodi:role="line"
+         x="31.86952"
+         y="332.1633"
+         style="stroke-width:0.26458332px"
+         id="tspan1150">M-am pornit</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,-63.500003,300.29496)"
+       id="g1160">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="45.832878"
+         width="87.945671"
+         id="rect1154"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1158"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1156"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-25.280457"
+       y="350.155"
+       id="text1178"><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="350.155"
+         style="stroke-width:0.26458332px"
+         id="tspan1176">Nu uita:</tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="354.56473"
+         style="stroke-width:0.26458332px"
+         id="tspan1213">- Nu intra în contact direct</tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="358.97446"
+         style="stroke-width:0.26458332px"
+         id="tspan7599">- Poartă <tspan
+   style="font-weight:bold"
+   id="tspan7611">mănuși</tspan> și <tspan
+   style="font-weight:bold"
+   id="tspan7613">mască</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="363.38416"
+         style="stroke-width:0.26458332px"
+         id="tspan7601">- <tspan
+   style="font-weight:bold"
+   id="tspan7615">Dezinfectează</tspan>-ți mâinile</tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="367.79388"
+         style="stroke-width:0.26458332px"
+         id="tspan7603">- Păstrează distanța de <tspan
+   style="font-weight:bold"
+   id="tspan7617">cel puțin 2m </tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="372.20361"
+         style="stroke-width:0.26458332px"
+         id="tspan7605">- Lasă produsele la ușă</tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="376.61334"
+         style="stroke-width:0.26458332px"
+         id="tspan7607">- După bani - <tspan
+   style="font-weight:bold"
+   id="tspan7619">spală mâinile</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="381.02307"
+         style="stroke-width:0.26458332px"
+         id="tspan7609" /><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="385.43277"
+         style="stroke-width:0.26458332px"
+         id="tspan1225" /><tspan
+         sodipodi:role="line"
+         x="-25.280457"
+         y="389.8425"
+         style="stroke-width:0.26458332px"
+         id="tspan1227">Anunță-mă când e gata, drum bun! </tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path1267"
+       d="M 2.2257556,411.00207 -18.931593,432.15942"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2308)" />
+    <text
+       id="text1271"
+       y="290.91861"
+       x="-313.09003"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(-45)"><tspan
+         style="stroke-width:0.26458332px"
+         y="290.91861"
+         x="-313.09003"
+         id="tspan1269"
+         sodipodi:role="line">Misiune</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="295.32834"
+         x="-313.09003"
+         sodipodi:role="line"
+         id="tspan1347">îndeplinită</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="496.90732"
+       x="76.30909"
+       height="125.19432"
+       width="94.956238"
+       id="rect1273"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       rx="0"
+       y="604.36169"
+       x="78.007095"
+       height="11.626225"
+       width="14.445312"
+       id="rect1275"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84195101;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1281"
+       y="609.31683"
+       x="79.765831"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1279"
+         style="stroke-width:0.26458332px"
+         y="609.31683"
+         x="79.765831"
+         sodipodi:role="line">Foarte</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="613.72656"
+         x="79.765831"
+         sodipodi:role="line"
+         id="tspan1407">rea</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="604.36169"
+       x="109.75709"
+       height="11.626225"
+       width="23.322863"
+       id="rect1283"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.06982887;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1287"
+       y="610.90436"
+       x="115.22"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="610.90436"
+         x="115.22"
+         id="tspan1285"
+         sodipodi:role="line">Neutră</tspan></text>
+    <g
+       id="g1325"
+       transform="matrix(1,0,0,1.1667704,42.33333,464.3367)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1319"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1323"><tspan
+           sodipodi:role="line"
+           id="tspan1321"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1345"
+       y="514.19659"
+       x="80.552879"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1343"
+         style="stroke-width:0.26458332px"
+         y="514.19659"
+         x="80.552879"
+         sodipodi:role="line">Îți mulțumesc pentru ajutor. Te rog să-mi spui</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="518.60632"
+         x="80.552879"
+         sodipodi:role="line"
+         id="tspan1385">câte ceva despre această experiență:</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,42.33333,485.50338)"
+       id="g1393">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1387"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1391"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1389"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="80.552879"
+       y="535.36322"
+       id="text1399"><tspan
+         id="tspan1397"
+         sodipodi:role="line"
+         x="80.552879"
+         y="535.36322"
+         style="stroke-width:0.26458332px">Cum apreciezi starea de spirit a persoanei</tspan><tspan
+         sodipodi:role="line"
+         x="80.552879"
+         y="539.77295"
+         style="font-weight:bold;stroke-width:0.26458332px"
+         id="tspan1403">Maria Xenopolskaja?</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84195101;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1409"
+       width="14.445312"
+       height="11.626225"
+       x="93.882088"
+       y="604.36169"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="97.228325"
+       y="611.43353"
+       id="text1415"><tspan
+         id="tspan1413"
+         sodipodi:role="line"
+         x="97.228325"
+         y="611.43353"
+         style="stroke-width:0.26458332px">Rea</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84195101;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1419"
+       width="14.445312"
+       height="11.626225"
+       x="134.62794"
+       y="604.36169"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="137.97418"
+       y="611.43353"
+       id="text1425"><tspan
+         id="tspan1423"
+         sodipodi:role="line"
+         x="137.97418"
+         y="611.43353"
+         style="stroke-width:0.26458332px">Bună</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="604.36169"
+       x="150.50294"
+       height="11.626225"
+       width="14.445312"
+       id="rect1427"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84195101;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1431"
+       y="609.31683"
+       x="152.26167"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="609.31683"
+         x="152.26167"
+         sodipodi:role="line"
+         id="tspan1429">Foarte</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="613.72656"
+         x="152.26167"
+         sodipodi:role="line"
+         id="tspan1435">bună</tspan></text>
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1437"
+       width="94.956238"
+       height="125.19432"
+       x="182.14243"
+       y="496.90732"
+       rx="1.2523702" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1439"
+       width="91.363464"
+       height="11.626225"
+       x="183.84044"
+       y="572.0824"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="193.00749"
+       y="577.03754"
+       id="text1445"><tspan
+         id="tspan1443"
+         sodipodi:role="line"
+         x="193.00749"
+         y="577.03754"
+         style="stroke-width:0.26458332px">Febră</tspan></text>
+    <g
+       transform="translate(155.575,491.59603)"
+       id="g1459">
+      <rect
+         ry="3.2072344"
+         rx="1.6521603"
+         y="33.360096"
+         x="85.465797"
+         height="10.690782"
+         width="35.680481"
+         id="rect1453"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1457"
+         y="37.103565"
+         x="108.66814"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="108.66814"
+           id="tspan1455"
+           sodipodi:role="line">Vera:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="243.53616"
+       y="533.24652"
+       id="text1463"><tspan
+         sodipodi:role="line"
+         x="243.53616"
+         y="533.24652"
+         style="stroke-width:0.26458332px"
+         id="tspan1461">Bună</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,148.16667,464.3367)"
+       id="g1471">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1465"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1469"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1467"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="186.3862"
+       y="514.19659"
+       id="text1477"><tspan
+         sodipodi:role="line"
+         x="186.3862"
+         y="514.19659"
+         style="stroke-width:0.26458332px"
+         id="tspan1473">Îți mulțumesc pentru ajutor. Te rog să-mi spui</tspan><tspan
+         id="tspan1475"
+         sodipodi:role="line"
+         x="186.3862"
+         y="518.60632"
+         style="stroke-width:0.26458332px">câte ceva despre această experiență:</tspan></text>
+    <g
+       id="g1485"
+       transform="matrix(1,0,0,1.1667704,148.16667,504.55338)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1479"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1483"><tspan
+           sodipodi:role="line"
+           id="tspan1481"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1491"
+       y="554.41315"
+       x="186.3862"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1489"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="554.41315"
+         x="186.3862"
+         sodipodi:role="line"><tspan
+   style="font-weight:bold"
+   id="tspan1519">Maria Xenopolskaja </tspan>manifestă careva din</tspan><tspan
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="558.82288"
+         x="186.3862"
+         sodipodi:role="line"
+         id="tspan1517">simptomele COVID-19?</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1523"
+       width="6.3476515"
+       height="5.4790254"
+       x="184.82323"
+       y="573.37262" />
+    <rect
+       ry="0"
+       rx="0"
+       y="584.2533"
+       x="183.84044"
+       height="11.626225"
+       width="91.363464"
+       id="rect1525"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1529"
+       y="589.20844"
+       x="193.00749"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="589.20844"
+         x="193.00749"
+         sodipodi:role="line"
+         id="tspan1527">Tuse</tspan></text>
+    <rect
+       y="585.54352"
+       x="184.82323"
+       height="5.4790254"
+       width="6.3476515"
+       id="rect1531"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1533"
+       width="91.363464"
+       height="11.626225"
+       x="183.84044"
+       y="596.42419"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="193.00749"
+       y="601.37933"
+       id="text1537"><tspan
+         id="tspan1535"
+         sodipodi:role="line"
+         x="193.00749"
+         y="601.37933"
+         style="stroke-width:0.26458332px">Respirație cu dificultăți</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1539"
+       width="6.3476515"
+       height="5.4790254"
+       x="184.82323"
+       y="597.71442" />
+    <rect
+       ry="0"
+       rx="0"
+       y="609.65338"
+       x="183.84044"
+       height="11.626225"
+       width="91.363464"
+       id="rect1549"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1553"
+       y="616.19604"
+       x="214.17413"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="616.19604"
+         x="214.17413"
+         sodipodi:role="line"
+         id="tspan1551">Trimite feedback</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="496.90732"
+       x="282.68408"
+       height="125.19432"
+       width="94.956238"
+       id="rect1555"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       transform="matrix(1,0,0,1.1667704,248.70835,462.22002)"
+       id="g1595">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1589"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1593"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1591"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="286.92786"
+       y="512.0799"
+       id="text1603"><tspan
+         id="tspan1601"
+         sodipodi:role="line"
+         x="286.92786"
+         y="512.0799"
+         style="font-weight:normal;stroke-width:0.26458332px">Ai careva remarci adiționale pentru noi sau</tspan><tspan
+         sodipodi:role="line"
+         x="286.92786"
+         y="516.48962"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         id="tspan1750">pentru alți voluntari care o vor ajuta?</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1623"
+       width="91.363464"
+       height="11.626225"
+       x="284.38208"
+       y="609.65338"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="286.14084"
+       y="616.19604"
+       id="text1627"><tspan
+         id="tspan1625"
+         sodipodi:role="line"
+         x="286.14084"
+         y="616.19604"
+         style="stroke-width:0.26458332px">Nu aude bine, vorbiți tare.</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.12116933;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1632"
+       width="91.686203"
+       height="11.626225"
+       x="283.85294"
+       y="595.47266"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="285.61166"
+       y="602.96686"
+       id="text1638"><tspan
+         id="tspan1636"
+         sodipodi:role="line"
+         x="285.61166"
+         y="602.96686"
+         style="stroke-width:0.26458332px">Nu am comentarii</tspan></text>
+    <path
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 365.42329,617.42594 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25022,-0.835 6.2653,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.64655,-0.25177 -0.86361,-0.11225 -2.24224,-0.29357 -3.06363,-0.40293 -0.82138,-0.10936 -1.5167,-0.19884 -1.54515,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747,0.28376 1.47834,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.07134,0.88523 0.97386,0.41868 2.13147,0.91508 2.57247,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.43422,1.04352 -3.23352,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.42262 -1.14424,0.48768 l -0.27563,0.11829 z"
+       id="path1659"
+       inkscape:connector-curvature="0" />
+    <g
+       aria-label="}"
+       transform="rotate(90,50.270836,113.77085)"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="text1663">
+      <path
+         d="m 563.82789,85.776705 h 0.35577 c 0.47436,0 0.78268,-0.07285 0.92497,-0.218542 0.14576,-0.145694 0.21863,-0.460799 0.21863,-0.945313 V 51.602432 c 0,-0.528562 0.0762,-0.913124 0.22866,-1.153688 0.15244,-0.240564 0.41672,-0.406587 0.79283,-0.498069 -0.37609,-0.0847 -0.64037,-0.247333 -0.79283,-0.487902 -0.15244,-0.240564 -0.22866,-0.626821 -0.22866,-1.158772 V -318.08141 c 0,-0.48113 -0.0729,-0.79454 -0.21863,-0.94023 -0.14221,-0.14908 -0.45053,-0.22362 -0.92497,-0.22362 h -0.35577 v -0.72677 h 0.32019 c 0.84367,0 1.40612,0.12536 1.68734,0.37609 0.2846,0.24734 0.42691,0.74541 0.42691,1.49421 V 48.243021 c 0,0.504845 0.0915,0.855527 0.27439,1.052044 0.18293,0.193138 0.51736,0.241828 0.99614,0.289707 h 0.31511 v 0.726772 h -0.31511 c -0.48113,0 -0.81317,0.09826 -0.99614,0.294782 -0.18293,0.196521 -0.27439,0.550589 -0.27439,1.062205 v 32.964677 c 0,0.748796 -0.14231,1.248559 -0.42691,1.499288 -0.28122,0.250727 -1.63638,1.218221 -1.68734,0.376091 h -0.32019 z"
+         style="stroke-width:0.26458332px"
+         id="path1665"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cscsssccsscsccscsscsccscsscscc" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05555534px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.52916664px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="79.58342"
+       y="645.78833"
+       id="text1670"><tspan
+         sodipodi:role="line"
+         id="tspan1668"
+         x="79.58342"
+         y="645.78833"
+         style="stroke-width:0.52916664px"><tspan
+   style="font-weight:bold"
+   id="tspan2520">TODO:</tspan> Aceste întrebări trebuie să fie coordonate cu un asistent medical profesionist,</tspan><tspan
+         sodipodi:role="line"
+         x="79.58342"
+         y="654.60779"
+         style="stroke-width:0.52916664px"
+         id="tspan1672">care să ne explice prin ce metode se face triajul și care detalii sunt relevante.</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="496.90732"
+       x="383.2258"
+       height="125.19432"
+       width="94.956238"
+       id="rect1674"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g1688"
+       transform="translate(356.65836,491.59603)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1682"
+         width="35.680481"
+         height="10.690782"
+         x="85.465797"
+         y="33.360096"
+         rx="1.6521603"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="108.66814"
+         y="37.103565"
+         id="text1686"><tspan
+           sodipodi:role="line"
+           id="tspan1684"
+           x="108.66814"
+           y="37.103565"
+           style="stroke-width:0.26458332px">Vera:</tspan></text>
+    </g>
+    <text
+       id="text1692"
+       y="533.24652"
+       x="444.61963"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1690"
+         style="stroke-width:0.26458332px"
+         y="533.24652"
+         x="444.61963"
+         sodipodi:role="line">Nu aude bine....</tspan></text>
+    <g
+       id="g1700"
+       transform="matrix(1,0,0,1.1667704,349.25002,464.3367)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1694"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1698"><tspan
+           sodipodi:role="line"
+           id="tspan1696"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1706"
+       y="514.19659"
+       x="387.46957"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="514.19659"
+         x="387.46957"
+         sodipodi:role="line"
+         id="tspan1704">Ai careva remarci adiționale pentru noi sau</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="518.60632"
+         x="387.46957"
+         sodipodi:role="line"
+         id="tspan1752">pentru alți voluntari care o vor ajuta?</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,349.25002,504.55338)"
+       id="g1714">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1708"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1712"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1710"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="387.46957"
+       y="554.41315"
+       id="text1722"><tspan
+         id="tspan1720"
+         sodipodi:role="line"
+         x="387.46957"
+         y="554.41315"
+         style="font-weight:normal;stroke-width:0.26458332px">Bine, vom ține cont de asta. Îți mulțumim</tspan><tspan
+         sodipodi:role="line"
+         x="387.46957"
+         y="558.82288"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         id="tspan1757">din nou! </tspan></text>
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1759"
+       width="94.956238"
+       height="125.19432"
+       x="-82.44088"
+       y="433.40714"
+       rx="1.2523702" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.08216524;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1761"
+       width="88.345337"
+       height="11.626225"
+       x="-78.626236"
+       y="532.92401"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-76.867538"
+       y="537.87915"
+       id="text1767"><tspan
+         id="tspan1765"
+         sodipodi:role="line"
+         x="-76.867538"
+         y="537.87915"
+         style="stroke-width:0.26458332px">Nu am suportat cheltuieli, sau mi-au fost întorși</tspan><tspan
+         sodipodi:role="line"
+         x="-76.867538"
+         y="542.28888"
+         style="stroke-width:0.26458332px"
+         id="tspan1911">banii</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,-116.41664,400.83667)"
+       id="g1781">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1775"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1779"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1777"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-78.197128"
+       y="450.69653"
+       id="text1787"><tspan
+         sodipodi:role="line"
+         x="-78.197128"
+         y="450.69653"
+         style="stroke-width:0.26458332px"
+         id="tspan1783">Îți mulțumesc pentru ajutor. Te rog să-mi spui</tspan><tspan
+         id="tspan1785"
+         sodipodi:role="line"
+         x="-78.197128"
+         y="455.10626"
+         style="stroke-width:0.26458332px">câte ceva despre această experiență:</tspan></text>
+    <g
+       id="g1795"
+       transform="matrix(1,0,0,1.1667704,-116.41664,422.00335)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1789"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1793"><tspan
+           sodipodi:role="line"
+           id="tspan1791"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1801"
+       y="471.86316"
+       x="-78.197128"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1799"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="471.86316"
+         x="-78.197128"
+         sodipodi:role="line">Ai suportat careva <tspan
+   style="font-weight:bold"
+   id="tspan1825">cheltuieli? </tspan>Dacă da,</tspan><tspan
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="476.27289"
+         x="-78.197128"
+         sodipodi:role="line"
+         id="tspan1831">introdu suma în cifre:</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="546.1532"
+       x="-80.742867"
+       height="11.626225"
+       width="91.363464"
+       id="rect1833"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text1837"
+       y="552.69586"
+       x="-78.984131"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="552.69586"
+         x="-78.984131"
+         sodipodi:role="line"
+         id="tspan1835">45.98</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path1839"
+       d="m 0.29819737,553.92591 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25021743,-0.835 6.26529743,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.6465508,-0.25177 -0.8636059,-0.11225 -2.2422359,-0.29357 -3.0636259,-0.40293 -0.82138,-0.10936 -1.51670073,-0.19884 -1.54515073,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747007,0.28376 1.47834073,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.0974799,0.46656 2.0713359,0.88523 0.9738608,0.41868 2.1314708,0.91508 2.5724708,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.4342208,1.04352 -3.2335167,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265003,0.42262 -1.14424073,0.48768 l -0.27563,0.11829 z"
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2268)"
+       d="m -61.274247,560.22717 -21.15735,21.15735"
+       id="path1841"
+       inkscape:connector-curvature="0" />
+    <text
+       transform="rotate(-45)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-463.50879"
+       y="351.53513"
+       id="text1847"><tspan
+         id="tspan1845"
+         sodipodi:role="line"
+         x="-463.50879"
+         y="351.53513"
+         style="stroke-width:0.26458332px">Suma </tspan><tspan
+         sodipodi:role="line"
+         x="-463.50879"
+         y="355.94485"
+         style="stroke-width:0.26458332px"
+         id="tspan1851">introdusă</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="581.57391"
+       x="-177.69089"
+       height="125.19432"
+       width="94.956238"
+       id="rect1853"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g1867"
+       transform="matrix(1,0,0,1.1667704,-211.66669,580.75345)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1861"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text1865"><tspan
+           sodipodi:role="line"
+           id="tspan1863"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text1873"
+       y="630.61353"
+       x="-173.44714"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="630.61353"
+         x="-173.44714"
+         sodipodi:role="line"
+         id="tspan1871">Te rog, expediază-mi fotografia chitanței</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,-211.66669,544.24093)"
+       id="g1881">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect1875"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1879"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan1877"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-173.44714"
+       y="594.10089"
+       id="text1889"><tspan
+         sodipodi:role="line"
+         x="-173.44714"
+         y="594.10089"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         id="tspan1885">Ai suportat careva <tspan
+   id="tspan1883"
+   style="font-weight:bold">cheltuieli? </tspan>Dacă da,</tspan><tspan
+         id="tspan1887"
+         sodipodi:role="line"
+         x="-173.44714"
+         y="598.51062"
+         style="font-weight:normal;stroke-width:0.26458332px">introdu suma în lei</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1891"
+       width="91.363464"
+       height="11.626225"
+       x="-175.99289"
+       y="694.32043"
+       rx="0"
+       ry="0" />
+    <path
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -94.951807,702.09267 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.250218,-0.835 6.265298,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.646551,-0.25177 -0.863606,-0.11225 -2.242236,-0.29357 -3.063626,-0.40293 -0.82138,-0.10936 -1.516701,-0.19884 -1.545151,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.674701,0.28376 1.478341,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.071336,0.88523 0.973861,0.41868 2.131471,0.91508 2.572471,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.434221,1.04352 -3.233517,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.42262 -1.144241,0.48768 l -0.27563,0.11829 z"
+       id="path1897"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g1905"
+       transform="translate(-205.31671,573.61693)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1899"
+         width="35.680481"
+         height="10.690782"
+         x="85.465797"
+         y="33.360096"
+         rx="1.6521603"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="108.66814"
+         y="37.103565"
+         id="text1903"><tspan
+           sodipodi:role="line"
+           id="tspan1901"
+           x="108.66814"
+           y="37.103565"
+           style="stroke-width:0.26458332px">Vera:</tspan></text>
+    </g>
+    <text
+       id="text1909"
+       y="615.26752"
+       x="-117.35548"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan1907"
+         style="stroke-width:0.26458332px"
+         y="615.26752"
+         x="-117.35548"
+         sodipodi:role="line">45.98</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-155.68451"
+       y="633.89319"
+       id="text1917"><tspan
+         sodipodi:role="line"
+         id="tspan1915"
+         x="-155.68451"
+         y="637.01447"
+         style="stroke-width:0.26458332px"></tspan></text>
+    <path
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.06197926;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -102.54326,703.57229 c -0.43812,-0.0511 -0.79081,-0.20537 -1.04155,-0.45605 -0.21323,-0.21319 -0.3493,-0.49878 -0.38887,-0.81624 -0.0238,-0.19363 -0.0245,-5.23267 -5.1e-4,-5.44684 0.0466,-0.41306 0.19438,-0.64993 0.49868,-0.79865 0.23792,-0.11628 0.36144,-0.13555 0.86879,-0.13582 0.39349,-1.1e-4 0.43483,0.005 0.5602,0.0388 0.36176,0.10474 0.59584,0.32988 0.71901,0.69155 l 0.0463,0.13594 0.005,1.81641 c 0.004,1.63125 0.002,1.82605 -0.0227,1.91088 -0.0725,0.24957 -0.21525,0.42421 -0.44197,0.5409 -0.17149,0.0883 -0.26514,0.10958 -0.48483,0.11029 -0.13325,5.2e-4 -0.20438,-0.007 -0.28854,-0.0348 -0.21207,-0.0674 -0.40856,-0.2297 -0.50342,-0.41652 -0.0995,-0.19599 -0.096,-0.15158 -0.10277,-1.29638 -0.007,-0.71572 -2.5e-4,-1.07859 0.0122,-1.12426 0.0224,-0.0819 0.11262,-0.16651 0.19501,-0.18198 0.0728,-0.0138 0.17012,0.0304 0.22093,0.0999 0.034,0.0471 0.0355,0.0703 0.0437,1.13009 0.007,1.07535 0.008,1.08254 0.0456,1.15219 0.0427,0.0792 0.12328,0.15352 0.20412,0.1874 0.0299,0.0123 0.11397,0.0225 0.18692,0.0225 0.15781,-1.1e-4 0.2671,-0.0441 0.36508,-0.14648 0.12321,-0.12879 0.11554,-0.006 0.11554,-1.89741 0,-1.59611 -0.002,-1.71282 -0.031,-1.82308 -0.0635,-0.24126 -0.20611,-0.38023 -0.44141,-0.4301 -0.0498,-0.0107 -0.22293,-0.0193 -0.38536,-0.0193 -0.5877,0 -0.77054,0.0617 -0.87894,0.29738 l -0.0391,0.0849 -0.007,2.71046 c -0.007,2.42201 -0.004,2.72473 0.0225,2.84459 0.1103,0.54784 0.58316,0.81669 1.38446,0.78727 0.40602,-0.0151 0.62581,-0.0941 0.83402,-0.30071 0.11635,-0.11539 0.1952,-0.25017 0.24935,-0.42603 0.026,-0.0845 0.0293,-0.31982 0.0376,-2.64729 l 0.009,-2.55457 0.0629,-0.0574 c 0.0346,-0.0315 0.0824,-0.0627 0.10632,-0.0687 0.12821,-0.0325 0.26996,0.0661 0.28953,0.20114 0.006,0.0399 0.008,1.19238 0.005,2.56163 l -0.005,2.48955 -0.0446,0.16142 c -0.0776,0.2806 -0.17244,0.45562 -0.35237,0.64996 -0.23372,0.25244 -0.55718,0.40385 -0.97006,0.4541 -0.16602,0.0201 -0.47992,0.0195 -0.65929,-0.002 z"
+       id="path1930"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#aa8800;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-334.96701"
+       y="601.79364"
+       id="text1934"
+       transform="rotate(-15)"><tspan
+         sodipodi:role="line"
+         id="tspan1932"
+         x="-334.96701"
+         y="601.79364"
+         style="fill:#aa8800;stroke-width:0.26458332px">Aici Vera atașează imaginea și o expediază</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M -83.38809,632.95778 74.835466,576.02937"
+       id="path1936"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2234)"
+       d="m 13.630746,513.4883 61.501622,16.47933"
+       id="path1938"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="164.33757"
+       y="491.22739"
+       id="text1944"
+       transform="rotate(15)"><tspan
+         id="tspan1942"
+         sodipodi:role="line"
+         x="164.33757"
+         y="491.22739"
+         style="stroke-width:0.26458332px">Nu am suportat</tspan><tspan
+         sodipodi:role="line"
+         x="164.33757"
+         y="495.63712"
+         style="stroke-width:0.26458332px"
+         id="tspan1948">cheltuieli .....</tspan></text>
+    <g
+       id="g2528"
+       transform="translate(-109.00834,143.93334)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect2522"
+         width="35.680481"
+         height="10.690782"
+         x="85.465797"
+         y="33.360096"
+         rx="1.6521603"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="108.66814"
+         y="37.103565"
+         id="text2526"><tspan
+           sodipodi:role="line"
+           id="tspan2524"
+           x="108.66814"
+           y="37.103565"
+           style="stroke-width:0.26458332px">Vera:</tspan></text>
+    </g>
+    <text
+       id="text2532"
+       y="185.58423"
+       x="-21.047146"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan2530"
+         style="stroke-width:0.26458332px"
+         y="185.58423"
+         x="-21.047146"
+         sodipodi:role="line">Nu</tspan></text>
+    <g
+       transform="translate(-116.26224,157.75618)"
+       id="g2540">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="21.662197"
+         width="88.736198"
+         id="rect2534"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text2538"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan2536"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-78.042702"
+       y="202.05289"
+       id="text2550"><tspan
+         sodipodi:role="line"
+         x="-78.042702"
+         y="202.05289"
+         style="stroke-width:0.26458332px"
+         id="tspan2548">Bine, te contactăm când apar alte cereri. Dacă</tspan><tspan
+         sodipodi:role="line"
+         x="-78.042702"
+         y="206.46262"
+         style="stroke-width:0.26458332px"
+         id="tspan2591">te-ai răzgândit, apasă oricând pe unul din</tspan><tspan
+         sodipodi:role="line"
+         x="-78.042702"
+         y="210.87233"
+         style="stroke-width:0.26458332px"
+         id="tspan2593">butoane </tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2609)"
+       d="m 134.04204,113.45119 21.15735,21.15738"
+       id="path2601"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="171.69031"
+       y="-16.089447"
+       id="text2605"
+       transform="rotate(45)"><tspan
+         sodipodi:role="line"
+         id="tspan2603"
+         x="171.69031"
+         y="-16.089447"
+         style="stroke-width:0.26458332px">Caz preluat de</tspan><tspan
+         sodipodi:role="line"
+         x="171.69031"
+         y="-11.679725"
+         style="stroke-width:0.26458332px"
+         id="tspan2773">altcineva</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="137.07396"
+       x="150.39243"
+       height="88.719627"
+       width="94.956238"
+       id="rect2775"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g2783"
+       transform="translate(116.41668,111.12501)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect2777"
+         width="85.927155"
+         height="17.105253"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text2781"><tspan
+           sodipodi:role="line"
+           id="tspan2779"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <g
+       transform="translate(116.41668,131.23335)"
+       id="g2825">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="28.330574"
+         width="85.927155"
+         id="rect2819"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text2823"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan2821"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="154.6362"
+       y="175.53004"
+       id="text2835"><tspan
+         sodipodi:role="line"
+         x="154.6362"
+         y="175.53004"
+         style="stroke-width:0.26458332px"
+         id="tspan2833">S-a <tspan
+   style="font-weight:bold"
+   id="tspan2846">rezolvat! </tspan>Deja s-a dus cineva acolo.</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="212.77852"
+       x="152.61961"
+       height="11.626225"
+       width="91.363464"
+       id="rect2848"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path2850"
+       d="m 233.66079,220.5507 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25022,-0.835 6.2653,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.64655,-0.25177 -0.86361,-0.11225 -2.24224,-0.29357 -3.06363,-0.40293 -0.82138,-0.10936 -1.5167,-0.19884 -1.54515,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747,0.28376 1.47834,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.07134,0.88523 0.97386,0.41868 2.13147,0.91508 2.57247,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.43422,1.04352 -3.23352,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.42262 -1.14424,0.48768 l -0.27563,0.11829 z"
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path2852"
+       d="m 226.06933,222.03032 c -0.43812,-0.0511 -0.79081,-0.20537 -1.04155,-0.45605 -0.21323,-0.21319 -0.3493,-0.49878 -0.38887,-0.81624 -0.0238,-0.19363 -0.0245,-5.23267 -5.1e-4,-5.44684 0.0466,-0.41306 0.19438,-0.64993 0.49868,-0.79865 0.23792,-0.11628 0.36144,-0.13555 0.86879,-0.13582 0.39349,-1.1e-4 0.43483,0.005 0.5602,0.0388 0.36176,0.10474 0.59584,0.32988 0.71901,0.69155 l 0.0463,0.13594 0.005,1.81641 c 0.004,1.63125 0.002,1.82605 -0.0227,1.91088 -0.0725,0.24957 -0.21525,0.42421 -0.44197,0.5409 -0.17149,0.0883 -0.26514,0.10958 -0.48483,0.11029 -0.13325,5.2e-4 -0.20438,-0.007 -0.28854,-0.0348 -0.21207,-0.0674 -0.40856,-0.2297 -0.50342,-0.41652 -0.0995,-0.19599 -0.096,-0.15158 -0.10277,-1.29638 -0.007,-0.71572 -2.5e-4,-1.07859 0.0122,-1.12426 0.0224,-0.0819 0.11262,-0.16651 0.19501,-0.18198 0.0728,-0.0138 0.17012,0.0304 0.22093,0.0999 0.034,0.0471 0.0355,0.0703 0.0437,1.13009 0.007,1.07535 0.008,1.08254 0.0456,1.15219 0.0427,0.0792 0.12328,0.15352 0.20412,0.1874 0.0299,0.0123 0.11397,0.0225 0.18692,0.0225 0.15781,-1.1e-4 0.2671,-0.0441 0.36508,-0.14648 0.12321,-0.12879 0.11554,-0.006 0.11554,-1.89741 0,-1.59611 -0.002,-1.71282 -0.031,-1.82308 -0.0635,-0.24126 -0.20611,-0.38023 -0.44141,-0.4301 -0.0498,-0.0107 -0.22293,-0.0193 -0.38536,-0.0193 -0.5877,0 -0.77054,0.0617 -0.87894,0.29738 l -0.0391,0.0849 -0.007,2.71046 c -0.007,2.42201 -0.004,2.72473 0.0225,2.84459 0.1103,0.54784 0.58316,0.81669 1.38446,0.78727 0.40602,-0.0151 0.62581,-0.0941 0.83402,-0.30071 0.11635,-0.11539 0.1952,-0.25017 0.24935,-0.42603 0.026,-0.0845 0.0293,-0.31982 0.0376,-2.64729 l 0.009,-2.55457 0.0629,-0.0574 c 0.0346,-0.0315 0.0824,-0.0627 0.10632,-0.0687 0.12821,-0.0325 0.26996,0.0661 0.28953,0.20114 0.006,0.0399 0.008,1.19238 0.005,2.56163 l -0.005,2.48955 -0.0446,0.16142 c -0.0776,0.2806 -0.17244,0.45562 -0.35237,0.64996 -0.23372,0.25244 -0.55718,0.40385 -0.97006,0.4541 -0.16602,0.0201 -0.47992,0.0195 -0.65929,-0.002 z"
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.06197926;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       rx="0"
+       y="680.56207"
+       x="-174.93457"
+       height="11.626225"
+       width="88.345337"
+       id="rect2856"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.08216524;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text2862"
+       y="685.51721"
+       x="-141.42586"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan2860"
+         style="stroke-width:0.26458332px"
+         y="685.51721"
+         x="-141.42586"
+         sodipodi:role="line">Nu am chitanță</tspan></text>
+    <text
+       id="text2870"
+       y="566.14355"
+       x="-268.24768"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(-19.558308)"><tspan
+         id="tspan2868"
+         style="stroke-width:0.26458332px"
+         y="566.14355"
+         x="-268.24768"
+         sodipodi:role="line">Chitanță expediată, sau nu are chitanță</tspan></text>
+    <text
+       id="text2886"
+       y="635.20496"
+       x="-68.583252"
+       style="font-style:normal;font-weight:normal;font-size:7.05555534px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.52916664px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan2884"
+         style="stroke-width:0.52916664px"
+         y="635.20496"
+         x="-68.583252"
+         sodipodi:role="line"><tspan
+   id="tspan2880"
+   style="font-weight:bold">TODO:</tspan> Discuție - ce facem dacă</tspan><tspan
+         style="stroke-width:0.52916664px"
+         y="644.02441"
+         x="-68.583252"
+         sodipodi:role="line"
+         id="tspan2892">au fost făcute cumpărături la</tspan><tspan
+         style="stroke-width:0.52916664px"
+         y="652.84387"
+         x="-68.583252"
+         sodipodi:role="line"
+         id="tspan2894">piață și chitanță nu este?</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path2902"
+       d="m 134.25711,262.83533 21.15736,21.15735"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2910)" />
+    <text
+       id="text2906"
+       y="88.528084"
+       x="286.2131"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(45)"><tspan
+         style="stroke-width:0.26458332px"
+         y="88.528084"
+         x="286.2131"
+         id="tspan2904"
+         sodipodi:role="line">Anulare</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3142)"
+       d="M 68.866902,331.88344 H 98.787909"
+       id="path3134"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="74.293304"
+       y="329.49332"
+       id="text3138"><tspan
+         sodipodi:role="line"
+         id="tspan3136"
+         x="74.293304"
+         y="329.49332"
+         style="stroke-width:0.26458332px">Anulare</tspan></text>
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3768"
+       width="94.956238"
+       height="125.19432"
+       x="103.29652"
+       y="286.82858"
+       rx="1.2523702" />
+    <g
+       id="g3776"
+       transform="matrix(1,0,0,1.1667704,69.320758,252.14073)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect3770"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text3774"><tspan
+           sodipodi:role="line"
+           id="tspan3772"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text3782"
+       y="302.00116"
+       x="107.54029"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan3780"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="302.00116"
+         x="107.54029"
+         sodipodi:role="line">Din care motiv se face anularea? Alege una</tspan><tspan
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="306.41089"
+         x="107.54029"
+         sodipodi:role="line"
+         id="tspan3806">din opțiuni sau scrie cauza</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="399.5741"
+       x="104.99452"
+       height="11.626225"
+       width="91.363464"
+       id="rect3784"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text3788"
+       y="406.11673"
+       x="106.75327"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="406.11673"
+         x="106.75327"
+         sodipodi:role="line"
+         id="tspan3786">{o careva explicație specifică}</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="371.6351"
+       x="104.46539"
+       height="11.626225"
+       width="91.686203"
+       id="rect3790"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.12116933;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text3794"
+       y="379.12924"
+       x="106.22412"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="379.12924"
+         x="106.22412"
+         sodipodi:role="line"
+         id="tspan3792">Mă simt rău</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3796"
+       d="m 186.03568,407.34665 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25022,-0.835 6.2653,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.64655,-0.25177 -0.86361,-0.11225 -2.24224,-0.29357 -3.06363,-0.40293 -0.82138,-0.10936 -1.5167,-0.19884 -1.54515,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747,0.28376 1.47834,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.07134,0.88523 0.97386,0.41868 2.13147,0.91508 2.57247,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.43422,1.04352 -3.23352,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.42262 -1.14424,0.48768 l -0.27563,0.11829 z"
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.12116933;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3800"
+       width="91.686203"
+       height="11.626225"
+       x="104.46539"
+       y="358.93518"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="106.22412"
+       y="366.42932"
+       id="text3804"><tspan
+         id="tspan3802"
+         sodipodi:role="line"
+         x="106.22412"
+         y="366.42932"
+         style="stroke-width:0.26458332px">Probleme cu transportul</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.12116933;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3808"
+       width="91.686203"
+       height="11.626225"
+       x="104.46539"
+       y="384.33502"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="106.22412"
+       y="391.82916"
+       id="text3812"><tspan
+         id="tspan3810"
+         sodipodi:role="line"
+         x="106.22412"
+         y="391.82916"
+         style="stroke-width:0.26458332px">Nu am suficienți bani</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3820"
+       d="m 287.71518,282.74654 c 37.03413,-49.92039 101.8722,-74.8353 -92.86559,-197.87085 L 130.538,44.243559"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker3828)"
+       sodipodi:nodetypes="csc" />
+    <text
+       id="text3824"
+       y="393.53098"
+       x="7.1835203"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(-45)"><tspan
+         style="stroke-width:0.26458332px"
+         y="393.53098"
+         x="7.1835203"
+         id="tspan3822"
+         sodipodi:role="line">Cazul se</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="397.9407"
+         x="7.1835203"
+         sodipodi:role="line"
+         id="tspan4634">redeschide</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05555534px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.52916664px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="110.41595"
+       y="425.09897"
+       id="text4644"><tspan
+         id="tspan4642"
+         sodipodi:role="line"
+         x="110.41595"
+         y="425.09897"
+         style="stroke-width:0.52916664px"><tspan
+   style="font-weight:bold"
+   id="tspan4636">TODO:</tspan> Discuție - ce fel de motive pot fi</tspan><tspan
+         sodipodi:role="line"
+         x="110.41595"
+         y="433.91843"
+         style="stroke-width:0.52916664px"
+         id="tspan4655">invocate? În general, ne trebuie această</tspan><tspan
+         sodipodi:role="line"
+         x="110.41595"
+         y="442.73785"
+         style="stroke-width:0.52916664px"
+         id="tspan4657">informație? Dacă voluntarul se simte rău,</tspan><tspan
+         sodipodi:role="line"
+         x="110.41595"
+         y="451.55731"
+         style="stroke-width:0.52916664px"
+         id="tspan5233">probabil ar trebui să fie contactat de un</tspan><tspan
+         sodipodi:role="line"
+         x="110.41595"
+         y="460.37674"
+         style="stroke-width:0.52916664px"
+         id="tspan5235">operator care va oferi îndrumări?</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="286.82858"
+       x="230.29659"
+       height="125.19432"
+       width="94.956238"
+       id="rect4659"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       transform="matrix(1,0,0,1.1667704,196.32081,252.14073)"
+       id="g4667">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.559399"
+         width="85.927155"
+         id="rect4661"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text4665"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan4663"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="234.54037"
+       y="302.00116"
+       id="text4673"><tspan
+         sodipodi:role="line"
+         x="234.54037"
+         y="302.00116"
+         style="font-weight:normal;stroke-width:0.26458332px"
+         id="tspan4669">Din care motiv se face anularea? Alege una</tspan><tspan
+         id="tspan4671"
+         sodipodi:role="line"
+         x="234.54037"
+         y="306.41089"
+         style="font-weight:normal;stroke-width:0.26458332px">din opțiuni sau scrie cauza</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4675"
+       width="91.363464"
+       height="11.626225"
+       x="231.99458"
+       y="399.5741"
+       rx="0"
+       ry="0" />
+    <path
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 313.03575,407.34665 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25022,-0.835 6.2653,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.64655,-0.25177 -0.86361,-0.11225 -2.24224,-0.29357 -3.06363,-0.40293 -0.82138,-0.10936 -1.5167,-0.19884 -1.54515,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.45328 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747,0.28376 1.47834,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.07134,0.88523 0.97386,0.41868 2.13147,0.91508 2.57247,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.43422,1.04352 -3.23352,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.42262 -1.14424,0.48768 l -0.27563,0.11829 z"
+       id="path4687"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="translate(203.19993,279.92923)"
+       id="g4707">
+      <rect
+         ry="3.2072344"
+         rx="1.6521603"
+         y="33.360096"
+         x="85.465797"
+         height="10.690782"
+         width="35.680481"
+         id="rect4701"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text4705"
+         y="37.103565"
+         x="108.66814"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="108.66814"
+           id="tspan4703"
+           sodipodi:role="line">Vera:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="291.16159"
+       y="321.58014"
+       id="text4711"><tspan
+         sodipodi:role="line"
+         x="291.16159"
+         y="321.58014"
+         style="stroke-width:0.26458332px"
+         id="tspan4709">Mă simt rău</tspan></text>
+    <g
+       id="g4719"
+       transform="matrix(1,0,0,1.1667704,196.32081,294.47409)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4713"
+         width="85.927155"
+         height="16.559399"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text4717"><tspan
+           sodipodi:role="line"
+           id="tspan4715"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text4725"
+       y="344.33441"
+       x="234.54037"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-weight:normal;stroke-width:0.26458332px"
+         y="344.33441"
+         x="234.54037"
+         sodipodi:role="line"
+         id="tspan4723">Îți mulțumim pentru încercare</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker4919)"
+       d="m 199.15065,342.35787 h 29.92103"
+       id="path4915"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5245"
+       width="93.08535"
+       height="76.818527"
+       x="35.846645"
+       y="37.283096"
+       rx="1.2523702" />
+    <g
+       id="g5265"
+       transform="translate(7.4083337,11.641642)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect5259"
+         width="35.680481"
+         height="10.690782"
+         x="85.465797"
+         y="33.360096"
+         rx="1.6521603"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="108.66814"
+         y="37.103565"
+         id="text5263"><tspan
+           sodipodi:role="line"
+           id="tspan5261"
+           x="108.66814"
+           y="37.103565"
+           style="stroke-width:0.26458332px">Vera:</tspan></text>
+    </g>
+    <text
+       id="text5269"
+       y="53.29253"
+       x="95.369514"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5267"
+         style="stroke-width:0.26458332px"
+         y="53.29253"
+         x="95.369514"
+         sodipodi:role="line">30min</tspan></text>
+    <g
+       id="g5277"
+       transform="matrix(1,0,0,1.1667704,1.5982448,21.953165)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect5271"
+         width="87.250069"
+         height="16.83032"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text5275"><tspan
+           sodipodi:role="line"
+           id="tspan5273"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text5323"
+       y="71.813408"
+       x="38.219543"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan5321"
+         style="stroke-width:0.26458332px"
+         y="71.813408"
+         x="38.219543"
+         sodipodi:role="line">Așteaptă un pic, coordonez cu alți voluntari...</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5543)"
+       d="M 14.783408,82.467711 29.743918,56.55537"
+       id="path5535"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-57.564362"
+       y="52.636208"
+       id="text5539"
+       transform="rotate(-60)"><tspan
+         sodipodi:role="line"
+         id="tspan5537"
+         x="-57.564362"
+         y="52.636208"
+         style="stroke-width:0.26458332px">30' ..2h</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="154.6362"
+       y="155.951"
+       id="text5945"><tspan
+         sodipodi:role="line"
+         x="154.6362"
+         y="155.951"
+         style="stroke-width:0.26458332px"
+         id="tspan5943">Așteaptă un pic, coordonez cu alți voluntari...</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker5957)"
+       d="m 118.32705,113.43166 c 26.18629,16.63067 16.4189,133.95451 52.96243,170.56102"
+       id="path5953"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       transform="rotate(75)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="160.18295"
+       y="-93.599152"
+       id="text6645"><tspan
+         sodipodi:role="line"
+         id="tspan6643"
+         x="160.18295"
+         y="-93.599152"
+         style="stroke-width:0.26458332px">Anulare</tspan></text>
+    <ellipse
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#5aa02c;stroke-width:0.26499999;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6727"
+       cx="-140.84718"
+       cy="50.393776"
+       rx="25.524239"
+       ry="23.920622" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:14.11111069px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.05833328px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-163.8329"
+       y="55.086281"
+       id="text6731"><tspan
+         sodipodi:role="line"
+         id="tspan6729"
+         x="-163.8329"
+         y="55.086281"
+         style="stroke-width:1.05833328px">START</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path6739"
+       d="m -114.48473,50.272402 29.921024,-2e-6"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6743)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05555534px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.52916664px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-52.708248"
+       y="661.66339"
+       id="text7277"><tspan
+         id="tspan7275"
+         sodipodi:role="line"
+         x="-52.708248"
+         y="661.66339"
+         style="font-weight:bold;fill:#ff6600;stroke-width:0.52916664px">Constanța: <tspan
+   style="font-weight:normal;fill:#ff6600"
+   id="tspan7286">nu e problemă,</tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-52.708248"
+         y="670.48285"
+         style="font-weight:normal;fill:#ff6600;stroke-width:0.52916664px"
+         id="tspan7288">mergem mai departe fără</tspan><tspan
+         sodipodi:role="line"
+         x="-52.708248"
+         y="679.30231"
+         style="font-weight:normal;fill:#ff6600;stroke-width:0.52916664px"
+         id="tspan7290">factură.</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84180862;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7298"
+       width="14.440423"
+       height="11.626225"
+       x="-3.484597"
+       y="96.8909"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-2.2550437"
+       y="101.84607"
+       id="text7302"><tspan
+         sodipodi:role="line"
+         x="-2.2550437"
+         y="101.84607"
+         style="stroke-width:0.26458332px"
+         id="tspan7304">Altă</tspan><tspan
+         sodipodi:role="line"
+         x="-2.2550437"
+         y="106.25579"
+         style="stroke-width:0.26458332px"
+         id="tspan7542">oră</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7306"
+       width="18.976137"
+       height="11.626225"
+       x="-65.926254"
+       y="213.30765"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-63.638351"
+       y="220.90862"
+       id="text7310"><tspan
+         id="tspan7308"
+         sodipodi:role="line"
+         x="-63.638351"
+         y="220.90862"
+         style="stroke-width:0.26458332px">În 30min</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="213.30765"
+       x="-44.759605"
+       height="11.626225"
+       width="18.976137"
+       id="rect7312"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text7316"
+       y="220.90862"
+       x="-43.530037"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="220.90862"
+         x="-43.530037"
+         id="tspan7314"
+         sodipodi:role="line">Într-o oră</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7318"
+       width="18.976137"
+       height="11.626225"
+       x="-23.59293"
+       y="213.30765"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-22.363377"
+       y="220.90862"
+       id="text7322"><tspan
+         sodipodi:role="line"
+         id="tspan7320"
+         x="-22.363377"
+         y="220.90862"
+         style="stroke-width:0.26458332px">În 2 ore</tspan></text>
+    <rect
+       ry="0"
+       rx="0"
+       y="213.30765"
+       x="-3.484597"
+       height="11.626225"
+       width="14.440423"
+       id="rect7324"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.84180862;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text7330"
+       y="218.26282"
+       x="-2.2550437"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan7328"
+         style="stroke-width:0.26458332px"
+         y="218.26282"
+         x="-2.2550437"
+         sodipodi:role="line">Altă</tspan><tspan
+         style="stroke-width:0.26458332px"
+         y="222.67255"
+         x="-2.2550437"
+         sodipodi:role="line"
+         id="tspan7560">oră</tspan></text>
+    <rect
+       rx="1.2523702"
+       y="-52.675236"
+       x="35.846645"
+       height="76.818527"
+       width="93.08535"
+       id="rect7336"
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       ry="0"
+       rx="0"
+       y="-1.0049326"
+       x="38.697567"
+       height="11.626225"
+       width="89.090721"
+       id="rect7338"
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.0909307;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text7342"
+       y="5.5377183"
+       x="72.886673"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="5.5377183"
+         x="72.886673"
+         id="tspan7340"
+         sodipodi:role="line">Anulare</tspan></text>
+    <g
+       transform="translate(7.4083337,-78.316694)"
+       id="g7350">
+      <rect
+         ry="3.2072344"
+         rx="1.6521603"
+         y="33.360096"
+         x="85.465797"
+         height="10.690782"
+         width="35.680481"
+         id="rect7344"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text7348"
+         y="37.103565"
+         x="108.66814"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="108.66814"
+           id="tspan7346"
+           sodipodi:role="line">Vera:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="95.369514"
+       y="-36.665806"
+       id="text7354"><tspan
+         sodipodi:role="line"
+         x="95.369514"
+         y="-36.665806"
+         style="stroke-width:0.26458332px"
+         id="tspan7352">Altă oră</tspan></text>
+    <g
+       transform="matrix(1,0,0,1.1667704,1.5982448,-68.005171)"
+       id="g7362">
+      <rect
+         ry="3.2072344"
+         rx="5.7948408"
+         y="33.360096"
+         x="34.550949"
+         height="16.83032"
+         width="87.250069"
+         id="rect7356"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text7360"
+         y="37.103565"
+         x="39.876484"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="37.103565"
+           x="39.876484"
+           id="tspan7358"
+           sodipodi:role="line">ajubot:</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="38.219543"
+       y="-18.14493"
+       id="text7366"><tspan
+         sodipodi:role="line"
+         x="38.219543"
+         y="-18.14493"
+         style="stroke-width:0.26458332px"
+         id="tspan7364">Introdu ora aproximativă, de exemplu: 20:40</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path7368"
+       d="M 14.783408,29.551042 29.743918,3.6387016"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker7376)" />
+    <text
+       transform="rotate(-60)"
+       id="text7372"
+       y="26.177881"
+       x="-11.737183"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="26.177881"
+         x="-11.737183"
+         id="tspan7370"
+         sodipodi:role="line">Altă oră</tspan></text>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.11743283;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7544"
+       width="91.363464"
+       height="11.626225"
+       x="36.336578"
+       y="11.695121"
+       rx="0"
+       ry="0" />
+    <path
+       style="opacity:1;fill:#2c89a0;fill-opacity:1;stroke:none;stroke-width:0.12184964;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 117.37768,19.467288 c 0,-1.13922 0.009,-1.45206 0.0418,-1.45223 0.0999,-5e-4 6.25022,-0.835 6.2653,-0.85009 0.0312,-0.0312 -0.0752,-0.0475 -1.64655,-0.25177 -0.86361,-0.11225 -2.24224,-0.29357 -3.06363,-0.40293 -0.82138,-0.10936 -1.5167,-0.19884 -1.54515,-0.19884 -0.0459,0 -0.0517,-0.16354 -0.0517,-1.453277 0,-0.7993 0.008,-1.45328 0.0172,-1.45328 0.009,0 0.6747,0.28376 1.47834,0.63057 0.80363,0.34682 1.59646,0.68638 1.76183,0.75459 0.16537,0.0682 1.09748,0.46656 2.07134,0.885227 0.97386,0.41868 2.13147,0.91508 2.57247,1.10312 0.44099,0.18804 0.81364,0.35289 0.82809,0.36633 0.0144,0.0134 -0.77482,0.36741 -1.75395,0.78659 -0.97914,0.41919 -2.43422,1.04352 -3.23352,1.3874 -0.79931,0.34388 -1.84416,0.79147 -2.32191,0.99463 -0.47774,0.20316 -0.99265,0.422617 -1.14424,0.487677 l -0.27563,0.11829 z"
+       id="path7546"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text7550"
+       y="18.89669"
+       x="40.865353"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan7548"
+         style="stroke-width:0.26458332px"
+         y="18.89669"
+         x="40.865353"
+         sodipodi:role="line">15:30</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:2.0909307;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7552"
+       width="89.090721"
+       height="11.626225"
+       x="38.697567"
+       y="101.12421"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="72.886673"
+       y="107.66687"
+       id="text7556"><tspan
+         sodipodi:role="line"
+         id="tspan7554"
+         x="72.886673"
+         y="107.66687"
+         style="stroke-width:0.26458332px">Anulare</tspan></text>
+    <g
+       id="g8650">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7621"
+         d="M -47.77741,653.22177 23.377943,626.63601"
+         style="fill:#c83737;fill-rule:evenodd;stroke:#c83737;stroke-width:0.78200001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:#c83737;fill-rule:evenodd;stroke:#c83737;stroke-width:0.78200001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -46.756325,624.17116 69.113238,31.51547"
+         id="path7623"
+         inkscape:connector-curvature="0" />
+    </g>
+    <rect
+       style="opacity:1;fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.88079137;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7625"
+       width="94.956238"
+       height="125.19432"
+       x="-167.10759"
+       y="258.78238"
+       rx="1.2523702" />
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.23105884;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7627"
+       width="30.882387"
+       height="11.626225"
+       x="-161.17625"
+       y="366.23666"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-155.71335"
+       y="372.7793"
+       id="text7631"><tspan
+         sodipodi:role="line"
+         id="tspan7629"
+         x="-155.71335"
+         y="372.7793"
+         style="stroke-width:0.26458332px">M-am pornit</tspan></text>
+    <rect
+       style="opacity:1;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1.06982887;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7633"
+       width="23.322863"
+       height="11.626225"
+       x="-117.78456"
+       y="366.23666"
+       rx="0"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-112.32165"
+       y="372.7793"
+       id="text7637"><tspan
+         sodipodi:role="line"
+         id="tspan7635"
+         x="-112.32165"
+         y="372.7793"
+         style="stroke-width:0.26458332px">Anulare</tspan></text>
+    <g
+       id="g7645"
+       transform="matrix(1,0,0,1.1667704,-201.0834,223.03657)">
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.96499997;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect7639"
+         width="85.927155"
+         height="80.000725"
+         x="34.550949"
+         y="33.360096"
+         rx="5.7948408"
+         ry="3.2072344" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="39.876484"
+         y="37.103565"
+         id="text7643"><tspan
+           sodipodi:role="line"
+           id="tspan7641"
+           x="39.876484"
+           y="37.103565"
+           style="stroke-width:0.26458332px">ajubot:</tspan></text>
+    </g>
+    <text
+       id="text7701"
+       y="272.89679"
+       x="-162.86382"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan7651"
+         style="stroke-width:0.26458332px"
+         y="272.89679"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+           id="tspan7649"
+           style="font-weight:bold">Confirmat <tspan
+   id="tspan7647"
+   style="font-weight:normal">pentru ora</tspan> 20:00</tspan></tspan><tspan
+         id="tspan7655"
+         style="stroke-width:0.26458332px"
+         y="277.30652"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+           id="tspan7653"
+           style="font-weight:bold"></tspan></tspan><tspan
+         id="tspan7659"
+         style="stroke-width:0.26458332px"
+         y="281.71625"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7657"
+   style="font-weight:bold">Adresa:</tspan> str. Cuza-Vodă 45, apt. 124</tspan><tspan
+         id="tspan7663"
+         style="stroke-width:0.26458332px"
+         y="286.12595"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7661"
+   style="font-weight:bold">Nume</tspan>: Maria Xenopolskaja</tspan><tspan
+         id="tspan7667"
+         style="stroke-width:0.26458332px"
+         y="290.53568"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7665"
+   style="font-weight:bold">Cod:</tspan> Răut-29</tspan><tspan
+         id="tspan7671"
+         style="stroke-width:0.26458332px"
+         y="294.9454"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7669"
+   style="font-weight:bold">Telefon:</tspan> 0800 000 00 0</tspan><tspan
+         id="tspan7673"
+         style="stroke-width:0.26458332px"
+         y="299.35513"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7677"
+         style="stroke-width:0.26458332px"
+         y="303.76486"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7675"
+   style="font-weight:bold">Are nevoie de</tspan>:</tspan><tspan
+         id="tspan7679"
+         style="stroke-width:0.26458332px"
+         y="308.17456"
+         x="-162.86382"
+         sodipodi:role="line">- {dacă știm apriori - enumerăm}</tspan><tspan
+         id="tspan7681"
+         style="stroke-width:0.26458332px"
+         y="312.58429"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7683"
+         style="stroke-width:0.26458332px"
+         y="316.99402"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7685"
+         style="stroke-width:0.26458332px"
+         y="321.40375"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7689"
+         style="stroke-width:0.26458332px"
+         y="325.81345"
+         x="-162.86382"
+         sodipodi:role="line"><tspan
+   id="tspan7687"
+   style="font-weight:bold">Remarci de la alți voluntari</tspan>:</tspan><tspan
+         id="tspan7691"
+         style="stroke-width:0.26458332px"
+         y="330.22318"
+         x="-162.86382"
+         sodipodi:role="line">- ascensorul nu funcționează</tspan><tspan
+         id="tspan7693"
+         style="stroke-width:0.26458332px"
+         y="334.6329"
+         x="-162.86382"
+         sodipodi:role="line">- {altele, dacă sunt}</tspan><tspan
+         id="tspan7695"
+         style="stroke-width:0.26458332px"
+         y="339.04263"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7697"
+         style="stroke-width:0.26458332px"
+         y="343.45236"
+         x="-162.86382"
+         sodipodi:role="line" /><tspan
+         id="tspan7699"
+         style="stroke-width:0.26458332px"
+         y="347.86206"
+         x="-162.86382"
+         sodipodi:role="line">Anunță-mă când te-ai pornit</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path7703"
+       d="m -66.04266,367.26027 28.901501,7.74412"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker7711)" />
+    <text
+       id="text7707"
+       y="369.79166"
+       x="35.43718"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(15)"><tspan
+         style="stroke-width:0.26458332px"
+         y="369.79166"
+         x="35.43718"
+         id="tspan7705"
+         sodipodi:role="line">M-am pornit</tspan></text>
+    <g
+       id="g8656"
+       transform="translate(189.74405,-205.61905)">
+      <path
+         style="fill:#c83737;fill-rule:evenodd;stroke:#c83737;stroke-width:0.78200001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M -47.77741,653.22177 23.377943,626.63601"
+         id="path8652"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path8654"
+         d="m -46.756325,624.17116 69.113238,31.51547"
+         style="fill:#c83737;fill-rule:evenodd;stroke:#c83737;stroke-width:0.78200001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path8683"
+       d="M -72.251409,327.60713 C -51.672532,277.54313 7.4847718,260.1727 112.15139,281.3695"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker8687)"
+       sodipodi:nodetypes="cc" />
+    <text
+       id="text9459"
+       y="270.38416"
+       x="-40.084282"
+       style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="rotate(-8.6524666)"><tspan
+         style="stroke-width:0.26458332px"
+         y="270.38416"
+         x="-40.084282"
+         id="tspan9457"
+         sodipodi:role="line">Anulare</tspan></text>
+  </g>
+</svg>

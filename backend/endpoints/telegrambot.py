@@ -13,8 +13,8 @@ BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
 
 def send_request(beneficiary):
     beneficiary_id = str(beneficiary['id'])
-    volunteers = [v['telegram_chat_id'] for v in sort_closest(beneficiary_id, 5, None).json['list'] if 'telegram_chat_id' in v]
-
+    volunteers = [int(v['telegram_chat_id']) for v in sort_closest(beneficiary_id, 5, None).json['list'] if 'telegram_chat_id' in v]
+    #return volunteers
     if len(volunteers)>0:
         payload = {
             'request_id': beneficiary_id,
@@ -29,10 +29,12 @@ def send_request(beneficiary):
         }
         try:
             requests.post(f'{BASE_URL}/help_request', json=payload)
-            return volunteers
+            return payload
         except Exception as error:
+            #return str(-1)
             return str(error)
             pass
+
 
 
 def save_receive(beneficiary_id, data):
