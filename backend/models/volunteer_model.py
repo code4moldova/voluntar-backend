@@ -150,6 +150,7 @@ class Beneficiary(User):
     #beneficiary = ReferenceField(Beneficiary)
     volunteer = StringField(max_length=500)
     fixer = StringField(max_length=500)
+    curator = BooleanField(default=False)
     has_symptoms = BooleanField(default=False)
     ask_volunteers = ListField(default=[])
     remarks = ListField(default=[])
