@@ -87,8 +87,12 @@ def parseActivitati(a):
     return a
 
 def getCoordinates(text):
-    text = text.replace('strada','str').replace('Strada','str').replace('str','Strada')
-    text = text.replace('bulevardul','bd').replace('bd','bulevardul')
+    #text = text.replace('strada','str').replace('Strada','str').replace('str','Strada')
+    #text = text.replace('bulevardul','bd').replace('bd','bulevardul')
+    text = text.replace('str.','').replace('str','').replace('bd.','').replace('bd','')
+    text = text.replace('Str.','').replace('Str','').replace('Dd.','').replace('Dd','')
+    text = text.replace('Strada','').replace('strada','').replace('bulevardul','').replace('Bulevardul','')
+    text = text.strip()
     text = requote_uri(text)# text.replace(' ','%20')#urllib.parse.quote_plus(text)
     
     url = "https://info.iharta.md:6443/arcgis/rest/services/locator/CompositeLoc/GeocodeServer/findAddressCandidates?SingleLine={}&City=Chisinau&maxLocations=5&f=pjson"
@@ -153,18 +157,22 @@ def parseFile(json_url, begin, end):
 	lb = [df[1][i] if df[0][i]=='' else df[0][i] for i in range(cols)]
 	lb = [i[:15] for i in lb]
 
-	rr = [{lb[i]:v for i,v in enumerate(j)} for j in df[3:]]
+	rr = [{lb[i]:v for i,v in enumerate(j)} for j in df[2:]]
 	ids = []
 	begin = int(begin)
 	end = int(end)
 	for row in rr[begin:end]:#add 
 		item = parseRow(row)
-		ob = Volunteer.objects(phone=item['phone'], is_active=True)
+		ob = Volunteer.objects(phone=item['phone']).first()
 		if not ob:
 			comment = Volunteer(**item)
 			comment.save()
-			ids.append(comment.clean_data())
+			ids.append(comment.clean_data()['_id'])
 			#return jsonify(comment.clean_data()['_id'])
+		elif 'latitude' in item:
+			data = ob.clean_data()
+			if 'latitude' not in data or data['latitude']=='':
+				ob.update(latitude=item['latitude'],longitude=item['longitude'],address=item['address'])
 
 	return jsonify(ids)
 		

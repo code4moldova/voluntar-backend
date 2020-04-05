@@ -8,18 +8,18 @@ services:
             - .:/app
         depends_on:
             - mongodb_container
-            - tgbot
-    tgbot:
-        build: tgbot/
-        ports:
-            - "5001:5001"
-        environment:
-            TELEGRAM_TOKEN: 1022956673:AAHchGGbIRKr96CYZ400zIDq4vVW4a11zfE
-            COVID_BACKEND: http://web:5000/api/
-            COVID_BACKEND_USER: test@test.com
-            COVID_BACKEND_PASS: adminadmin
-        volumes:
-            - ./tgbot:/app
+    #        - tgbot
+    #tgbot:
+    #    build: tgbot/
+    #    ports:
+    #        - "5001:5001"
+    #    environment:
+    #        TELEGRAM_TOKEN: 1022956673:AAHchGGbIRKr96CYZ400zIDq4vVW4a11zfE
+    #        COVID_BACKEND: http://web:5000/api/
+    #        COVID_BACKEND_USER: test@test.com
+    #        COVID_BACKEND_PASS: adminadmin
+    #    volumes:
+    #        - ./tgbot:/app
 
     mongodb_container:
         image: mongo:latest
@@ -32,4 +32,4 @@ services:
             - mongodb_data_container1:/data/db
 
 volumes:
-    mongodb_data_container:
+    mongodb_data_container1:

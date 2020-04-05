@@ -2,8 +2,10 @@ from flask.views import MethodView
 from flask import jsonify, request, g
 from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
-
+from datetime import datetime as dt, timedelta
 import math
+import logging
+log = logging.getLogger("back")
 
 def haversine(lat1, lon1, lat2, lon2):
     R = 6372800  # Earth radius in meters
@@ -61,6 +63,7 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
 def updateVolunteerTG(requestjson, tg_id, phone):
     update = {}
     print(requestjson)
+    log.debug("Relay offer for req:%s from ", requestjson)
     for key, value in requestjson.items():
         if key == 'phone':
             continue
@@ -69,12 +72,15 @@ def updateVolunteerTG(requestjson, tg_id, phone):
         update[f"set__{key}"] = value
     try:
         if 'phone' in requestjson:
-            obj = Volunteer.objects(phone=requestjson['phone'], is_active=True)
+            obj = Volunteer.objects(telegram_id=requestjson['phone']).first()
+            update = {'set__telegram_chat_id':requestjson['telegram_chat_id']}
         else:
-            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True)
+            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True).first()
         if obj:
-            obj = [i for i in obj.all()][0]
+            #obj = [i for i in obj.all()][0]
             obj.update(**update)            
+        else:
+            jsonify({"response": "not found"})
         return jsonify({"response": "success"})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
@@ -103,6 +109,7 @@ def makejson(v, user):
     for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id', 'telegram_chat_id', 'latitude','longitude']:
         if k in v:
             u[k] =v[k]
+    u['count'] = Beneficiary.objects(volunteer=str(v['_id']),created_at__lte=dt.now() - timedelta(days=1)).count()
     return u
 def sort_closest(id, topk, category):
     topk = int(topk)
@@ -143,7 +150,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
             volunteers = [v.clean_data() for v in obj.order_by('-created_at').skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, 'count':obj.count()})
         else:
-            obj = Volunteer.objects(is_active=True).order_by('-created_at')
+            obj = Volunteer.objects().order_by('-created_at')
             volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, 'count':obj.count()})
     except Exception as error:
