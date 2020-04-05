@@ -11,6 +11,7 @@ mongoengine = "*"
 passlib = "*"
 flask-cors = "*"
 flask_httpauth = "*"
+Pillow	= ">=7.1.1"
 
 [dev-packages]
 pylint = "*"
