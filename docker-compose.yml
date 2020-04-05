@@ -8,6 +8,18 @@ services:
             - .:/app
         depends_on:
             - mongodb_container
+            - tgbot
+    tgbot:
+        build: tgbot/
+        ports:
+            - "5001:5001"
+        environment:
+            TELEGRAM_TOKEN: changethis
+            COVID_BACKEND: http://web:5000/api
+            COVID_BACKEND_USER: changethis
+            COVID_BACKEND_PASS: changethis
+        volumes:
+            - ./tgbot:/app
 
     mongodb_container:
         image: mongo:latest
@@ -17,7 +29,7 @@ services:
         ports:
             - 27017:27017
         volumes:
-            - mongodb_data_container:/data/db
+            - mongodb_data_container1:/data/db
 
 volumes:
-    mongodb_data_container:
+    mongodb_data_container1:
