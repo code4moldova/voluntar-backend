@@ -124,7 +124,7 @@ def sort_closest(id, topk, category):
                             ], key=lambda x: x['distance'])
     volunteers = [i for i in volunteers if i['distance']<100000]#todo: find the best threshhold!!!
     #todo: add selected volunteer
-    if 'volunteer' in user and user['volunteer']!='':
+    if False and 'volunteer' in user and user['volunteer']!='':
         volunteers = [Volunteer.objects(_id=user['volunteer']).get().clean_data()] + volunteers
     return jsonify({'list':volunteers[:topk]})
 
