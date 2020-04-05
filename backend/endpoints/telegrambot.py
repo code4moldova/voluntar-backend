@@ -14,6 +14,7 @@ BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
 def send_request(beneficiary):
     beneficiary_id = str(beneficiary['id'])
     volunteers = [int(v['telegram_chat_id']) for v in sort_closest(beneficiary_id, 5, None).json['list'] if 'telegram_chat_id' in v]
+    #todo: check if already sent or accepted other?
     #return volunteers
     if len(volunteers)>0:
         payload = {

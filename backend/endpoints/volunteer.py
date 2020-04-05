@@ -3,6 +3,21 @@ from flask import jsonify, request, g
 from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
 
+import math
+
+def haversine(lat1, lon1, lat2, lon2):
+    R = 6372800  # Earth radius in meters
+    #lat1, lon1 = coord1
+    #lat2, lon2 = coord2
+    
+    phi1, phi2 = math.radians(lat1), math.radians(lat2) 
+    dphi       = math.radians(lat2 - lat1)
+    dlambda    = math.radians(lon2 - lon1)
+    
+    a = math.sin(dphi/2)**2 + \
+        math.cos(phi1)*math.cos(phi2)*math.sin(dlambda/2)**2
+    
+    return 2*R*math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 def registerVolunteer(requestjson, created_by):
         """create a new user"""
@@ -45,6 +60,7 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
 
 def updateVolunteerTG(requestjson, tg_id, phone):
     update = {}
+    print(requestjson)
     for key, value in requestjson.items():
         if key == 'phone':
             continue
@@ -55,7 +71,7 @@ def updateVolunteerTG(requestjson, tg_id, phone):
         if 'phone' in requestjson:
             obj = Volunteer.objects(phone=requestjson['phone'], is_active=True)
         else:
-            obj = Volunteer.objects(telegram_chat_id=requestjson['telegram_chat_id'], is_active=True)
+            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True)
         if obj:
             obj = [i for i in obj.all()][0]
             obj.update(**update)            
@@ -81,7 +97,7 @@ def getVolunteers(filters):
 def getDistance(a, b):
     if 'longitude' not in a or 'longitude' not in b:
         return 1000000
-    return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
+    return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#(a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
     for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id', 'telegram_chat_id', 'latitude','longitude']:
@@ -99,14 +115,17 @@ def sort_closest(id, topk, category):
         category = user['offer']
         volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
                                                                                                          offer=category).all()\
-                                if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
+                               # if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
                                 ], key=lambda x: x['distance'])
     else:
         volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
                                                                                                          activity_types__in=user['activity_types']).all()\
-                                if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
+                              #  if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
                             ], key=lambda x: x['distance'])
     volunteers = [i for i in volunteers if i['distance']<100000]#todo: find the best threshhold!!!
+    #todo: add selected volunteer
+    if 'volunteer' in user and user['volunteer']!='':
+        volunteers = [Volunteer.objects(_id=user['volunteer']).get().clean_data()] + volunteers
     return jsonify({'list':volunteers[:topk]})
 
 
