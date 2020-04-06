@@ -109,6 +109,7 @@ class Volunteer(User):
     availability = StringField(max_length=500, required=False)#id of type of availability(d2h per daay, 4 hour/week etc)
     availability_day = StringField(max_length=500, required=False)#when available for the offer_beneficiary_id
     offer_beneficiary_id = StringField(max_length=500, required=False)#offer_beneficiary_id if ok
+    offer_list = ListField(default=[])
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')

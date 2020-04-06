@@ -72,11 +72,13 @@ def updateVolunteerTG(requestjson, tg_id, phone):
         update1[f"set__{key}"] = value
     try:
         if 'phone' in requestjson:
-            obj = Volunteer.objects(telegram_id=str(requestjson['phone']))#.first()
+            obj = Volunteer.objects(telegram_id=str(requestjson['phone'])).first()
             update = {'set__telegram_chat_id':str(requestjson['telegram_chat_id'])}
         else:
-            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True)#.first()
-            update=update1
+            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True).first()
+            data = obj.clean_data()
+            item = {'id':requestjson['offer_beneficiary_id'], 'offer':requestjson['availability_day']}
+            update={'offer_list':data['offer_list']+[item]}
         if obj:
             #obj = [i for i in obj.all()][0]
             obj.update(**update)            
@@ -107,9 +109,14 @@ def getDistance(a, b):
     return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#(a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
-    for k in ['first_name','last_name','phone','email','activity_types','availability_day','offer_beneficiary_id', 'telegram_chat_id', 'latitude','longitude']:
+    for k in ['first_name','last_name','phone','email','activity_types', 'telegram_chat_id', 'latitude','longitude']:
         if k in v:
             u[k] =v[k]
+    u['accepted_offer'] = False
+    for it in v['offer_list']:
+        if it['id'] == user['_id']:
+            u['availability_day'] = it['offer']
+            u['accepted_offer'] = True
     u['count'] = Beneficiary.objects(volunteer=str(v['_id']),created_at__lte=dt.now() - timedelta(days=1)).count()
     return u
 def sort_closest(id, topk, category):
