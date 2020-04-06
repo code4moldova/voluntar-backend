@@ -164,8 +164,8 @@ def parseFile(json_url, begin, end, args):
 	end = int(end)
 	for row in rr[begin:end]:#add 
 		item = parseRow(row)
-		if args.get('legitimatie') is not None and item['received_contract']:
-			item['is_active'] = True
+		#if args.get('legitimatie') is not None and item['received_contract']:
+		item['is_active'] = True
 		ob = Volunteer.objects(phone=item['phone']).first()
 		if not ob:
 			comment = Volunteer(**item)
