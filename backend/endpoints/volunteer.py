@@ -98,7 +98,7 @@ def getVolunteers(filters):
                 volunteers = [Volunteer.objects(id=volunteer_id).get().clean_data() for volunteer_id in filters.getlist('id')]
                 return jsonify({"list": volunteers})
             else:
-                volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).all()]
+                volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).order_by('-created_at').all()]
                 return jsonify({"list": volunteers})
         except Exception as error:
             return jsonify({"error": str(error)}), 400

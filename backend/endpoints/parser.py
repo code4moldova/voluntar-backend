@@ -130,7 +130,7 @@ def parseRow(row):
     it['offer'] = getTagId(it['offer'] ,'-','offer')
     ro, ru = (it['zone_address'].split('/') + ['-'])[:2]
     it['zone_address'] = getTagId(ro.strip() ,ru.strip(),'sector')
-    ro, ru = it['availability'].split('/')
+    ro, ru = (it['availability'].split('/') + ['-'])[:2]
     it['availability'] = getTagId(ro.strip() ,ru.strip(),'availability')
     coord = getCoordinates(it['address'])
     if coord:
