@@ -39,7 +39,7 @@ def parsephone(a):
             c.append(j)
         except:
             pass
-    if c[0] == '0':
+    if len(c)>0 and c[0] == '0':
         c = c[1:]
     c = ''.join(c).replace('373','')
     if len(c)<8:
