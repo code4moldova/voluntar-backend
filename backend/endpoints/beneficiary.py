@@ -46,7 +46,7 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
         try:
             obj = Beneficiary.objects(id=beneficiary_id).get()
             data = obj.clean_data()#and not data['is_active']
-            if ('set__is_active' in update  and update['set__is_active'] ) \
+            if ('set__is_active' in update  and update['set__is_active'] and not data['is_active']) \
                 or ('set_offer' in update and update['set_offer']!=data['offer']) \
                  or ('set_address' in update and update['set_address']!=data['address']):
                 #change to active or different volunteer category or different address

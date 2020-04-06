@@ -92,7 +92,7 @@ def getCoordinates(text):
     text = text.replace('str.','').replace('str','').replace('bd.','').replace('bd','')
     text = text.replace('Str.','').replace('Str','').replace('Dd.','').replace('Dd','')
     text = text.replace('Strada','').replace('strada','').replace('bulevardul','').replace('Bulevardul','')
-    text = text.strip()
+    text = text.strip()+ ' Chisinau'
     text = requote_uri(text)# text.replace(' ','%20')#urllib.parse.quote_plus(text)
     
     url = "https://info.iharta.md:6443/arcgis/rest/services/locator/CompositeLoc/GeocodeServer/findAddressCandidates?SingleLine={}&City=Chisinau&maxLocations=5&f=pjson"
@@ -124,6 +124,7 @@ def parseRow(row):
     it['new_volunteer'] = it['new_volunteer'].lower().find('nu')>=0
     it['sent_photo'] = it['sent_photo'].lower().find('da')>=0
     it['need_sim_unite'] = it['need_sim_unite'].lower().find('da')>=0
+    it['received_contract'] = it['received_contract'].lower().find('da')>=0
     it['team'] = getTagId(it['team'] ,'-','team')
     it['age'] = getTagId(it['age'] ,'-','age')
     it['offer'] = getTagId(it['offer'] ,'-','offer')
@@ -141,7 +142,7 @@ def parseRow(row):
 
 
 
-def parseFile(json_url, begin, end):
+def parseFile(json_url, begin, end, args):
 	resp = requests.get(url=json_url)
 	data = resp.json()
 
@@ -163,6 +164,8 @@ def parseFile(json_url, begin, end):
 	end = int(end)
 	for row in rr[begin:end]:#add 
 		item = parseRow(row)
+		if args.get('legitimatie') is not None and item['received_contract']:
+			item['is_active'] = True
 		ob = Volunteer.objects(phone=item['phone']).first()
 		if not ob:
 			comment = Volunteer(**item)

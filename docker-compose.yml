@@ -8,6 +8,11 @@ services:
             - .:/app
         depends_on:
             - mongodb_container
+        environment:
+            SECRET_KEY: 'hange this'
+            DEFAULT_PASSWORD: 'hangethis'
+            DEFAULT_USERNAME: 'hange@this.ro'
+            TG_IP: '192.168.100.23'
     #        - tgbot
     #tgbot:
     #    build: tgbot/

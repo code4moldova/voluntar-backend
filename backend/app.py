@@ -11,6 +11,7 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
+import os
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -74,7 +75,7 @@ def parse_user():
 	url = request.args.get('url')
 	b = request.args.get('b')
 	e = request.args.get('e')
-	return parseFile(url, b, e)
+	return parseFile(url, b, e, request.args)
 
 #tags
 
@@ -167,7 +168,7 @@ def get_user3():
 @app.route('/')
 def hello():
 	#str(get_active_operator())
-	return  registerOperator({'email':'test@test.com','password':'adminadmin','role':['fixer'], 'phone':10000001}, 'admin')
+	return  registerOperator({'email':os.environ["DEFAULT_USERNAME"],'password':os.environ["DEFAULT_PASSWORD"],'role':['fixer'], 'phone':10000001}, 'admin')
 	return ("Hello world"+str(get_active_operator())+ '--'+str(request.args)+'-'+str(r))
 
 

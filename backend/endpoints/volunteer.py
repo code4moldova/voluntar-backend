@@ -61,7 +61,7 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
             return jsonify({"error": str(error)}), 400
 
 def updateVolunteerTG(requestjson, tg_id, phone):
-    update = {}
+    update1 = {}
     print(requestjson)
     log.debug("Relay offer for req:%s from ", requestjson)
     for key, value in requestjson.items():
@@ -69,19 +69,20 @@ def updateVolunteerTG(requestjson, tg_id, phone):
             continue
         if key == 'telegram_chat_id' and 'phone' not in requestjson:
             continue
-        update[f"set__{key}"] = value
+        update1[f"set__{key}"] = value
     try:
         if 'phone' in requestjson:
-            obj = Volunteer.objects(telegram_id=requestjson['phone']).first()
-            update = {'set__telegram_chat_id':requestjson['telegram_chat_id']}
+            obj = Volunteer.objects(telegram_id=str(requestjson['phone']))#.first()
+            update = {'set__telegram_chat_id':str(requestjson['telegram_chat_id'])}
         else:
-            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True).first()
+            obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True)#.first()
+            update=update1
         if obj:
             #obj = [i for i in obj.all()][0]
             obj.update(**update)            
         else:
             jsonify({"response": "not found"})
-        return jsonify({"response": "success"})
+        return jsonify({"response": "success",'l':update,'k':requestjson,'u':update1})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 

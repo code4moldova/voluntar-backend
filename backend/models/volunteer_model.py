@@ -7,7 +7,7 @@ from config import PassHash
 
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
-
+import os
 FACEBOOK_URL_REGEX = r"http(?:s):\/\/(?:www\.)facebook\.com\/.+"
 
 
@@ -62,7 +62,7 @@ class User(Document):
 
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer('lalal')#app.config['SECRET_KEY'])
+        s = Serializer(os.environ["SECRET_KEY"])#app.config['SECRET_KEY'])
         try:
             data = s.loads(token)
         except SignatureExpired:

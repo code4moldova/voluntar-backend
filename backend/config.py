@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_swagger_ui import get_swaggerui_blueprint
 from passlib.hash import sha256_crypt as PassHash
-
+import os
 
 ### swagger specific ###
 SWAGGER_URL = '/swagger'
@@ -21,6 +21,6 @@ MIN_PASSWORD_LEN = 6
 
 app = Flask(__name__)
 
-AJUBOT_HOST = "http://tgbot"
+AJUBOT_HOST = "http://"+os.environ['TG_IP']
 AJUBOT_PORT = 5001
 AJUBOT_RECEIPT_PATH = './static/images/receipts'
