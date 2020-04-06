@@ -120,7 +120,10 @@ def parseRow(row):
     it['last_temperature'] = it['last_temperature'].strip()
     if it['last_temperature'].strip() == 'nu masoara':
     	it['last_temperature'] = ''
-    it['last_temperature'] = 36 if len(it['last_temperature'])==0 else float(it['last_temperature'])
+    try:
+    	it['last_temperature'] = 36 if len(it['last_temperature'])==0 else float(it['last_temperature'])
+    except:
+    	it['last_temperature'] = 36
     it['password'] = it['phone']
     it['aggreed_terms'] = it['aggreed_terms'].find('Da')>=0
     it['new_volunteer'] = it['new_volunteer'].lower().find('nu')>=0
