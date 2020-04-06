@@ -139,8 +139,8 @@ def parseRow(row):
     it['availability'] = getTagId(ro.strip() ,ru.strip(),'availability')
     coord = getCoordinates(it['address'])
     if coord:
-        it['latitude'] = coord['location']['x']
-        it['longitude'] = coord['location']['y']
+        it['latitude'] = coord['location']['y']
+        it['longitude'] = coord['location']['x']
         it['address_old'] = it['address']
         it['address'] = coord['address']
     return it

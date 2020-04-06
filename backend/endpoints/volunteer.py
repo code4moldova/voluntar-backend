@@ -106,8 +106,7 @@ def getVolunteers(filters):
 def getDistance(a, b):
     if 'longitude' not in a or 'longitude' not in b:
         return 1000000
-    #return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#
-    return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
+    return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#(a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
     for k in ['first_name','last_name','phone','email','activity_types', 'telegram_chat_id', 'latitude','longitude']:
