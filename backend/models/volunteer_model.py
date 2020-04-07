@@ -35,7 +35,7 @@ class User(Document):
     # created_by = ReferenceField("operator")
     first_name = StringField(max_length=50, default='No_First')
     last_name = StringField(max_length=50, default='No_Last')
-    email = EmailField(required=True)
+    email = EmailField(required=False)
     password = StringField(required=True, min_length=6)
     phone = IntField(min_value=10000000, max_value=99999999)# StringField(required=False)#IntField(min_value=10000000, max_value=99999999)
     created_at = DateTimeField(default=dt.now)
