@@ -6,7 +6,7 @@ from config import AJUBOT_HOST, AJUBOT_PORT, AJUBOT_RECEIPT_PATH
 from PIL import Image
 from flask import jsonify
 from datetime import datetime
-from models import Beneficiary
+from models import Beneficiary, Volunteer
 
 BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
 
@@ -37,13 +37,16 @@ def send_request(beneficiary):
             pass
 
 
-def send_assign(beneficiary):
+def send_assign(beneficiary_id, volunteer_id):
     """Sends a POST request to telegrambot api to assign a request to a volunteer
-    :param beneficiary: Beneficiary data for whom will be performed a request
+    :param beneficiary_id: Beneficiary ID for whom will be performed a request
+    :param volunteer_id: Volunteer ID who is going to perform a request
     """
+    volunteer = Volunteer.objects(id=volunteer_id).get()
     payload = {
-        'request_id': str(beneficiary['id']),
-        'volunteer': str(beneficiary['volunteer'])
+        'request_id': beneficiary_id,
+        'volunteer': volunteer['telegram_chat_id'],
+        'time': volunteer['availability_day']
     }
     try:
         requests.post(f'{BASE_URL}/assign_help_request', json=payload)
