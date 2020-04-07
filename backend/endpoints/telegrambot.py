@@ -37,6 +37,20 @@ def send_request(beneficiary):
             pass
 
 
+def send_assign(beneficiary):
+    """Sends a POST request to telegrambot api to assign a request to a volunteer
+    :param beneficiary: Beneficiary data for whom will be performed a request
+    """
+    payload = {
+        'request_id': str(beneficiary['id']),
+        'volunteer': str(beneficiary['volunteer'])
+    }
+    try:
+        requests.post(f'{BASE_URL}/assign_help_request', json=payload)
+        return payload
+    except Exception as error:
+        return str(error)
+
 
 def save_receive(beneficiary_id, data):
     try:
