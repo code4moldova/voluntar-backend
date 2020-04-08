@@ -61,17 +61,19 @@ def send_assign(beneficiary_id, volunteer_id):
     :return: if the response is success then will return a json as {"request_id": "5e88845adcc1e3b2786c311e",
             "volunteer": "123456789", "time": "00:00"}, otherwise - {"error": "error message"}
     """
+
     volunteer = Volunteer.objects(id=volunteer_id).get()
-    payload = {
-        'request_id': beneficiary_id,
-        'volunteer': volunteer['telegram_chat_id'],
-        'time': volunteer['availability_day']
-    }
-    try:
-        requests.post(f'{BASE_URL}/assign_help_request', json=payload)
-        return payload
-    except Exception as error:
-        jsonify({"error": str(error)}), 400
+    if "telegram_chat_id" in volunteer:
+        payload = {
+            'request_id': beneficiary_id,
+            'volunteer': int(volunteer['telegram_chat_id']),
+            'time': volunteer['availability_day']
+        }
+        try:
+            requests.post(f'{BASE_URL}/assign_help_request', json=payload)
+            return payload
+        except Exception as error:
+            jsonify({"error": str(error)}), 400
 
 
 def save_receive(beneficiary_id, data):
