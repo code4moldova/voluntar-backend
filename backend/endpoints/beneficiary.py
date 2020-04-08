@@ -18,6 +18,8 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
         # TODO: get authenticated Beneficiary and assignee to new Beneficiary
         # new_beneficiary["created_by"] = authenticated_oprator
         try:
+            new_beneficiary['password'] = '1112233'
+            new_beneficiary['email'] = 'rerre@fdf.ro'
             assert len(new_beneficiary["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_beneficiary["password"] = PassHash.hash(new_beneficiary["password"])
             new_beneficiary['created_by'] = created_by# g.user.get().clean_data()['_id']
