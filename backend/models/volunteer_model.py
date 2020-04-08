@@ -120,6 +120,7 @@ class Volunteer(User):
     comments = StringField(max_length=500)
     offer = StringField(max_length=500)
     timestamp = StringField(max_length=500)
+    suburbia = StringField(max_length=500)
     last_temperature = FloatField(min_value=30, max_value=41)
     need_sim_unite = BooleanField(default=False)
     new_volunteer = BooleanField(default=False)
