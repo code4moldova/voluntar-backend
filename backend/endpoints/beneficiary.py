@@ -54,7 +54,8 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
                 #change to active or different volunteer category or different address
                 #return jsonify(telegrambot.send_request(obj))
                 telegrambot.send_request(obj)
-                
+            elif 'set__volunteer' in update and update['set__volunteer'] and update['set__volunteer'] != data['volunteer']:
+                telegrambot.send_assign(beneficiary_id, requestjson['volunteer'])
             obj.update(**update)
             return jsonify({"response": "success"})
         except Exception as error:
