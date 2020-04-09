@@ -95,6 +95,11 @@ def get_tag(select='all'):
 def update_tag():
 	return updateTag(request.json, request.json['_id'])
 
+@app.route('/api/tagedit', methods = ['GET'])
+@auth.login_required
+def update_tag_get():
+	return updateTag(request.args, request.args.get('_id'))
+
 @app.route('/api/tag', methods = ['DELETE'])
 @auth.login_required
 def delete_tag():

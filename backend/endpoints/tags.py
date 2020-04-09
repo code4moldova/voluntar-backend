@@ -23,13 +23,14 @@ def updateTag(requestjson, tag_id, delete=False):
         """update a single user by id"""
         print(tag_id, '---')
         update = {}
+        toBool = {'true':True, 'false': False}
         if not delete:
             for key, value in requestjson.items():
                 if key == '_id':
                     continue
                 if key == "password":
                     value = PassHash.hash(value)
-                update[f"set__{key}"] = value
+                update[f"set__{key}"] = value if value.lower() not in toBool else toBool[value.lower()]
         else:
             update["set__is_active"] = False
 
