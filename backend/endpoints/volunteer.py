@@ -93,12 +93,15 @@ def getVolunteers(filters):
             if len(filters.getlist('id')) == 1 :
                 volunteer_id = filters.get('id')
                 volunteer = Volunteer.objects(id=volunteer_id).get().clean_data()
+
                 return jsonify(volunteer)
             elif len(filters.getlist('id')) > 1:
                 volunteers = [Volunteer.objects(id=volunteer_id).get().clean_data() for volunteer_id in filters.getlist('id')]
                 return jsonify({"list": volunteers})
             else:
                 volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).order_by('-created_at').all()]
+                for i,volunteer in enumerate(volunteers):
+                    volunteers[i]['cases_solved'] =  Beneficiary.objects(volunteer=volunteer['_id']).count()
                 return jsonify({"list": volunteers})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
@@ -157,10 +160,14 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
                 flt[v] = toBool[k.lower()] if k.lower() in toBool else k 
             obj = Volunteer.objects(**flt)
             volunteers = [v.clean_data() for v in obj.order_by('-created_at').skip(offset).limit(item_per_age)]
+            for i,volunteer in enumerate(volunteers):
+                    volunteers[i]['cases_solved'] =  Beneficiary.objects(volunteer=volunteer['_id']).count()
             return jsonify({"list": volunteers, 'count':obj.count()})
         else:
             obj = Volunteer.objects().order_by('-created_at')
             volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            for i,volunteer in enumerate(volunteers):
+                    volunteers[i]['cases_solved'] =  Beneficiary.objects(volunteer=volunteer['_id']).count()
             return jsonify({"list": volunteers, 'count':obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
