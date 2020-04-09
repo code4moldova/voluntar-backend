@@ -40,16 +40,20 @@ def updateTag(requestjson, tag_id, delete=False):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
-def getTags(tag_id, select):
+def getTags(tag_id, select, js=True):
         try:
             if tag_id:
                 tags = Tags.objects(id=tag_id).get().clean_data()
                 return jsonify(tags)
             elif select!='all':
                 tags = [v.clean_data() for v in Tags.objects(is_active=True, select=select).all()]
-                return jsonify({"list": tags})
+                if js:
+                    return jsonify({"list": tags})
+                return tags
             else:
                 tags = [v.clean_data() for v in Tags.objects(is_active=True).all()]
-                return jsonify({"list": tags})
+                if js:
+                    return jsonify({"list": tags})
+                return tags
         except Exception as error:
             return jsonify({"error": str(error)}), 400

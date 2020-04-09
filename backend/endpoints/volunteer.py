@@ -156,8 +156,10 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         if len(filters) > 0:
             flt = {}
             toBool = {'true':True, 'false': False}
+            caseS = ['first_name', 'last_name']
             for v,k in filters.items():
-                flt[v] = toBool[k.lower()] if k.lower() in toBool else k 
+                flt[v+'__iexact' if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k 
+
             obj = Volunteer.objects(**flt)
             volunteers = [v.clean_data() for v in obj.order_by('-created_at').skip(offset).limit(item_per_age)]
             for i,volunteer in enumerate(volunteers):

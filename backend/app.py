@@ -11,7 +11,7 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
-import os
+import os, json
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -95,9 +95,18 @@ def get_tag(select='all'):
 def update_tag():
 	return updateTag(request.json, request.json['_id'])
 
-@app.route('/api/tagedit', methods = ['GET'])
+@app.route('/api/tagedit', methods = ['GET',"POST"])
 @auth.login_required
 def update_tag_get():
+	if request.method == 'POST':
+		js = json.loads(request.form.get('json'))
+		for it in js:
+			it['is_active'] = 'true' if it['is_active'] else 'false'
+			updateTag({k:v for k,v in it.items() if k is  not '_id'}, it['_id'])
+		return jsonify(js)
+	tg = getTags(False, request.args.get('name'), False)
+	dd = []
+	return '<form action="" method="post" ><textarea style="    width: 800px;  height: 400px;" name="json">'+json.dumps(tg, indent=4, sort_keys=True)+'</textarea><button>go</button></form>'
 	return updateTag(request.args, request.args.get('_id'))
 
 @app.route('/api/tag', methods = ['DELETE'])
