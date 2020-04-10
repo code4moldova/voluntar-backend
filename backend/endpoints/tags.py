@@ -46,9 +46,10 @@ def getTags(tag_id, select, js=True):
                 tags = Tags.objects(id=tag_id).get().clean_data()
                 return jsonify(tags)
             elif select!='all':
-                tags = [v.clean_data() for v in Tags.objects(is_active=True, select=select).all()]
                 if js:
+                    tags = [v.clean_data() for v in Tags.objects(is_active=True, select=select).all()]
                     return jsonify({"list": tags})
+                tags = [v.clean_data() for v in Tags.objects(select=select).order_by('-is_active').all()]
                 return tags
             else:
                 tags = [v.clean_data() for v in Tags.objects(is_active=True).all()]
