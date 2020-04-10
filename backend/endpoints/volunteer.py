@@ -4,6 +4,7 @@ from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
 from datetime import datetime as dt, timedelta
 import math
+from datetime import datetime, timedelta
 import logging
 log = logging.getLogger("back")
 
@@ -114,6 +115,16 @@ def getDistance(a, b):
         return 1000000
     #return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#
     return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
+
+
+def utc_short_to_user_short(short_time):
+    """Transform a short '%H:%M' time notation from UTC to the user's timezone
+    :params short_time: str, timestamp in %H:%M format
+    :returns: str, timestamp in the same format, but adapted to the user's timezone"""
+    raw = datetime.strptime(short_time, "%H:%M")
+    localized = raw + timedelta(hours=3)
+    return localized.strftime("%H:%M")
+
 def makejson(v, user):
     u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
     for k in ['first_name','last_name','phone','email','activity_types', 'telegram_chat_id', 'latitude','longitude']:
@@ -122,7 +133,7 @@ def makejson(v, user):
     u['accepted_offer'] = False
     for it in v['offer_list']:
         if it['id'] == user['_id']:
-            u['availability_day'] = it['offer']
+            u['availability_day'] = utc_short_to_user_short(it['offer'])
             u['accepted_offer'] = True
     u['count'] = Beneficiary.objects(volunteer=str(v['_id']),created_at__lte=dt.now() - timedelta(days=1)).count()
     return u

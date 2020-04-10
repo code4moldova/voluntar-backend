@@ -7,8 +7,13 @@ from PIL import Image
 from flask import jsonify
 from datetime import datetime
 from models import Beneficiary, Volunteer
+import logging
+log = logging.getLogger("back")
+
+
 
 BASE_URL = f'{AJUBOT_HOST}:{AJUBOT_PORT}'
+
 
 
 def send_request(beneficiary):
@@ -64,11 +69,17 @@ def send_assign(beneficiary_id, volunteer_id):
 
     volunteer = Volunteer.objects(id=volunteer_id).get()
     if "telegram_chat_id" in volunteer:
+        time_s = '20:20'
+        data = volunteer.clean_data()
+        for i in data['offer_list']:
+            if i['id'] == beneficiary_id:
+                time_s = i['offer']
         payload = {
             'request_id': beneficiary_id,
             'volunteer': int(volunteer['telegram_chat_id']),
-            'time': volunteer['availability_day']
+            'time': time_s# utc_short_to_user_short(time_s)#volunteer['availability_day']
         }
+        log.info("ASSIGN req:%s to vol:%s", time_s, volunteer['telegram_chat_id'])
         try:
             requests.post(f'{BASE_URL}/assign_help_request', json=payload)
             return payload
