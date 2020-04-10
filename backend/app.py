@@ -11,7 +11,7 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
-import os, json
+import os, json, random
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -160,6 +160,12 @@ def new_beneficiary():
 @auth.login_required
 def get_beneficiary():
 	return getBeneficiary(request.args)
+
+
+@app.route('/api/secret', methods = ['GET'])
+@auth.login_required
+def get_secret():
+	return jsonify({'secret' : random.choice(['ajutor','usa','minune','voluntar','solidar','viata','mancare','cartofi','usturoi'])+ str(random.choice(range(100)))})
 
 
 @app.route('/api/beneficiary', methods = ['PUT'])

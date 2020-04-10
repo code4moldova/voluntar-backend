@@ -48,6 +48,8 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
             for key, value in requestjson.items():
                 if key == '_id':
                     continue
+                if key == "telegram_id":
+                    value = value.replace('+','').replace(' ','').strip()
                 if key == "password":
                     value = PassHash.hash(value)
                 update[f"set__{key}"] = value
@@ -71,10 +73,11 @@ def updateVolunteerTG(requestjson, tg_id, phone):
             continue
         update1[f"set__{key}"] = value
     try:
-        if 'phone' in requestjson:
-            obj = Volunteer.objects(telegram_id=str(requestjson['phone'])).first()
+        if 'phone' in requestjson:#conection between tg and platofrm
+            obj = Volunteer.objects(telegram_id=str(requestjson['phone']).replace('+','')).first()
             update = {'set__telegram_chat_id':str(requestjson['telegram_chat_id'])}
         else:
+            #get offer from the volunteer
             obj = Volunteer.objects(telegram_chat_id=str(requestjson['telegram_chat_id']), is_active=True).first()
             data = obj.clean_data()
             item = {'id':requestjson['offer_beneficiary_id'], 'offer':requestjson['availability_day']}
