@@ -51,6 +51,8 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
                     continue
                 if key == "telegram_id":
                     value = value.replace('+','').replace(' ','').strip()
+                    if len(value)==0:
+                        update['unset__telegram_chat_id'] = ''
                 if key == "password":
                     value = PassHash.hash(value)
                 update[f"set__{key}"] = value
