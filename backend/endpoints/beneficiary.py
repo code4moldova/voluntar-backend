@@ -61,6 +61,23 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
+def updateBeneficiaryTG(requestjson):
+        beneficiary_id = requestjson['request_id']
+        print(beneficiary_id, '---')
+        update = {
+            'questions': 'pretul:'+str(requestjson['amount'])+', simptome:'+','.join(requestjson['symptoms']),
+            'comments':requestjson['further_comments'],
+            'curator':requestjson['would_return']==1
+        }
+        
+        try:
+            obj = Beneficiary.objects(id=beneficiary_id).get()
+            data = obj.clean_data()
+            obj.update(**update)
+            return jsonify({"response": "success"})
+        except Exception as error:
+            return jsonify({"error": str(error)}), 400
+
 def getBeneficiary(args):
         try:
             id = args.get('id')

@@ -6,7 +6,7 @@ from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
 		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficieries_by_filters, \
-		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile, updateVolunteerTG
+		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile, updateVolunteerTG, updateBeneficiaryTG
 
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -171,6 +171,8 @@ def get_secret():
 @app.route('/api/beneficiary', methods = ['PUT'])
 @auth.login_required
 def update_beneficiary():
+	if 'wellbeing' in request.json:
+		return updateBeneficiaryTG(request.json)
 	return updateBeneficiary(request.json, request.json['_id'])
 
 
