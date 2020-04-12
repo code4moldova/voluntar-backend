@@ -15,18 +15,18 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
         if len(created_by)>30:
             user = Operator.verify_auth_token(created_by)
             created_by = user.get().clean_data()['email']
-        # TODO: get authenticated Beneficiary and assignee to new Beneficiary
-        # new_beneficiary["created_by"] = authenticated_oprator
         try:
             new_beneficiary['password'] = '1112233'
             new_beneficiary['email'] = 'rerre@fdf.ro'
             assert len(new_beneficiary["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_beneficiary["password"] = PassHash.hash(new_beneficiary["password"])
-            new_beneficiary['created_by'] = created_by# g.user.get().clean_data()['_id']
+            new_beneficiary['created_by'] = created_by
             new_beneficiary['fixer'] = str(fixer_id)
             comment = Beneficiary(**new_beneficiary)
             comment.save()
-            #telegrambot.send_request(comment)
+            if 'is_active' in new_beneficiary and new_beneficiary['is_active']:
+                #sent the request to the volunteer via telegram
+                telegrambot.send_request(comment)
             return jsonify({"response": "success", 'user': comment.clean_data()})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
