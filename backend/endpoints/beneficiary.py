@@ -56,6 +56,10 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
                 telegrambot.send_request(obj)
             elif 'set__volunteer' in update  and ('volunteer' not in data or  update['set__volunteer'] != data['volunteer']):
                 telegrambot.send_assign(beneficiary_id, requestjson['volunteer'])
+            elif 'set__status' in update and update['set__status'].lower() == 'cancelled':
+                #if the volunteer refused the request, delete the link
+                update['set__volunteer'] = ''
+                update['set__status'] = update['set__status'].lower()
             obj.update(**update)
             return jsonify({"response": "success"})
         except Exception as error:

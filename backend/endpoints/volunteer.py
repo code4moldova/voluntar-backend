@@ -158,9 +158,9 @@ def sort_closest(id, topk, category):
                               #  if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
                             ], key=lambda x: x['distance'])
     volunteers = [i for i in volunteers if i['distance']<100000]#todo: find the best threshhold!!!
-    #todo: add selected volunteer
-    if False and 'volunteer' in user and user['volunteer']!='':
-        volunteers = [Volunteer.objects(_id=user['volunteer']).get().clean_data()] + volunteers
+
+    if 'volunteer' in user and user['volunteer']!='':
+        volunteers = [makejson(Volunteer.objects(id=user['volunteer']).get().clean_data(), user)] + [i for i in volunteers if i['_id'] != user['volunteer']]
     return jsonify({'list':volunteers[:topk]})
 
 
