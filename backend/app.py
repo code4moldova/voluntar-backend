@@ -165,7 +165,7 @@ def get_beneficiary():
 @app.route('/api/secret', methods = ['GET'])
 @auth.login_required
 def get_secret():
-	return jsonify({'secret' : random.choice(['ajutor','usa','minune','voluntar','solidar','viata','mancare','cartofi','usturoi'])+ str(random.choice(range(100)))})
+	return jsonify({'secret' : random.choice('abcdefghijklmnopqrstuvwxyz').upper()+ str(random.choice(range(1000)))})
 
 
 @app.route('/api/beneficiary', methods = ['PUT'])
