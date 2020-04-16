@@ -156,6 +156,9 @@ class Beneficiary(User):
     has_symptoms = BooleanField(default=False)
     ask_volunteers = ListField(default=[])
     remarks = ListField(default=[])
+    priority = StringField(max_length=100, required=False, default="low")
+    black_list = BooleanField(default=False)
+    group = StringField(max_length=100, default="call_center")
 
 
 class Beneficiary_request(User):
