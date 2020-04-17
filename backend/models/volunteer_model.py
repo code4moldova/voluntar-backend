@@ -159,6 +159,8 @@ class Beneficiary(User):
     priority = StringField(max_length=100, required=False, default="low")
     black_list = BooleanField(default=False)
     group = StringField(max_length=100, default="call_center")
+    fixer_comment: StringField(max_length=500, default="")
+    additional_info: ListField(default=[])
 
 
 class Beneficiary_request(User):
