@@ -117,7 +117,7 @@ class Volunteer(User):
     created_by = StringField(max_length=500)
     team = StringField(max_length=500)
     profession = StringField(max_length=500)
-    comments = StringField(max_length=500)
+    comments = StringField(max_length=5000)
     offer = StringField(max_length=500)
     timestamp = StringField(max_length=500)
     suburbia = StringField(max_length=500)
@@ -143,7 +143,7 @@ class Beneficiary(User):
     age = IntField(min_value=16, max_value=120)
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
-    comments = ListField(default=[])
+    comments = StringField(max_length=5000)
     questions = ListField(default=[])
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
@@ -159,8 +159,9 @@ class Beneficiary(User):
     priority = StringField(max_length=100, required=False, default="low")
     black_list = BooleanField(default=False)
     group = StringField(max_length=100, default="call_center")
-    fixer_comment: StringField(max_length=500, default="")
-    additional_info: ListField(default=[])
+    fixer_comment= StringField(max_length=500, default="")
+    additional_info= ListField(default=[])
+    suburbia = StringField(max_length=500)
 
 
 class Beneficiary_request(User):
