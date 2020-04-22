@@ -69,8 +69,8 @@ def updateBeneficiaryTG(requestjson):
         beneficiary_id = requestjson['request_id']
         print(beneficiary_id, '---')
         update = {
-            'questions': 'pretul:'+str(requestjson['amount'])+', simptome:'+','.join(requestjson['symptoms']),
-            'comments':requestjson['further_comments'],
+            'push__questions': 'pretul:'+str(requestjson['amount'])+', simptome:'+','.join(requestjson['symptoms']),
+            'push__comments':requestjson['further_comments'],
             'curator':requestjson['would_return']==1
         }
         

@@ -143,8 +143,8 @@ class Beneficiary(User):
     age = IntField(min_value=16, max_value=120)
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
-    comments = StringField(max_length=500, required=False)
-    questions = StringField(max_length=500, required=False)
+    comments = ListField(default=[])
+    questions = ListField(default=[])
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
@@ -156,6 +156,11 @@ class Beneficiary(User):
     has_symptoms = BooleanField(default=False)
     ask_volunteers = ListField(default=[])
     remarks = ListField(default=[])
+    priority = StringField(max_length=100, required=False, default="low")
+    black_list = BooleanField(default=False)
+    group = StringField(max_length=100, default="call_center")
+    fixer_comment: StringField(max_length=500, default="")
+    additional_info: ListField(default=[])
 
 
 class Beneficiary_request(User):
