@@ -1,19 +1,9 @@
-import unittest
 from endpoints import operator
 from models import Beneficiary
-from mongoengine import connect, disconnect
+from tests import DbTestCase
 
 
-class Test(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        connect('test', host='mongomock://localhost')
-
-    @classmethod
-    def tearDownClass(cls):
-        disconnect()
-
+class TestOperator(DbTestCase):
     def test_get_active_operator_none_result(self):
         # Setup
         beneficiary = Beneficiary()
@@ -27,13 +17,9 @@ class Test(unittest.TestCase):
         beneficiary.fixer = '123456'
         beneficiary.password = 'password'
         beneficiary.secret = 'secret'
-
+        beneficiary.save()
         # Execute
         result = operator.get_active_operator()
 
         # Validate
         assert result is None
-
-
-if __name__ == '__main__':
-    unittest.main()

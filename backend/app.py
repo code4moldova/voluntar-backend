@@ -1,19 +1,19 @@
 from flask import Flask
 from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI, telegrambot
 from mongoengine import connect
-from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
-
+from config import SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
+from server import create_application
 from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
 		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficieries_by_filters, \
 		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile, updateVolunteerTG, updateBeneficiaryTG
-
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
 import os, json, random
 auth = HTTPBasicAuth()
 
+app = create_application()
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 cors = CORS(app)
@@ -37,7 +37,7 @@ def new_user():
 
 @app.route('/api/volunteer', methods = ['GET'])
 @auth.login_required
-def get_user(): 
+def get_user():
 	return getVolunteers(request.args)#request.args.get('id'))
 
 

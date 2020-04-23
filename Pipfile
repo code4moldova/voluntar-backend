@@ -17,6 +17,9 @@ Pillow	= ">=7.1.1"
 pylint = "*"
 wheel = "*"
 mongomock = ">=3.19.0"
+pytest = "*"
+pytest-env = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"
