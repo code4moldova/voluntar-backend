@@ -5,6 +5,9 @@ from config import PassHash, MIN_PASSWORD_LEN
 from datetime import datetime as dt, timedelta
 import math
 from datetime import datetime, timedelta
+from datetime import date
+import time
+import csv
 import logging
 log = logging.getLogger("back")
 
@@ -193,6 +196,32 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
 
 def deleteVolunteer(requestjson, volunteer_id):
         updateVolunteer(requestjson, volunteer_id, delete=True)
+
+def boolconv(source):
+        if type(source) is bool:
+            if (source):
+                return 1
+            else:
+                return 0
+        else:
+            return source
+
+def volunteer_build_csv():
+		today = date.today()
+		# rnd = random.randrange(100000000000000, 900000000000000)
+		rnd = time.time()
+		filename = './backend/static/data/volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
+		includelist = ['first_name','last_name','phone,telegram_id','address,zone_address','facebook_profile','age,offer_list','latitude','longitude','offer','received_contract']
+		with open(filename, 'w') as csvfile:
+			writer = csv.writer(csvfile)
+			volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
+
+			# write header
+			writer.writerow(volunteers[0])
+
+			# write data
+			for doc in volunteers:
+				writer.writerow([boolconv(doc[k]) for k in doc])
 
 
 class VolunteerAPI(MethodView):

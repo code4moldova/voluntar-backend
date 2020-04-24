@@ -1,5 +1,6 @@
 from flask import Flask
 from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI, telegrambot
+from endpoints.volunteer import volunteer_build_csv
 from mongoengine import connect
 from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
@@ -11,9 +12,7 @@ from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUs
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
-import os, json, random, csv
-from models import Volunteer
-
+import os, json, random
 auth = HTTPBasicAuth()
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -83,21 +82,7 @@ def parse_user():
 @auth.login_required
 def build_csv():
 	try:
-		from datetime import date
-		today = date.today()
-		# rnd = random.randrange(100000000000000, 900000000000000)
-		import time
-		rnd = time.time()
-		filename = './backend/static/data/volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
-		excludelist = ['_id', '_cls', 'password']
-		with open(filename, 'w') as csvfile:
-			writer = csv.writer(csvfile)
-			volunteers = [v.clean_data(excludelist) for v in Volunteer.objects().all()]
-			# write header
-			writer.writerow(volunteers[0])
-			# write data
-			for doc in volunteers:
-				writer.writerow([doc[k] for k in doc])
+		volunteer_build_csv()
 	except Exception as error:
 		return jsonify({"error": str(error)}), 400
 

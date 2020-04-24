@@ -81,12 +81,11 @@ class User(Document):
         data['_id'] = str(data['_id'])
         return data
 
-    def clean_data(self, excludelist) -> dict:
+    def include_data(self, includelist) -> dict:
         data = self.to_mongo()
-        for k in excludelist:
-            if k in data:
-                del data[k]
-        # data['_id'] = str(data['_id'])
+        lst = [k for k in data if not k in includelist]
+        for item in lst:
+            del data[item]
         return data
 
     def check_password(self, password) -> bool:
