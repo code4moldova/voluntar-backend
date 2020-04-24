@@ -200,7 +200,7 @@ def deleteVolunteer(requestjson, volunteer_id):
 
 def boolconv(source):
         if type(source) is bool:
-            if (source):
+            if source:
                 return 1
             else:
                 return 0
