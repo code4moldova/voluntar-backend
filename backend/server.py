@@ -2,6 +2,7 @@ from flask import Flask
 
 from config import FLASK_ENV
 from endpoints.welcome import register as welcome_register
+from endpoints.auth import register as auth_register
 from seeds import init_app as seed_cli
 
 
@@ -16,5 +17,6 @@ def create_application():
 
     # endpoints
     welcome_register(app)
+    auth_register(app)
 
     return app

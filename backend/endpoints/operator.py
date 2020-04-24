@@ -101,7 +101,6 @@ def get_operators_by_filters(filters, pages=0, per_page=10000):
         return jsonify({"error": str(error)}), 400
 
 
-
 def getToken(username):
     operator = Operator.objects(email=username,is_active=True)#.get()#.clean_data()
     if operator:
