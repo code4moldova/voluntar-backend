@@ -1,6 +1,6 @@
 import factory
 
-from models import Operator
+from models import Beneficiary, Operator
 from config import PassHash
 
 
@@ -12,3 +12,17 @@ class OperatorFactory(factory.Factory):
     last_name = factory.Faker('last_name')
     email = factory.Faker('email')
     password = PassHash.hash('123456')
+
+
+class BeneficiaryFactory(factory.Factory):
+    class Meta:
+        model = Beneficiary
+
+    first_name = factory.Faker('first_name')
+    last_name = factory.Faker('last_name')
+    email = factory.Faker('email')
+    password = PassHash.hash('123456')
+    age = 20
+    address = 'Botanica'
+    zone_address = 'Botanica'
+    secret = 'G900'

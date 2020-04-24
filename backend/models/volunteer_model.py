@@ -165,8 +165,8 @@ class Beneficiary(User):
     has_disabilities = BooleanField(default=False)
     black_list = BooleanField(default=False)
     group = StringField(max_length=100, default="call_center")
-    fixer_comment= StringField(max_length=500, default="")
-    additional_info= ListField(default=[])
+    fixer_comment = StringField(max_length=500, default="")
+    additional_info = ListField(default=[])
     suburbia = StringField(max_length=500)
 
 
