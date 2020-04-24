@@ -16,8 +16,9 @@ COPY Pip* /app/
 
 RUN pip install --upgrade pip && \
     pip install pipenv && \
-    pipenv install --dev --system --skip-lock
-
+    pipenv install --dev --system --skip-lock && \
+    pip install mongoengine python-csv
+#    pip install -r backend-requirements.txt
 ADD . /app
 
 EXPOSE 5000

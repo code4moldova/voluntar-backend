@@ -81,6 +81,14 @@ class User(Document):
         data['_id'] = str(data['_id'])
         return data
 
+    def clean_data(self, excludelist) -> dict:
+        data = self.to_mongo()
+        for k in excludelist:
+            if k in data:
+                del data[k]
+        # data['_id'] = str(data['_id'])
+        return data
+
     def check_password(self, password) -> bool:
         data = self.to_mongo()
         return PassHash.verify(password, data["password"])
