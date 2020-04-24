@@ -211,9 +211,9 @@ def volunteer_build_csv():
     includelist = ['first_name', 'last_name', 'phone,telegram_id', 'address,zone_address',
                    'age,offer_list', 'latitude', 'longitude', 'offer', 'received_contract']
     si = io.StringIO()
-    today = date.today()
-    rnd = time.time()
-    filename = 'volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
+    # today = date.today()
+    # rnd = time.time()
+    # filename = 'volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
     writer = csv.writer(si)
     volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
 
@@ -225,8 +225,8 @@ def volunteer_build_csv():
         writer.writerow([boolconv(doc[k]) for k in doc])
 
     output = make_response(si.getvalue())
-    output.headers["Content-Disposition"] = "attachment; filename=" + filename
-    output.headers["Content-type"] = "text/csv"
+    # output.headers["Content-Disposition"] = "attachment; filename=" + filename
+    output.headers["Content-type"] = "text/plain"
     return output
 
 
