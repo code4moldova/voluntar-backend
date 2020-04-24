@@ -1,26 +1,14 @@
 from flask.views import MethodView
-from flask import jsonify, request, g
+from flask import jsonify, request
+
+from endpoints.geo import calc_distance
 from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
-from datetime import datetime as dt, timedelta
-import math
+from datetime import datetime as dt
 from datetime import datetime, timedelta
 import logging
 log = logging.getLogger("back")
 
-def haversine(lat1, lon1, lat2, lon2):
-    R = 6372800  # Earth radius in meters
-    #lat1, lon1 = coord1
-    #lat2, lon2 = coord2
-    
-    phi1, phi2 = math.radians(lat1), math.radians(lat2) 
-    dphi       = math.radians(lat2 - lat1)
-    dlambda    = math.radians(lon2 - lon1)
-    
-    a = math.sin(dphi/2)**2 + \
-        math.cos(phi1)*math.cos(phi2)*math.sin(dlambda/2)**2
-    
-    return 2*R*math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 def registerVolunteer(requestjson, created_by):
         """create a new user"""
@@ -87,7 +75,7 @@ def updateVolunteerTG(requestjson, tg_id, phone):
             update={'offer_list':data['offer_list']+[item]}
         if obj:
             #obj = [i for i in obj.all()][0]
-            obj.update(**update)            
+            obj.update(**update)
         else:
             jsonify({"response": "not found"})
         return jsonify({"response": "success",'l':update,'k':requestjson,'u':update1})
@@ -112,12 +100,6 @@ def getVolunteers(filters):
         except Exception as error:
             return jsonify({"error": str(error)}), 400
 
-def getDistance(a, b):
-    if 'longitude' not in a or 'longitude' not in b:
-        return 1000000
-    #return haversine(a['latitude'],a['longitude'],b['latitude'],a['longitude'])/1000.#
-    return (a['longitude']-b['longitude'])**2 + (a['latitude']-b['latitude'])**2
-
 
 def utc_short_to_user_short(short_time):
     """Transform a short '%H:%M' time notation from UTC to the user's timezone
@@ -128,7 +110,7 @@ def utc_short_to_user_short(short_time):
     return localized.strftime("%H:%M")
 
 def makejson(v, user):
-    u = {'distance':getDistance(v,user), '_id': str(v['_id'])}
+    u = {'distance': calc_distance(v, user), '_id': str(v['_id'])}
     for k in ['first_name','last_name','phone','email','activity_types', 'telegram_chat_id', 'latitude','longitude']:
         if k in v:
             u[k] =v[k]
@@ -174,7 +156,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
             toBool = {'true':True, 'false': False}
             caseS = ['first_name', 'last_name']
             for v,k in filters.items():
-                flt[v+'__iexact' if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k 
+                flt[v+'__iexact' if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k
 
             obj = Volunteer.objects(**flt)
             volunteers = [v.clean_data() for v in obj.order_by('-created_at').skip(offset).limit(item_per_age)]

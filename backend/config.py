@@ -21,6 +21,6 @@ MIN_PASSWORD_LEN = 6
 
 app = Flask(__name__)
 
-AJUBOT_HOST = "http://"+os.environ['TG_IP']
+AJUBOT_HOST = "http://" + os.environ.get('TG_IP', '192.168.100.23')
 AJUBOT_PORT = 5001
 AJUBOT_RECEIPT_PATH = './static/images/receipts'

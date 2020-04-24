@@ -48,7 +48,7 @@ class User(Document):
     meta = {'allow_inheritance': True}
 
     def generate_auth_token(self, expiration = 60000):
-        secret = 'lalal'#app.config['SECRET_KEY']
+        secret = os.environ["SECRET_KEY"]
         s = Serializer(secret, expires_in = expiration)
         User.objects(id=str(self.id)).get().update(last_access=dt.now)
         obj = self.clean_data()
@@ -62,7 +62,7 @@ class User(Document):
 
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer(os.environ["SECRET_KEY"])#app.config['SECRET_KEY'])
+        s = Serializer(os.environ["SECRET_KEY"])
         try:
             data = s.loads(token)
         except SignatureExpired:
