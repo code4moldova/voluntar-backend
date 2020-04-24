@@ -199,21 +199,18 @@ def deleteVolunteer(requestjson, volunteer_id):
         updateVolunteer(requestjson, volunteer_id, delete=True)
 
 def boolconv(source):
-        if type(source) is bool:
-            if source:
-                return 1
-            else:
-                return 0
+    if type(source) is bool:
+        if source:
+            return 1
         else:
-            return source
+            return 0
+    else:
+        return source
 
 def volunteer_build_csv():
     includelist = ['first_name', 'last_name', 'phone,telegram_id', 'address,zone_address',
                    'age,offer_list', 'latitude', 'longitude', 'offer', 'received_contract']
     si = io.StringIO()
-    # today = date.today()
-    # rnd = time.time()
-    # filename = 'volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
     writer = csv.writer(si)
     volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
 
@@ -225,8 +222,7 @@ def volunteer_build_csv():
         writer.writerow([boolconv(doc[k]) for k in doc])
 
     output = make_response(si.getvalue())
-    # output.headers["Content-Disposition"] = "attachment; filename=" + filename
-    output.headers["Content-type"] = "text/plain"
+    output.headers["Content-type"] = "text/csv"
     return output
 
 
