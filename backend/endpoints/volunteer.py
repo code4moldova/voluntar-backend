@@ -1,5 +1,5 @@
 from flask.views import MethodView
-from flask import jsonify, request, g
+from flask import jsonify, request, g, make_response
 from models import Volunteer, Beneficiary, Operator
 from config import PassHash, MIN_PASSWORD_LEN
 from datetime import datetime as dt, timedelta
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from datetime import date
 import time
 import csv
+import io
 import logging
 log = logging.getLogger("back")
 
@@ -207,21 +208,26 @@ def boolconv(source):
             return source
 
 def volunteer_build_csv():
-		today = date.today()
-		# rnd = random.randrange(100000000000000, 900000000000000)
-		rnd = time.time()
-		filename = './backend/static/data/volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
-		includelist = ['first_name','last_name','phone,telegram_id','address,zone_address','facebook_profile','age,offer_list','latitude','longitude','offer','received_contract']
-		with open(filename, 'w') as csvfile:
-			writer = csv.writer(csvfile)
-			volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
+    includelist = ['first_name', 'last_name', 'phone,telegram_id', 'address,zone_address',
+                   'age,offer_list', 'latitude', 'longitude', 'offer', 'received_contract']
+    si = io.StringIO()
+    today = date.today()
+    rnd = time.time()
+    filename = 'volunteer_info_' + str(today) + '_' + str(rnd) + '.csv'
+    writer = csv.writer(si)
+    volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
 
-			# write header
-			writer.writerow(volunteers[0])
+    # write header
+    writer.writerow(volunteers[0])
 
-			# write data
-			for doc in volunteers:
-				writer.writerow([boolconv(doc[k]) for k in doc])
+    # write data
+    for doc in volunteers:
+        writer.writerow([boolconv(doc[k]) for k in doc])
+
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=" + filename
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 
 class VolunteerAPI(MethodView):

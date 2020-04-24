@@ -82,7 +82,7 @@ def parse_user():
 @auth.login_required
 def build_csv():
 	try:
-		volunteer_build_csv()
+		return volunteer_build_csv()
 	except Exception as error:
 		return jsonify({"error": str(error)}), 400
 
