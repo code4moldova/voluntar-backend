@@ -3,7 +3,7 @@ from tests.factories import BeneficiaryFactory, OperatorFactory
 
 
 class TestExportCsvBeneficiaries(ApiTestCase):
-    def test_export_csv_eneficiaries(self):
+    def test_export_csv_beneficiaries(self):
         operator = OperatorFactory()
         operator.save()
 
