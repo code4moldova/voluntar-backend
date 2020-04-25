@@ -208,7 +208,7 @@ def boolconv(source):
         return source
 
 def volunteer_build_csv():
-    includelist = ['first_name', 'last_name', 'phone,telegram_id', 'address,zone_address',
+    includelist = ['first_name', 'last_name', 'phone' , 'telegram_id', 'address,zone_address',
                    'age,offer_list', 'latitude', 'longitude', 'offer', 'received_contract']
     si = io.StringIO()
     writer = csv.writer(si)
