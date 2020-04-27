@@ -129,6 +129,23 @@ def updateVolunteerTG(requestjson, tg_id, phone):
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
+
+def update_volunteer(volunteer_id, updates):
+    """Updates a volunteer by ID.
+
+    Parameters
+    ----------
+    volunteer_id : str
+        A string representing volunteer ID.
+    updates : dict
+        A dictionary including name of fields as key and their values for updating.
+    """
+    try:
+        Volunteer.objects(id=volunteer_id).get().update(**updates)
+    except Exception as error:
+        log.error("An error occurred on updating Volunteers. {}".format(error.message))
+
+
 def getVolunteers(filters):
         try:
             if len(filters.getlist('id')) == 1 :

@@ -1,12 +1,14 @@
+import logging
 from datetime import datetime as dt
 
+from flask import jsonify, request
 from flask.views import MethodView
-from flask import jsonify, request, g
-from models import Beneficiary,Operator
-from config import PassHash, MIN_PASSWORD_LEN
 from mongoengine import Q
-from endpoints import telegrambot
-import logging
+
+from config import MIN_PASSWORD_LEN, PassHash
+from endpoints import telegrambot, volunteer
+from models import Beneficiary, Operator
+
 log = logging.getLogger("back")
 
 def registerBeneficiary(requestjson, created_by, fixer_id):
@@ -58,6 +60,9 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
                 telegrambot.send_assign(beneficiary_id, requestjson['volunteer'])
             elif 'set__status' in update and update['set__status'].lower() == 'cancelled':
                 #if the volunteer refused the request, delete the link
+                volunteer_updates = {
+                    "push__offer_list": {"id": beneficiary_id, "offer": data['offer'], "cancelled": True}}
+                volunteer.update_volunteer(requestjson['volunteer'], volunteer_updates)
                 update['set__volunteer'] = ''
                 update['set__status'] = update['set__status'].lower()
             obj.update(**update)
