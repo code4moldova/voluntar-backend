@@ -78,7 +78,7 @@ def parse_user():
 	e = request.args.get('e')
 	return parseFile(url, b, e, request.args)
 
-@app.route('/api/volunteer/csv/', methods = ['GET'])
+@app.route('/api/export/csv/beneficiaries', methods = ['GET'])
 @auth.login_required
 def build_csv():
 	try:

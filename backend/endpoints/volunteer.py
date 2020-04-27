@@ -223,6 +223,7 @@ def volunteer_build_csv():
 
     output = make_response(si.getvalue())
     output.headers["Content-type"] = "text/csv"
+    output.headers["Content-Disposition"] = "attachment; filename=volunteer.csv"
     return output
 
 
