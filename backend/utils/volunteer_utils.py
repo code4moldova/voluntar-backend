@@ -19,7 +19,7 @@ def convert_phone_to_regional(phone):
     str
         A string representing regional phone number.
     """
-    return phonenumbers.parse(phone, region="MD").national_number
+    return phonenumbers.parse(phone).national_number
 
 
 def is_email(provided_string):
