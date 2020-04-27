@@ -67,6 +67,7 @@ def process_volunteer_data_from_telegram(volunteer_data) -> dict:
         A prepared dictionary to persist into databases.
     """
     volunteer_data["activity_types"] = volunteer_data.pop("activities")
+    volunteer_data["comments"] = volunteer_data["activity_types"]
     volunteer_data["telegram_chat_id"] = str(volunteer_data.pop("chat_id"))
     volunteer_data["password"] = generate_password(size=MIN_PASSWORD_LEN)
     volunteer_data["address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
