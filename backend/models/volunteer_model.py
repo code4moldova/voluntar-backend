@@ -144,7 +144,7 @@ class Beneficiary(User):
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=5000)
-    questions = ListField(default=[])
+    questions = StringField(max_length=5000)#ListField(default=[])
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
