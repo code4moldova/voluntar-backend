@@ -26,3 +26,13 @@ class BeneficiaryFactory(factory.Factory):
     address = 'Botanica'
     zone_address = 'Botanica'
     secret = 'G900'
+    phone = 11112222
+    address = 'B'
+    zone_address = 'A'
+    age = '1'
+    offer = '1'
+    comments = ''
+    urgent = False
+    curator = False
+    has_disabilities = False
+    black_list = False

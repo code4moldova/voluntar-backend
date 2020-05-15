@@ -13,7 +13,7 @@ class BeneficiaryList:
         'have_money': 'Are bani?',
     }
     FIELDS = 'last_name first_name age have_money'.split()
-    FIELDS += ['phone' ,  'address', 'zone_address', 'age', 'offer', 'comments',  'urgent','curator','has_disabilities','black_list']
+    FIELDS += ['phone' ,  'address', 'zone_address', 'offer', 'comments',  'urgent','curator','has_disabilities','black_list']
     tag2v = {'offer':'offer', 'age':'age', 'zone_address':'sector'}
 
     def run(self):
