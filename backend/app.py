@@ -1,5 +1,5 @@
 from flask import Flask
-from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI, telegrambot
+from endpoints import  telegrambot
 from endpoints.volunteer import volunteer_build_csv
 from mongoengine import connect
 from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
@@ -18,11 +18,6 @@ auth = HTTPBasicAuth()
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 cors = CORS(app)
-
-volunteer_view = VolunteerAPI.as_view('volunteers')
-#app.add_url_rule('/volunteers/list/', defaults={'volunteer_id': None}, view_func=volunteer_view, methods=['GET',])
-#app.add_url_rule('/volunteers/', view_func=volunteer_view, methods=['POST',])
-#app.add_url_rule('/volunteers/<volunteer_id>', view_func=volunteer_view, methods=['GET', 'PUT', 'DELETE'])
 
 connect(db=DB_NAME, host=DB_HOST)
 
