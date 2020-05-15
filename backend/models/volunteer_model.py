@@ -30,6 +30,7 @@ class Tags(Document):
         data['_id'] = str(data['_id'])
         return data
 
+
 class User(Document):
     # TODO: Each volunteer must have a reference to operator that was created by
     # created_by = ReferenceField("operator")
@@ -37,7 +38,7 @@ class User(Document):
     last_name = StringField(max_length=50, default='No_Last')
     email = EmailField(required=True)
     password = StringField(required=True, min_length=6)
-    phone = IntField(min_value=10000000, max_value=99999999)# StringField(required=False)#IntField(min_value=10000000, max_value=99999999)
+    phone = IntField(min_value=10000000, max_value=99999999)
     created_at = DateTimeField(default=dt.now)
     last_access = DateTimeField(default=dt.now)
     # we don't delete users just deactivating them
@@ -92,14 +93,16 @@ class User(Document):
         data = self.to_mongo()
         return PassHash.verify(password, data["password"])
 
+
 class Operator(User):
     created_by = StringField(max_length=500)
-    role =ListField(default=['fixer'])# StringField(choise=('operator', 'fixer'), default='fixer')
-    roles =ListField(default=['fixer'])# StringField(choise=('operator', 'fixer'), default='fixer')
+    role = ListField(default=['fixer'])     # TODO remove the field
+    roles = ListField(default=['fixer'])
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     city = StringField(max_length=500, required=False)
+
 
 class Volunteer(User):
     address = StringField(max_length=500, required=True)
@@ -138,6 +141,7 @@ class Volunteer(User):
     aggreed_terms = BooleanField(default=False)
     april1 = BooleanField(default=False)
 
+
 class Beneficiary(User):
     address = StringField(max_length=500, required=True)
     city = StringField(max_length=500, required=False)
@@ -168,8 +172,8 @@ class Beneficiary(User):
     has_disabilities = BooleanField(default=False)
     black_list = BooleanField(default=False)
     group = StringField(max_length=100, default="call_center")
-    fixer_comment= StringField(max_length=500, default="")
-    additional_info= ListField(default=[])
+    fixer_comment = StringField(max_length=500, default="")
+    additional_info = ListField(default=[])
     suburbia = StringField(max_length=500)
 
 
