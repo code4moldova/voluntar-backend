@@ -25,5 +25,5 @@ Installation
 It is very easy to start exploring the example using Docker:
 
 ```bash
-$ docker-compose run
+$ docker-compose up
 ```
