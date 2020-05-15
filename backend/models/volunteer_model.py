@@ -83,10 +83,10 @@ class User(Document):
 
     def include_data(self, includelist) -> dict:
         data = self.to_mongo()
-        lst = [k for k in data if not k in includelist]
-        for item in lst:
-            del data[item]
-        return data
+        out = {}
+        for k in includelist:
+            out[k] = data[k] if k in data else ''
+        return out
 
     def check_password(self, password) -> bool:
         data = self.to_mongo()

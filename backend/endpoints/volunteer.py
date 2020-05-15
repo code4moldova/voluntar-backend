@@ -2,7 +2,7 @@ from flask.views import MethodView
 from flask import jsonify, request, g, make_response
 from endpoints.geo import calc_distance
 
-from models import Volunteer, Beneficiary, Operator
+from models import Volunteer, Beneficiary, Operator, Tags
 from config import PassHash, MIN_PASSWORD_LEN
 from datetime import datetime as dt
 from datetime import datetime, timedelta
@@ -12,6 +12,7 @@ import csv
 import io
 import logging
 log = logging.getLogger("back")
+from bson import ObjectId
 
 
 def registerVolunteer(requestjson, created_by):
@@ -129,8 +130,6 @@ def sort_closest(id, topk, category):
     topk = int(topk)
     user = Beneficiary.objects(id=id).get().clean_data()
     filters = {}
-    #for ac in user['activity_types']:
-    #    filters
     #get active volunteer with same activity type, with availability>0 and not bussy with other requests
     if 'offer' in user and user['offer']!='':
         category = user['offer']
@@ -141,9 +140,9 @@ def sort_closest(id, topk, category):
     else:
         volunteers = sorted([makejson(v.clean_data(), user) for v in Volunteer.objects(is_active=True, #availability__gt=0,
                                                                                                          activity_types__in=user['activity_types']).all()\
-                              #  if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
                             ], key=lambda x: x['distance'])
-    volunteers = [i for i in volunteers if i['distance']<100000]#todo: find the best threshhold!!!
+    volunteers = [i for i in volunteers if i['distance']<100000]
+    #todo: find the best threshhold!!!
 
     if 'volunteer' in user and user['volunteer']!='':
         volunteers = [makejson(Volunteer.objects(id=user['volunteer']).get().clean_data(), user)] + [i for i in volunteers if i['_id'] != user['volunteer']]
@@ -151,7 +150,6 @@ def sort_closest(id, topk, category):
 
 
 def get_volunteers_by_filters(filters, pages=0, per_page=10000):
-    #?availability__gte=4
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
@@ -180,80 +178,47 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
 def deleteVolunteer(requestjson, volunteer_id):
         updateVolunteer(requestjson, volunteer_id, delete=True)
 
-def boolconv(source):
+def boolconv(source, k, tag2v):
+    if k in tag2v:
+        if ObjectId.is_valid(source):
+            tg = Tags.objects(id=source)#
+        
+            if tg:
+                return tg.get().clean_data()['ro']
+    if source is None:
+        return '0'
+    if type(source) is str:
+        if len(source)==0:
+            return '0'
+        else:
+            return source
     if type(source) is bool:
         if source:
             return 1
         else:
             return 0
     else:
-        return source
+        return str(source)
 
 def volunteer_build_csv():
-    includelist = ['first_name', 'last_name', 'phone' , 'telegram_id', 'address', 'zone_address',
-                   'age', 'offer_list', 'latitude', 'longitude', 'offer', 'received_contract']
+    includelist = ['first_name', 'last_name', 'phone' ,  'address', 'zone_address', 'age', 
+                   'offer', 'comments',  'urgent','curator','has_disabilities','black_list', 'received_contract']
+
+    tag2v = {'offer':'offer', 'age':'age', 'zone_address':'sector'}
+
     si = io.StringIO()
     writer = csv.writer(si)
     volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
 
     # write header
-    writer.writerow(volunteers[0])
+    writer.writerow(includelist)
 
     # write data
     for doc in volunteers:
-        writer.writerow([boolconv(doc[k]) for k in doc])
+        writer.writerow([boolconv(doc[k], k, tag2v) for k in doc])
 
     output = make_response(si.getvalue())
     output.headers["Content-type"] = "text/csv"
     output.headers["Content-Disposition"] = "attachment; filename=volunteer.csv"
     return output
 
-
-class VolunteerAPI(MethodView):
-
-    def get(self, volunteer_id:str):
-        try:
-            if volunteer_id:
-                volunteer = Volunteer.objects(id=volunteer_id).get().clean_data()
-                return jsonify(volunteer)
-            else:
-                volunteers = [v.clean_data() for v in Volunteer.objects(is_active=True).all()]
-                return jsonify({"list": volunteers})
-        except Exception as error:
-            return jsonify({"error": str(error)}), 400
-
-    def post(self):
-        """create a new user"""
-        new_volunteer = request.json
-        # TODO: get authenticated operator and assignee to new volunteer
-        # new_volunteer["created_by"] = authenticated_oprator
-        try:
-            assert len(new_volunteer["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
-            new_volunteer["password"] = PassHash.hash(new_volunteer["password"])
-            comment = Volunteer(**new_volunteer)
-            comment.save()
-            return jsonify({"response": "success"})
-        except Exception as error:
-            return jsonify({"error": str(error)}), 400
-
-
-    def delete(self, volunteer_id):
-        """delete a single user by id"""
-        return self.put(volunteer_id, delete=True)
-
-    def put(self, volunteer_id, delete=False):
-        """update a single user by id"""
-        update = {}
-        if not delete:
-            for key, value in request.json:
-                if key == "password":
-                    value = PassHash.hash(value)
-                update[f"set__{key}"] = value
-        else:
-            update["set__is_active"] = False
-
-        try:
-            Volunteer.objects(id=volunteer_id).get().update(**update)
-            return jsonify({"response": "success"})
-        except Exception as error:
-            return jsonify({"error": str(error)}), 400
