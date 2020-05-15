@@ -1,5 +1,6 @@
 from flask import Flask
 from endpoints import VolunteerAPI, Beneficiary_requestAPI,BeneficiaryAPI,OperatorAPI, telegrambot
+from endpoints.volunteer import volunteer_build_csv
 from mongoengine import connect
 from config import app, SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 
@@ -37,7 +38,7 @@ def new_user():
 
 @app.route('/api/volunteer', methods = ['GET'])
 @auth.login_required
-def get_user(): 
+def get_user():
 	return getVolunteers(request.args)#request.args.get('id'))
 
 
@@ -76,6 +77,16 @@ def parse_user():
 	b = request.args.get('b')
 	e = request.args.get('e')
 	return parseFile(url, b, e, request.args)
+
+@app.route('/api/export/csv/beneficiaries', methods = ['GET'])
+@auth.login_required
+def build_csv():
+	try:
+		return volunteer_build_csv()
+	except Exception as error:
+		return jsonify({"error": str(error)}), 400
+
+	return jsonify({"response": "success"})
 
 #tags
 

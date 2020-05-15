@@ -81,6 +81,13 @@ class User(Document):
         data['_id'] = str(data['_id'])
         return data
 
+    def include_data(self, includelist) -> dict:
+        data = self.to_mongo()
+        lst = [k for k in data if not k in includelist]
+        for item in lst:
+            del data[item]
+        return data
+
     def check_password(self, password) -> bool:
         data = self.to_mongo()
         return PassHash.verify(password, data["password"])
@@ -144,7 +151,7 @@ class Beneficiary(User):
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=5000)
-    questions = ListField(default=[])
+    questions = StringField(max_length=5000)#ListField(default=[])
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
