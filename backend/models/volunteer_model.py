@@ -48,7 +48,7 @@ class User(Document):
     meta = {'allow_inheritance': True}
 
     def generate_auth_token(self, expiration = 60000):
-        secret = 'lalal'#app.config['SECRET_KEY']
+        secret = os.environ["SECRET_KEY"]
         s = Serializer(secret, expires_in = expiration)
         User.objects(id=str(self.id)).get().update(last_access=dt.now)
         obj = self.clean_data()
@@ -62,7 +62,7 @@ class User(Document):
 
     @staticmethod
     def verify_auth_token(token):
-        s = Serializer(os.environ["SECRET_KEY"])#app.config['SECRET_KEY'])
+        s = Serializer(os.environ["SECRET_KEY"])
         try:
             data = s.loads(token)
         except SignatureExpired:
@@ -151,7 +151,7 @@ class Beneficiary(User):
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=5000)
-    questions = ListField(default=[])
+    questions = StringField(max_length=5000)#ListField(default=[])
     activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
     secret = StringField(max_length=500, required=True)
