@@ -1,4 +1,4 @@
-from models import Beneficiary
+from models import Beneficiary, Tags
 
 
 class BeneficiaryList:
@@ -13,16 +13,27 @@ class BeneficiaryList:
         'have_money': 'Are bani?',
     }
     FIELDS = 'last_name first_name age have_money'.split()
+    FIELDS += ['phone' ,  'address', 'zone_address', 'age', 'offer', 'comments',  'urgent','curator','has_disabilities','black_list']
+    tag2v = {'offer':'offer', 'age':'age', 'zone_address':'sector'}
 
     def run(self):
-        headers = [self.FIELD_TITLE[f] for f in self.FIELDS]
+        headers = [self.FIELD_TITLE[f] if f in self.FIELD_TITLE else f  for f in self.FIELDS]
         rows = [headers]
 
         for user in Beneficiary.objects().order_by('+last_name', '+first_name', '-age'):
             row = []
             for field in self.FIELDS:
                 value = getattr(user, field)
-                if isinstance(value, bool):
+                if value in self.tag2v:
+                    if ObjectId.is_valid(source):
+                        tg = Tags.objects(id=source)#
+                        if tg:
+                            row.append(tg.get().clean_data()['ro'])
+                        else:
+                            row.append(value)
+                    else:
+                        row.append(value)
+                elif isinstance(value, bool):
                     row.append(1 if value else 0)
                 else:
                     row.append(value)
