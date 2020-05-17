@@ -175,6 +175,12 @@ class Beneficiary(User):
     fixer_comment = StringField(max_length=500, default="")
     additional_info = ListField(default=[])
     suburbia = StringField(max_length=500)
+    phone_home = StringField(max_length=500)
+    sent_offer = ListField(default=[])
+    block = StringField(max_length=500)
+    apartament = StringField(max_length=500)
+    scara = StringField(max_length=500)
+    plata = StringField(max_length=500)
 
 
 class Beneficiary_request(User):
