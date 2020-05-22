@@ -4,9 +4,9 @@ from endpoints.volunteer import volunteer_build_csv
 from mongoengine import connect
 from config import SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
 from server import create_application
-from endpoints import registerVolunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
+from endpoints import register_volunteer, getVolunteers,updateVolunteer, verifyUser, getToken, \
 		registerOperator, getOperators, updateOperator, \
-		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficieries_by_filters, \
+		registerBeneficiary, getBeneficiary, updateBeneficiary, get_volunteers_by_filters, get_active_operator, get_beneficiaries_by_filters, \
 		get_operators_by_filters, sort_closest, registerTag, getTags, updateTag, parseFile, updateVolunteerTG, updateBeneficiaryTG
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -30,7 +30,7 @@ def verify_password(username, password):
 @app.route('/api/volunteer', methods = ['POST'])
 @auth.login_required
 def new_user():
-	return registerVolunteer(request.json, auth.username())
+	return register_volunteer(request.json, auth.username())
 
 @app.route('/api/volunteer', methods = ['GET'])
 @auth.login_required
@@ -182,7 +182,7 @@ def update_beneficiary():
 @app.route('/api/beneficiary/filters/<pages>/<per_page>', methods=['GET'])
 @auth.login_required
 def get_beneficiary_by_filters(pages=15, per_page=10):
-	return get_beneficieries_by_filters(request.args, pages, per_page)
+	return get_beneficiaries_by_filters(request.args, pages, per_page)
 
 #debug part
 @app.route('/api/debug', methods = ['GET'])

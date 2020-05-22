@@ -123,23 +123,33 @@ def getBeneficiary(args):
             return jsonify({"error": str(error)}), 400
 
 
-def get_beneficieries_by_filters(filters, pages=0, per_page=10000):
+def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            toBool = {'true':True, 'false': False}
-            caseS = ['first_name', 'last_name']
-            for v,k in filters.items():
-                flt[v+'__iexact' if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k 
-            obj = Beneficiary.objects(**flt).order_by('-created_at')
+            to_bool = {'true': True, 'false': False}
+            cases = ['first_name', 'last_name']
+            if 'phone_name' in filters.keys():
+                phone_name = filters.get('phone_name')
+                try:
+                    phone_name = int(phone_name)
+                    obj = Beneficiary.objects(phone__gt=phone_name).order_by('-created_at')
+                except ValueError as error:
+                    obj = Beneficiary.objects(
+                        Q(first_name__istartswith=phone_name) | Q(last_name__istartswith=phone_name))\
+                        .order_by('-created_at')
+            else:
+                for k, v in filters.items():
+                    flt[k + '__iexact' if k in cases else k] = to_bool[v.lower()] if v.lower() in to_bool else v
+                obj = Beneficiary.objects().order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, 'count':obj.count()})
+            return jsonify({"list": beneficiaries, 'count': obj.count()})
         else:
             obj = Beneficiary.objects().order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, 'count':obj.count()})
+            return jsonify({"list": beneficiaries, 'count': obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
