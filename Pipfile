@@ -12,6 +12,7 @@ passlib = "*"
 flask-cors = "*"
 flask_httpauth = "*"
 Pillow	= ">=7.1.1"
+phonenumbers = "*"
 
 [dev-packages]
 pylint = "*"
