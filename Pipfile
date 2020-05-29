@@ -6,11 +6,23 @@ name = "pypi"
 [packages]
 requests = "*"
 flask = "*"
-flask_swagger_ui= "*"
+flask_swagger_ui = "*"
+mongoengine = "*"
+passlib = "*"
+flask-cors = "*"
+flask_httpauth = "*"
+Pillow	= ">=7.1.1"
+phonenumbers = "*"
 
 [dev-packages]
 pylint = "*"
 wheel = "*"
+mongomock = ">=3.19.0"
+pytest = "*"
+pytest-cov = "*"
+pytest-env = "*"
+coverage = "*"
+factory_boy = "*"
 
 [requires]
 python_version = "3.7"
