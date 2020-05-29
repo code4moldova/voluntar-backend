@@ -133,17 +133,20 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
             cases = ['first_name', 'last_name']
             if 'phone_name' in filters.keys():
                 phone_name = filters.get('phone_name')
-                try:
-                    phone_name = int(phone_name)
-                    obj = Beneficiary.objects(phone__gt=phone_name).order_by('-created_at')
-                except ValueError as error:
+                if phone_name.isdigit():
+                    nr = len(phone_name)
+                    phone_name = int(phone_name) % 10000000
+                    phone_name_ = phone_name+1
+                    #return jsonify({"error": phone_name*10**(8-nr), 'd':phone_name_*10**(8-nr)}), 400
+                    obj = Beneficiary.objects(phone__gt=phone_name*10**(8-nr), phone__lt=phone_name_*10**(8-nr)).order_by('-created_at')
+                else:
                     obj = Beneficiary.objects(
                         Q(first_name__istartswith=phone_name) | Q(last_name__istartswith=phone_name))\
                         .order_by('-created_at')
             else:
                 for k, v in filters.items():
                     flt[k + '__iexact' if k in cases else k] = to_bool[v.lower()] if v.lower() in to_bool else v
-                obj = Beneficiary.objects().order_by('-created_at')
+                obj = Beneficiary.objects(**flt).order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, 'count': obj.count()})
         else:
