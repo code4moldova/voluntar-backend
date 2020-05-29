@@ -1,12 +1,14 @@
+import logging
 from datetime import datetime as dt
 
+from flask import jsonify, request
 from flask.views import MethodView
-from flask import jsonify, request, g
-from models import Beneficiary,Operator
-from config import PassHash, MIN_PASSWORD_LEN
 from mongoengine import Q
-from endpoints import telegrambot
-import logging
+
+from config import MIN_PASSWORD_LEN, PassHash
+from endpoints import telegrambot, volunteer
+from models import Beneficiary, Operator
+
 log = logging.getLogger("back")
 
 def registerBeneficiary(requestjson, created_by, fixer_id):
@@ -58,6 +60,9 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
                 telegrambot.send_assign(beneficiary_id, requestjson['volunteer'])
             elif 'set__status' in update and update['set__status'].lower() == 'cancelled':
                 #if the volunteer refused the request, delete the link
+                volunteer_updates = {
+                    "push__offer_list": {"id": beneficiary_id, "offer": data['offer'], "cancelled": True}}
+                volunteer.update_volunteer(requestjson['volunteer'], volunteer_updates)
                 update['set__volunteer'] = ''
                 update['set__status'] = update['set__status'].lower()
             obj.update(**update)
@@ -118,23 +123,33 @@ def getBeneficiary(args):
             return jsonify({"error": str(error)}), 400
 
 
-def get_beneficieries_by_filters(filters, pages=0, per_page=10000):
+def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            toBool = {'true':True, 'false': False}
-            caseS = ['first_name', 'last_name']
-            for v,k in filters.items():
-                flt[v+'__iexact' if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k 
-            obj = Beneficiary.objects(**flt).order_by('-created_at')
+            to_bool = {'true': True, 'false': False}
+            cases = ['first_name', 'last_name']
+            if 'phone_name' in filters.keys():
+                phone_name = filters.get('phone_name')
+                try:
+                    phone_name = int(phone_name)
+                    obj = Beneficiary.objects(phone__gt=phone_name).order_by('-created_at')
+                except ValueError as error:
+                    obj = Beneficiary.objects(
+                        Q(first_name__istartswith=phone_name) | Q(last_name__istartswith=phone_name))\
+                        .order_by('-created_at')
+            else:
+                for k, v in filters.items():
+                    flt[k + '__iexact' if k in cases else k] = to_bool[v.lower()] if v.lower() in to_bool else v
+                obj = Beneficiary.objects().order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, 'count':obj.count()})
+            return jsonify({"list": beneficiaries, 'count': obj.count()})
         else:
             obj = Beneficiary.objects().order_by('-created_at')
             beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, 'count':obj.count()})
+            return jsonify({"list": beneficiaries, 'count': obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 

@@ -15,24 +15,67 @@ log = logging.getLogger("back")
 from bson import ObjectId
 
 
-def registerVolunteer(requestjson, created_by):
-        """create a new user"""
-        new_volunteer = requestjson
-        if len(created_by)>30:
+def register_volunteer(request_json, created_by):
+    """Creates and persists a new volunteer into database.
+
+    Parameters
+    ----------
+    request_json : dict
+        A dictionary representing the volunteer profile details.
+    created_by : str
+         A string representing either name of user who is going to create a new volunteer, or the token
+
+    Returns
+    -------
+    200:
+        If the volunteer was successful created and saved.
+    400:
+        If the volunteer wasn't created or saved, and there was raised some exception.
+    """
+    try:
+        if not vu.is_email(created_by):
             user = Operator.verify_auth_token(created_by)
             created_by = user.get().clean_data()['email']
-        # TODO: get authenticated operator and assignee to new volunteer
-        # new_volunteer["created_by"] = authenticated_oprator
-        try:
-            assert len(new_volunteer["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
-            new_volunteer["password"] = PassHash.hash(new_volunteer["password"])
-            assert not Volunteer.objects(email=new_volunteer['email']) , "user with this email already exists"
-            new_volunteer['created_by'] = created_by#g.user.get().clean_data()['_id']
-            comment = Volunteer(**new_volunteer)
-            comment.save()
-            return jsonify({"response": "success", 'user': comment.clean_data()})
-        except Exception as error:
-            return jsonify({"error": str(error)}), 400
+
+        if created_by == os.getenv("COVID_BACKEND_USER"):
+            vu.validate_by_telegram_chat_id(request_json["chat_id"])
+            new_volunteer_data = process_volunteer_data_from_telegram(request_json)
+        else:
+            vu.validate_by_email(request_json["email"])
+            new_volunteer_data = request_json
+
+        new_volunteer_data["password"] = PassHash.hash(new_volunteer_data["password"])
+        new_volunteer_data['created_by'] = created_by
+        new_volunteer = Volunteer(**new_volunteer_data)
+        new_volunteer.save()
+        return jsonify({"response": "success", 'user': new_volunteer.clean_data()})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
+
+def process_volunteer_data_from_telegram(volunteer_data) -> dict:
+    """Registers a new volunteer from telegram bot, if no any with given telegram chat ID.
+
+    Parameters
+    ----------
+    volunteer_data : dict
+        A dictionary representing the volunteer profile details.
+
+    Returns
+    -------
+    dict
+        A prepared dictionary to persist into databases.
+    """
+    volunteer_data["activity_types"] = volunteer_data.pop("activities")
+    volunteer_data["comments"] = volunteer_data["activity_types"]
+    volunteer_data["telegram_chat_id"] = str(volunteer_data.pop("chat_id"))
+    volunteer_data["password"] = generate_password(size=MIN_PASSWORD_LEN)
+    volunteer_data["address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
+    volunteer_data["zone_address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
+    volunteer_data["phone"] = vu.convert_phone_to_regional(volunteer_data["phone"])
+    volunteer_data["is_active"] = False
+    return volunteer_data
+
 
 def updateVolunteer(requestjson, volunteer_id, delete=False):
         """update a single user by id"""
@@ -87,6 +130,23 @@ def updateVolunteerTG(requestjson, tg_id, phone):
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
+
+def update_volunteer(volunteer_id, updates):
+    """Updates a volunteer by ID.
+
+    Parameters
+    ----------
+    volunteer_id : str
+        A string representing volunteer ID.
+    updates : dict
+        A dictionary including name of fields as key and their values for updating.
+    """
+    try:
+        Volunteer.objects(id=volunteer_id).get().update(**updates)
+    except Exception as error:
+        log.error("An error occurred on updating Volunteers. {}".format(error.message))
+
+
 def getVolunteers(filters):
         try:
             if len(filters.getlist('id')) == 1 :
@@ -94,6 +154,12 @@ def getVolunteers(filters):
                 volunteer = Volunteer.objects(id=volunteer_id).get().clean_data()
 
                 return jsonify(volunteer)
+            elif len(filters.getlist("telegram_chat_id")) == 1:
+                telegram_id = filters.get("telegram_chat_id")
+                if len(Volunteer.objects(telegram_chat_id=telegram_id)) == 0:
+                    return jsonify({"exists": False})
+                else:
+                    return jsonify({"exists": True})
             elif len(filters.getlist('id')) > 1:
                 volunteers = [Volunteer.objects(id=volunteer_id).get().clean_data() for volunteer_id in filters.getlist('id')]
                 return jsonify({"list": volunteers})

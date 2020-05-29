@@ -29,7 +29,8 @@ def send_request(beneficiary):
             "safetyCode": "bla bla bla",
             "phoneNumber": "+37312345678"
             "remarks": "No remarks"
-            "volunteers": ["324354681651", "5168132468431"]
+            "volunteers": ["324354681651", "5168132468431"],
+            "has_disabilities": False
          },
          otherwise - {"error": "error message"}
     """
@@ -48,7 +49,8 @@ def send_request(beneficiary):
             'safetyCode': beneficiary.secret,
             'phoneNumber': beneficiary.phone,
             'remarks': beneficiary.remarks,
-            'volunteers': volunteers
+            'volunteers': volunteers,
+            'has_disabilities': beneficiary.has_disabilities
         }
         try:
             requests.post(f'{BASE_URL}/help_request', json=payload)
