@@ -13,6 +13,8 @@ import io
 import logging
 log = logging.getLogger("back")
 from bson import ObjectId
+import os
+from utils import volunteer_utils as vu
 
 
 def register_volunteer(request_json, created_by):
@@ -32,16 +34,17 @@ def register_volunteer(request_json, created_by):
     400:
         If the volunteer wasn't created or saved, and there was raised some exception.
     """
+    log.debug("Relay offer for req:%s from ", request_json) 
     try:
         if not vu.is_email(created_by):
             user = Operator.verify_auth_token(created_by)
             created_by = user.get().clean_data()['email']
 
         if created_by == os.getenv("COVID_BACKEND_USER"):
-            vu.validate_by_telegram_chat_id(request_json["chat_id"])
+            vu.exists_by_telegram_chat_id(request_json["chat_id"])
             new_volunteer_data = process_volunteer_data_from_telegram(request_json)
         else:
-            vu.validate_by_email(request_json["email"])
+            vu.exists_by_email(request_json["email"])
             new_volunteer_data = request_json
 
         new_volunteer_data["password"] = PassHash.hash(new_volunteer_data["password"])
@@ -66,13 +69,15 @@ def process_volunteer_data_from_telegram(volunteer_data) -> dict:
     dict
         A prepared dictionary to persist into databases.
     """
-    volunteer_data["activity_types"] = volunteer_data.pop("activities")
-    volunteer_data["comments"] = volunteer_data["activity_types"]
+    volunteer_data["comments"] = ','.join(volunteer_data["activities"])+'; availability:'+str(volunteer_data['availability'])
+    volunteer_data.pop("availability")
+    volunteer_data.pop("activities")
     volunteer_data["telegram_chat_id"] = str(volunteer_data.pop("chat_id"))
-    volunteer_data["password"] = generate_password(size=MIN_PASSWORD_LEN)
+    volunteer_data["telegram_id"] = str(volunteer_data.pop("phoneEx"))
+    volunteer_data["password"] = '1111111'
     volunteer_data["address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
     volunteer_data["zone_address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
-    volunteer_data["phone"] = vu.convert_phone_to_regional(volunteer_data["phone"])
+    volunteer_data["phone"] = vu.convert_phone_to_regional(str(volunteer_data["phone"]))
     volunteer_data["is_active"] = False
     return volunteer_data
 
