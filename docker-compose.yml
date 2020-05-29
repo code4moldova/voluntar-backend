@@ -12,27 +12,11 @@ services:
             SECRET_KEY: 'hange this'
             DEFAULT_PASSWORD: 'hangethis'
             DEFAULT_USERNAME: 'hange@this.ro'
+            COVID_BACKEND_USER: 'tg-bot@test.com'
             TG_IP: '192.168.100.23'
-    #        - tgbot
-    #tgbot:
-    #    build: tgbot/
-    #    ports:
-    #        - "5001:5001"
-    #    environment:
-    #        TELEGRAM_TOKEN: 1022956673:AAHchGGbIRKr96CYZ400zIDq4vVW4a11zfE
-    #        COVID_BACKEND: http://web:5000/api/
-    #        COVID_BACKEND_USER: test@test.com
-    #        COVID_BACKEND_PASS: adminadmin
-    #    volumes:
-    #        - ./tgbot:/app
-
+   
     mongodb_container:
         image: mongo:latest
-        # environment:
-        #     MONGO_INITDB_ROOT_USERNAME: root
-        #     MONGO_INITDB_ROOT_PASSWORD: rootpassword
-        ports:
-            - 27017:27017
         volumes:
             - mongodb_data_container1:/data/db
 
