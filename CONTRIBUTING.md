@@ -59,7 +59,7 @@ Please make sure to check out the suggested coding [best practices](#best-practi
 
 ### Git workflow
 
-Our collaboration model [is described here](WORKFLOW.md).
+Our collaboration model [is described here](.github/WORKFLOW.md).
 
 ## About Code4MD
 
