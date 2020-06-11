@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from models import Beneficiary, Tags
 
 
@@ -13,20 +15,21 @@ class BeneficiaryList:
         'have_money': 'Are bani?',
     }
     FIELDS = 'last_name first_name age have_money'.split()
-    FIELDS += ['phone' ,  'address', 'zone_address', 'offer', 'comments',  'urgent','curator','has_disabilities','black_list']
-    tag2v = {'offer':'offer', 'age':'age', 'zone_address':'sector'}
+    FIELDS += ['phone', 'address', 'zone_address', 'offer', 'comments', 'urgent', 'curator', 'has_disabilities',
+               'black_list']
+    tag2v = {'offer': 'offer', 'age': 'age', 'zone_address': 'sector'}
 
     def run(self):
-        headers = [self.FIELD_TITLE[f] if f in self.FIELD_TITLE else f  for f in self.FIELDS]
+        headers = [self.FIELD_TITLE[f] if f in self.FIELD_TITLE else f for f in self.FIELDS]
         rows = [headers]
 
         for user in Beneficiary.objects().order_by('+last_name', '+first_name', '-age'):
             row = []
             for field in self.FIELDS:
                 value = getattr(user, field)
-                if value in self.tag2v:
-                    if ObjectId.is_valid(source):
-                        tg = Tags.objects(id=source)#
+                if field in self.tag2v.keys():
+                    if ObjectId.is_valid(value):
+                        tg = Tags.objects(id=value)
                         if tg:
                             row.append(tg.get().clean_data()['ro'])
                         else:

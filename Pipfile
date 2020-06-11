@@ -17,12 +17,12 @@ phonenumbers = "*"
 [dev-packages]
 pylint = "*"
 wheel = "*"
-mongomock = ">=3.19.0"
 pytest = "*"
 pytest-cov = "*"
 pytest-env = "*"
 coverage = "*"
 factory_boy = "*"
+mongomock = {editable = true,git = "https://github.com/mongomock/mongomock.git",ref = "develop"}
 
 [requires]
 python_version = "3.7"

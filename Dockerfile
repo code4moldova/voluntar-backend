@@ -15,7 +15,7 @@ WORKDIR /app
 COPY Pip* /app/
 
 RUN pip install --upgrade pip && \
-    pip install pipenv && \
+    pip install 'pipenv==2018.11.26' && \
     pipenv install --dev --system --skip-lock
 
 ADD . /app
