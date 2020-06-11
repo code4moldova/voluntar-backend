@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f14de0215d55e212c2282ce1074bcd9c440123e2ed2015fc937cab051d65a15b"
+            "sha256": "a857c144276af0ed6f8b522acac28ae5f18581f328bfe0abc591bf160b9b35a5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -135,11 +135,6 @@
             "index": "pypi",
             "version": "==0.20.0"
         },
-        "mongomock": {
-            "editable": true,
-            "git": "https://github.com/mongomock/mongomock.git",
-            "ref": "26058e8c4c93bc014c6b05078deb797baaf7b725"
-        },
         "passlib": {
             "hashes": [
                 "sha256:68c35c98a7968850e17f1b6892720764cc7eed0ef2b7cb3116a89a28e43fe177",
@@ -249,12 +244,6 @@
             ],
             "index": "pypi",
             "version": "==2.23.0"
-        },
-        "sentinels": {
-            "hashes": [
-                "sha256:7be0704d7fe1925e397e92d18669ace2f619c92b5d4eb21a89f31e026f9ff4b1"
-            ],
-            "version": "==1.0.0"
         },
         "six": {
             "hashes": [

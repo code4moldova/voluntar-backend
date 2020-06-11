@@ -13,7 +13,6 @@ flask-cors = "*"
 flask_httpauth = "*"
 Pillow	= ">=7.1.1"
 phonenumbers = "*"
-mongomock = {editable = true,git = "https://github.com/mongomock/mongomock.git",ref = "develop"}
 
 [dev-packages]
 pylint = "*"
@@ -23,6 +22,7 @@ pytest-cov = "*"
 pytest-env = "*"
 coverage = "*"
 factory_boy = "*"
+mongomock = {editable = true,git = "https://github.com/mongomock/mongomock.git",ref = "develop"}
 
 [requires]
 python_version = "3.7"
