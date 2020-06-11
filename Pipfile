@@ -13,11 +13,12 @@ flask-cors = "*"
 flask_httpauth = "*"
 Pillow	= ">=7.1.1"
 phonenumbers = "*"
+mongomock = {editable = true,git = "https://github.com/mongomock/mongomock.git",ref = "develop"}
 
 [dev-packages]
 pylint = "*"
 wheel = "*"
-mongomock = ">=3.19.0"
+mongomock = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-env = "*"
