@@ -16,7 +16,8 @@ COPY Pip* /app/
 
 RUN pip install --upgrade pip && \
     pip install pipenv && \
-    pipenv install --dev --system --skip-lock
+    pipenv install --dev --system --skip-lock && \
+    pipenv install -e git+https://github.com/mongomock/mongomock.git@develop#egg=mongomock
 
 ADD . /app
 

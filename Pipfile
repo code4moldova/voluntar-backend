@@ -18,7 +18,6 @@ mongomock = {editable = true,git = "https://github.com/mongomock/mongomock.git",
 [dev-packages]
 pylint = "*"
 wheel = "*"
-mongomock = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-env = "*"
