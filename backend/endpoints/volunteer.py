@@ -69,15 +69,16 @@ def process_volunteer_data_from_telegram(volunteer_data) -> dict:
     dict
         A prepared dictionary to persist into databases.
     """
+    volunteer_phone = vu.convert_phone_to_regional(str(volunteer_data["phone"]))
     volunteer_data["comments"] = ','.join(volunteer_data["activities"])+'; availability:'+str(volunteer_data['availability'])
     volunteer_data.pop("availability")
     volunteer_data.pop("activities")
     volunteer_data["telegram_chat_id"] = str(volunteer_data.pop("chat_id"))
-    volunteer_data["telegram_id"] = str(volunteer_data.pop("phoneEx"))
+    volunteer_data["telegram_id"] = str(volunteer_data.pop("phoneEx")) if "phoneEx" in volunteer_data else str(volunteer_phone)
     volunteer_data["password"] = '1111111'
     volunteer_data["address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
     volunteer_data["zone_address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
-    volunteer_data["phone"] = vu.convert_phone_to_regional(str(volunteer_data["phone"]))
+    volunteer_data["phone"] = volunteer_phone
     volunteer_data["is_active"] = False
     return volunteer_data
 
