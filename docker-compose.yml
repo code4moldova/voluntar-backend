@@ -9,12 +9,12 @@ services:
         depends_on:
             - mongodb_container
         environment:
-            SECRET_KEY: 'hange this'
-            DEFAULT_PASSWORD: 'hangethis'
-            DEFAULT_USERNAME: 'hange@this.ro'
-            COVID_BACKEND_USER: 'tg-bot@test.com'
-            TG_IP: '192.168.100.23'
-   
+            SECRET_KEY: ${SECRET_KEY}
+            DEFAULT_PASSWORD: ${DEFAULT_PASSWORD}
+            DEFAULT_USERNAME: ${DEFAULT_USERNAME}
+            COVID_BACKEND_USER: ${COVID_BACKEND_USER}
+            TG_IP: ${TG_IP}
+
     mongodb_container:
         image: mongo:latest
         volumes:
