@@ -1,287 +1,714 @@
 openapi: 3.0.0
 info:
-  title: Sample API for covid-19-moldova
-  description: Flask REST API.
+  title: voluntar.md API
+  description: Flask REST API
   version: 1.0.0
+  license: MPL 2.0
 servers:
-  - url: http://167.71.48.30:5000
-  - url: http://localhost:5000
-    description: Optional server description, e.g. Main (production) server
-securityDefinitions:   # Authorization, part 1
-  basicAuth:
-    type: basic
+  - url: http://185.181.229.182:5000/api
+    description: Dev server
+  - url: http://localhost:5000/api
+    description: Local server
+security:
+  - basicAuth: []
 paths:
   /users:
     get:
-      summary: Returns a list of users.
-      description: Optional extended description in CommonMark or HTML.
+      summary: Returns a list of users
+      parameters:
+        - in: query
+          name: first_name
+          type: string
+        - in: query
+          name: last_name
+          type: string
+        - in: query
+          name: email
+          type: string
+        - in: query
+          name: phone
+          type: string
+        - in: query
+          name: role
+          type: string
       responses:
-        '200':    # status code
-          description: A JSON array of user names
+        '200':
+          description: Users founded
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/responses/UsersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
 
-  /volunteers/list:
+  /users/{user_id}:
     get:
-      summary: Returns a list of volunteers.
-      description: Optional extended description in CommonMark or HTML.
+      summary: Returns a user for given ID
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: string
+          description: The ID of user
       responses:
-        '200':    # status code
-          description: A JSON array of user names
+        '200':
+          description: User founded
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    post:
+      summary: Registers a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: A user created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    put:
+      summary: Updates a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: A user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
 
   /volunteers:
-    post:
-      description: Login route and return jwt token.
-      produces:
-        - application/json
+    get:
+      summary: Returns a list of volunteer
       parameters:
-        - in: body
-          name: user
-          description: New volunteer info
+        - in: query
+          name: id
+          schema:
+            type: string
+          description: The ID of volunteer
+      responses:
+        '200':
+          description: Volunteers founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /volunteers/{volunteer_id}:
+    get:
+      summary: Returns a volunteer for given ID
+      parameters:
+        - in: path
+          name: volunteer_id
+          schema:
+            type: string
+          description: The ID of volunteer
+      responses:
+        '200':
+          description: Volunteers founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Volunteer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    post:
+      summary: Registers a new volunteer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volunteer'
+      responses:
+        '201':
+          description: A volunteer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volunteer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    put:
+      summary: Updates a volunteer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Volunteer'
+      responses:
+        '200':
+          description: A volunteer updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Volunteer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /beneficiaries:
+    get:
+      summary: Returns a list of beneficiaries
+      responses:
+        '200':
+          description: Beneficiary founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Beneficiary'
+
+  /beneficiaries/{beneficiary_id}:
+    get:
+      summary: Returns a beneficiary for given ID
+      parameters:
+        - in: path
+          name: beneficiary_id
+          schema:
+            type: string
+          description: The ID of beneficiary
+      responses:
+        '200':
+          description: Beneficiary founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+    post:
+      summary: Registers a new beneficiary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Beneficiary'
+      responses:
+        '201':
+          description: A beneficiary created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    put:
+      summary: Updates a beneficiary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Beneficiary'
+      responses:
+        '200':
+          description: A beneficiary updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beneficiary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /requests:
+    get:
+      summary: Returns a list of requests
+      responses:
+        '200':
+          description: List of requests founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Request'
+
+  /requests/{request_id}:
+    get:
+      summary: Returns a request for given ID
+      parameters:
+        - in: path
+          name: request_id
+          schema:
+            type: string
+          description: The ID of request
+      responses:
+        '200':
+          description: Request founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+    post:
+      summary: Registers a new request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '201':
+          description: A request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    put:
+      summary: Updates a request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '200':
+          description: A request updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /clusters:
+    get:
+      summary: Returns a list of clusters
+      responses:
+        '200':
+          description: List of clusters founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cluster'
+
+  /clusters/{cluster_id}:
+    get:
+      summary: Returns a cluster for given ID
+      parameters:
+        - in: path
+          name: cluster_id
+          schema:
+            type: string
+          description: The ID of cluster
+      responses:
+        '200':
+          description: Cluster founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+    post:
+      summary: Registers a new cluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '201':
+          description: A cluster created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+    put:
+      summary: Updates a cluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cluster'
+      responses:
+        '200':
+          description: A request cluster
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+# Classes
+    Volunteer:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        is_active:
+          type: boolean
+        address:
+          type: string
+        zone:
+          type: string
+        age:
+          type: integer
+        soc_media:
+          type: string
+        role:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerRole'
+        availability_hours:
+          type: string
+        availability_days:
+          type: string
+      required:
+        - email
+        - address
+        - zone
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type : string
+        phone:
+          type: string
+        role:
+          $ref: '#/components/schemas/Role'
+        is_active:
+          type: boolean
+        volunteers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Volunteer'
+        availability_hours_start:
+          $ref: '#/components/schemas/AvailabilityHour'
+        availability_hours_end:
+          $ref: '#/components/schemas/AvailabilityHour'
+        availability_days:
+          type: array
+          items:
+            $ref:  '#/components/schemas/WeekDay'
+        last_access:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - email
+        - password
+        - address
+        - zone
+        - phone
+    Request:
+      type: object
+      properties:
+        beneficiary:
+          $ref: '#/components/schemas/Beneficiary'
+        user:
+          $ref: '#/components/schemas/User'
+        status:
+          $ref: '#/components/schemas/RequestsStatus'
+        secret:
+          type: string
+        urgent:
+          type: boolean
+        comments:
+          type: string
+        has_symptoms:
+          type: boolean
+        cluster:
+          $ref: '#/components/schemas/Cluster'
+        created_at:
+          type: string
+          format: date-time
+    Beneficiary:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        landline:
+          type: string
+        age:
+          type: integer
+        zone:
+          $ref: '#/components/schemas/Zone'
+        address:
+          type: string
+        special_condition:
+          $ref: '#/components/schemas/SpecialCondition'
+        created_at:
+          type: string
+          format: date-time
+    Cluster:
+      type: object
+      properties:
+        volunteer:
+          $ref: '#/components/schemas/Volunteer'
+        created_at:
+          type: string
+          format: date-time
+    Notification:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/NotificationType'
+        subject:
+          type: string
+        request:
+          $ref: '#/components/schemas/Request'
+        created_at:
+          type: string
+          format: date-time
+    NotificationUser:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        status:
+          $ref: '#/components/schemas/NotificationStatus'
+        notification:
+          $ref: '#/components/schemas/Notification'
+        created_at:
+          type: string
+          format: date-time
+# Enums
+    Role:
+      type: string
+      enum:
+        - administrator
+        - coordinator
+        - operator
+    VolunteerRole:
+      type: string
+      enum:
+        - delivery
+        - copilot
+        - packing
+        - supply
+        - operator
+    Zone:
+      type: string
+      enum:
+        - botanica
+        - buiucani
+        - centru
+        - ciocana
+        - riscani
+        - telecentru
+        - suburbii
+    SpecialCondition:
+      type: string
+      enum:
+        - disability
+        - deaf_mute
+        - blind_weak_seer
+    RequestsStatus:
+      type: string
+      enum:
+        - new
+        - confirmed
+        - in_process
+        - canceled
+        - solved
+        - archived
+    NotificationType:
+      type: string
+      enum:
+        - new
+        - canceled
+    NotificationStatus:
+      type: string
+      enum:
+        - new
+        - seen
+        - deleted
+    WeekDay:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+    AvailabilityHour:
+      type: integer
+      enum:
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+#Responses
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized Access
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Unexpected Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UsersResponse:
+      description: Response for a list for users.
+      content:
+        application/json:
           schema:
             type: object
-            required:
-              - email
-              - password
-              - address
-              - zone_address
             properties:
-              email:
-                type: string
-                example: example@mail.com
-              password:
-                type: string
-                example: Admin1234
-              first_name:
-                type: string
-                example: Ion
-              last_name:
-                type: string
-                example: Somename
-              phone:
+              page:
                 type: integer
-                example: 10000001
-              is_active:
-                type: boolean
-                example: true
-              address:
-                type: string
-                example: stefan cel mare
-              zone_address:
-                type: string
-                example: centru
-              facebook_profile:
-                type: string
-                example: https://www.facebook.com/name
-              age:
+              page_size:
                 type: integer
-                example: 34
-              availability:
-                type: number
-                example: 3
-              telegram_id:
-                type: number
-                example: 34234244
-              latitude:
-                type: number
-                example: 44.2
-              longitude:
-                type: number
-                example: 28.45
-              activity_types:
-                type: string
-                example: Activity0
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema:
+              page_count:
+                type: integer
+              total_count:
+                type: integer
+              links:
                 type: array
                 items:
-                  type: string
-        '400':
-          description: Fail to login
-          schema:
-            type: object
-            properties:
-              description:
-                type: string
-                description: Reason of fail
-                example: User with this email not found
-              title:
-                type: string
-                description: Fail title.
-                example: User not found.
-
-  /beneficiary/{beneficiary_id}:
-    get:
-      description: Render login page
-      responses:
-        '200':    # status code
-          description: A JSON with beneficiary info
-          content:
-            application/json:
-              schema:
-                type: object
-
-    post:
-      description: Login route and return jwt token.
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: user
-          description: New beneficiary info
-          schema:
-            type: object
-            required:
-              - email
-              - passwd
-            properties:
-              email:
-                type: string
-                example: example@mail.com
-              passwd:
-                type: string
-                example: Admin1234
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema:
+                  type: object
+                  aditionalproperties:
+                    type: string
+              records:
                 type: array
                 items:
-                  type: string
-        '400':
-          description: Fail to login
-          schema:
-            type: object
-            properties:
-              description:
-                type: string
-                description: Reason of fail
-                example: User with this email not found
-              title:
-                type: string
-                description: Fail title.
-                example: User not found.
-
-  /beneficiary_request/{beneficiary_request_id}:
-    get:
-      description: Render login page
-      responses:
-        '200':    # status code
-          description: A JSON with beneficiary_request info
-          content:
-            application/json:
-              schema:
-                type: object
-
-    post:
-      description: Login route and return jwt token.
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: user
-          description: New beneficiary_request info
-          schema:
-            type: object
-            required:
-              - email
-              - passwd
-            properties:
-              email:
-                type: string
-                example: example@mail.com
-              passwd:
-                type: string
-                example: Admin1234
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        '400':
-          description: Fail to login
-          schema:
-            type: object
-            properties:
-              description:
-                type: string
-                description: Reason of fail
-                example: User with this email not found
-              title:
-                type: string
-                description: Fail title.
-                example: User not found.
-
-  /operator/{operator_id}:
-    get:
-      description: Render login page
-      responses:
-        '200':    # status code
-          description: A JSON with operator info
-          content:
-            application/json:
-              schema:
-                type: object
-
-    post:
-      description: Login route and return jwt token.
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: user
-          description: New operator info
-          schema:
-            type: object
-            required:
-              - email
-              - passwd
-            properties:
-              email:
-                type: string
-                example: example@mail.com
-              passwd:
-                type: string
-                example: Admin1234
-      responses:
-        '200':    # status code
-          description: A JSON array of user names
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-        '400':
-          description: Fail to login
-          schema:
-            type: object
-            properties:
-              description:
-                type: string
-                description: Reason of fail
-                example: User with this email not found
-              title:
-                type: string
-                description: Fail title.
-                example: User not found.
+                  $ref: '#/components/schemas/User'
