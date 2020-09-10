@@ -9,21 +9,30 @@ class BeneficiaryList:
     # are bani, are dizabilitati, are curator, pranz cald, produse alimentare,
     # medicamente, plata cu cardul, comentarii
     FIELD_TITLE = {
-        'last_name': 'Nume',
-        'first_name': 'Prenume',
-        'age': 'Vîrsta',
-        'have_money': 'Are bani?',
+        "last_name": "Nume",
+        "first_name": "Prenume",
+        "age": "Vîrsta",
+        "have_money": "Are bani?",
     }
-    FIELDS = 'last_name first_name age have_money'.split()
-    FIELDS += ['phone', 'address', 'zone_address', 'offer', 'comments', 'urgent', 'curator', 'has_disabilities',
-               'black_list']
-    tag2v = {'offer': 'offer', 'age': 'age', 'zone_address': 'sector'}
+    FIELDS = "last_name first_name age have_money".split()
+    FIELDS += [
+        "phone",
+        "address",
+        "zone_address",
+        "offer",
+        "comments",
+        "urgent",
+        "curator",
+        "has_disabilities",
+        "black_list",
+    ]
+    tag2v = {"offer": "offer", "age": "age", "zone_address": "sector"}
 
     def run(self):
         headers = [self.FIELD_TITLE[f] if f in self.FIELD_TITLE else f for f in self.FIELDS]
         rows = [headers]
 
-        for user in Beneficiary.objects().order_by('+last_name', '+first_name', '-age'):
+        for user in Beneficiary.objects().order_by("+last_name", "+first_name", "-age"):
             row = []
             for field in self.FIELDS:
                 value = getattr(user, field)
@@ -31,7 +40,7 @@ class BeneficiaryList:
                     if ObjectId.is_valid(value):
                         tg = Tags.objects(id=value)
                         if tg:
-                            row.append(tg.get().clean_data()['ro'])
+                            row.append(tg.get().clean_data()["ro"])
                         else:
                             row.append(value)
                     else:
@@ -46,7 +55,7 @@ class BeneficiaryList:
 
 
 SERVICES = {
-    'beneficiaries': BeneficiaryList,
+    "beneficiaries": BeneficiaryList,
 }
 
 

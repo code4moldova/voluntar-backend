@@ -9,8 +9,8 @@ class TestAuth(ApiTestCase):
         operator = OperatorFactory()
         operator.save()
 
-        response = self.get(url='/api/token', user=operator)
+        response = self.get(url="/api/token", user=operator)
 
         assert response.status_code == 200
         results = json.loads(response.data)
-        assert 'token' in results
+        assert "token" in results

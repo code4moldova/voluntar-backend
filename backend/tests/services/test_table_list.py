@@ -6,17 +6,8 @@ from tests.factories import BeneficiaryFactory
 class TestBeneficiaryList(DbTestCase):
     def test_run(self):
         users = [
-            BeneficiaryFactory(
-                first_name='Ion',
-                last_name='Neculce',
-                age=50,
-            ),
-            BeneficiaryFactory(
-                first_name='Grigore',
-                last_name='Ureche',
-                age=119,
-                have_money=False,
-            ),
+            BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50,),
+            BeneficiaryFactory(first_name="Grigore", last_name="Ureche", age=119, have_money=False,),
         ]
 
         for user in users:
@@ -25,9 +16,23 @@ class TestBeneficiaryList(DbTestCase):
         rows = BeneficiaryList().run()
         self.assertEqual(
             [
-                ['Nume', 'Prenume', 'Vîrsta', 'Are bani?', 'phone' ,  'address', 'zone_address', 'offer', 'comments',  'urgent','curator','has_disabilities','black_list'],
-                ['Neculce', 'Ion', 50, 1, 11112222, 'B', 'A',  '1', '', 0, 0, 0, 0],
-                ['Ureche', 'Grigore', 119, 0, 11112222, 'B', 'A',  '1', '', 0, 0, 0, 0]
+                [
+                    "Nume",
+                    "Prenume",
+                    "Vîrsta",
+                    "Are bani?",
+                    "phone",
+                    "address",
+                    "zone_address",
+                    "offer",
+                    "comments",
+                    "urgent",
+                    "curator",
+                    "has_disabilities",
+                    "black_list",
+                ],
+                ["Neculce", "Ion", 50, 1, 11112222, "B", "A", "1", "", 0, 0, 0, 0],
+                ["Ureche", "Grigore", 119, 0, 11112222, "B", "A", "1", "", 0, 0, 0, 0],
             ],
-            rows
+            rows,
         )
