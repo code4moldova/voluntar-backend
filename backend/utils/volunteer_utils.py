@@ -69,19 +69,3 @@ def exists_by_email(email):
         If volunteer with given email already exists in database.
     """
     assert not Volunteer.objects(email=email), "User with this email already exists"
-
-
-def exists_by_telegram_chat_id(telegram_chat_id):
-    """Checks, if a volunteer with the given telegram chat ID, already exists in the database.
-
-    Parameters
-    ----------
-    telegram_chat_id : int
-        Given telegram chat ID for validating.
-
-    Raises
-    -------
-    AssertionError
-        If volunteer with given telegram chat ID already exists in database.
-    """
-    assert not Volunteer.objects(telegram_chat_id=telegram_chat_id), "User with this telegram account already exists"

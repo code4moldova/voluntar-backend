@@ -14,7 +14,3 @@ DB_NAME = "covid-19"
 DB_HOST = "mongodb://mongodb_container:27017"
 
 MIN_PASSWORD_LEN = 6
-
-AJUBOT_HOST = "http://" + os.environ.get("TG_IP", "192.168.100.23")
-AJUBOT_PORT = 5001
-AJUBOT_RECEIPT_PATH = "./static/images/receipts"

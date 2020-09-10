@@ -6,7 +6,7 @@ from flask.views import MethodView
 from mongoengine import Q
 
 from config import MIN_PASSWORD_LEN, PassHash
-from endpoints import telegrambot, volunteer
+from endpoints import volunteer
 from models import Beneficiary, Operator
 
 log = logging.getLogger("back")
@@ -29,9 +29,6 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
         new_beneficiary["fixer"] = str(fixer_id)
         comment = Beneficiary(**new_beneficiary)
         comment.save()
-        if "is_active" in new_beneficiary and new_beneficiary["is_active"]:
-            # sent the request to the volunteer via telegram
-            telegrambot.send_request(comment)
         return jsonify({"response": "success", "user": comment.clean_data()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
@@ -54,45 +51,12 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
     try:
         obj = Beneficiary.objects(id=beneficiary_id).get()
         data = obj.clean_data()  # and not data['is_active']
-        if (
-            ("set__is_active" in update and update["set__is_active"] and not data["is_active"])
-            or ("set__offer" in update and update["set__offer"] != data["offer"])
-            or ("set__address" in update and update["set__address"] != data["address"])
-        ):
-            # change to active or different volunteer category or different address
-            # return jsonify(telegrambot.send_request(obj))
-            telegrambot.send_request(obj)
-        elif (
-            "set__volunteer" in update
-            and requestjson["volunteer"] != ""
-            and requestjson["volunteer"] is not None
-            and ("volunteer" not in data or update["set__volunteer"] != data["volunteer"])
-        ):
-            telegrambot.send_assign(beneficiary_id, requestjson["volunteer"])
-        elif "set__status" in update and update["set__status"].lower() == "cancelled":
+        if "set__status" in update and update["set__status"].lower() == "cancelled":
             # if the volunteer refused the request, delete the link
             volunteer_updates = {"push__offer_list": {"id": beneficiary_id, "offer": data["offer"], "cancelled": True}}
             volunteer.update_volunteer(requestjson["volunteer"], volunteer_updates)
             update["set__volunteer"] = ""
             update["set__status"] = update["set__status"].lower()
-        obj.update(**update)
-        return jsonify({"response": "success"})
-    except Exception as error:
-        return jsonify({"error": str(error)}), 400
-
-
-def updateBeneficiaryTG(requestjson):
-    beneficiary_id = requestjson["request_id"]
-    print(beneficiary_id, "---")
-    update = {
-        "push__questions": "pretul:" + str(requestjson["amount"]) + ", simptome:" + ",".join(requestjson["symptoms"]),
-        "push__comments": requestjson["further_comments"],
-        "curator": requestjson["would_return"] == 1,
-    }
-
-    try:
-        obj = Beneficiary.objects(id=beneficiary_id).get()
-        data = obj.clean_data()
         obj.update(**update)
         return jsonify({"response": "success"})
     except Exception as error:

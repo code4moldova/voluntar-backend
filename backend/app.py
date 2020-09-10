@@ -1,5 +1,4 @@
 from flask import Flask
-from endpoints import telegrambot
 from endpoints.volunteer import volunteer_build_csv
 from mongoengine import connect
 from config import SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
@@ -24,9 +23,7 @@ from endpoints import (
     registerTag,
     getTags,
     updateTag,
-    parseFile,
-    updateVolunteerTG,
-    updateBeneficiaryTG,
+    parseFile
 )
 from flask import jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -71,17 +68,7 @@ def get_user_by_filters(pages=15, per_page=10):
 @app.route("/api/volunteer", methods=["PUT"])
 @auth.login_required
 def update_user():
-    if "_id" not in request.json:
-        return updateVolunteerTG(request.json, request.json.get("telegram_chat_id"), request.json.get("phone"))
-    else:
-        return updateVolunteer(request.json, request.json["_id"])
-
-
-@app.route("/api/volunteer/closest", methods=["GET", "POST"])
-@app.route("/api/volunteer/closest/<id>/<topk>", methods=["GET", "POST"])
-@auth.login_required
-def get_closest_user(id, topk):
-    return sort_closest(id, topk, request.args.get("category"))
+    return updateVolunteer(request.json, request.json["_id"])
 
 
 @app.route("/api/volunteer", methods=["DELETE"])
@@ -108,53 +95,6 @@ def build_csv():
         return jsonify({"error": str(error)}), 400
 
     return jsonify({"response": "success"})
-
-
-# tags
-
-
-@app.route("/api/tag", methods=["POST"])
-@auth.login_required
-def new_tag():
-    return registerTag(request.json, auth.username())
-
-
-@app.route("/api/tag", methods=["GET"])
-@app.route("/api/tag/<select>", methods=["GET"])
-@auth.login_required
-def get_tag(select="all"):
-    return getTags(request.args.get("id"), select)
-
-
-@app.route("/api/tag", methods=["PUT"])
-@auth.login_required
-def update_tag():
-    return updateTag(request.json, request.json["_id"])
-
-
-@app.route("/api/tagedit", methods=["GET", "POST"])
-@auth.login_required
-def update_tag_get():
-    if request.method == "POST":
-        js = json.loads(request.form.get("json"))
-        for it in js:
-            it["is_active"] = "true" if it["is_active"] else "false"
-            updateTag({k: v for k, v in it.items() if k is not "_id"}, it["_id"])
-        return jsonify(js)
-    tg = getTags(False, request.args.get("name"), False)
-    dd = []
-    return (
-        '<form action="" method="post" ><textarea style="    width: 800px;  height: 400px;" name="json">'
-        + json.dumps(tg, indent=4, sort_keys=True)
-        + "</textarea><button>go</button></form>"
-    )
-    return updateTag(request.args, request.args.get("_id"))
-
-
-@app.route("/api/tag", methods=["DELETE"])
-@auth.login_required
-def delete_tag():
-    return updateTag(request.json, request.json["_id"], True)
 
 
 # operators
@@ -212,8 +152,6 @@ def get_secret():
 @app.route("/api/beneficiary", methods=["PUT"])
 @auth.login_required
 def update_beneficiary():
-    if "wellbeing" in request.json:
-        return updateBeneficiaryTG(request.json)
     return updateBeneficiary(request.json, request.json["_id"])
 
 
@@ -233,11 +171,6 @@ def get_user3():
 @app.route("/")
 def hello():
     return "It Works."
-
-
-@app.route("/api/receipt", methods=["POST"])
-def upload_image():
-    return telegrambot.save_receive(request.json["beneficiary_id"], request.json["data"])
 
 
 if __name__ == "__main__":

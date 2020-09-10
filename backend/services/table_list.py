@@ -38,11 +38,7 @@ class BeneficiaryList:
                 value = getattr(user, field)
                 if field in self.tag2v.keys():
                     if ObjectId.is_valid(value):
-                        tg = Tags.objects(id=value)
-                        if tg:
-                            row.append(tg.get().clean_data()["ro"])
-                        else:
-                            row.append(value)
+                        row.append(value)
                     else:
                         row.append(value)
                 elif isinstance(value, bool):

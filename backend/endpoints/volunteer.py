@@ -41,13 +41,8 @@ def register_volunteer(request_json, created_by):
             user = Operator.verify_auth_token(created_by)
             created_by = user.get().clean_data()["email"]
 
-        if created_by == os.getenv("COVID_BACKEND_USER"):
-            vu.exists_by_telegram_chat_id(request_json["chat_id"])
-            new_volunteer_data = process_volunteer_data_from_telegram(request_json)
-        else:
-            vu.exists_by_email(request_json["email"])
-            new_volunteer_data = request_json
-
+        vu.exists_by_email(request_json["email"])
+        new_volunteer_data = request_json
         new_volunteer_data["password"] = PassHash.hash(new_volunteer_data["password"])
         new_volunteer_data["created_by"] = created_by
         new_volunteer = Volunteer(**new_volunteer_data)
@@ -55,37 +50,6 @@ def register_volunteer(request_json, created_by):
         return jsonify({"response": "success", "user": new_volunteer.clean_data()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
-
-
-def process_volunteer_data_from_telegram(volunteer_data) -> dict:
-    """Registers a new volunteer from telegram bot, if no any with given telegram chat ID.
-
-    Parameters
-    ----------
-    volunteer_data : dict
-        A dictionary representing the volunteer profile details.
-
-    Returns
-    -------
-    dict
-        A prepared dictionary to persist into databases.
-    """
-    volunteer_phone = vu.convert_phone_to_regional(str(volunteer_data["phone"]))
-    volunteer_data["comments"] = (
-        ",".join(volunteer_data["activities"]) + "; availability:" + str(volunteer_data["availability"])
-    )
-    volunteer_data.pop("availability")
-    volunteer_data.pop("activities")
-    volunteer_data["telegram_chat_id"] = str(volunteer_data.pop("chat_id"))
-    volunteer_data["telegram_id"] = (
-        str(volunteer_data.pop("phoneEx")) if "phoneEx" in volunteer_data else str(volunteer_phone)
-    )
-    volunteer_data["password"] = "1111111"
-    volunteer_data["address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
-    volunteer_data["zone_address"] = ""  # TODO: Need to discuss what would be persist for new volunteer
-    volunteer_data["phone"] = volunteer_phone
-    volunteer_data["is_active"] = False
-    return volunteer_data
 
 
 def updateVolunteer(requestjson, volunteer_id, delete=False):
@@ -96,10 +60,6 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
         for key, value in requestjson.items():
             if key == "_id":
                 continue
-            if key == "telegram_id":
-                value = value.replace("+", "").replace(" ", "").strip()
-                if len(value) == 0:
-                    update["unset__telegram_chat_id"] = ""
             if key == "password":
                 value = PassHash.hash(value)
             update[f"set__{key}"] = value
@@ -109,36 +69,6 @@ def updateVolunteer(requestjson, volunteer_id, delete=False):
     try:
         Volunteer.objects(id=volunteer_id).get().update(**update)
         return jsonify({"response": "success"})
-    except Exception as error:
-        return jsonify({"error": str(error)}), 400
-
-
-def updateVolunteerTG(requestjson, tg_id, phone):
-    update1 = {}
-    print(requestjson)
-    log.debug("Relay offer for req:%s from ", requestjson)
-    for key, value in requestjson.items():
-        if key == "phone":
-            continue
-        if key == "telegram_chat_id" and "phone" not in requestjson:
-            continue
-        update1[f"set__{key}"] = value
-    try:
-        if "phone" in requestjson:  # conection between tg and platofrm
-            obj = Volunteer.objects(telegram_id=str(requestjson["phone"]).replace("+", "")).first()
-            update = {"set__telegram_chat_id": str(requestjson["telegram_chat_id"])}
-        else:
-            # get offer from the volunteer
-            obj = Volunteer.objects(telegram_chat_id=str(requestjson["telegram_chat_id"]), is_active=True).first()
-            data = obj.clean_data()
-            item = {"id": requestjson["offer_beneficiary_id"], "offer": requestjson["availability_day"]}
-            update = {"offer_list": data["offer_list"] + [item]}
-        if obj:
-            # obj = [i for i in obj.all()][0]
-            obj.update(**update)
-        else:
-            jsonify({"response": "not found"})
-        return jsonify({"response": "success", "l": update, "k": requestjson, "u": update1})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -166,12 +96,6 @@ def getVolunteers(filters):
             volunteer = Volunteer.objects(id=volunteer_id).get().clean_data()
 
             return jsonify(volunteer)
-        elif len(filters.getlist("telegram_chat_id")) == 1:
-            telegram_id = filters.get("telegram_chat_id")
-            if len(Volunteer.objects(telegram_chat_id=telegram_id)) == 0:
-                return jsonify({"exists": False})
-            else:
-                return jsonify({"exists": True})
         elif len(filters.getlist("id")) > 1:
             volunteers = [
                 Volunteer.objects(id=volunteer_id).get().clean_data() for volunteer_id in filters.getlist("id")
@@ -203,7 +127,6 @@ def makejson(v, user):
         "phone",
         "email",
         "activity_types",
-        "telegram_chat_id",
         "latitude",
         "longitude",
     ]:
@@ -267,14 +190,10 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
 
             obj = Volunteer.objects(**flt)
             volunteers = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
-            for i, volunteer in enumerate(volunteers):
-                volunteers[i]["cases_solved"] = Beneficiary.objects(volunteer=volunteer["_id"]).count()
             return jsonify({"list": volunteers, "count": obj.count()})
         else:
             obj = Volunteer.objects().order_by("-created_at")
             volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            for i, volunteer in enumerate(volunteers):
-                volunteers[i]["cases_solved"] = Beneficiary.objects(volunteer=volunteer["_id"]).count()
             return jsonify({"list": volunteers, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
@@ -285,12 +204,6 @@ def deleteVolunteer(requestjson, volunteer_id):
 
 
 def boolconv(source, k, tag2v):
-    if k in tag2v:
-        if ObjectId.is_valid(source):
-            tg = Tags.objects(id=source)  #
-
-            if tg:
-                return tg.get().clean_data()["ro"]
     if source is None:
         return "0"
     if type(source) is str:

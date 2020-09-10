@@ -2,8 +2,7 @@ from .beneficiary import (
     get_beneficiaries_by_filters,
     getBeneficiary,
     registerBeneficiary,
-    updateBeneficiary,
-    updateBeneficiaryTG,
+    updateBeneficiary
 )
 from .beneficiary_requests import Beneficiary_requestAPI
 from .operator import (
@@ -22,6 +21,5 @@ from .volunteer import (
     getVolunteers,
     register_volunteer,
     sort_closest,
-    updateVolunteer,
-    updateVolunteerTG,
+    updateVolunteer
 )

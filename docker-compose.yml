@@ -12,8 +12,6 @@ services:
             SECRET_KEY: ${SECRET_KEY}
             DEFAULT_PASSWORD: ${DEFAULT_PASSWORD}
             DEFAULT_USERNAME: ${DEFAULT_USERNAME}
-            COVID_BACKEND_USER: ${COVID_BACKEND_USER}
-            TG_IP: ${TG_IP}
 
     mongodb_container:
         image: mongo:latest
