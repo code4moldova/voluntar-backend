@@ -5,8 +5,7 @@ from config import PassHash, MIN_PASSWORD_LEN
 
 
 class Beneficiary_requestAPI(MethodView):
-
-    def get(self, beneficiary_request_id:str):
+    def get(self, beneficiary_request_id: str):
         try:
             if beneficiary_request_id:
                 beneficiary_request = Beneficiary_request.objects(id=beneficiary_request_id).get().clean_data()
@@ -23,14 +22,15 @@ class Beneficiary_requestAPI(MethodView):
         # TODO: get authenticated operator and assignee to new Beneficiary_request
         # new_Beneficiary_request["created_by"] = authenticated_oprator
         try:
-            assert len(new_Beneficiary_request["password"]) >= MIN_PASSWORD_LEN, f"Password is to short, min length is {MIN_PASSWORD_LEN}"
+            assert (
+                len(new_Beneficiary_request["password"]) >= MIN_PASSWORD_LEN
+            ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_Beneficiary_request["password"] = PassHash.hash(new_Beneficiary_request["password"])
             comment = Beneficiary_request(**new_Beneficiary_request)
             comment.save()
             return jsonify({"response": "success"})
         except Exception as error:
             return jsonify({"error": str(error)}), 400
-
 
     def delete(self, beneficiary_request_id):
         """delete a single user by id"""

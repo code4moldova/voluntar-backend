@@ -7,7 +7,7 @@ from services.table_list import service
 
 
 def register(app, auth):
-    @app.route('/api/export/csv/<slug>', methods=['GET'])
+    @app.route("/api/export/csv/<slug>", methods=["GET"])
     @auth.login_required
     def export_csv(slug):
         rows = service(slug)

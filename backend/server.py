@@ -12,10 +12,10 @@ from seeds import init_app as seed_cli
 def create_application():
     app = Flask(__name__)
 
-    if FLASK_ENV == 'test':
-        app.config.from_mapping({'TESTING': True})
+    if FLASK_ENV == "test":
+        app.config.from_mapping({"TESTING": True})
 
-    if FLASK_ENV == 'development':
+    if FLASK_ENV == "development":
         seed_cli(app)
 
     auth = HTTPBasicAuth()

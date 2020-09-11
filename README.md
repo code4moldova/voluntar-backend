@@ -27,6 +27,8 @@ If you would like to suggest new functionality, open an Issue and mark it as a _
 └── README.md
 ```
 
+[Class diagram](ClassDiagram.png)
+
 ## Built With
 
 Flask

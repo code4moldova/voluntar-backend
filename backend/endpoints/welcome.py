@@ -1,4 +1,4 @@
 def register(app):
-    @app.route('/welcome')
+    @app.route("/welcome")
     def welcome():
-        return 'Hello, World!'
+        return "Hello, World!"

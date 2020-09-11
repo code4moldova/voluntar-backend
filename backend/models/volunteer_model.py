@@ -1,13 +1,24 @@
 import calendar
 import json
 from datetime import datetime as dt
-from mongoengine import (Document, StringField, IntField, EmailField, BooleanField, ListField,
-                         DateTimeField, DictField, FloatField, URLField, ReferenceField)
+from mongoengine import (
+    Document,
+    StringField,
+    IntField,
+    EmailField,
+    BooleanField,
+    ListField,
+    DateTimeField,
+    DictField,
+    FloatField,
+    URLField,
+    ReferenceField,
+)
 from config import PassHash
 
-from itsdangerous import (TimedJSONWebSignatureSerializer
-                          as Serializer, BadSignature, SignatureExpired)
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
 import os
+
 FACEBOOK_URL_REGEX = r"http(?:s):\/\/(?:www\.)facebook\.com\/.+"
 
 
@@ -27,15 +38,15 @@ class Tags(Document):
             del data["password"]
         if "logins" in data:
             del data["logins"]
-        data['_id'] = str(data['_id'])
+        data["_id"] = str(data["_id"])
         return data
 
 
 class User(Document):
     # TODO: Each volunteer must have a reference to operator that was created by
     # created_by = ReferenceField("operator")
-    first_name = StringField(max_length=50, default='No_First')
-    last_name = StringField(max_length=50, default='No_Last')
+    first_name = StringField(max_length=50, default="No_First")
+    last_name = StringField(max_length=50, default="No_Last")
     email = EmailField(required=True)
     password = StringField(required=True, min_length=6)
     phone = IntField(min_value=10000000, max_value=99999999)
@@ -46,19 +57,19 @@ class User(Document):
 
     is_active = BooleanField(default=True)
 
-    meta = {'allow_inheritance': True}
+    meta = {"allow_inheritance": True}
 
-    def generate_auth_token(self, expiration = 60000):
+    def generate_auth_token(self, expiration=60000):
         secret = os.environ["SECRET_KEY"]
-        s = Serializer(secret, expires_in = expiration)
+        s = Serializer(secret, expires_in=expiration)
         User.objects(id=str(self.id)).get().update(last_access=dt.now)
         obj = self.clean_data()
-        del obj['role']
+        del obj["role"]
         for k in obj.keys():
             if type(obj[k]) is dt:
                 del obj[k]
-        obj['id'] = obj['_id']
-        del obj['_id']
+        obj["id"] = obj["_id"]
+        del obj["_id"]
         return s.dumps(obj)
 
     @staticmethod
@@ -67,10 +78,10 @@ class User(Document):
         try:
             data = s.loads(token)
         except SignatureExpired:
-            return None # valid token, but expired
+            return None  # valid token, but expired
         except BadSignature:
-            return None # invalid token
-        user = User.objects(id=data['id'])
+            return None  # invalid token
+        user = User.objects(id=data["id"])
         return user
 
     def clean_data(self) -> dict:
@@ -79,14 +90,14 @@ class User(Document):
             del data["password"]
         if "logins" in data:
             del data["logins"]
-        data['_id'] = str(data['_id'])
+        data["_id"] = str(data["_id"])
         return data
 
     def include_data(self, includelist) -> dict:
         data = self.to_mongo()
         out = {}
         for k in includelist:
-            out[k] = data[k] if k in data else ''
+            out[k] = data[k] if k in data else ""
         return out
 
     def check_password(self, password) -> bool:
@@ -96,8 +107,8 @@ class User(Document):
 
 class Operator(User):
     created_by = StringField(max_length=500)
-    role = ListField(default=['fixer'])     # TODO remove the field
-    roles = ListField(default=['fixer'])
+    role = ListField(default=["fixer"])  # TODO remove the field
+    roles = ListField(default=["fixer"])
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
@@ -108,22 +119,21 @@ class Volunteer(User):
     address = StringField(max_length=500, required=True)
     city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
-    telegram_id = StringField(max_length=500, required=False)
-    telegram_chat_id = StringField(max_length=500, required=False)
-    telegram_secret = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
     zone_address = StringField(max_length=500, required=True)
-    facebook_profile = StringField(max_length=500, required=False)#URLField(url_regex=FACEBOOK_URL_REGEX)
-    age = StringField(max_length=500, required=False)#IntField(min_value=16, max_value=50)
+    facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
+    age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     # Availability per day in hours
-    availability = StringField(max_length=500, required=False)#id of type of availability(d2h per daay, 4 hour/week etc)
-    availability_day = StringField(max_length=500, required=False)#when available for the offer_beneficiary_id
-    offer_beneficiary_id = StringField(max_length=500, required=False)#offer_beneficiary_id if ok
+    availability = StringField(
+        max_length=500, required=False
+    )  # id of type of availability(d2h per daay, 4 hour/week etc)
+    availability_day = StringField(max_length=500, required=False)  # when available for the offer_beneficiary_id
+    offer_beneficiary_id = StringField(max_length=500, required=False)  # offer_beneficiary_id if ok
     offer_list = ListField(default=[])
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
-    activity_types = ListField(default=[])#StringField(choise=('Activity0', 'Activity1'), default='Activity0')
-    #created_by = ReferenceField(Operator)
+    activity_types = ListField(default=[])  # StringField(choise=('Activity0', 'Activity1'), default='Activity0')
+    # created_by = ReferenceField(Operator)
     created_by = StringField(max_length=500)
     team = StringField(max_length=500)
     profession = StringField(max_length=500)
@@ -155,12 +165,12 @@ class Beneficiary(User):
     created_by = StringField(max_length=500)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=5000)
-    questions = StringField(max_length=5000)#ListField(default=[])
-    activity_types = ListField(default=[])# StringField(choise=('Activity0', 'Activity1'), default='Activity0')
-    status = StringField(choise=('new', 'onProgress','done','canceled'), default='new')
+    questions = StringField(max_length=5000)  # ListField(default=[])
+    activity_types = ListField(default=[])  # StringField(choise=('Activity0', 'Activity1'), default='Activity0')
+    status = StringField(choise=("new", "onProgress", "done", "canceled"), default="new")
     secret = StringField(max_length=500, required=True)
     availability_volunteer = FloatField(min_value=0, max_value=24)
-    #beneficiary = ReferenceField(Beneficiary)
+    # beneficiary = ReferenceField(Beneficiary)
     volunteer = StringField(max_length=500)
     fixer = StringField(max_length=500)
     curator = BooleanField(default=False)
@@ -185,4 +195,3 @@ class Beneficiary(User):
 
 class Beneficiary_request(User):
     have_money = BooleanField(default=True)
-

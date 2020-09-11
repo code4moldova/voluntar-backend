@@ -1,0 +1,9 @@
+[FORMAT]
+# Maximum number of characters on a single line.
+max-line-length=120
+
+[MESSAGES CONTROL]
+# Rationale for each of these
+# line-too-long - this is enforced by black and flake8, yet pylint complains about docstrings, which black doesn't touch
+# fixme - TODOs are there for non-critical remarks for future maintainers
+disable=line-too-long,fixme
