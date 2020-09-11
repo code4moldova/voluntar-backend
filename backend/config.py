@@ -5,7 +5,7 @@ import os
 
 FLASK_ENV = os.environ.get("FLASK_ENV", "development")
 
-### swagger specific ###
+# swagger specific
 SWAGGER_URL = "/swagger"
 API_URL = "/static/swagger.yaml"
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(SWAGGER_URL, API_URL, config={"app_name": "Python-Flask-REST"})

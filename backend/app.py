@@ -1,34 +1,30 @@
-from flask import Flask
-from endpoints.volunteer import volunteer_build_csv
+import random
+
+from flask import jsonify, request
+from flask_cors import CORS
+from flask_httpauth import HTTPBasicAuth
 from mongoengine import connect
-from config import SWAGGERUI_BLUEPRINT, SWAGGER_URL, DB_NAME, DB_HOST
-from server import create_application
+
+from config import DB_HOST, DB_NAME, SWAGGER_URL, SWAGGERUI_BLUEPRINT
 from endpoints import (
-    register_volunteer,
-    getVolunteers,
-    updateVolunteer,
-    verifyUser,
-    getToken,
-    registerOperator,
-    getOperators,
-    updateOperator,
-    registerBeneficiary,
-    getBeneficiary,
-    updateBeneficiary,
-    get_volunteers_by_filters,
     get_active_operator,
     get_beneficiaries_by_filters,
     get_operators_by_filters,
-    sort_closest,
-    registerTag,
-    getTags,
-    updateTag,
-    parseFile
+    get_volunteers_by_filters,
+    getBeneficiary,
+    getOperators,
+    getVolunteers,
+    parseFile,
+    register_volunteer,
+    registerBeneficiary,
+    registerOperator,
+    updateBeneficiary,
+    updateOperator,
+    updateVolunteer,
+    verifyUser,
 )
-from flask import jsonify, request
-from flask_httpauth import HTTPBasicAuth
-from flask_cors import CORS
-import os, json, random
+from endpoints.volunteer import volunteer_build_csv
+from server import create_application
 
 auth = HTTPBasicAuth()
 

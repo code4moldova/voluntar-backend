@@ -1,6 +1,7 @@
 from flask.views import MethodView
 from flask import jsonify, request, g
 from models import Tags, Operator
+from config import PassHash
 
 
 def registerTag(requestjson, created_by):

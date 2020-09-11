@@ -52,6 +52,7 @@ Please make sure to check out the suggested coding [best practices](#best-practi
 
 * **The language we code in is English.** Please name your variables, methods, classes and other structures using English words.
 * Use clean code conventions :heavy_check_mark: *tip: read [The book](https://www.goodreads.com/book/show/3735293-clean-code) if you haven't already. Or check out [a summary](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29)*
+* Before pushing code into repo please make sure that you are run command `make autoformat`
 * Follow the [Python styleguide](https://www.python.org/dev/peps/pep-0008/) 
 * Tests are appreciated :relieved:
 * Please use relevant commit messages and reference issues in the commit message if applicable

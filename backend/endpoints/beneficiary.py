@@ -78,7 +78,7 @@ def getBeneficiary(args):
                 created_date_end = args.get("created_date_end", None, dt)
                 item_start = args.get("item_start", None, int)
                 item_end = args.get("item_end", None, int)
-            except Exception as _:
+            except Exception:
                 return jsonify({"error": "Incorrect arg(s)."})
 
             ben_objs = Beneficiary.objects()
@@ -140,7 +140,7 @@ class BeneficiaryAPI(MethodView):
         try:
             if beneficiary_id:
                 beneficiary = Beneficiary.objects(id=beneficiary_id).get().clean_data()
-                return jsonify(Beneficiary)
+                return jsonify(beneficiary)
             else:
                 beneficiaries = [v.clean_data() for v in Beneficiary.objects(is_active=True).all()]
                 return jsonify({"list": beneficiaries})

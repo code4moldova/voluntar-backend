@@ -1,9 +1,4 @@
-from .beneficiary import (
-    get_beneficiaries_by_filters,
-    getBeneficiary,
-    registerBeneficiary,
-    updateBeneficiary
-)
+from .beneficiary import get_beneficiaries_by_filters, getBeneficiary, registerBeneficiary, updateBeneficiary
 from .beneficiary_requests import Beneficiary_requestAPI
 from .operator import (
     get_active_operator,
@@ -16,10 +11,4 @@ from .operator import (
 )
 from .parser import parseFile
 from .tags import getTags, registerTag, updateTag
-from .volunteer import (
-    get_volunteers_by_filters,
-    getVolunteers,
-    register_volunteer,
-    sort_closest,
-    updateVolunteer
-)
+from .volunteer import get_volunteers_by_filters, getVolunteers, register_volunteer, sort_closest, updateVolunteer

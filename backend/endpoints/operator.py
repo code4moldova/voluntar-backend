@@ -76,7 +76,7 @@ def get_active_operator(days=2):
         v.clean_data() for v in Operator.objects(is_active=True, role="fixer", created_at__gte=days_diff)
     ]
     available_fixers = [{"_id": af.get("_id")} for af in available_fixers]
-    if len(fixers) is not 0 and len(fixers) == len(available_fixers):
+    if len(fixers) != 0 and len(fixers) == len(available_fixers):
         return fixers[0].get("_id")
     else:
         fixers_ids = [val["_id"] for val in fixers]

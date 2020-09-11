@@ -1,21 +1,17 @@
-from flask.views import MethodView
-from flask import jsonify, request, g, make_response
-from endpoints.geo import calc_distance
-
-from models import Volunteer, Beneficiary, Operator, Tags
-from config import PassHash, MIN_PASSWORD_LEN
-from datetime import datetime as dt
-from datetime import datetime, timedelta
-from datetime import date
-import time
 import csv
 import io
 import logging
+from datetime import datetime, timedelta
+from datetime import datetime as dt
+
+from flask import jsonify, make_response
+
+from config import PassHash
+from endpoints.geo import calc_distance
+from models import Beneficiary, Operator, Volunteer
+from utils import volunteer_utils as vu
 
 log = logging.getLogger("back")
-from bson import ObjectId
-import os
-from utils import volunteer_utils as vu
 
 
 def register_volunteer(request_json, created_by):
@@ -144,7 +140,6 @@ def makejson(v, user):
 def sort_closest(id, topk, category):
     topk = int(topk)
     user = Beneficiary.objects(id=id).get().clean_data()
-    filters = {}
     # get active volunteer with same activity type, with availability>0 and not bussy with other requests
     if "offer" in user and user["offer"] != "":
         category = user["offer"]

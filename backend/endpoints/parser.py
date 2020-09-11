@@ -36,9 +36,8 @@ def parsephone(a):
     c = []
     for j in a:
         try:
-            g = int(j)
             c.append(j)
-        except:
+        finally:
             pass
     if len(c) > 0 and c[0] == "0":
         c = c[1:]
@@ -124,7 +123,7 @@ def parseRow(row):
         it["last_temperature"] = ""
     try:
         it["last_temperature"] = 36 if len(it["last_temperature"]) == 0 else float(it["last_temperature"])
-    except:
+    except ValueError:
         it["last_temperature"] = 36
     it["password"] = it["phone"]
     it["aggreed_terms"] = it["aggreed_terms"].find("Da") >= 0

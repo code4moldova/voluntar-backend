@@ -10,4 +10,4 @@ autoformat:
 verify:
 	black -l 120 --check ./backend/
 	flake8 --config=.flake8 ./backend/
-	bandit ./backend/
+# 	bandit -r ./backend/
