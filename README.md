@@ -27,7 +27,7 @@ If you would like to suggest new functionality, open an Issue and mark it as a _
 └── README.md
 ```
 
-[Class diagram](Class diagram.png)
+[Class diagram](./Class diagram.png)
 
 ## Built With
 
