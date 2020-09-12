@@ -154,7 +154,12 @@ class Volunteer(User):
     april1 = BooleanField(default=False)
 
 
-class Beneficiary(User):
+class Beneficiary(Document):
+    first_name = StringField(max_length=500)
+    last_name = StringField(max_length=500)
+    phone = IntField(min_value=16, max_value=120)
+    landline = IntField(min_value=16, max_value=120)
+    created_at = DateTimeField(default=dt.now)
     address = StringField(max_length=500, required=True)
     city = StringField(max_length=500, required=False)
     path_receipt = StringField(max_length=500, required=False)
@@ -242,3 +247,9 @@ class NotificationUser(Document):
 class Cluster(Document):
     volunteer = ReferenceField(Volunteer,required = True)
     created_at = DateTimeField(default=dt.now)
+
+class SpecialCondition(Enum):
+    disability = 0,
+    deaf_mute = 1,
+    blind_weak_seer = 2
+
