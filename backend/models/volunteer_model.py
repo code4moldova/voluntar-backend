@@ -228,3 +228,13 @@ class Notification:
     subject = StringField (max_length=100)
     request = ReferenceField(Request,required = True)
     created_at = DateTimeField(default=dt.now)
+
+class NotificationStatus (Enum):
+    new = 1,
+    seen = 2,
+    delete = 3
+
+class NotificationUser:
+    user = ReferenceField(User,required = True)
+    status = ReferenceField(Notification,required = True)
+    created_at = DateTimeField(default=dt.now)
