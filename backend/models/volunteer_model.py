@@ -208,7 +208,7 @@ class RequestStatus(Document,Enum):
     archived =6
 
 
-class Request:
+class Request(Document):
     beneficiary = ReferenceField(Beneficiary,required = True)
     user = ReferenceField(User,required = True)
     status = ReferenceField(RequestStatus,required = True)
@@ -223,7 +223,7 @@ class NotificationType(Enum):
     new_request = 1,
     canceled_request =2
 
-class Notification:
+class Notification(Document):
     type = ReferenceField(NotificationType,required = True)
     subject = StringField (max_length=100)
     request = ReferenceField(Request,required = True)
@@ -234,7 +234,11 @@ class NotificationStatus (Enum):
     seen = 2,
     delete = 3
 
-class NotificationUser:
+class NotificationUser(Document):
     user = ReferenceField(User,required = True)
     status = ReferenceField(Notification,required = True)
+    created_at = DateTimeField(default=dt.now)
+
+class Cluster(Document):
+    volunteer = ReferenceField(Volunteer,required = True)
     created_at = DateTimeField(default=dt.now)
