@@ -117,7 +117,16 @@ class Operator(User):
     city = StringField(max_length=500, required=False)
 
 
-class Volunteer(User):
+class Volunteer(Document):
+    first_name = StringField(max_length=500, required=True)
+    last_name = StringField(max_length=500, required=True)
+    phone = IntField(min_value=16, max_value=120)
+    email = EmailField(required=True)
+    role = ReferenceField(VolunteerRole)
+    status = ReferenceField(VolunteerStatus)
+    availability_hours_start = IntField(min_value=16, max_value=120)
+    availability_hours_end = IntField(min_value=16, max_value=120)
+    created_at = DateTimeField(default=dt.now)
     address = StringField(max_length=500, required=True)
     city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
@@ -252,4 +261,29 @@ class SpecialCondition(Enum):
     disability = 0,
     deaf_mute = 1,
     blind_weak_seer = 2
+
+class VolunteerRole(Enum):
+    delivery = 0,
+    copilot = 1,
+    packing = 2,
+    supply = 3,
+    operator = 4
+
+class VolunteerStatus(Enum):
+    active = 0,
+    inactive = 1,
+    blacklistc =2
+
+class Zone(Enum):
+    botanica = 0,
+    botanica = 1,
+    buiucani = 2,
+    centru = 3,
+    ciocana = 4,
+    riscani = 5,
+    telecentru = 6,
+    suburbii = 7
+
+
+
 
