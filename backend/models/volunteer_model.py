@@ -218,3 +218,13 @@ class Request:
     has_symptoms = BooleanField (default=False)
     cluster = ReferenceField(Cluster)
     created_at = DateTimeField(default=dt.now)
+
+class NotificationType(Enum):
+    new_request = 1,
+    canceled_request =2
+
+class Notification:
+    type = ReferenceField(NotificationType,required = True)
+    subject = StringField (max_length=100)
+    request = ReferenceField(Request,required = True)
+    created_at = DateTimeField(default=dt.now)
