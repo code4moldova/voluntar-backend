@@ -20,7 +20,7 @@ class Beneficiary_requestAPI(MethodView):
         """create a new user"""
         new_Beneficiary_request = request.json
         # TODO: get authenticated operator and assignee to new Beneficiary_request
-        # new_Beneficiary_request["created_by"] = authenticated_oprator
+        # new_Beneficiary_request["created_by"] = authenticated_operator
         try:
             assert (
                 len(new_Beneficiary_request["password"]) >= MIN_PASSWORD_LEN
