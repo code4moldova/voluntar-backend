@@ -1,9 +1,10 @@
-import dt
+from datetime import datetime
+
 from mongoengine import Document, ReferenceField, DateTimeField
 
-from backend.models import Volunteer
+from models.volunteer_model import Volunteer
 
 
 class Cluster(Document):
     volunteer = ReferenceField(Volunteer, required=True)
-    created_at = DateTimeField(default=dt.now)
+    created_at = DateTimeField(default=datetime.now())

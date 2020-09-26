@@ -1,11 +1,10 @@
-from enum import Enum
+from datetime import datetime
 
-import dt as dt
-from mongoengine import ListField, Document, IntField, StringField, ReferenceField, EmailField, DateTimeField, \
+from mongoengine import ListField, Document, IntField, StringField, ReferenceField, DateTimeField, \
     BooleanField, FloatField
 
-from backend.models.user_model import User
-from backend.models.volunteer_model import Zone
+from models.enums import Zone, SpecialCondition
+from models.user_model import User
 
 
 class Beneficiary(Document):
@@ -13,17 +12,21 @@ class Beneficiary(Document):
     last_name = StringField(max_length=500)
     phone = IntField(min_value=16, max_value=120)
     landline = IntField(min_value=16, max_value=120)
-    created_at = DateTimeField(default=dt.now)
+    age = IntField(min_value=16, max_value=120)
+    zone = StringField(choices=[zone.value for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
-    city = StringField(max_length=500, required=False)
+    special_condition = StringField(choices=[sc.value for sc in SpecialCondition], default="")
+    latitude = FloatField(min_value=0, max_value=50)
+    longitude = FloatField(min_value=0, max_value=50)
+    created_at = DateTimeField(default=datetime.now())
+    created_by = StringField(max_length=500)
+
+    # Will be deleted after frontend changes
     path_receipt = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
     zone_address = StringField(max_length=500, required=True)
-    latitude = FloatField(min_value=0, max_value=50)
-    longitude = FloatField(min_value=0, max_value=50)
     offer = StringField(max_length=500)
-    age = IntField(min_value=16, max_value=120)
-    created_by = StringField(max_length=500)
+    city = StringField(max_length=500, required=False)
     have_money = BooleanField(default=True)
     comments = StringField(max_length=5000)
     questions = StringField(max_length=5000)  # ListField(default=[])
@@ -56,8 +59,3 @@ class Beneficiary(Document):
 
 class Beneficiary_request(User):
     have_money = BooleanField(default=True)
-
-class SpecialCondition(Enum):
-    disability = 0,
-    deaf_mute = 1,
-    blind_weak_seer = 2
