@@ -2,8 +2,17 @@ import os
 from datetime import datetime
 
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
-from mongoengine import ListField, Document, IntField, StringField, ReferenceField, EmailField, DateTimeField, \
-    BooleanField, FloatField
+from mongoengine import (
+    ListField,
+    Document,
+    IntField,
+    StringField,
+    ReferenceField,
+    EmailField,
+    DateTimeField,
+    BooleanField,
+    FloatField,
+)
 
 from config import PassHash
 from models.enums import Role, WeekDay

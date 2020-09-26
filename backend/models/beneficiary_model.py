@@ -1,7 +1,15 @@
 from datetime import datetime
 
-from mongoengine import ListField, Document, IntField, StringField, ReferenceField, DateTimeField, \
-    BooleanField, FloatField
+from mongoengine import (
+    ListField,
+    Document,
+    IntField,
+    StringField,
+    ReferenceField,
+    DateTimeField,
+    BooleanField,
+    FloatField,
+)
 
 from models.enums import Zone, SpecialCondition
 from models.user_model import User

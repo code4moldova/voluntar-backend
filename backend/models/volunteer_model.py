@@ -1,15 +1,6 @@
 from datetime import datetime as dt
 
-from mongoengine import (
-    Document,
-    StringField,
-    IntField,
-    EmailField,
-    BooleanField,
-    ListField,
-    DateTimeField,
-    FloatField
-)
+from mongoengine import Document, StringField, IntField, EmailField, BooleanField, ListField, DateTimeField, FloatField
 
 from models.enums import VolunteerRole, VolunteerStatus, Zone, WeekDay
 
@@ -43,7 +34,7 @@ class Volunteer(Document):
     availability_days = StringField(choices=[weekday.value for weekday in WeekDay])
     status = StringField(choices=[vs for vs in VolunteerStatus])
     created_at = DateTimeField(default=dt.now)
-    created_by = StringField(max_length=500) # After frontend changes should be ReferenceField(User)
+    created_by = StringField(max_length=500)  # After frontend changes should be ReferenceField(User)
 
     # Will be deleted after frontend changes
     city = StringField(max_length=500, required=False)
