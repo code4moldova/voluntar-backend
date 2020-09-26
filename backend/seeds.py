@@ -4,7 +4,7 @@ import click
 from flask.cli import with_appcontext
 
 from endpoints import registerOperator
-from models.volunteer_model import User
+from models import User
 
 
 class SeedUser(NamedTuple):

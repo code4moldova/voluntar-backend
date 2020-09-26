@@ -8,7 +8,9 @@ from flask import jsonify, make_response
 
 from config import PassHash
 from endpoints.geo import calc_distance
-from models import Beneficiary, Operator, Volunteer
+from models import Beneficiary
+from models import Operator
+from models import Volunteer
 from utils import volunteer_utils as vu
 
 log = logging.getLogger("back")

@@ -7,7 +7,8 @@ from mongoengine import Q
 
 from config import MIN_PASSWORD_LEN, PassHash
 from endpoints import volunteer
-from models import Beneficiary, Operator
+from models import Beneficiary
+from models import Operator
 
 log = logging.getLogger("back")
 
