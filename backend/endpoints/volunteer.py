@@ -41,7 +41,6 @@ def register_volunteer(request_json, created_by):
 
         vu.exists_by_email(request_json["email"])
         new_volunteer_data = request_json
-        new_volunteer_data["password"] = PassHash.hash(new_volunteer_data["password"])
         new_volunteer_data["created_by"] = created_by
         new_volunteer = Volunteer(**new_volunteer_data)
         new_volunteer.save()
@@ -181,7 +180,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         if len(filters) > 0:
             flt = {}
             toBool = {"true": True, "false": False}
-            caseS = ["first_name", "last_name"]
+            caseS = ["first_name", "last_name", "phone", "zone", "role"]
             for v, k in filters.items():
                 flt[v + "__iexact" if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k
 
