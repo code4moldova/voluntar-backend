@@ -4,7 +4,7 @@ import logging
 from datetime import datetime, timedelta
 from datetime import datetime as dt
 
-from flask import jsonify, make_response
+from flask import jsonify, make_response, json
 
 from config import PassHash
 from endpoints.geo import calc_distance
@@ -185,11 +185,12 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
                 flt[v + "__iexact" if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k
 
             obj = Volunteer.objects(**flt)
-            volunteers = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+            volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+
             return jsonify({"list": volunteers, "count": obj.count()})
         else:
             obj = Volunteer.objects().order_by("-created_at")
-            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            volunteers = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
