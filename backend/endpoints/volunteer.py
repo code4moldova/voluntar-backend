@@ -179,10 +179,10 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            toBool = {"true": True, "false": False}
-            caseS = ["first_name", "last_name", "phone", "zone", "role"]
+            to_bool = {"true": True, "false": False}
+            case = ["first_name", "last_name", "phone", "zone", "role"]
             for v, k in filters.items():
-                flt[v + "__iexact" if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k
+                flt[v + "__iexact" if v in case else v] = to_bool[k.lower()] if k.lower() in to_bool else k
 
             obj = Volunteer.objects(**flt)
             volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
