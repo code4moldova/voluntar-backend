@@ -68,12 +68,3 @@ class Volunteer(Document):
     sent_photo = BooleanField(default=False)
     aggreed_terms = BooleanField(default=False)
     april1 = BooleanField(default=False)
-
-    def clean_data(self) -> dict:
-        data = self.to_mongo()
-        if "password" in data and data["password"]:
-            del data["password"]
-        if "logins" in data:
-            del data["logins"]
-        data["_id"] = str(data["_id"])
-        return data
