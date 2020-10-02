@@ -11,6 +11,9 @@ from endpoints.geo import calc_distance
 from models import Beneficiary
 from models import Operator
 from models import Volunteer
+
+from mongoengine.queryset.visitor import Q
+
 from utils import volunteer_utils as vu
 
 log = logging.getLogger("back")
@@ -44,7 +47,7 @@ def register_volunteer(request_json, created_by):
         new_volunteer_data["created_by"] = created_by
         new_volunteer = Volunteer(**new_volunteer_data)
         new_volunteer.save()
-        return jsonify({"response": "success", "user": new_volunteer.clean_data()})
+        return jsonify({"response": "success", "user": json.loads(new_volunteer.to_json())})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -179,12 +182,18 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            to_bool = {"true": True, "false": False}
-            case = ["first_name", "last_name", "phone", "zone", "role"]
-            for v, k in filters.items():
-                flt[v + "__iexact" if v in case else v] = to_bool[k.lower()] if k.lower() in to_bool else k
+            db_query = ""
+            case = ["zone", "role"]
 
-            obj = Volunteer.objects(**flt)
+            for key, value in filters.items():
+                if key not in case and key != "query":
+                    return jsonify({"error": key + " key can't be found"}), 400
+                if key in case:
+                    flt[key] = value
+                if key == "query":
+                    db_query = Q(first_name__icontains=value) | Q(last_name__icontains=value) | Q(phone__icontains=value)
+
+            obj = Volunteer.objects(db_query).filter(**flt)
             volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
             return jsonify({"list": volunteers, "count": obj.count()})
