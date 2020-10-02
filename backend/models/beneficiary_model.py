@@ -16,10 +16,10 @@ from models.user_model import User
 
 
 class Beneficiary(Document):
-    first_name = StringField(max_length=500)
-    last_name = StringField(max_length=500)
-    phone = IntField(min_value=16, max_value=120)
-    landline = IntField(min_value=16, max_value=120)
+    first_name = StringField(max_length=500, required=True)
+    last_name = StringField(max_length=500, required=True)
+    phone = IntField(min_value=10000000, max_value=99999999)
+    landline = StringField(max_length=500)
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.value for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
