@@ -24,6 +24,7 @@ class SeedVolunteer(NamedTuple):
     address: str
     role: VolunteerRole
     zone_address: str
+    status: str = "active"
 
 
 @click.command("init-db")
@@ -45,7 +46,9 @@ def seed_db_command():
         SeedVolunteer(first_name="Valerii", last_name="Rever", phone="(373)033000000", zone="Centru",
                       address="str. Stefan cel Mare 23", role='copilot', zone_address="no address"),
         SeedVolunteer(first_name="Ivan", last_name="Cretu", phone="+373 6044332", zone="Riscani",
-                      address="str. Stefan cel Mare 43", role='copilot', zone_address="no address")
+                      address="str. Stefan cel Mare 43", role='copilot', zone_address="no address"),
+        SeedVolunteer(first_name="Serghei", last_name="Breter", phone="3735454554", zone="Centru",
+                      address="str. Stefan cel Mare 43", role='copilot', zone_address="no address", status="inactive")
     ]
 
     for user in users:
@@ -70,7 +73,8 @@ def seed_db_command():
                 "phone": volunteer.phone,
                 "zone": volunteer.zone,
                 "address": volunteer.address,
-                "zone_address": volunteer.zone_address
+                "zone_address": volunteer.zone_address,
+                "status": volunteer.status
             },
             f"{users[0].last_name.lower()}@example.com"
         )
