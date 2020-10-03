@@ -32,7 +32,7 @@ class Volunteer(Document):
     availability_hours_start = IntField(min_value=16, max_value=120)
     availability_hours_end = IntField(min_value=16, max_value=120)
     availability_days = StringField(choices=[weekday.value for weekday in WeekDay])
-    status = StringField(choices=[vs for vs in VolunteerStatus])
+    status = StringField(choices=[vs.value for vs in VolunteerStatus])
     created_at = DateTimeField(default=dt.now)
     created_by = StringField(max_length=500)  # After frontend changes should be ReferenceField(User)
 
