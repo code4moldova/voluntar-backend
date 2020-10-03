@@ -182,18 +182,19 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            db_query = ""
-            case = ["zone", "role"]
+            case = ["zone", "role", "status"]
 
             for key, value in filters.items():
                 if key not in case and key != "query":
                     return jsonify({"error": key + " key can't be found"}), 400
                 if key in case:
                     flt[key] = value
-                if key == "query":
-                    db_query = Q(first_name__icontains=value) | Q(last_name__icontains=value) | Q(phone__icontains=value)
 
-            obj = Volunteer.objects(db_query).filter(**flt)
+            if 'query' in filters.keys():
+                obj = volunteer_keywords_search(filters['query'].split()).filter(**flt)
+            else:
+                obj = Volunteer.objects().filter(**flt)
+
             volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
             return jsonify({"list": volunteers, "count": obj.count()})
@@ -201,6 +202,26 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
             obj = Volunteer.objects().order_by("-created_at")
             volunteers = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, "count": obj.count()})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
+
+def volunteer_keywords_search(search_words_list, search_result=None):
+    try:
+        if len(search_words_list) == 0:
+            return search_result
+
+        search_word = search_words_list[0]
+
+        if search_result is None:
+            search_result = Volunteer.objects(Q(first_name__icontains=search_word) | Q(last_name__icontains=search_word) |
+                                    Q(phone__icontains=search_word))
+        else:
+            search_result = search_result.filter(Q(first_name__icontains=search_word) | Q(last_name__icontains=search_word) |
+                                   Q(phone__icontains=search_word))
+
+        search_words_list.pop(0)
+        return volunteer_keywords_search(search_words_list, search_result)
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
