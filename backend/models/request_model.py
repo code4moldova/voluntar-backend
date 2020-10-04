@@ -11,7 +11,7 @@ from models.user_model import User
 class Request(Document):
     beneficiary = ReferenceField(Beneficiary, required=True)
     user = ReferenceField(User, required=True)
-    status = ReferenceField(RequestStatus, required=True)
+    status = StringField(choices=[rs.value for rs in RequestStatus], default=RequestStatus.new, required=True)
     secret = StringField(max_length=100)
     urgent = BooleanField(default=False)
     comments = StringField(max_length=1000)
