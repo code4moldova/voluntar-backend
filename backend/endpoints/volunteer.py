@@ -12,9 +12,8 @@ from models import Beneficiary
 from models import Operator
 from models import Volunteer
 
-from mongoengine.queryset.visitor import Q
-
 from utils import volunteer_utils as vu
+from utils import search
 
 log = logging.getLogger("back")
 
@@ -192,7 +191,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
 
             if 'query' in filters.keys() and len(filters['query']) > 0:
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = model_keywords_search(Volunteer, query_search_fields, filters['query'].split()).filter(**flt)
+                obj = search.model_keywords_search(Volunteer, query_search_fields, filters['query'].split()).filter(**flt)
             else:
                 obj = Volunteer.objects().filter(**flt)
 
@@ -203,30 +202,6 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
             obj = Volunteer.objects().order_by("-created_at")
             volunteers = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, "count": obj.count()})
-    except Exception as error:
-        return jsonify({"error": str(error)}), 400
-
-
-def model_keywords_search(model, search_fields, search_words_list, search_result=None):
-    try:
-        if len(search_words_list) == 0:
-            return search_result
-
-        db_query = None
-        for field in search_fields:
-            q = Q(**{"%s__istartswith" % field: search_words_list[0]})
-            if db_query:
-                db_query = db_query | q
-            else:
-                db_query = q
-
-        if search_result is None:
-            search_result = model.objects(db_query)
-        else:
-            search_result = search_result.filter(db_query)
-
-        search_words_list.pop(0)
-        return model_keywords_search(model, search_fields, search_words_list, search_result)
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
