@@ -190,7 +190,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
                 if key in case:
                     flt[key] = value
 
-            if 'query' in filters.keys():
+            if 'query' in filters.keys() and len(filters['query']) > 0:
                 obj = volunteer_keywords_search(filters['query'].split()).filter(**flt)
             else:
                 obj = Volunteer.objects().filter(**flt)
