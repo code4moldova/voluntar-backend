@@ -40,7 +40,7 @@ class Volunteer(Document):
     city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
-    zone_address = StringField(max_length=500, required=True)
+    zone_address = StringField(max_length=500)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
     age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     # Availability per day in hours
