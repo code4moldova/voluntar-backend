@@ -214,11 +214,13 @@ def volunteer_keywords_search(search_words_list, search_result=None):
         search_word = search_words_list[0]
 
         if search_result is None:
-            search_result = Volunteer.objects(Q(first_name__icontains=search_word) | Q(last_name__icontains=search_word) |
-                                    Q(phone__icontains=search_word))
+            search_result = Volunteer.objects(
+                Q(first_name__istartswith=search_word) | Q(last_name__istartswith=search_word) |
+                Q(phone__istartswith=search_word))
         else:
-            search_result = search_result.filter(Q(first_name__icontains=search_word) | Q(last_name__icontains=search_word) |
-                                   Q(phone__icontains=search_word))
+            search_result = search_result.filter(
+                Q(first_name__istartswith=search_word) | Q(last_name__istartswith=search_word) |
+                Q(phone__istartswith=search_word))
 
         search_words_list.pop(0)
         return volunteer_keywords_search(search_words_list, search_result)
