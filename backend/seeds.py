@@ -19,10 +19,11 @@ class SeedUser(NamedTuple):
 class SeedVolunteer(NamedTuple):
     first_name: str
     last_name: str
-    phone: str
+
     zone: Zone
     address: str
     role: VolunteerRole
+    phone: str = None
     status: str = "active"
 
 
@@ -40,13 +41,13 @@ def seed_db_command():
     ]
 
     volunteers = [
-        SeedVolunteer(first_name="Serghei", last_name="Volkov", phone="373000000000", zone="Botanica",
+        SeedVolunteer(first_name="Serghei", last_name="Volkov", phone="69000000", zone="Botanica",
                       address="str. Stefan cel Mare 6", role='delivery'),
-        SeedVolunteer(first_name="Valerii", last_name="Rever", phone="(373)033000000", zone="Centru",
+        SeedVolunteer(first_name="Valerii", last_name="Rever", phone="69000001", zone="Centru",
                       address="str. Stefan cel Mare 23", role='copilot'),
-        SeedVolunteer(first_name="Ivan", last_name="Cretu", phone="+373 6044332", zone="Riscani",
+        SeedVolunteer(first_name="Ivan", last_name="Cretu", phone="69000002", zone="Riscani",
                       address="str. Stefan cel Mare 43", role='copilot'),
-        SeedVolunteer(first_name="Serghei", last_name="Breter", phone="3735454554", zone="Centru",
+        SeedVolunteer(first_name="Serghei", last_name="Breter",  zone="Centru",
                       address="str. Stefan cel Mare 43", role='copilot', status="inactive")
     ]
 

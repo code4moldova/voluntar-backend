@@ -22,7 +22,7 @@ class Tags(Document):
 class Volunteer(Document):
     first_name = StringField(max_length=500, required=True)
     last_name = StringField(max_length=500, required=True)
-    phone = StringField(max_length=255)
+    phone = StringField(max_length=8, regex=r'\d')
     email = EmailField(required=True)
     zone = StringField(choices=[zone.value for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
