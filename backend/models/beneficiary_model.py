@@ -32,7 +32,7 @@ class Beneficiary(Document):
     # Will be deleted after frontend changes
     path_receipt = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
-    zone_address = StringField(max_length=500, required=True)
+    zone_address = StringField(max_length=500)
     offer = StringField(max_length=500)
     city = StringField(max_length=500, required=False)
     have_money = BooleanField(default=True)
