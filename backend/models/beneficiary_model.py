@@ -18,7 +18,7 @@ from models.user_model import User
 class Beneficiary(Document):
     first_name = StringField(max_length=500)
     last_name = StringField(max_length=500)
-    phone = IntField(min_value=16, max_value=120)
+    phone = StringField(max_length=8, regex=r'\d')
     landline = IntField(min_value=16, max_value=120)
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.value for zone in Zone], required=True)
