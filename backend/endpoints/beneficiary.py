@@ -14,18 +14,12 @@ log = logging.getLogger("back")
 
 
 def registerBeneficiary(requestjson, created_by, fixer_id):
-    """create a new user"""
+    """create a new beneficiary"""
     new_beneficiary = requestjson
     if len(created_by) > 30:
         user = Operator.verify_auth_token(created_by)
         created_by = user.get().clean_data()["email"]
     try:
-        new_beneficiary["password"] = "1112233"
-        new_beneficiary["email"] = "rerre@fdf.ro"
-        assert (
-            len(new_beneficiary["password"]) >= MIN_PASSWORD_LEN
-        ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
-        new_beneficiary["password"] = PassHash.hash(new_beneficiary["password"])
         new_beneficiary["created_by"] = created_by
         new_beneficiary["fixer"] = str(fixer_id)
         comment = Beneficiary(**new_beneficiary)
@@ -43,8 +37,6 @@ def updateBeneficiary(requestjson, beneficiary_id, delete=False):
         for key, value in requestjson.items():
             if key == "_id":
                 continue
-            if key == "password":
-                value = PassHash.hash(value)
             update[f"set__{key}"] = value
     else:
         update["set__is_active"] = False
