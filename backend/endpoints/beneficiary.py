@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime as dt
 
-from flask import jsonify, request
+from flask import jsonify, request, json
 from flask.views import MethodView
 from mongoengine import Q
 
@@ -13,24 +13,17 @@ from models import Operator
 log = logging.getLogger("back")
 
 
-def registerBeneficiary(requestjson, created_by, fixer_id):
+def registerBeneficiary(requestjson, created_by):
     """create a new user"""
     new_beneficiary = requestjson
     if len(created_by) > 30:
         user = Operator.verify_auth_token(created_by)
         created_by = user.get().clean_data()["email"]
     try:
-        new_beneficiary["password"] = "1112233"
-        new_beneficiary["email"] = "rerre@fdf.ro"
-        assert (
-            len(new_beneficiary["password"]) >= MIN_PASSWORD_LEN
-        ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
-        new_beneficiary["password"] = PassHash.hash(new_beneficiary["password"])
         new_beneficiary["created_by"] = created_by
-        new_beneficiary["fixer"] = str(fixer_id)
-        comment = Beneficiary(**new_beneficiary)
-        comment.save()
-        return jsonify({"response": "success", "user": comment.clean_data()})
+        new_beneficiary = Beneficiary(**new_beneficiary)
+        new_beneficiary.save()
+        return jsonify({"response": "success", "user": json.loads(new_beneficiary.to_json())})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 

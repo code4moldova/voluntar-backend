@@ -5,8 +5,10 @@ from flask.cli import with_appcontext
 
 from endpoints import registerOperator
 from endpoints import register_volunteer
+from endpoints import registerBeneficiary
 from models import User
 from models import Volunteer
+from models import Beneficiary
 from models.enums import Zone, VolunteerRole
 
 
@@ -19,7 +21,6 @@ class SeedUser(NamedTuple):
 class SeedVolunteer(NamedTuple):
     first_name: str
     last_name: str
-
     zone: Zone
     address: str
     role: VolunteerRole
@@ -27,12 +28,22 @@ class SeedVolunteer(NamedTuple):
     status: str = "active"
 
 
+class SeedBeneficiary(NamedTuple):
+    first_name: str
+    last_name: str
+    zone: Zone
+    address: str
+    phone: str = None
+    is_active: bool = False
+
+
 @click.command("init-db")
 @with_appcontext
 def seed_db_command():
     """Clear the existing data and create new tables."""
-    User.objects().delete()
-    Volunteer.objects().delete()
+    # User.objects().delete()
+    # Volunteer.objects().delete()
+    click.echo(Beneficiary().objects())
 
     users = [
         SeedUser(first_name="Grigore", last_name="Ureche", roles=["admin"],),
@@ -49,6 +60,17 @@ def seed_db_command():
                       address="str. Stefan cel Mare 43", role='copilot'),
         SeedVolunteer(first_name="Serghei", last_name="Breter",  zone="Centru",
                       address="str. Stefan cel Mare 43", role='copilot', status="inactive")
+    ]
+
+    beneficiaries = [
+        SeedBeneficiary(first_name="Valerii", last_name="Krisp", phone="79000003", zone="Ciocana",
+                      address="str. Stefan cel Mare 55", is_active=True),
+        SeedBeneficiary(first_name="Ghenadii", last_name="Sidorov", phone="79000005", zone="Centru",
+                      address="str. Stefan cel Mare 66", is_active=True),
+        SeedBeneficiary(first_name="Pavel", last_name="Velikov", phone="79000006", zone="Riscani",
+                      address="str. Stefan cel Mare 43"),
+        SeedBeneficiary(first_name="Denis", last_name="Remerer",  zone="Centru",
+                      address="str. Stefan cel Mare 43")
     ]
 
     for user in users:
@@ -78,6 +100,20 @@ def seed_db_command():
             f"{users[0].last_name.lower()}@example.com"
         )
         click.echo(volunteer)
+
+    for beneficiary in beneficiaries:
+        beneficiary = registerBeneficiary(
+            {
+                "first_name": beneficiary.first_name,
+                "last_name": beneficiary.last_name,
+                "phone": beneficiary.phone,
+                "zone": beneficiary.zone,
+                "address": beneficiary.address,
+                "is_active": beneficiary.is_active
+            },
+            f"{users[0].last_name.lower()}@example.com"
+        )
+        click.echo(beneficiary)
 
     click.echo("Initialized the database.")
 
