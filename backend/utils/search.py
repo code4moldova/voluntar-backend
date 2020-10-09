@@ -3,6 +3,26 @@ from flask import jsonify
 
 
 def model_keywords_search(model, search_fields, search_words_list, search_result=None):
+    """ Function searches in provided model database for provided words list in provided search fields.
+
+        Parameters
+        ----------
+        model : model
+            Given model where method will search.
+        search_fields : list
+            Given list of fields of model where method will search.
+        search_words_list : list
+            Given list of words which method will search.
+        search_result : list
+            Optional parameter for recursive method call.
+
+        Returns
+        -------
+        list
+            QuerySet of results of search.
+
+        """
+
     try:
         if len(search_words_list) == 0:
             return search_result
