@@ -160,9 +160,10 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 
 
 # user request
-@app.route("/api/request", methods=["POST"])
-# @auth.login_required
+@app.route("/api/request", methods=["GET"])
+@auth.login_required
 def new_user_request():
+    print("here")
     return create_request(request.json)
 
 
