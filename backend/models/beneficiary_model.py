@@ -22,8 +22,8 @@ class Beneficiary(Document):
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.name for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
-    apartament = StringField(max_length=10)
-    scara = StringField(max_length=10)
+    apartment = StringField(max_length=10)
+    entrance = StringField(max_length=10)
     floor = StringField(max_length=10)
 
     special_condition = StringField(choices=[sc.value for sc in SpecialCondition], required=False)
