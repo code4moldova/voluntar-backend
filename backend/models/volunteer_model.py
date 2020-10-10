@@ -22,9 +22,9 @@ class Tags(Document):
 class Volunteer(Document):
     first_name = StringField(max_length=500, required=True)
     last_name = StringField(max_length=500, required=True)
-    phone = IntField(min_value=10000000, max_value=99999999)
+    phone = StringField(max_length=8, regex=r'\d')
     email = EmailField(required=True)
-    zone = StringField(choices=[zone for zone in Zone], required=True)
+    zone = StringField(choices=[zone.value for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
     age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
@@ -32,7 +32,7 @@ class Volunteer(Document):
     availability_hours_start = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
     availability_hours_end = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
     availability_days = StringField(choices=[weekday.value for weekday in WeekDay])
-    status = StringField(choices=[vs for vs in VolunteerStatus])
+    status = StringField(choices=[vs.value for vs in VolunteerStatus])
     created_at = DateTimeField(default=dt.now)
     created_by = StringField(max_length=500)  # After frontend changes should be ReferenceField(User)
 
@@ -40,7 +40,9 @@ class Volunteer(Document):
     city = StringField(max_length=500, required=False)
     address_old = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
-    zone_address = StringField(max_length=500, required=True)
+    zone_address = StringField(max_length=500)
+    facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
+    age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     # Availability per day in hours
     availability = StringField(
         max_length=500, required=False

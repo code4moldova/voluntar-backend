@@ -135,6 +135,51 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /volunteer/filters/{pages}/{per_page}:
+    get:
+      summary: Returns a list of volunteer according to filter and pagination
+      parameters:
+        - in: path
+          name: pages
+          schema:
+            type: integer
+          description: Number of result pages
+        - in: path
+          name: per_page
+          schema:
+            type: integer
+          description: Number of result per page
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: Search query by First Name/Last Name/Phone
+        - in: query
+          name: zone
+          schema:
+            type: string
+          description: Search filter by zone
+        - in: query
+          name: role
+          schema:
+            type: string
+          description: Search filter by role
+      responses:
+        '200':
+          description: Volunteers founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
   /volunteers/{volunteer_id}:
     get:
       summary: Returns a volunteer for given ID
@@ -436,7 +481,7 @@ components:
           type: string
           format: email
         phone:
-          type: integer
+          type: string
         created_at:
           type: string
           format: date-time

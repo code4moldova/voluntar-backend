@@ -64,7 +64,7 @@ Our collaboration model [is described here](.github/WORKFLOW.md).
 
 ## About Code4MD
 
-Started in 2020, Code for Moldova is a civic tech NGO. We have a community of over 100 volunteers (developers, ux/ui, communications, data scientists, graphic designers, devops, it security and more) who work pro-bono for developing digital solutions to solve social problems. #techforsocialgood. If you want to learn more details about our projects [visit our site](http://www.code4.md) or if you want to talk to one of our staff members, please e-mail us at contact@code4.md.
+Started in 2020, Code for Moldova is a civic tech NGO. We have a community of over 100 volunteers (developers, ux/ui, communications, data scientists, graphic designers, devops, it security and more) who work pro-bono for developing digital solutions to solve social problems. #techforsocialgood. If you want to learn more details about our projects [visit our site](https://www.code4.md) or if you want to talk to one of our staff members, please e-mail us at contact@code4.md.
 
 ## Financial contributions
 
