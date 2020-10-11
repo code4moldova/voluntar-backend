@@ -26,7 +26,7 @@ class Beneficiary(Document):
     entrance = StringField(max_length=10)
     floor = StringField(max_length=10)
 
-    special_condition = StringField(choices=[sc.value for sc in SpecialCondition], required=False)
+    special_condition = StringField(choices=[sc.name for sc in SpecialCondition], required=False)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     black_list = BooleanField(default=False)
