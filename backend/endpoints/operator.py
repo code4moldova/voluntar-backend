@@ -1,9 +1,12 @@
-from flask.views import MethodView
-from flask import jsonify, request, g
-from models import Operator, Beneficiary
-from config import PassHash, MIN_PASSWORD_LEN
 from datetime import datetime as dt
 from datetime import timedelta
+
+from flask import jsonify, request
+from flask.views import MethodView
+
+from config import MIN_PASSWORD_LEN, PassHash
+from models import Beneficiary, Operator
+from utils import search
 
 
 def registerOperator(requestjson, created_by):
@@ -89,22 +92,58 @@ def get_active_operator(days=2):
 
 
 def get_operators_by_filters(filters, pages=0, per_page=10000):
+    """ Searches users in database for the given parameters.
+
+    Parameters
+    ----------
+    filters : dict
+        A dictionary including name of filters as key and their values.
+    pages : int
+        Number of pages what would be returned.
+    per_page : int
+        Number of records returned per page.
+
+    Returns
+    -------
+    Response
+        A JSON response like this:
+
+        {
+            "count": "5",
+            "list": [...]
+        }
+    """
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            for k, v in filters.items():
-                flt[k] = v
-                if "is_active" == k:
-                    flt["is_active"] = True if flt["is_active"] == "1" else False
-            obj = Operator.objects(**flt)
-            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, "count": obj.count()})
+            case = ["is_active", "roles"]
+
+            for key, value in filters.items():
+                if key not in case and key != "query":
+                    return jsonify({"error": key + " key can't be found"}), 400
+                if key in case:
+                    if key == "roles":
+                        flt[key + "__in"] = [value]
+                    elif key == "is_active":
+                        flt[key] = True if value == "true" else False
+                    else:
+                        flt[key] = value
+
+            if 'query' in filters.keys() and len(filters['query']) > 0:
+                query_search_fields = ["first_name", "last_name", "phone"]
+                obj = search.model_keywords_search(Operator, query_search_fields, filters['query'].split()).filter(**flt)
+            else:
+                obj = Operator.objects().filter(**flt)
+
+            users = [user.clean_data() for user in obj.skip(offset).limit(item_per_age)]
+
+            return jsonify({"list": users, "count": obj.count()})
         else:
             obj = Operator.objects(is_active=True)
-            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
-            return jsonify({"list": beneficiaries, "count": obj.count()})
+            users = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": users, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 

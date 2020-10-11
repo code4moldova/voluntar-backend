@@ -1,18 +1,8 @@
 import os
 from datetime import datetime
 
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired
-from mongoengine import (
-    ListField,
-    Document,
-    IntField,
-    StringField,
-    ReferenceField,
-    EmailField,
-    DateTimeField,
-    BooleanField,
-    FloatField,
-)
+from itsdangerous import BadSignature, SignatureExpired, TimedJSONWebSignatureSerializer as Serializer
+from mongoengine import BooleanField, DateTimeField, Document, EmailField, FloatField, IntField, ListField, StringField
 
 from config import PassHash
 from models.enums import Role, WeekDay
@@ -23,7 +13,7 @@ class User(Document):
     last_name = StringField(max_length=50, default="No_Last")
     email = EmailField(required=True)
     password = StringField(required=True, min_length=6)
-    phone = IntField(min_value=10000000, max_value=99999999)
+    phone = StringField(max_length=11, regex=r'\d')
     roles = ListField(StringField(choices=[role.value for role in Role]), default=[])
     availability_hours_start = IntField(min_value=10000000, max_value=99999999)
     availability_hours_end = IntField(min_value=10000000, max_value=99999999)
@@ -34,8 +24,6 @@ class User(Document):
     created_by = StringField(max_length=500)
 
     # Will be deleted after frontend changes
-    # TODO: Each volunteer must have a reference to operator that was created by
-    # created_by = ReferenceField("operator")
     role = ListField(default=[])
     address = StringField(required=True, min_length=4)
     logins = ListField(default=[])
@@ -45,8 +33,6 @@ class User(Document):
         data = self.to_mongo()
         if "password" in data and data["password"]:
             del data["password"]
-        if "logins" in data:
-            del data["logins"]
         data["_id"] = str(data["_id"])
         return data
 
@@ -74,15 +60,6 @@ class User(Document):
             return None  # invalid token
         user = User.objects(id=data["id"])
         return user
-
-    def clean_data(self) -> dict:
-        data = self.to_mongo()
-        if "password" in data and data["password"]:
-            del data["password"]
-        if "logins" in data:
-            del data["logins"]
-        data["_id"] = str(data["_id"])
-        return data
 
     def include_data(self, includelist) -> dict:
         data = self.to_mongo()
