@@ -41,9 +41,9 @@ class SeedBeneficiary(NamedTuple):
 @with_appcontext
 def seed_db_command():
     """Clear the existing data and create new tables."""
-    # User.objects().delete()
-    # Volunteer.objects().delete()
-    click.echo(Beneficiary().objects())
+    User.objects().delete()
+    Volunteer.objects().delete()
+    Beneficiary.objects().delete()
 
     users = [
         SeedUser(first_name="Grigore", last_name="Ureche", roles=["admin"],),
