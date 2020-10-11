@@ -24,7 +24,7 @@ class Volunteer(Document):
     last_name = StringField(max_length=500, required=True)
     phone = IntField(min_value=16, max_value=120)
     email = EmailField(required=True)
-    zone = StringField(choices=[zone for zone in Zone], required=True)
+    zone = StringField(choices=[zone.name for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
     age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
@@ -41,8 +41,6 @@ class Volunteer(Document):
     address_old = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
     zone_address = StringField(max_length=500, required=True)
-    facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
-    age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     # Availability per day in hours
     availability = StringField(
         max_length=500, required=False

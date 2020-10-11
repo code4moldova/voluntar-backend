@@ -14,6 +14,9 @@ class DbTestCase(TestCase):
     def tearDownClass(cls):
         disconnect()
 
+    def setUp(self):
+        self.maxDiff = None
+
 
 @pytest.mark.usefixtures("api_client")
 class ApiTestCase(DbTestCase):

@@ -6,8 +6,15 @@ from tests.factories import BeneficiaryFactory
 class TestBeneficiaryList(DbTestCase):
     def test_run(self):
         users = [
-            BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50,),
-            BeneficiaryFactory(first_name="Grigore", last_name="Ureche", age=119, have_money=False,),
+            BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50, address='B', zone_address='A'),
+            BeneficiaryFactory(
+                first_name="Grigore",
+                last_name="Ureche",
+                age=119,
+                address='B',
+                zone_address='A',
+                have_money=False,
+            ),
         ]
 
         for user in users:
@@ -31,8 +38,8 @@ class TestBeneficiaryList(DbTestCase):
                     "has_disabilities",
                     "black_list",
                 ],
-                ["Neculce", "Ion", 50, 1, 11112222, "B", "A", "1", "", 0, 0, 0, 0],
-                ["Ureche", "Grigore", 119, 0, 11112222, "B", "A", "1", "", 0, 0, 0, 0],
+                ["Neculce", "Ion", 50, 1, "11112222", "B", "A", "1", "", 0, 0, 0, 0],
+                ["Ureche", "Grigore", 119, 0, "11112222", "B", "A", "1", "", 0, 0, 0, 0],
             ],
             rows,
         )
