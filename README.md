@@ -58,6 +58,7 @@ You can login with default admin user. email: ureche@example.com, pass: 123456
 
 
 ## Feedback
+ITs really nice to use and see this at such an open source platform on git hub.GREAT WORK
 
 * Request a new feature on GitHub.
 * Vote for popular feature requests.
