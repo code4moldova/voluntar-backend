@@ -4,14 +4,16 @@ import logging
 from datetime import datetime, timedelta
 from datetime import datetime as dt
 
-from flask import jsonify, make_response
+from flask import jsonify, make_response, json
 
 from config import PassHash
 from endpoints.geo import calc_distance
 from models import Beneficiary
 from models import Operator
 from models import Volunteer
+
 from utils import volunteer_utils as vu
+from utils import search
 
 log = logging.getLogger("back")
 
@@ -41,11 +43,10 @@ def register_volunteer(request_json, created_by):
 
         vu.exists_by_email(request_json["email"])
         new_volunteer_data = request_json
-        new_volunteer_data["password"] = PassHash.hash(new_volunteer_data["password"])
         new_volunteer_data["created_by"] = created_by
         new_volunteer = Volunteer(**new_volunteer_data)
         new_volunteer.save()
-        return jsonify({"response": "success", "user": new_volunteer.clean_data()})
+        return jsonify({"response": "success", "user": json.loads(new_volunteer.to_json())})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -180,17 +181,26 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            toBool = {"true": True, "false": False}
-            caseS = ["first_name", "last_name"]
-            for v, k in filters.items():
-                flt[v + "__iexact" if v in caseS else v] = toBool[k.lower()] if k.lower() in toBool else k
+            case = ["zone", "role", "status"]
 
-            obj = Volunteer.objects(**flt)
-            volunteers = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+            for key, value in filters.items():
+                if key not in case and key != "query":
+                    return jsonify({"error": key + " key can't be found"}), 400
+                if key in case:
+                    flt[key] = value
+
+            if 'query' in filters.keys() and len(filters['query']) > 0:
+                query_search_fields = ["first_name", "last_name", "phone"]
+                obj = search.model_keywords_search(Volunteer, query_search_fields, filters['query'].split()).filter(**flt)
+            else:
+                obj = Volunteer.objects().filter(**flt)
+
+            volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+
             return jsonify({"list": volunteers, "count": obj.count()})
         else:
             obj = Volunteer.objects().order_by("-created_at")
-            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            volunteers = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
