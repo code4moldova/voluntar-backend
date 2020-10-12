@@ -41,14 +41,38 @@ def seed_db_command():
     ]
 
     volunteers = [
-        SeedVolunteer(first_name="Serghei", last_name="Volkov", phone="69000000", zone="Botanica",
-                      address="str. Stefan cel Mare 6", role='delivery'),
-        SeedVolunteer(first_name="Valerii", last_name="Rever", phone="69000001", zone="Centru",
-                      address="str. Stefan cel Mare 23", role='copilot'),
-        SeedVolunteer(first_name="Ivan", last_name="Cretu", phone="69000002", zone="Riscani",
-                      address="str. Stefan cel Mare 43", role='copilot'),
-        SeedVolunteer(first_name="Serghei", last_name="Breter",  zone="Centru",
-                      address="str. Stefan cel Mare 43", role='copilot', status="inactive")
+        SeedVolunteer(
+            first_name="Serghei",
+            last_name="Volkov",
+            phone="69000000",
+            zone="Botanica",
+            address="str. Stefan cel Mare 6",
+            role="delivery",
+        ),
+        SeedVolunteer(
+            first_name="Valerii",
+            last_name="Rever",
+            phone="69000001",
+            zone="Centru",
+            address="str. Stefan cel Mare 23",
+            role="copilot",
+        ),
+        SeedVolunteer(
+            first_name="Ivan",
+            last_name="Cretu",
+            phone="69000002",
+            zone="Riscani",
+            address="str. Stefan cel Mare 43",
+            role="copilot",
+        ),
+        SeedVolunteer(
+            first_name="Serghei",
+            last_name="Breter",
+            zone="Centru",
+            address="str. Stefan cel Mare 43",
+            role="copilot",
+            status="inactive",
+        ),
     ]
 
     for user in users:
@@ -73,9 +97,9 @@ def seed_db_command():
                 "phone": volunteer.phone,
                 "zone": volunteer.zone,
                 "address": volunteer.address,
-                "status": volunteer.status
+                "status": volunteer.status,
             },
-            f"{users[0].last_name.lower()}@example.com"
+            f"{users[0].last_name.lower()}@example.com",
         )
         click.echo(volunteer)
 

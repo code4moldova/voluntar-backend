@@ -15,7 +15,7 @@ def requests_by_filters(filters, page=1, per_page=10):
     count = records.count()
     reqs = []
 
-    for record in records.order_by('-created_at').skip(offset).limit(per_page):
+    for record in records.order_by("-created_at").skip(offset).limit(per_page):
         entry = dict(
             _id=str(record.id),
             status=record.status,
@@ -26,13 +26,13 @@ def requests_by_filters(filters, page=1, per_page=10):
         )
         volunteer = record.cluster and record.cluster.volunteer or None
         if volunteer:
-            entry.update(dict(
-                volunteer=dict(
-                    _id=str(volunteer.id),
-                    first_name=volunteer.first_name,
-                    last_name=volunteer.last_name,
+            entry.update(
+                dict(
+                    volunteer=dict(
+                        _id=str(volunteer.id), first_name=volunteer.first_name, last_name=volunteer.last_name,
+                    )
                 )
-            ))
+            )
 
         reqs.append(entry)
 

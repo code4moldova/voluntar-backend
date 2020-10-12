@@ -38,18 +38,20 @@ class BeneficiaryFactory(factory.Factory):
 class VolunteerFactory(factory.Factory):
     class Meta:
         model = Volunteer
+
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
     phone = 50
     email = factory.Faker("email")
-    zone = 'botanica'
-    address = 'bld. Decebal 45'
-    zone_address = 'trululu'
+    zone = "botanica"
+    address = "bld. Decebal 45"
+    zone_address = "trululu"
 
 
 class ClusterFactory(factory.Factory):
     class Meta:
         model = Cluster
+
     volunteer = factory.SubFactory(VolunteerFactory)
 
 
@@ -59,4 +61,4 @@ class RequestFactory(factory.Factory):
 
     beneficiary = factory.SubFactory(BeneficiaryFactory)
     user = factory.SubFactory(OperatorFactory)
-    status = 'new'
+    status = "new"
