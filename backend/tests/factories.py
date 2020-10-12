@@ -2,7 +2,6 @@ import factory
 
 from models import Beneficiary, Operator, Request, Cluster, Volunteer
 from config import PassHash
-from models.enums import RequestStatus, Zone
 
 
 class OperatorFactory(factory.Factory):
@@ -61,4 +60,6 @@ class RequestFactory(factory.Factory):
 
     beneficiary = factory.SubFactory(BeneficiaryFactory)
     user = factory.SubFactory(OperatorFactory)
+    type = "warm_lunch"
     status = "new"
+    number = factory.Sequence(lambda n: n + 3500)

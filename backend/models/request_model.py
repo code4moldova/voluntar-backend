@@ -1,17 +1,19 @@
 from datetime import datetime
 
-from mongoengine import Document, ReferenceField, DateTimeField, StringField, BooleanField
+from mongoengine import Document, IntField, ReferenceField, DateTimeField, StringField, BooleanField
 
 from models.beneficiary_model import Beneficiary
 from models.cluster_model import Cluster
-from models.enums import RequestStatus
+from models.enums import RequestStatus, RequestType
 from models.user_model import User
 
 
 class Request(Document):
     beneficiary = ReferenceField(Beneficiary, required=True)
     user = ReferenceField(User, required=True)
+    type = StringField(choices=[item.name for item in RequestType], required=True)
     status = StringField(choices=[item.name for item in RequestStatus], required=True)
+    number = IntField()
     secret = StringField(max_length=100)
     urgent = BooleanField(default=False)
     comments = StringField(max_length=1000)
