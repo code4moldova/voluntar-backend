@@ -41,7 +41,7 @@ class VolunteerFactory(factory.Factory):
 
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
-    phone = 50
+    phone = "50"
     email = factory.Faker("email")
     zone = "botanica"
     address = "bld. Decebal 45"
