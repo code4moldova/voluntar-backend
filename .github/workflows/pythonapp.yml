@@ -9,7 +9,7 @@ name: Python application
 #  pull_request:
 #    branches: [ master ]
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
