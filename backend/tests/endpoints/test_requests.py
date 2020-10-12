@@ -38,6 +38,8 @@ class TestRequests(ApiTestCase):
                         "_id": str(req2.id),
                         "status": "in_process",
                         "urgent": False,
+                        "type": "warm_lunch",
+                        "number": req2.number,
                         "comments": None,
                         "has_symptoms": False,
                         "created_at": "Sun, 02 Feb 2020 00:00:00 GMT",
@@ -50,6 +52,8 @@ class TestRequests(ApiTestCase):
                     {
                         "_id": str(req1.id),
                         "status": "new",
+                        "type": "warm_lunch",
+                        "number": req1.number,
                         "urgent": False,
                         "comments": None,
                         "has_symptoms": False,

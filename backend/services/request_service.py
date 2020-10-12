@@ -20,6 +20,8 @@ def requests_by_filters(filters, page=1, per_page=10):
             _id=str(record.id),
             status=record.status,
             urgent=record.urgent,
+            type=record.type,
+            number=record.number,
             comments=record.comments,
             has_symptoms=record.has_symptoms,
             created_at=record.created_at,
