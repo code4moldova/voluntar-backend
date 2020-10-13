@@ -38,6 +38,7 @@ jobs:
       run: |
         make verify
         python -m pytest ./backend/tests
-    - name: Check if seeding db script is ok
-      run: |
-        cd backend && flask init-db
+# Disable for now, it needs mongo db container, tests run with mongo in RAM
+#    - name: Check if seeding db script is ok
+#      run: |
+#        cd backend && flask init-db
