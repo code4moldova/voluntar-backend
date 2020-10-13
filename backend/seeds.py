@@ -2,6 +2,7 @@ from typing import NamedTuple
 
 import click
 from flask.cli import with_appcontext
+from faker import Faker
 
 from endpoints import registerOperator
 from endpoints import register_volunteer
@@ -37,6 +38,7 @@ def seed_db_command():
     Beneficiary.objects().delete()
     Cluster.objects().delete()
     Request.objects().delete()
+    fake = Faker()
 
     users = [
         SeedUser(first_name="Grigore", last_name="Ureche", roles=["admin"],),
@@ -112,29 +114,42 @@ def seed_db_command():
 
     beneficiaries = [
         BeneficiaryFactory(
-            first_name="Jora", last_name="Bricică", age=56,
-            phone="079034", landline="022242424",
+            first_name="Jora",
+            last_name="Bricică",
+            age=56,
+            phone="079034",
+            landline="022242424",
             zone="botanica",
             address="bld Decebal 45",
-            created_at='2020-01-01',
-           ),
-        BeneficiaryFactory(
-            first_name="Nicolae", last_name="Popa", age=66,
-            phone="79700515", landline="022830685",
-            zone="botanica",
-            address="bld Decebal 560",
-            entrance="3", floor="3", apartment="3",
-            special_condition='blind_weak_seer',
-            created_at='2020-01-04',
+            created_at="2020-01-01",
         ),
         BeneficiaryFactory(
-            first_name="Vasile", last_name="Troscot", age=80,
-            phone="37378000", landline="022835600",
+            first_name="Nicolae",
+            last_name="Popa",
+            age=66,
+            phone="79700515",
+            landline="022830685",
+            zone="botanica",
+            address="bld Decebal 560",
+            entrance="3",
+            floor="3",
+            apartment="3",
+            special_condition="blind_weak_seer",
+            created_at="2020-01-04",
+        ),
+        BeneficiaryFactory(
+            first_name="Vasile",
+            last_name="Troscot",
+            age=80,
+            phone="37378000",
+            landline="022835600",
             zone="centru",
             address="str G. Asachi 56",
-            entrance="5", floor="5", apartment="5",
-            special_condition='deaf_mute',
-            created_at='2020-01-08',
+            entrance="5",
+            floor="5",
+            apartment="5",
+            special_condition="deaf_mute",
+            created_at="2020-01-08",
         ),
     ]
     operator = User.objects().first()
@@ -148,12 +163,51 @@ def seed_db_command():
         cluster = ClusterFactory(volunteer=volunteers[idx])
         cluster.save()
 
-        req1 = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01")
-        req1.save()
-        req2 = RequestFactory(
-            beneficiary=beneficiary, user=operator, status="in_process", created_at=f"2020-02-0{idx + 1}", cluster=cluster,
+        req = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph())
+        req.save()
+        req = RequestFactory(
+            beneficiary=beneficiary,
+            user=operator,
+            type="grocery",
+            status="in_process",
+            created_at=f"2020-02-0{idx + 1}",
+            cluster=cluster,
+            comments=fake.paragraph(),
         )
-        req2.save()
+        req.save()
+        # Solved request
+        req = RequestFactory(
+            beneficiary=beneficiary,
+            user=operator,
+            status="solved",
+            created_at=f"2020-03-0{idx + 1}",
+            cluster=cluster,
+            comments=fake.paragraph(),
+        )
+        req.save()
+        # Canceled request
+        req = RequestFactory(
+            beneficiary=beneficiary,
+            user=operator,
+            status="canceled",
+            type="medicine",
+            created_at=f"2020-04-0{idx + 1}",
+            cluster=cluster,
+            comments=fake.paragraph(),
+        )
+        req.save()
+
+        # Archived request
+        req = RequestFactory(
+            beneficiary=beneficiary,
+            user=operator,
+            status="archived",
+            type="medicine",
+            created_at=f"2020-05-0{idx + 1}",
+            cluster=cluster,
+            comments=fake.paragraph(),
+        )
+        req.save()
 
     click.echo("Initialized the database.")
 
