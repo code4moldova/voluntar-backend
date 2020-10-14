@@ -16,14 +16,14 @@ from models.user_model import User
 
 
 class Beneficiary(Document):
-    first_name = StringField(max_length=500, required=True)
-    last_name = StringField(max_length=500, required=True)
-    phone = IntField(min_value=10000000, max_value=99999999)
-    landline = StringField(max_length=500)
+    first_name = StringField(max_length=500)
+    last_name = StringField(max_length=500)
+    phone = StringField(max_length=8, regex=r'\d')
+    landline = IntField(min_value=16, max_value=120)
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.value for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
-    special_condition = StringField(choices=[sc.value for sc in SpecialCondition], default="")
+    special_condition = StringField(choices=[sc.value for sc in SpecialCondition], default=None)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     created_at = DateTimeField(default=datetime.now())
@@ -32,7 +32,7 @@ class Beneficiary(Document):
     # Will be deleted after frontend changes
     path_receipt = StringField(max_length=500, required=False)
     is_active = BooleanField(default=False)
-    zone_address = StringField(max_length=500, required=True)
+    zone_address = StringField(max_length=500)
     offer = StringField(max_length=500)
     city = StringField(max_length=500, required=False)
     have_money = BooleanField(default=True)
@@ -40,7 +40,7 @@ class Beneficiary(Document):
     questions = StringField(max_length=5000)  # ListField(default=[])
     activity_types = ListField(default=[])  # StringField(choise=('Activity0', 'Activity1'), default='Activity0')
     status = StringField(choise=("new", "onProgress", "done", "canceled"), default="new")
-    secret = StringField(max_length=500, required=True)
+    secret = StringField(max_length=500)
     availability_volunteer = FloatField(min_value=0, max_value=24)
     # beneficiary = ReferenceField(Beneficiary)
     volunteer = StringField(max_length=500)
