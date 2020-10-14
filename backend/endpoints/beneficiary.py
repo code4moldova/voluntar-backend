@@ -109,7 +109,7 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
                         return jsonify({"error": "boolean " + key + " accept only true/false values"}), 400
                     else:
                         flt[key] = to_bool[value.lower()]
-                elif key == "zone":
+                elif key == "zone" and value:
                     flt[key] = value
 
             if "query" in filters.keys() and len(filters["query"]) > 0:
