@@ -32,7 +32,6 @@ def registerBeneficiary(requestjson, created_by):
 
 def updateBeneficiary(requestjson, beneficiary_id, delete=False):
     """update a single user by id"""
-    print(beneficiary_id, "---")
     update = {}
     if not delete:
         for key, value in requestjson.items():
@@ -100,12 +99,12 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
         if len(filters) > 0:
             flt = {}
             to_bool = {"true": True, "false": False}
-            case = ["zone", "is_active"]
+            case = ["zone", "is_active", "black_list"]
 
             for key, value in filters.items():
                 if key not in case and key != "query":
                     return jsonify({"error": key + " key can't be found"}), 400
-                elif key == "is_active":
+                elif key in ["is_active", "black_list"]:
                     if value.lower() not in to_bool:
                         return jsonify({"error": "boolean " + key + " accept only true/false values"}), 400
                     else:
