@@ -64,6 +64,11 @@ class Beneficiary(Document):
     scara = StringField(max_length=500)
     plata = StringField(max_length=500)
 
+    def clean_data(self) -> dict:
+        data = self.to_mongo()
+        data["_id"] = str(data["_id"])
+        return data
+
 
 class Beneficiary_request(User):
     have_money = BooleanField(default=True)

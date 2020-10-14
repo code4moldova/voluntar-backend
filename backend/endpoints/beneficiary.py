@@ -25,7 +25,7 @@ def registerBeneficiary(requestjson, created_by):
         new_beneficiary["created_by"] = created_by
         new_beneficiary = Beneficiary(**new_beneficiary)
         new_beneficiary.save()
-        return jsonify({"response": "success", "user": json.loads(new_beneficiary.to_json())})
+        return jsonify({"response": "success", "user": new_beneficiary.clean_data()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -121,12 +121,12 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
             else:
                 obj = Beneficiary.objects().filter(**flt)
 
-            beneficiaries = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+            beneficiaries = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
             return jsonify({"list": beneficiaries, "count": obj.count()})
         else:
             obj = Beneficiary.objects().order_by("-created_at")
-            beneficiaries = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
+            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": beneficiaries, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
