@@ -88,14 +88,26 @@ def seed_db_command():
     ]
 
     beneficiaries = [
-        SeedBeneficiary(first_name="Valerii", last_name="Krisp", phone="79000003", zone="ciocana",
-                      address="str. Stefan cel Mare 55", is_active=True),
-        SeedBeneficiary(first_name="Ghenadii", last_name="Sidorov", phone="79000005", zone="centru",
-                      address="str. Stefan cel Mare 66", is_active=True),
-        SeedBeneficiary(first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani",
-                      address="str. Stefan cel Mare 43"),
-        SeedBeneficiary(first_name="Denis", last_name="Remerer",  zone="centru",
-                      address="str. Stefan cel Mare 43")
+        SeedBeneficiary(
+            first_name="Valerii",
+            last_name="Krisp",
+            phone="79000003",
+            zone="ciocana",
+            address="str. Stefan cel Mare 55",
+            is_active=True,
+        ),
+        SeedBeneficiary(
+            first_name="Ghenadii",
+            last_name="Sidorov",
+            phone="79000005",
+            zone="centru",
+            address="str. Stefan cel Mare 66",
+            is_active=True,
+        ),
+        SeedBeneficiary(
+            first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani", address="str. Stefan cel Mare 43"
+        ),
+        SeedBeneficiary(first_name="Denis", last_name="Remerer", zone="centru", address="str. Stefan cel Mare 43"),
     ]
 
     for user in users:
@@ -137,9 +149,9 @@ def seed_db_command():
                 "phone": beneficiary.phone,
                 "zone": beneficiary.zone,
                 "address": beneficiary.address,
-                "is_active": beneficiary.is_active
+                "is_active": beneficiary.is_active,
             },
-            f"{users[0].last_name.lower()}@example.com"
+            f"{users[0].last_name.lower()}@example.com",
         )
         click.echo(beneficiary)
 
