@@ -376,6 +376,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Request'
+    post:
+      summary: Registers a new request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '201':
+          $ref: '#/components/responses/Successful'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
 
   /requests/{request_id}:
     get:
@@ -393,27 +410,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Request'
-    post:
-      summary: Registers a new request
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Request'
-      responses:
-        '201':
-          description: A request created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Request'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '5XX':
-          $ref: '#/components/responses/ServerError'
     put:
       summary: Updates a request
       requestBody:
@@ -598,9 +594,7 @@ components:
       type: object
       properties:
         beneficiary:
-          $ref: '#/components/schemas/Beneficiary'
-        user:
-          $ref: '#/components/schemas/User'
+          type: integer
         status:
           $ref: '#/components/schemas/RequestsStatus'
         secret:
@@ -612,7 +606,7 @@ components:
         has_symptoms:
           type: boolean
         cluster:
-          $ref: '#/components/schemas/Cluster'
+          type: integer
         created_at:
           type: string
           format: date-time
@@ -786,3 +780,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+    Successful:
+      description: Successfull
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              response:
+                type: string

@@ -1,12 +1,12 @@
 import logging
 from flask import jsonify
 
-from models import Request
+from models import Request, User
 
 log = logging.getLogger("user_request")
 
 
-def create_request(request_json):
+def create_request(request_json, created_by):
     """Creates and persists a new user request into database.
 
     Parameters
@@ -32,7 +32,9 @@ def create_request(request_json):
         If the request wasn't created or saved, and there was raised some exception.
     """
     try:
+        created_by = User.objects.get(email=created_by)
         user_request_data = request_json
+        user_request_data["user"] = created_by
         log.debug(request_json)
         user_request = Request(**user_request_data)
         user_request.save()
