@@ -10,10 +10,12 @@ from endpoints import volunteer
 from models import Beneficiary
 from models import Operator
 
+from utils import search
+
 log = logging.getLogger("back")
 
 
-def registerBeneficiary(requestjson, created_by, fixer_id):
+def registerBeneficiary(requestjson, created_by):
     """create a new beneficiary"""
     new_beneficiary = requestjson
     if len(created_by) > 30:
@@ -21,10 +23,9 @@ def registerBeneficiary(requestjson, created_by, fixer_id):
         created_by = user.get().clean_data()["email"]
     try:
         new_beneficiary["created_by"] = created_by
-        new_beneficiary["fixer"] = str(fixer_id)
-        comment = Beneficiary(**new_beneficiary)
-        comment.save()
-        return jsonify({"response": "success", "user": comment.clean_data()})
+        new_beneficiary = Beneficiary(**new_beneficiary)
+        new_beneficiary.save()
+        return jsonify({"response": "success", "user": new_beneficiary.clean_data()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -99,26 +100,27 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
         if len(filters) > 0:
             flt = {}
             to_bool = {"true": True, "false": False}
-            cases = ["first_name", "last_name"]
-            if "phone_name" in filters.keys():
-                phone_name = filters.get("phone_name")
-                if phone_name.isdigit():
-                    nr = len(phone_name)
-                    phone_name = int(phone_name) % 10000000
-                    phone_name_ = phone_name + 1
-                    # return jsonify({"error": phone_name*10**(8-nr), 'd':phone_name_*10**(8-nr)}), 400
-                    obj = Beneficiary.objects(
-                        phone__gt=phone_name * 10 ** (8 - nr), phone__lt=phone_name_ * 10 ** (8 - nr)
-                    ).order_by("-created_at")
-                else:
-                    obj = Beneficiary.objects(
-                        Q(first_name__istartswith=phone_name) | Q(last_name__istartswith=phone_name)
-                    ).order_by("-created_at")
+            case = ["zone", "is_active"]
+
+            for key, value in filters.items():
+                if key not in case and key != "query":
+                    return jsonify({"error": key + " key can't be found"}), 400
+                elif key == 'is_active':
+                    if value.lower() not in to_bool:
+                        return jsonify({"error": "boolean " + key + " accept only true/false values"}), 400
+                    else:
+                        flt[key] = to_bool[value.lower()]
+                elif key == 'zone':
+                    flt[key] = value
+
+            if 'query' in filters.keys() and len(filters['query']) > 0:
+                query_search_fields = ["first_name", "last_name", "phone"]
+                obj = search.model_keywords_search(Beneficiary, query_search_fields, filters['query'].split()).filter(**flt)
             else:
-                for k, v in filters.items():
-                    flt[k + "__iexact" if k in cases else k] = to_bool[v.lower()] if v.lower() in to_bool else v
-                obj = Beneficiary.objects(**flt).order_by("-created_at")
-            beneficiaries = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+                obj = Beneficiary.objects().filter(**flt)
+
+            beneficiaries = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+
             return jsonify({"list": beneficiaries, "count": obj.count()})
         else:
             obj = Beneficiary.objects().order_by("-created_at")

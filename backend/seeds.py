@@ -4,10 +4,8 @@ import click
 from flask.cli import with_appcontext
 from faker import Faker
 
-from endpoints import registerOperator
-from endpoints import register_volunteer
+from endpoints import registerOperator, register_volunteer, registerBeneficiary
 from models import Beneficiary, Cluster, Request, User, Volunteer
-
 from models.enums import Zone, VolunteerRole
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory
 
@@ -21,12 +19,20 @@ class SeedUser(NamedTuple):
 class SeedVolunteer(NamedTuple):
     first_name: str
     last_name: str
-
     zone: Zone
     address: str
     role: VolunteerRole
     phone: str = None
     status: str = "active"
+
+
+class SeedBeneficiary(NamedTuple):
+    first_name: str
+    last_name: str
+    zone: Zone
+    address: str
+    phone: str = None
+    is_active: bool = False
 
 
 @click.command("init-db")
@@ -81,6 +87,17 @@ def seed_db_command():
         ),
     ]
 
+    beneficiaries = [
+        SeedBeneficiary(first_name="Valerii", last_name="Krisp", phone="79000003", zone="Ciocana",
+                      address="str. Stefan cel Mare 55", is_active=True),
+        SeedBeneficiary(first_name="Ghenadii", last_name="Sidorov", phone="79000005", zone="Centru",
+                      address="str. Stefan cel Mare 66", is_active=True),
+        SeedBeneficiary(first_name="Pavel", last_name="Velikov", phone="79000006", zone="Riscani",
+                      address="str. Stefan cel Mare 43"),
+        SeedBeneficiary(first_name="Denis", last_name="Remerer",  zone="Centru",
+                      address="str. Stefan cel Mare 43")
+    ]
+
     for user in users:
         registerOperator(
             {
@@ -112,6 +129,21 @@ def seed_db_command():
         click.echo(volunteer_json)
         volunteers.append(Volunteer.objects(email=email).get())
 
+    for beneficiary in beneficiaries:
+        beneficiary = registerBeneficiary(
+            {
+                "first_name": beneficiary.first_name,
+                "last_name": beneficiary.last_name,
+                "phone": beneficiary.phone,
+                "zone": beneficiary.zone,
+                "address": beneficiary.address,
+                "is_active": beneficiary.is_active
+            },
+            f"{users[0].last_name.lower()}@example.com"
+        )
+        click.echo(beneficiary)
+
+    # More beneficiaries ;-)
     beneficiaries = [
         BeneficiaryFactory(
             first_name="Jora",

@@ -29,8 +29,8 @@ class Volunteer(Document):
     age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
     role = StringField(choices=[vr.value for vr in VolunteerRole])
-    availability_hours_start = IntField(min_value=16, max_value=120)
-    availability_hours_end = IntField(min_value=16, max_value=120)
+    availability_hours_start = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
+    availability_hours_end = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
     availability_days = StringField(choices=[weekday.value for weekday in WeekDay])
     status = StringField(choices=[vs.value for vs in VolunteerStatus])
     created_at = DateTimeField(default=dt.now)
@@ -66,3 +66,8 @@ class Volunteer(Document):
     sent_photo = BooleanField(default=False)
     aggreed_terms = BooleanField(default=False)
     april1 = BooleanField(default=False)
+
+    def clean_data(self) -> dict:
+        data = self.to_mongo()
+        data["_id"] = str(data["_id"])
+        return data
