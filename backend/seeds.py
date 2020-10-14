@@ -88,13 +88,13 @@ def seed_db_command():
     ]
 
     beneficiaries = [
-        SeedBeneficiary(first_name="Valerii", last_name="Krisp", phone="79000003", zone="Ciocana",
+        SeedBeneficiary(first_name="Valerii", last_name="Krisp", phone="79000003", zone="ciocana",
                       address="str. Stefan cel Mare 55", is_active=True),
-        SeedBeneficiary(first_name="Ghenadii", last_name="Sidorov", phone="79000005", zone="Centru",
+        SeedBeneficiary(first_name="Ghenadii", last_name="Sidorov", phone="79000005", zone="centru",
                       address="str. Stefan cel Mare 66", is_active=True),
-        SeedBeneficiary(first_name="Pavel", last_name="Velikov", phone="79000006", zone="Riscani",
+        SeedBeneficiary(first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani",
                       address="str. Stefan cel Mare 43"),
-        SeedBeneficiary(first_name="Denis", last_name="Remerer",  zone="Centru",
+        SeedBeneficiary(first_name="Denis", last_name="Remerer",  zone="centru",
                       address="str. Stefan cel Mare 43")
     ]
 

@@ -18,7 +18,7 @@ class Beneficiary(Document):
     first_name = StringField(max_length=500)
     last_name = StringField(max_length=500)
     phone = StringField(max_length=8, regex=r'\d')
-    landline = StringField(max_length=8, regex=r'\d')
+    landline = StringField(max_length=9, regex=r'\d')
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.name for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
