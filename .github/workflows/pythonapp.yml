@@ -9,7 +9,7 @@ name: Python application
 #  pull_request:
 #    branches: [ master ]
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -38,3 +38,7 @@ jobs:
       run: |
         make verify
         python -m pytest ./backend/tests
+# Disable for now, it needs mongo db container, tests run with mongo in RAM
+#    - name: Check if seeding db script is ok
+#      run: |
+#        cd backend && flask init-db

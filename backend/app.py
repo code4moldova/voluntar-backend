@@ -22,7 +22,8 @@ from endpoints import (
     updateOperator,
     updateVolunteer,
     verifyUser,
-    create_request
+    create_request,
+    getTags,
 )
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
@@ -127,12 +128,19 @@ def get_operator_by_filters(pages=15, per_page=10):
     return get_operators_by_filters(request.args, pages, per_page)
 
 
+# tag
+@app.route("/api/tag", methods=["GET"])
+@app.route("/api/tag/<select>", methods=["GET"])
+@auth.login_required
+def get_tag(select="all"):
+    return getTags(request.args.get("id"), select)
+
+
 # beneficiari
 @app.route("/api/beneficiary", methods=["POST"])
 @auth.login_required
 def new_beneficiary():
-    fixer_id = get_active_operator()
-    return registerBeneficiary(request.json, auth.username(), fixer_id)
+    return registerBeneficiary(request.json, auth.username())
 
 
 @app.route("/api/beneficiary", methods=["GET"])
