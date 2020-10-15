@@ -97,7 +97,7 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
         if len(filters) > 0:
             flt = {}
             to_bool = {"true": True, "false": False}
-            case = ["zone", "is_active", "black_list"]
+            case = ["zone", "is_active", "black_list", "status"]
 
             for key, value in filters.items():
                 if key not in case and key != "query":
