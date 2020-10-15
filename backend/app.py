@@ -129,8 +129,7 @@ def get_operator_by_filters(pages=15, per_page=10):
 @app.route("/api/beneficiary", methods=["POST"])
 @auth.login_required
 def new_beneficiary():
-    fixer_id = get_active_operator()
-    return registerBeneficiary(request.json, auth.username(), fixer_id)
+    return registerBeneficiary(request.json, auth.username())
 
 
 @app.route("/api/beneficiary", methods=["GET"])

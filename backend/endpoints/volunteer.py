@@ -189,9 +189,11 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
                 if key in case:
                     flt[key] = value
 
-            if 'query' in filters.keys() and len(filters['query']) > 0:
+            if "query" in filters.keys() and len(filters["query"]) > 0:
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = search.model_keywords_search(Volunteer, query_search_fields, filters['query'].split()).filter(**flt)
+                obj = search.model_keywords_search(Volunteer, query_search_fields, filters["query"].split()).filter(
+                    **flt
+                )
             else:
                 obj = Volunteer.objects().filter(**flt)
 
