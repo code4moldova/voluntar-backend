@@ -125,12 +125,14 @@ def delete_operator():
 def get_operator_by_filters(pages=15, per_page=10):
     return get_operators_by_filters(request.args, pages, per_page)
 
-#tag
-@app.route('/api/tag', methods = ['GET'])
-@app.route('/api/tag/<select>', methods=['GET'])
+
+# tag
+@app.route("/api/tag", methods=["GET"])
+@app.route("/api/tag/<select>", methods=["GET"])
 @auth.login_required
-def get_tag(select='all'):
-    return getTags(request.args.get('id'), select)
+def get_tag(select="all"):
+    return getTags(request.args.get("id"), select)
+
 
 # beneficiari
 @app.route("/api/beneficiary", methods=["POST"])
