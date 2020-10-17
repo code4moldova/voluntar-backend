@@ -34,9 +34,9 @@ def create_request(request_json, created_by):
         created_by = user.get().clean_data()["email"]
     try:
         created_by = Operator.objects.get(email=created_by)
-        beneficiary = Beneficiary.objects.get(id=request_json['beneficiary'])
+        beneficiary = Beneficiary.objects.get(id=request_json["beneficiary"])
         if beneficiary is None:
-          return jsonify({"error": 'beneficiary not found'}), 400
+            return jsonify({"error": "beneficiary not found"}), 400
         user_request_data = request_json
         user_request_data["user"] = created_by
         user_request_data["beneficiary"] = beneficiary
@@ -47,4 +47,3 @@ def create_request(request_json, created_by):
     except Exception as error:
         log.error("Error while creating request {}".format(error))
         return jsonify({"error": str(error)}), 400
-
