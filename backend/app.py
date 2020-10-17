@@ -22,10 +22,12 @@ from endpoints import (
     updateOperator,
     updateVolunteer,
     verifyUser,
+    create_request,
     getTags,
 )
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
+from models import User
 
 auth = HTTPBasicAuth()
 
@@ -164,6 +166,13 @@ def update_beneficiary():
 @auth.login_required
 def get_beneficiary_by_filters(pages=15, per_page=10):
     return get_beneficiaries_by_filters(request.args, pages, per_page)
+
+
+# user request
+@app.route("/api/requests", methods=["POST"])
+@auth.login_required
+def new_user_request():
+    return create_request(request.json, auth.username())
 
 
 # debug part
