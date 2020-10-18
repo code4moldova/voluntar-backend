@@ -9,6 +9,12 @@ def register_notification(request_json):
     ----------
     request_json : dict
         A dictionary representing the notification details.
+        example {
+                  "request": "request_id",
+                  "type": "new_request",
+                  "subject": "string",
+                  "created_at": "2020-09-10T21:31:16.741Z"
+                }
 
     Returns
     -------
