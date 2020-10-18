@@ -178,8 +178,9 @@ def new_user_request():
 
 # notifications
 @app.route("/api/notifications", methods=["POST"])
+@auth.login_required
 def new_notification():
-    return register_notification(request.json)
+    return register_notification(request.json, auth.username())
 
 
 # debug part
