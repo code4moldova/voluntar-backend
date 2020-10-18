@@ -24,6 +24,7 @@ from endpoints import (
     verifyUser,
     create_request,
     getTags,
+    register_notification,
 )
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
@@ -173,6 +174,12 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 @auth.login_required
 def new_user_request():
     return create_request(request.json, auth.username())
+
+
+# notifications
+@app.route("/api/notifications", methods=["POST"])
+def new_notification():
+    return register_notification(request.json)
 
 
 # debug part

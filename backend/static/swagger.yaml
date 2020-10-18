@@ -504,6 +504,29 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /notifications:
+    post:
+      summary: Registers a new notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+      responses:
+        '201':
+          description: Notification object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
 components:
   securitySchemes:
     basicAuth:
