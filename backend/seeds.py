@@ -263,19 +263,12 @@ def seed_db_command():
     for idx, request in enumerate(Request.objects()):
         # New request
         notification = NotificationFactory(
-            request=request,
-            type="new_request",
-            subject=fake.sentence(),
-            created_at=fake.date_this_month(),
+            request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
         )
         notification.save()
-
         # Cancelled request
         notification = NotificationFactory(
-            request=request,
-            type="canceled_request",
-            subject=fake.sentence(),
-            created_at=fake.date_this_month(),
+            request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
         )
         notification.save()
 
