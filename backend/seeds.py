@@ -5,7 +5,7 @@ from flask.cli import with_appcontext
 from faker import Faker
 
 from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
-from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, Request
+from models import Beneficiary, Cluster, Request, User, Volunteer, Notification
 from models.enums import Zone, VolunteerRole, NotificationType
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
