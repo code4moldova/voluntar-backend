@@ -4,7 +4,7 @@ from mongoengine import Document, ReferenceField, DateTimeField, StringField
 
 from models.notification_model import Notification
 from models.user_model import User
-from models.enum import NotificationStatus
+from models.enums import NotificationStatus
 
 
 class NotificationUser(Document):

@@ -183,6 +183,13 @@ def new_notification():
     return register_notification(request.json)
 
 
+# @app.route("/api/notifications/filters", methods=["GET"])
+# @app.route("/api/notifications/filters/<pages>/<per_page>", methods=["GET"])
+# @auth.login_required
+# def get_notification_by_filters(pages=15, per_page=10):
+#     return get_notifications_by_filters(request.args, pages, per_page)
+
+
 # debug part
 @app.route("/api/debug", methods=["GET"])
 def get_user3():
