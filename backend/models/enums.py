@@ -32,6 +32,12 @@ class RequestStatus(Enum):
     archived = "archived"
 
 
+class RequestType(Enum):
+    warm_lunch = "Warm Lunch"
+    grocery = "Grocery"
+    medicine = "Medicine"
+
+
 class VolunteerRole(Enum):
     delivery = "delivery"
     copilot = "copilot"

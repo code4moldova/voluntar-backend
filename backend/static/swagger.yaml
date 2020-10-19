@@ -319,6 +319,51 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /beneficiary/filters/{pages}/{per_page}:
+    get:
+      summary: Returns a list of beneficiary according to filter and pagination
+      parameters:
+        - in: path
+          name: pages
+          schema:
+            type: integer
+          description: Number of result pages
+        - in: path
+          name: per_page
+          schema:
+            type: integer
+          description: Number of result per page
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: Search query by First Name/Last Name/Phone
+        - in: query
+          name: zone
+          schema:
+            type: string
+          description: Search filter by zone
+        - in: query
+          name: is_active
+          schema:
+            type: boolean
+          description: Search for active/inactive beneficiaries
+      responses:
+        '200':
+          description: Beneficiaries founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
   /requests:
     get:
       summary: Returns a list of requests
@@ -331,6 +376,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Request'
+    post:
+      summary: Registers a new request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '201':
+          $ref: '#/components/responses/Successful'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
 
   /requests/{request_id}:
     get:
@@ -348,27 +410,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Request'
-    post:
-      summary: Registers a new request
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Request'
-      responses:
-        '201':
-          description: A request created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Request'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '5XX':
-          $ref: '#/components/responses/ServerError'
     put:
       summary: Updates a request
       requestBody:
@@ -553,9 +594,7 @@ components:
       type: object
       properties:
         beneficiary:
-          $ref: '#/components/schemas/Beneficiary'
-        user:
-          $ref: '#/components/schemas/User'
+          type: integer
         status:
           $ref: '#/components/schemas/RequestsStatus'
         secret:
@@ -567,7 +606,7 @@ components:
         has_symptoms:
           type: boolean
         cluster:
-          $ref: '#/components/schemas/Cluster'
+          type: integer
         created_at:
           type: string
           format: date-time
@@ -741,3 +780,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+    Successful:
+      description: Successfull
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              response:
+                type: string

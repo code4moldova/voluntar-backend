@@ -46,7 +46,7 @@ def register_volunteer(request_json, created_by):
         new_volunteer_data["created_by"] = created_by
         new_volunteer = Volunteer(**new_volunteer_data)
         new_volunteer.save()
-        return jsonify({"response": "success", "user": json.loads(new_volunteer.to_json())})
+        return jsonify({"response": "success", "user": new_volunteer.clean_data()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
 
@@ -189,18 +189,20 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
                 if key in case:
                     flt[key] = value
 
-            if 'query' in filters.keys() and len(filters['query']) > 0:
+            if "query" in filters.keys() and len(filters["query"]) > 0:
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = search.model_keywords_search(Volunteer, query_search_fields, filters['query'].split()).filter(**flt)
+                obj = search.model_keywords_search(Volunteer, query_search_fields, filters["query"].split()).filter(
+                    **flt
+                )
             else:
                 obj = Volunteer.objects().filter(**flt)
 
-            volunteers = [json.loads(v.to_json()) for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
+            volunteers = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
             return jsonify({"list": volunteers, "count": obj.count()})
         else:
             obj = Volunteer.objects().order_by("-created_at")
-            volunteers = [json.loads(v.to_json()) for v in obj.skip(offset).limit(item_per_age)]
+            volunteers = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": volunteers, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
