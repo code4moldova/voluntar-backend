@@ -15,8 +15,8 @@ class User(Document):
     password = StringField(required=True, min_length=6)
     phone = StringField(max_length=11, regex=r"\d")
     roles = ListField(StringField(choices=[role.value for role in Role]), default=[])
-    availability_hours_start = IntField(min_value=10000000, max_value=99999999)
-    availability_hours_end = IntField(min_value=10000000, max_value=99999999)
+    availability_hours_start = IntField(min_value=8, max_value=20)
+    availability_hours_end = IntField(min_value=8, max_value=20)
     availability_days = ListField(StringField(choices=[weekday.value for weekday in WeekDay]), default=[])
     is_active = BooleanField(default=True)  # we don't delete users just deactivating them
     created_at = DateTimeField(default=datetime.now())
