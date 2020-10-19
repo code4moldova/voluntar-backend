@@ -131,9 +131,11 @@ def get_operators_by_filters(filters, pages=0, per_page=10000):
                     else:
                         flt[key] = value
 
-            if 'query' in filters.keys() and len(filters['query']) > 0:
+            if "query" in filters.keys() and len(filters["query"]) > 0:
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = search.model_keywords_search(Operator, query_search_fields, filters['query'].split()).filter(**flt)
+                obj = search.model_keywords_search(Operator, query_search_fields, filters["query"].split()).filter(
+                    **flt
+                )
             else:
                 obj = Operator.objects().filter(**flt)
 
