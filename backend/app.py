@@ -25,6 +25,7 @@ from endpoints import (
     create_request,
     getTags,
     register_notification,
+    get_notifications_by_filters
 )
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
@@ -183,11 +184,11 @@ def new_notification():
     return register_notification(request.json)
 
 
-# @app.route("/api/notifications/filters", methods=["GET"])
-# @app.route("/api/notifications/filters/<pages>/<per_page>", methods=["GET"])
-# @auth.login_required
-# def get_notification_by_filters(pages=15, per_page=10):
-#     return get_notifications_by_filters(request.args, pages, per_page)
+@app.route("/api/notifications/filters", methods=["GET"])
+@app.route("/api/notifications/filters/<pages>/<per_page>", methods=["GET"])
+@auth.login_required
+def get_notification_by_filters(pages=1, per_page=10):
+    return get_notifications_by_filters(request.args, pages, per_page)
 
 
 # debug part

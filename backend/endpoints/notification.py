@@ -1,4 +1,4 @@
-from models import Notification, Request, NotificationUser
+from models import Notification, Request, NotificationUser, User
 from flask import jsonify
 
 
@@ -37,14 +37,26 @@ def register_notification(request_json):
         return jsonify({"error": str(error)}), 400
 
 
-def assign_notification_to_users(notification, users_list, status="new"):
+def get_notifications_by_filters(filters, pages=1, per_page=10):
     try:
-        for user in users_list:
-            assign_notification = NotificationUser(
-                notification=notification,
-                user=user,
-                status=status,
-            )
-            assign_notification.save()
+        item_per_age = int(per_page)
+        offset = (int(pages) - 1) * item_per_age
+        if len(filters) > 0:
+            flt = {}
+            case = ["status", "user"]
+
+            for key, value in filters.items():
+                if key not in case:
+                    return jsonify({"error": key + " key can't be found"}), 400
+                elif key in case and value:
+                    flt[key] = value
+
+            notification_user = NotificationUser.objects(**flt)
+            notifications = [v.notification.clean_data() for v in notification_user.order_by("-created_at").skip(offset).limit(item_per_age)]
+            return jsonify({"list": notifications, "count": notification_user.count()})
+        else:
+            obj = Notification.objects().order_by("-created_at")
+            notifications = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
+            return jsonify({"list": notifications, "count": obj.count()})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
