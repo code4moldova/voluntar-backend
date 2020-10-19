@@ -38,6 +38,25 @@ def register_notification(request_json):
 
 
 def get_notifications_by_filters(filters, pages=1, per_page=10):
+    """Returns notifications according to pagination and filters.
+
+    Parameters
+    ----------
+    filters : list
+        List of search parameters from url query
+
+    pages : int
+        Number pages to show
+
+    per_page : int
+        Number results per page
+
+    Returns
+    -------
+    list
+        JSON with count of results and list of results
+
+    """
     try:
         item_per_age = int(per_page)
         offset = (int(pages) - 1) * item_per_age
