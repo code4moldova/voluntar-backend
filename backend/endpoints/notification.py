@@ -31,7 +31,7 @@ def register_notification(request_json):
             return jsonify({"error": "Request not found"}), 400
         new_notification = Notification(**new_notification_data)
         new_notification.save()
-        # assign_notification_to_users(new_notification, [request.user])
+        NotificationUser.assign_notification_to_users(self=new_notification, status="new")
         return jsonify({"response": "success", "notification": new_notification.clean_data()}), 201
     except Exception as error:
         return jsonify({"error": str(error)}), 400
