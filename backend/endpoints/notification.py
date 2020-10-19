@@ -71,7 +71,10 @@ def get_notifications_by_filters(filters, pages=1, per_page=10):
                     flt[key] = value
 
             notification_user = NotificationUser.objects(**flt)
-            notifications = [v.notification.clean_data() for v in notification_user.order_by("-created_at").skip(offset).limit(item_per_age)]
+            notifications = [
+                v.notification.clean_data()
+                for v in notification_user.order_by("-created_at").skip(offset).limit(item_per_age)
+            ]
             return jsonify({"list": notifications, "count": notification_user.count()})
         else:
             obj = Notification.objects().order_by("-created_at")

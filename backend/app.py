@@ -25,7 +25,7 @@ from endpoints import (
     create_request,
     getTags,
     register_notification,
-    get_notifications_by_filters
+    get_notifications_by_filters,
 )
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application

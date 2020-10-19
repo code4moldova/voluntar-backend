@@ -16,9 +16,5 @@ class NotificationUser(Document):
     def assign_notification_to_users(self, status="new"):
         users = User.objects().filter(is_active=True)
         for user in users:
-            assign_notification = NotificationUser(
-                notification=self,
-                user=user,
-                status=status,
-            )
+            assign_notification = NotificationUser(notification=self, user=user, status=status,)
             assign_notification.save()
