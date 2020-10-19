@@ -13,7 +13,7 @@ class User(Document):
     last_name = StringField(max_length=50, default="No_Last")
     email = EmailField(required=True)
     password = StringField(required=True, min_length=6)
-    phone = StringField(max_length=11, regex=r"\d")
+    phone = StringField(max_length=8, regex=r"\d")
     roles = ListField(StringField(choices=[role.value for role in Role]), default=[])
     availability_hours_start = IntField(min_value=8, max_value=20)
     availability_hours_end = IntField(min_value=8, max_value=20)
