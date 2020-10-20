@@ -32,6 +32,7 @@ class SeedBeneficiary(NamedTuple):
     zone: Zone
     address: str
     phone: str = None
+    landline: str = None
     is_active: bool = False
 
 
@@ -95,6 +96,7 @@ def seed_db_command():
             zone="ciocana",
             address="str. Stefan cel Mare 55",
             is_active=True,
+            landline="22022022"
         ),
         SeedBeneficiary(
             first_name="Ghenadii",
@@ -103,6 +105,7 @@ def seed_db_command():
             zone="centru",
             address="str. Stefan cel Mare 66",
             is_active=True,
+            landline="22024025"
         ),
         SeedBeneficiary(
             first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani", address="str. Stefan cel Mare 43"
@@ -147,6 +150,7 @@ def seed_db_command():
                 "first_name": beneficiary.first_name,
                 "last_name": beneficiary.last_name,
                 "phone": beneficiary.phone,
+                "landline": beneficiary.landline,
                 "zone": beneficiary.zone,
                 "address": beneficiary.address,
                 "is_active": beneficiary.is_active,
