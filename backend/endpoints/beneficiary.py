@@ -115,9 +115,7 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
 
             if len(search_query):
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = search.model_keywords_search(Beneficiary, query_search_fields, search_query.split()).filter(
-                    **flt
-                )
+                obj = search.model_keywords_search(Beneficiary, query_search_fields, search_query.split()).filter(**flt)
             else:
                 obj = Beneficiary.objects().filter(**flt)
 
