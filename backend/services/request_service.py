@@ -15,6 +15,9 @@ def requests_by_filters(filters, page=1, per_page=10):
     if filters.get("status"):
         records = records.filter(status=filters.get("status"))
 
+    if filters.get("type"):
+        records = records.filter(type=filters.get("type"))
+
     if filters.get("id"):
         records = records.filter(id=filters.get("id"))
 
