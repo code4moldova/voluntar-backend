@@ -348,6 +348,21 @@ paths:
           schema:
             type: boolean
           description: Search for active/inactive beneficiaries
+        - in: query
+            name: black_list
+            schema:
+              type: boolean
+            description: Search for black_list beneficiaries
+        - in: query
+            name: phone
+            schema:
+              type: integer
+            description: Search filter by phone
+        - in: query
+            name: landline
+            schema:
+              type: integer
+            description: Search filter by landline
       responses:
         '200':
           description: Beneficiaries founded
