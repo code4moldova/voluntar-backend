@@ -108,7 +108,11 @@ def seed_db_command():
                 is_active=True,
             ),
             SeedBeneficiary(
-                first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani", address="str. Stefan cel Mare 43"
+                first_name="Pavel",
+                last_name="Velikov",
+                phone="79000006",
+                zone="riscani",
+                address="str. Stefan cel Mare 43",
             ),
             SeedBeneficiary(first_name="Denis", last_name="Remerer", zone="centru", address="str. Stefan cel Mare 43"),
         ]
@@ -210,7 +214,9 @@ def seed_db_command():
             cluster = ClusterFactory(volunteer=volunteers[idx])
             cluster.save()
 
-            req = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph())
+            req = RequestFactory(
+                beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph()
+            )
             req.save()
             req = RequestFactory(
                 beneficiary=beneficiary,
@@ -258,10 +264,8 @@ def seed_db_command():
     elif config.FLASK_ENV == "production":
         registerOperator(
             {
-                "first_name": os.environ.get("DEFAULT_USERNAME"),
-                "last_name": user.last_name,
                 "email": f"{os.environ.get('DEFAULT_USERNAME').lower()}@example.com",
-                "password": os.environ.get('DEFAULT_USERNAME'),
+                "password": os.environ.get("DEFAULT_PASSWORD"),
                 "roles": ["admin"],
             },
             "admin",
