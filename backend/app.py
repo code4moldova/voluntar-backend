@@ -27,6 +27,7 @@ from endpoints import (
     register_notification,
     get_notifications_by_filters,
 )
+from endpoints.requests import get_requests_by_id
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 from models import User
@@ -168,6 +169,12 @@ def update_beneficiary():
 @auth.login_required
 def get_beneficiary_by_filters(pages=15, per_page=10):
     return get_beneficiaries_by_filters(request.args, pages, per_page)
+
+
+@app.route("/api/requests/<request_id>", methods=["GET"])
+@auth.login_required
+def get_requests(request_id):
+    return get_requests_by_id(request_id)
 
 
 # user request
