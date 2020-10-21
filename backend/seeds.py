@@ -7,9 +7,9 @@ from flask.cli import with_appcontext
 
 import config
 from endpoints import register_volunteer, registerBeneficiary, registerOperator
-from models import Beneficiary, Cluster, Request, User, Volunteer
+from models import Beneficiary, Cluster, Notification, NotificationUser, Request, User, Volunteer
 from models.enums import VolunteerRole, Zone
-from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory
+from tests.factories import BeneficiaryFactory, ClusterFactory, NotificationFactory, RequestFactory
 
 
 class SeedUser(NamedTuple):
@@ -40,6 +40,7 @@ class SeedBeneficiary(NamedTuple):
 @click.command("init-db")
 @with_appcontext
 def seed_db_command():
+
     if config.FLASK_ENV == "development":
         """Clear the existing data and create new tables."""
         User.objects().delete()
@@ -47,6 +48,8 @@ def seed_db_command():
         Beneficiary.objects().delete()
         Cluster.objects().delete()
         Request.objects().delete()
+        Notification.objects().delete()
+        NotificationUser.objects().delete()
         fake = Faker()
 
         users = [
@@ -270,6 +273,23 @@ def seed_db_command():
             },
             "admin",
         )
+
+    for idx, request in enumerate(Request.objects()):
+        # New request
+        notification = NotificationFactory(
+            request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign new notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="new")
+
+        # Cancelled request
+        notification = NotificationFactory(
+            request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign seen notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="seen")
 
     click.echo("Initialized the database.")
 
