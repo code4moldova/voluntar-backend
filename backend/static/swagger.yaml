@@ -581,6 +581,69 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /notifications:
+    post:
+      summary: Registers a new notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+      responses:
+        '201':
+          description: Notification object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /notifications/filters/{pages}/{per_page}:
+    get:
+      summary: Returns a list of notifications according to filter and pagination
+      parameters:
+        - in: path
+          name: pages
+          schema:
+            type: integer
+          description: Number of result pages
+        - in: path
+          name: per_page
+          schema:
+            type: integer
+          description: Number of result per page
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Search notification by status
+        - in: query
+          name: user
+          schema:
+            type: string
+          description: Search filter by user
+      responses:
+        '200':
+          description: Notifications found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
 components:
   securitySchemes:
     basicAuth:

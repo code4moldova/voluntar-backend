@@ -4,10 +4,10 @@ import click
 from flask.cli import with_appcontext
 from faker import Faker
 
-from endpoints import registerOperator, register_volunteer, registerBeneficiary
-from models import Beneficiary, Cluster, Request, User, Volunteer
-from models.enums import Zone, VolunteerRole
-from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory
+from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
+from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser
+from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
+from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
 
 class SeedUser(NamedTuple):
@@ -44,6 +44,8 @@ def seed_db_command():
     Beneficiary.objects().delete()
     Cluster.objects().delete()
     Request.objects().delete()
+    Notification.objects().delete()
+    NotificationUser.objects().delete()
     fake = Faker()
 
     users = [
@@ -252,6 +254,23 @@ def seed_db_command():
             comments=fake.paragraph(),
         )
         req.save()
+
+    for idx, request in enumerate(Request.objects()):
+        # New request
+        notification = NotificationFactory(
+            request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign new notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="new")
+
+        # Cancelled request
+        notification = NotificationFactory(
+            request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign seen notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="seen")
 
     click.echo("Initialized the database.")
 
