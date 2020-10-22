@@ -26,6 +26,7 @@ from endpoints import (
     getTags,
     register_notification,
     get_notifications_by_filters,
+    register_cluster,
 )
 from endpoints.requests import get_requests_by_id
 from endpoints.volunteer import volunteer_build_csv
@@ -196,6 +197,13 @@ def new_notification():
 @auth.login_required
 def get_notification_by_filters(pages=1, per_page=10):
     return get_notifications_by_filters(request.args, pages, per_page)
+
+
+# clusters
+@app.route("/api/clusters", methods=["POST"])
+@auth.login_required
+def new_cluster():
+    return register_cluster(request.json)
 
 
 # debug part
