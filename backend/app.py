@@ -24,7 +24,10 @@ from endpoints import (
     verifyUser,
     create_request,
     getTags,
+    register_notification,
+    get_notifications_by_filters,
 )
+from endpoints.requests import get_requests_by_id
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 from models import User
@@ -168,11 +171,31 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
     return get_beneficiaries_by_filters(request.args, pages, per_page)
 
 
+@app.route("/api/requests/<request_id>", methods=["GET"])
+@auth.login_required
+def get_requests(request_id):
+    return get_requests_by_id(request_id)
+
+
 # user request
 @app.route("/api/requests", methods=["POST"])
 @auth.login_required
 def new_user_request():
     return create_request(request.json, auth.username())
+
+
+# notifications
+@app.route("/api/notifications", methods=["POST"])
+@auth.login_required
+def new_notification():
+    return register_notification(request.json)
+
+
+@app.route("/api/notifications/filters", methods=["GET"])
+@app.route("/api/notifications/filters/<pages>/<per_page>", methods=["GET"])
+@auth.login_required
+def get_notification_by_filters(pages=1, per_page=10):
+    return get_notifications_by_filters(request.args, pages, per_page)
 
 
 # debug part

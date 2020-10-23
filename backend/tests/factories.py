@@ -1,6 +1,6 @@
 import factory
 
-from models import Beneficiary, Operator, Request, Cluster, Volunteer
+from models import Beneficiary, Operator, Request, Cluster, Volunteer, Notification
 from config import PassHash
 
 
@@ -63,3 +63,12 @@ class RequestFactory(factory.Factory):
     type = "warm_lunch"
     status = "new"
     number = factory.Sequence(lambda n: n + 3500)
+
+
+class NotificationFactory(factory.Factory):
+    class Meta:
+        model = Notification
+
+    request = factory.SubFactory(RequestFactory)
+    type = "new_request"
+    subject = factory.Faker("subject")

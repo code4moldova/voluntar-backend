@@ -20,3 +20,11 @@ class Request(Document):
     has_symptoms = BooleanField(default=False)
     cluster = ReferenceField(Cluster)
     created_at = DateTimeField(default=datetime.now())
+
+    def clean_data(self) -> dict:
+        data = self.to_mongo()
+        data["_id"] = str(data["_id"])
+        data["beneficiary"] = str(data["beneficiary"])
+        data["user"] = str(data["user"])
+
+        return data

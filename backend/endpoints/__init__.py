@@ -13,3 +13,4 @@ from .parser import parseFile
 from .tags import getTags, registerTag, updateTag
 from .volunteer import get_volunteers_by_filters, getVolunteers, register_volunteer, sort_closest, updateVolunteer
 from .user_request import create_request
+from .notification import register_notification, get_notifications_by_filters

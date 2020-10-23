@@ -12,7 +12,8 @@ servers:
 security:
   - basicAuth: []
 paths:
-  /users:
+  /operator:
+    description: Will be renamed to /user
     get:
       summary: Returns a list of users
       parameters:
@@ -45,7 +46,7 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
-  /users/{user_id}:
+  /operator/{user_id}:
     get:
       summary: Returns a user for given ID
       parameters:
@@ -99,6 +100,82 @@ paths:
       responses:
         '200':
           description: A user updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /operator/filters:
+    get:
+      summary: Returns a list of users for given filter fields. Default size list is 15 pages with 10 items per page.
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: Search query by First Name/Last Name/Phone
+        - in: query
+          name: is_active
+          schema:
+            type: boolean
+          description: Search for active/inactive users
+        - in: query
+          name: roles
+          schema:
+            $ref: '#/components/schemas/Role'
+          description: Search users for roles
+      responses:
+        '200':
+          description: User founded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /operator/filters/{pages}/{per_pages}:
+    get:
+      summary: Returns a list of users for given filter fields, number of pages and number items per page.
+      parameters:
+        - in: path
+          description: Number of pages to return
+          name: pages
+          schema:
+            type: integer
+        - in: path
+          description: Number of items per page to return
+          name: per_page
+          schema:
+            type: integer
+        - in: query
+          name: query
+          schema:
+            type: string
+            description: Search query by First Name/Last Name/Phone
+        - in: query
+          name: is_active
+          schema:
+            type: boolean
+          description: Search for active/inactive users
+        - in: query
+          name: roles
+          schema:
+            $ref: '#/components/schemas/Role'
+          description: Search users for roles
+      responses:
+        '200':
+          description: User founded
           content:
             application/json:
               schema:
@@ -519,6 +596,69 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /notifications:
+    post:
+      summary: Registers a new notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+      responses:
+        '201':
+          description: Notification object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /notifications/filters/{pages}/{per_page}:
+    get:
+      summary: Returns a list of notifications according to filter and pagination
+      parameters:
+        - in: path
+          name: pages
+          schema:
+            type: integer
+          description: Number of result pages
+        - in: path
+          name: per_page
+          schema:
+            type: integer
+          description: Number of result per page
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Search notification by status
+        - in: query
+          name: user
+          schema:
+            type: string
+          description: Search filter by user
+      responses:
+        '200':
+          description: Notifications found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
 components:
   securitySchemes:
     basicAuth:
@@ -586,9 +726,9 @@ components:
           items:
             $ref: '#/components/schemas/Volunteer'
         availability_hours_start:
-          $ref: '#/components/schemas/AvailabilityHour'
+          type: integer
         availability_hours_end:
-          $ref: '#/components/schemas/AvailabilityHour'
+          type: integer
         availability_days:
           type: array
           items:
