@@ -10,3 +10,9 @@ class Cluster(Document):
 
     volunteer = ReferenceField(Volunteer, required=True)
     created_at = DateTimeField(default=datetime.now())
+
+    def clean_data(self) -> dict:
+        data = self.to_mongo()
+        data["_id"] = str(data["_id"])
+        data["volunteer"] = str(data["volunteer"])
+        return data
