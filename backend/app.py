@@ -25,6 +25,7 @@ from endpoints import (
     create_request,
     getTags,
 )
+from endpoints.requests import update_request
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 from models import User
@@ -166,6 +167,12 @@ def update_beneficiary():
 @auth.login_required
 def get_beneficiary_by_filters(pages=15, per_page=10):
     return get_beneficiaries_by_filters(request.args, pages, per_page)
+
+
+@app.route("/api/requests", methods=["PUT"])
+@auth.login_required
+def get_requests():
+    return update_request(request.json["_id"], request.json)
 
 
 # user request
