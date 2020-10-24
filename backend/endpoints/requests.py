@@ -32,4 +32,3 @@ def update_request(request_id, updates):
     except Exception as error:
         log.error("An error occurred on updating Request. {}".format(str(error)))
         return jsonify({"error": str(error)}), 400
-
