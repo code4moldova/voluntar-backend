@@ -126,13 +126,22 @@ def seed_db_command():
             latitude=47.03426001926646,
         ),
         SeedBeneficiary(
-            first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani", address="str. Stefan cel Mare 43",
+            first_name="Pavel",
+            last_name="Velikov",
+            phone="79000006",
+            zone="riscani",
+            address="str. Stefan cel Mare 43",
             longitude=28.845019996559724,
             latitude=47.03426001126646,
         ),
-        SeedBeneficiary(first_name="Denis", last_name="Remerer", zone="centru", address="str. Stefan cel Mare 43",
+        SeedBeneficiary(
+            first_name="Denis",
+            last_name="Remerer",
+            zone="centru",
+            address="str. Stefan cel Mare 43",
             longitude=28.845019996559724,
-            latitude=47.03426007926646,),
+            latitude=47.03426007926646,
+        ),
     ]
 
     for user in users:
