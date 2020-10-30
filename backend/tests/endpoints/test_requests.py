@@ -47,7 +47,7 @@ class TestRequests(ApiTestCase):
                         "created_at": "Sun, 02 Feb 2020 00:00:00 GMT",
                         "volunteer": {
                             "_id": str(req2.cluster.volunteer.id),
-                            "cluster_id": str(req2.cluster.volunteer.id),
+                            "cluster_id": str(req2.cluster.id),
                             "first_name": req2.cluster.volunteer.first_name,
                             "last_name": req2.cluster.volunteer.last_name,
                         },
