@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from models import Beneficiary, Request
+from models import Beneficiary, Request, Cluster
 
 
 def requests_by_filters(filters, page=1, per_page=10):
@@ -11,6 +11,10 @@ def requests_by_filters(filters, page=1, per_page=10):
     if filters.get("b_id"):
         beneficiary = Beneficiary.objects(id=filters.get("b_id")).get()
         records = records.filter(beneficiary=beneficiary)
+
+    if filters.get("cluster_id"):
+        cluster = Cluster.objects(id=filters.get("cluster_id")).get()
+        records = records.filter(cluster=cluster)
 
     if filters.get("status"):
         records = records.filter(status=filters.get("status"))
@@ -40,7 +44,10 @@ def requests_by_filters(filters, page=1, per_page=10):
             entry.update(
                 dict(
                     volunteer=dict(
-                        _id=str(volunteer.id), first_name=volunteer.first_name, last_name=volunteer.last_name,
+                        _id=str(volunteer.id),
+                        first_name=volunteer.first_name,
+                        last_name=volunteer.last_name,
+                        cluster_id=str(record.cluster.id),
                     )
                 )
             )
