@@ -178,12 +178,11 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 def put_requests():
     return update_request(request.json["_id"], request.json)
 
-  
+
 @app.route("/api/requests/<request_id>", methods=["GET"])
 @auth.login_required
 def get_requests(request_id):
     return get_requests_by_id(request_id)
-
 
 
 # user request
