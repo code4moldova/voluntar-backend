@@ -96,25 +96,26 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
+            search_query = {}
             to_bool = {"true": True, "false": False}
-            case = ["zone", "is_active", "black_list", "status"]
+            case = ["query", "zone", "is_active", "black_list", "status", "phone", "landline"]
 
             for key, value in filters.items():
-                if key not in case and key != "query":
+                if key not in case:
                     return jsonify({"error": key + " key can't be found"}), 400
+                elif key == "query" and value:
+                    search_query = value
                 elif key in ["is_active", "black_list"]:
                     if value.lower() not in to_bool:
                         return jsonify({"error": "boolean " + key + " accept only true/false values"}), 400
                     else:
                         flt[key] = to_bool[value.lower()]
-                elif key == "zone" and value:
+                elif value:
                     flt[key] = value
 
-            if "query" in filters.keys() and len(filters["query"]) > 0:
+            if len(search_query):
                 query_search_fields = ["first_name", "last_name", "phone"]
-                obj = search.model_keywords_search(Beneficiary, query_search_fields, filters["query"].split()).filter(
-                    **flt
-                )
+                obj = search.model_keywords_search(Beneficiary, query_search_fields, search_query.split()).filter(**flt)
             else:
                 obj = Beneficiary.objects().filter(**flt)
 

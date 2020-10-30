@@ -4,10 +4,10 @@ import click
 from flask.cli import with_appcontext
 from faker import Faker
 
-from endpoints import registerOperator, register_volunteer, registerBeneficiary
-from models import Beneficiary, Cluster, Request, User, Volunteer
-from models.enums import Zone, VolunteerRole
-from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory
+from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
+from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser
+from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
+from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
 
 class SeedUser(NamedTuple):
@@ -32,6 +32,7 @@ class SeedBeneficiary(NamedTuple):
     zone: Zone
     address: str
     phone: str = None
+    landline: str = None
     is_active: bool = False
 
 
@@ -44,6 +45,8 @@ def seed_db_command():
     Beneficiary.objects().delete()
     Cluster.objects().delete()
     Request.objects().delete()
+    Notification.objects().delete()
+    NotificationUser.objects().delete()
     fake = Faker()
 
     users = [
@@ -95,6 +98,7 @@ def seed_db_command():
             zone="ciocana",
             address="str. Stefan cel Mare 55",
             is_active=True,
+            landline="22022022",
         ),
         SeedBeneficiary(
             first_name="Ghenadii",
@@ -103,6 +107,7 @@ def seed_db_command():
             zone="centru",
             address="str. Stefan cel Mare 66",
             is_active=True,
+            landline="22024025",
         ),
         SeedBeneficiary(
             first_name="Pavel", last_name="Velikov", phone="79000006", zone="riscani", address="str. Stefan cel Mare 43"
@@ -147,6 +152,7 @@ def seed_db_command():
                 "first_name": beneficiary.first_name,
                 "last_name": beneficiary.last_name,
                 "phone": beneficiary.phone,
+                "landline": beneficiary.landline,
                 "zone": beneficiary.zone,
                 "address": beneficiary.address,
                 "is_active": beneficiary.is_active,
@@ -252,6 +258,23 @@ def seed_db_command():
             comments=fake.paragraph(),
         )
         req.save()
+
+    for idx, request in enumerate(Request.objects()):
+        # New request
+        notification = NotificationFactory(
+            request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign new notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="new")
+
+        # Cancelled request
+        notification = NotificationFactory(
+            request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+        )
+        notification.save()
+        # Assign seen notification to user who created Request
+        NotificationUser.assign_notification_to_users(self=notification, status="seen")
 
     click.echo("Initialized the database.")
 
