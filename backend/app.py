@@ -175,7 +175,7 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 
 @app.route("/api/requests", methods=["PUT"])
 @auth.login_required
-def get_requests():
+def put_requests():
     return update_request(request.json["_id"], request.json)
 
   
