@@ -38,6 +38,7 @@ def register_cluster(request_json):
         for request_id in request_list:
             request = Request.objects.get(id=request_id)
             request.cluster = new_cluster
+            request.status = "in_process"
             request.save()
 
         return jsonify({"response": "success", "cluster": new_cluster.clean_data()}), 201
