@@ -263,3 +263,24 @@ def volunteer_build_csv():
     output.headers["Content-type"] = "text/csv"
     output.headers["Content-Disposition"] = "attachment; filename=volunteer.csv"
     return output
+
+def volunteer_import_csv(csv_file, created_by):
+
+    try:        
+        if not vu.is_email(created_by):
+            user = Operator.verify_auth_token(created_by)
+            created_by = user.get().clean_data()["email"]
+
+        with open(csv_file, "r") as f:
+            reader = csv.reader(f, delimiter=",")
+            for i, line in enumerate(reader):
+                log.debug("Relay offer for req:%s from ", line[i])
+                vu.exists_by_email(line[i]["email"])
+                new_volunteer_data = line[i]
+                new_volunteer_data["created_by"] = created_by
+                new_volunteer = Volunteer(**new_volunteer_data)
+                new_volunteer.save()
+                return jsonify({"response": "success", "user": new_volunteer.clean_data()})
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+    
