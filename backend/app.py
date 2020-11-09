@@ -24,6 +24,7 @@ from endpoints import (
     verifyUser,
     create_request,
     getTags,
+    registerTag,
     register_notification,
     get_notifications_by_filters,
     register_cluster,
@@ -139,6 +140,12 @@ def get_operator_by_filters(pages=15, per_page=10):
 @auth.login_required
 def get_tag(select="all"):
     return getTags(request.args.get("id"), select)
+
+
+@app.route("/api/tag", methods=["POST"])
+@auth.login_required
+def newregisterTag():
+    return registerTag(request.json, auth.username())
 
 
 # beneficiari
