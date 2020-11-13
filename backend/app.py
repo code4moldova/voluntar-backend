@@ -11,6 +11,7 @@ from endpoints import (
     get_beneficiaries_by_filters,
     get_operators_by_filters,
     get_volunteers_by_filters,
+    get_requests_by_query_filters,
     getBeneficiary,
     getOperators,
     getVolunteers,
@@ -190,6 +191,12 @@ def put_requests():
 @auth.login_required
 def get_requests(request_id):
     return get_requests_by_id(request_id)
+
+
+@app.route("/api/requests", methods=["GET"])
+@auth.login_required
+def get_requests_by_query():
+    return get_requests_by_query_filters(request.args)
 
 
 # user request
