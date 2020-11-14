@@ -1,10 +1,8 @@
 import logging
-import math
 
 from flask import request, jsonify
 
 from models.request_model import Request
-from models import Beneficiary
 from services.request_service import requests_by_filters
 
 log = logging.getLogger("back")

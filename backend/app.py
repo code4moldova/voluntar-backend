@@ -11,7 +11,6 @@ from endpoints import (
     get_beneficiaries_by_filters,
     get_operators_by_filters,
     get_volunteers_by_filters,
-    get_requests_by_query_filters,
     getBeneficiary,
     getOperators,
     getVolunteers,

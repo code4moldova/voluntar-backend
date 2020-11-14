@@ -26,7 +26,5 @@ class Request(Document):
         data["_id"] = str(data["_id"])
         data["beneficiary"] = str(data["beneficiary"])
         data["user"] = str(data["user"])
-        if "cluster" in data:
-            data["cluster"] = str(data["cluster"])
 
         return data
