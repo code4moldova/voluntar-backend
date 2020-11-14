@@ -54,9 +54,9 @@ def get_requests_by_query_filters(filters):
                 if key not in case:
                     return jsonify({"error": key + " key can't be found"}), 400
                 elif key == "pages":
-                    pages = int(value)
+                    pages = value
                 elif key == "page_size":
-                    page_size = int(value)
+                    page_size = value
                 elif value:
                     flt[key] = value
 
