@@ -425,6 +425,21 @@ paths:
           schema:
             type: boolean
           description: Search for active/inactive beneficiaries
+        - in: query
+          name: black_list
+          schema:
+            type: boolean
+          description: Search for black_list beneficiaries
+        - in: query
+          name: phone
+          schema:
+            type: integer
+          description: Search filter by phone
+        - in: query
+          name: landline
+          schema:
+            type: integer
+          description: Search filter by landline
       responses:
         '200':
           description: Beneficiaries founded
@@ -502,6 +517,76 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Request'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
+  /requests/filters/{pages}/{per_page}:
+    get:
+      summary: Returns a list of requests according to filter and pagination
+      parameters:
+        - in: path
+          name: pages
+          schema:
+            type: integer
+          description: Number of result pages
+        - in: path
+          name: per_page
+          schema:
+            type: integer
+          description: Number of result per page
+        - in: query
+          name: b_id
+          schema:
+            type: string
+          description: Search by beneficiary id
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: Search query by beneficiary First Name/Last Name/Phone
+        - in: query
+          name: zone
+          schema:
+            type: string
+          description: Search filter by beneficiary zone
+        - in: query
+          name: created_at
+          schema:
+            type: string
+          description: Search filter by beneficiary created_at
+        - in: query
+          name: cluster_id
+          schema:
+            type: string
+          description: Search filter by request cluster_id
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Search by request status
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: Search by requests type
+        - in: query
+          name: id
+          schema:
+            type: string
+          description: Search request id
+      responses:
+        '200':
+          description: Beneficiaries founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':

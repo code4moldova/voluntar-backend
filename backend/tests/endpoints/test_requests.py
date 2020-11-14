@@ -10,7 +10,9 @@ class TestRequests(ApiTestCase):
         operator = OperatorFactory()
         operator.save()
 
-        beneficiary = BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50,).save()
+        beneficiary = BeneficiaryFactory(
+            first_name="Ion", last_name="Neculce", age=50, longitude=28.868399974313115, latitude=47.9774200287918,
+        ).save()
         req1 = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01")
         req1.save()
 
@@ -45,8 +47,17 @@ class TestRequests(ApiTestCase):
                         "created_at": "Sun, 02 Feb 2020 00:00:00 GMT",
                         "volunteer": {
                             "_id": str(req2.cluster.volunteer.id),
+                            "cluster_id": str(req2.cluster.id),
                             "first_name": req2.cluster.volunteer.first_name,
                             "last_name": req2.cluster.volunteer.last_name,
+                        },
+                        "beneficiary": {
+                            "_id": str(beneficiary.id),
+                            "first_name": beneficiary.first_name,
+                            "last_name": beneficiary.last_name,
+                            "latitude": beneficiary.latitude,
+                            "longitude": beneficiary.longitude,
+                            "zone": beneficiary.zone,
                         },
                     },
                     {
@@ -58,6 +69,14 @@ class TestRequests(ApiTestCase):
                         "comments": None,
                         "has_symptoms": False,
                         "created_at": "Wed, 01 Jan 2020 00:00:00 GMT",
+                        "beneficiary": {
+                            "_id": str(beneficiary.id),
+                            "first_name": beneficiary.first_name,
+                            "last_name": beneficiary.last_name,
+                            "latitude": beneficiary.latitude,
+                            "longitude": beneficiary.longitude,
+                            "zone": beneficiary.zone,
+                        },
                     },
                 ],
             ),

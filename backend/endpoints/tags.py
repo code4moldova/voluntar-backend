@@ -2,6 +2,32 @@ from flask.views import MethodView
 from flask import jsonify, request, g
 from models import Tags, Operator
 from config import PassHash
+from models.enums import (
+    VolunteerRole,
+    VolunteerStatus,
+    Zone,
+    WeekDay,
+    Role,
+    SpecialCondition,
+    RequestStatus,
+    NotificationType,
+    NotificationStatus,
+    RequestType,
+)
+
+enums_list = dict(
+    sector=Zone,
+    VolunteerStatus=VolunteerStatus,
+    VolunteerRole=VolunteerRole,
+    Role=Role,
+    SpecialCondition=SpecialCondition,
+    RequestStatus=RequestStatus,
+    RequestType=RequestType,
+    NotificationType=NotificationType,
+    NotificationStatus=NotificationStatus,
+    Zone=Zone,
+    WeekDay=WeekDay,
+)
 
 
 def registerTag(requestjson, created_by):
@@ -49,6 +75,21 @@ def getTags(tag_id, select, js=True):
             tags = Tags.objects(id=tag_id).get().clean_data()
             return jsonify(tags)
         elif select != "all":
+            if select in enums_list:
+                return jsonify(
+                    [
+                        {
+                            "_id": i.name,
+                            "created_by": "",
+                            "en": "-",
+                            "is_active": True,
+                            "ro": i.value,
+                            "ru": "",
+                            "select": select,
+                        }
+                        for i in enums_list[select]
+                    ]
+                )
             if js:
                 tags = [v.clean_data() for v in Tags.objects(is_active=True, select=select).all()]
                 return jsonify({"list": tags})
