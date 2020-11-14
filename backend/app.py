@@ -193,12 +193,6 @@ def get_requests(request_id):
     return get_requests_by_id(request_id)
 
 
-@app.route("/api/requests", methods=["GET"])
-@auth.login_required
-def get_requests_by_query():
-    return get_requests_by_query_filters(request.args)
-
-
 # user request
 @app.route("/api/requests", methods=["POST"])
 @auth.login_required
