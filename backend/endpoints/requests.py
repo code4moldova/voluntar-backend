@@ -71,17 +71,9 @@ def get_requests_by_query_filters(filters):
             total_count = request_objects.count()
             page_count = math.ceil(total_count / page_size)
 
-            return jsonify(
-                {
-                    "metadata": {
-                        "page": pages,
-                        "page_size": page_size,
-                        "page_count": page_count,
-                        "total_count": total_count,
-                    },
-                    "records": requests,
-                }
-            )
+            return jsonify({"metadata": {"page": pages, "page_size": page_size, "page_count": page_count,
+                                         "total_count": total_count},
+                            "records": requests})
         else:
             obj = Request.objects()
 
@@ -90,16 +82,7 @@ def get_requests_by_query_filters(filters):
             page_count = math.ceil(total_count / page_size)
 
             requests = [v.clean_data() for v in obj.skip(offset).limit(page_size)]
-            return jsonify(
-                {
-                    "metadata": {
-                        "page": pages,
-                        "page_size": page_size,
-                        "page_count": page_count,
-                        "total_count": total_count,
-                    },
-                    "records": requests,
-                }
-            )
+            return jsonify({"metadata": {"page": pages, "page_size": page_size, "page_count": page_count, "total_count": total_count},
+                            "records": requests})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
