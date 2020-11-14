@@ -48,41 +48,21 @@ def get_requests_by_query_filters(filters):
     try:
         if len(filters) > 0:
             flt = {}
-            case = ["first_name", "last_name", "phone", "zone", "created_at", "pages", "page_size"]
+            case = ["first_name", "last_name", "phone", "zone", "created_at"]
 
             for key, value in filters.items():
                 if key not in case:
                     return jsonify({"error": key + " key can't be found"}), 400
-                elif key == "pages":
-                    pages = value
-                elif key == "page_size":
-                    page_size = value
                 elif value:
                     flt[key] = value
 
-            beneficiaries = Beneficiary.objects().filter(**flt)
+            beneficiaries = [v.clean_data() for v in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
-            request_objects = Request.objects(beneficiary__in=beneficiaries).all()
-
-            offset = (int(pages) - 1) * page_size
-
-            requests = [v.clean_data() for v in request_objects.skip(offset).limit(page_size)]
-
-            total_count = request_objects.count()
-            page_count = math.ceil(total_count / page_size)
-
-            return jsonify({"metadata": {"page": pages, "page_size": page_size, "page_count": page_count,
-                                         "total_count": total_count},
-                            "records": requests})
+            return jsonify({"list": beneficiaries, "count": obj.count()})
         else:
             obj = Request.objects()
-
-            total_count = obj.count()
-            offset = (int(pages) - 1) * page_size
-            page_count = math.ceil(total_count / page_size)
-
-            requests = [v.clean_data() for v in obj.skip(offset).limit(page_size)]
-            return jsonify({"metadata": {"page": pages, "page_size": page_size, "page_count": page_count, "total_count": total_count},
+            requests = [v.clean_data() for v in obj.skip(pages).limit(page_size)]
+            return jsonify({"metadata": {"page": pages, "page_size": page_size, "page_count": "1", "total_count": obj.count()},
                             "records": requests})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
