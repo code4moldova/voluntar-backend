@@ -459,42 +459,6 @@ paths:
   /requests:
     get:
       summary: Returns a list of requests
-      parameters:
-        - in: query
-          name: pages
-          schema:
-            type: integer
-          description: Result page to show
-        - in: query
-          name: page_size
-          schema:
-            type: integer
-          description: Results per page
-        - in: query
-          name: first_name
-          schema:
-            type: string
-          description: Search requests by first name of beneficiary
-        - in: query
-          name: last_name
-          schema:
-            type: string
-          description: Search requests by last name of beneficiary
-        - in: query
-          name: phone
-          schema:
-            type: integer
-          description: Search requests by phone of beneficiary
-        - in: query
-          name: zone
-          schema:
-            type: string
-          description: Search requests by zone of beneficiary
-        - in: query
-          name: created_at
-          schema:
-            type: string
-          description: Search requests by create date of beneficiary
       responses:
         '200':
           description: List of requests founded
