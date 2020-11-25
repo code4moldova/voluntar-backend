@@ -34,6 +34,29 @@ def update_request(request_id, updates):
         return jsonify({"error": str(error)}), 400
 
 
+def update_request_status(request_id, cluster_id, updates):
+    """Updates a request by ID and check that cluster_id is correct.
+
+        Parameters
+        ----------
+        request_id : str
+            A string representing request ID.
+        updates : dict just with properties: status or comment
+            A dictionary including name of fields as key and their values for updating.
+        """
+    try:
+        updates_allowed = {k: updates[k] for k in ["status", "comments"] if k in updates}
+        r = Request.objects(id=request_id)
+        if r and str(r.get().cluster.id) == cluster_id:
+            r.get().update(**updates_allowed)
+            return jsonify({"response": "success"})
+        else:
+            return jsonify({"error": "cluster_id or _id is not correct"}), 400
+    except Exception as error:
+        log.error("An error occurred on updating Request. {}".format(str(error)))
+        return jsonify({"error": str(error)}), 400
+
+
 def get_requests_by_id(request_id):
     try:
         obj = Request.objects(id=request_id).get()
