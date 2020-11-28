@@ -1,9 +1,8 @@
 import requests
-import json
-import urllib
+from flask import jsonify
 from requests.utils import requote_uri
-from flask import jsonify, request, g
-from models import Volunteer, Beneficiary, Operator, Tags
+
+from models import Volunteer, Tags
 
 mp = {
     "Timestamp": "timestamp",
@@ -19,7 +18,6 @@ mp = {
     "Sunt de acord c": "aggreed_terms",
     "e-mail": "email",
     "A fost implIcat": "new_volunteer",
-    "ce ECHIPA este ": "team",
     "Are nevoie cart": "need_sim_unite",
     "A trimis foto p": "sent_photo",
     "Ultima Temperat": "last_temperature",
@@ -131,7 +129,6 @@ def parseRow(row):
     it["sent_photo"] = it["sent_photo"].lower().find("da") >= 0
     it["need_sim_unite"] = it["need_sim_unite"].lower().find("da") >= 0
     it["received_contract"] = it["received_contract"].lower().find("da") >= 0
-    it["team"] = getTagId(it["team"], "-", "team")
     it["age"] = getTagId(it["age"], "-", "age")
     it["offer"] = getTagId(it["offer"], "-", "offer")
     ro, ru = (it["zone_address"].split("/") + ["-"])[:2]

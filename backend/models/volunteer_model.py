@@ -56,7 +56,6 @@ class Volunteer(Document):
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])  # StringField(choise=('Activity0', 'Activity1'), default='Activity0')
-    team = StringField(max_length=500)
     profession = StringField(max_length=500)
     comments = StringField(max_length=5000)
     offer = StringField(max_length=500)
