@@ -129,6 +129,7 @@ def parseRow(row):
     it["sent_photo"] = it["sent_photo"].lower().find("da") >= 0
     it["need_sim_unite"] = it["need_sim_unite"].lower().find("da") >= 0
     it["received_contract"] = it["received_contract"].lower().find("da") >= 0
+    # TODO: refactor, age now is a number
     it["age"] = getTagId(it["age"], "-", "age")
     it["offer"] = getTagId(it["offer"], "-", "offer")
     ro, ru = (it["zone_address"].split("/") + ["-"])[:2]
