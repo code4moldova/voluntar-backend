@@ -27,9 +27,7 @@ from endpoints import (
     register_cluster,
 )
 from endpoints.requests import update_request, update_request_status
-
 from endpoints.requests import get_requests_by_id
-from endpoints.requests import update_request
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 
