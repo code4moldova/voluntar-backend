@@ -86,6 +86,15 @@ def parse_user():
     e = request.args.get("e")
     return parseFile(url, b, e, request.args)
 
+@app.route("/api/import/csv/volunteers", methods=["PUT"])
+@auth.login_required
+def input_csv():
+    try:
+        return volunteer_import_csv()
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
+
+    return jsonify({"response": "success"})
 
 @app.route("/api/import/csv/volunteers", methods=["PUT"])
 @auth.login_required
