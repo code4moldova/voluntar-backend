@@ -1,13 +1,7 @@
 import random
 
-from flask import jsonify, request
-from flask_cors import CORS
-from flask_httpauth import HTTPBasicAuth
-from mongoengine import connect
-
 from config import DB_HOST, DB_NAME, SWAGGER_URL, SWAGGERUI_BLUEPRINT
 from endpoints import (
-    get_active_operator,
     get_beneficiaries_by_filters,
     get_operators_by_filters,
     get_volunteers_by_filters,
@@ -27,11 +21,15 @@ from endpoints import (
     register_notification,
     get_notifications_by_filters,
     register_cluster,
+    volunteer_import_csv
 )
 from endpoints.requests import get_requests_by_id
 from endpoints.volunteer import volunteer_build_csv
+from flask import jsonify, request
+from flask_cors import CORS
+from flask_httpauth import HTTPBasicAuth
+from mongoengine import connect
 from server import create_application
-from models import User
 
 auth = HTTPBasicAuth()
 
@@ -88,6 +86,14 @@ def parse_user():
     e = request.args.get("e")
     return parseFile(url, b, e, request.args)
 
+
+@app.route("/api/import/csv/volunteers", methods=["PUT"])
+@auth.login_required
+def input_csv():
+    try:
+        return volunteer_import_csv(request.json, request.json["_id"])
+    except Exception as error:
+        return jsonify({"error": str(error)}), 400
 
 @app.route("/api/export/csv/volunteers", methods=["GET"])
 @auth.login_required
