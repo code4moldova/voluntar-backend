@@ -26,6 +26,8 @@ from endpoints import (
     get_notifications_by_filters,
     register_cluster,
 )
+from endpoints.requests import update_request, update_request_status
+
 from endpoints.requests import get_requests_by_id
 from endpoints.requests import update_request
 from endpoints.volunteer import volunteer_build_csv
@@ -173,6 +175,11 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 @auth.login_required
 def put_requests():
     return update_request(request.json["_id"], request.json)
+
+
+@app.route("/api/requests/update", methods=["PUT"])
+def put_status_requests():
+    return update_request_status(request.json["_id"], request.json["cluster_id"], request.json)
 
 
 @app.route("/api/requests/<request_id>", methods=["GET"])
