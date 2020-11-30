@@ -31,7 +31,7 @@ class Volunteer(Document):
     email = EmailField(required=True)
     zone = StringField(choices=[zone.name for zone in Zone], required=True)
     address = StringField(max_length=500, required=True)
-    age = StringField(max_length=500, required=False)  # IntField(min_value=16, max_value=50)
+    age = IntField(min_value=16, max_value=50)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
     role = StringField(choices=[vr.value for vr in VolunteerRole])
     availability_hours_start = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
@@ -56,7 +56,6 @@ class Volunteer(Document):
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
     activity_types = ListField(default=[])  # StringField(choise=('Activity0', 'Activity1'), default='Activity0')
-    team = StringField(max_length=500)
     profession = StringField(max_length=500)
     comments = StringField(max_length=5000)
     offer = StringField(max_length=500)
