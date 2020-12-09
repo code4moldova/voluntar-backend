@@ -33,10 +33,10 @@ class Volunteer(Document):
     address = StringField(max_length=500, required=True)
     age = IntField(min_value=16, max_value=50)
     facebook_profile = StringField(max_length=500, required=False)  # URLField(url_regex=FACEBOOK_URL_REGEX)
-    role = StringField(choices=[vr.value for vr in VolunteerRole])
-    availability_hours_start = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
-    availability_hours_end = IntField(min_value=8, max_value=20)  # TODO: Need to discuss the min_value and max_value
-    availability_days = StringField(choices=[weekday.value for weekday in WeekDay])
+    role = ListField(StringField(choices=[vr.value for vr in VolunteerRole]), default=[])
+    availability_hours_start = IntField(min_value=8, max_value=22)
+    availability_hours_end = IntField(min_value=8, max_value=22)
+    availability_days = ListField(StringField(choices=[weekday.name for weekday in WeekDay]), default=[])
     status = StringField(choices=[vs.value for vs in VolunteerStatus])
     created_at = DateTimeField(default=dt.now)
     created_by = StringField(max_length=500)  # After frontend changes should be ReferenceField(User)
