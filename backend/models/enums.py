@@ -36,6 +36,8 @@ class RequestType(Enum):
     warm_lunch = "Warm Lunch"
     grocery = "Grocery"
     medicine = "Medicine"
+    invoices = "Pay invoices"
+    transport = "Transport person"
 
 
 class VolunteerRole(Enum):
