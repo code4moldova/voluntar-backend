@@ -1,5 +1,3 @@
-import random
-
 from flask import jsonify, request
 from flask_cors import CORS
 from flask_httpauth import HTTPBasicAuth
@@ -7,7 +5,6 @@ from mongoengine import connect
 
 from config import DB_HOST, DB_NAME, SWAGGER_URL, SWAGGERUI_BLUEPRINT
 from endpoints import (
-    get_active_operator,
     get_beneficiaries_by_filters,
     get_operators_by_filters,
     get_volunteers_by_filters,
@@ -29,11 +26,10 @@ from endpoints import (
     get_notifications_by_filters,
     register_cluster,
 )
-from endpoints.requests import update_request
+from endpoints.requests import update_request, update_request_status
 from endpoints.requests import get_requests_by_id
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
-from models import User
 
 auth = HTTPBasicAuth()
 
@@ -43,6 +39,7 @@ app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 cors = CORS(app)
 
 connect(db=DB_NAME, host=DB_HOST)
+
 
 # old school
 @auth.verify_password
@@ -98,8 +95,6 @@ def build_csv():
         return volunteer_build_csv()
     except Exception as error:
         return jsonify({"error": str(error)}), 400
-
-    return jsonify({"response": "success"})
 
 
 # operators
@@ -161,12 +156,6 @@ def get_beneficiary():
     return getBeneficiary(request.args)
 
 
-@app.route("/api/secret", methods=["GET"])
-@auth.login_required
-def get_secret():
-    return jsonify({"secret": random.choice("abcdefghijklmnopqrstuvwxyz").upper() + str(random.choice(range(1000)))})
-
-
 @app.route("/api/beneficiary", methods=["PUT"])
 @auth.login_required
 def update_beneficiary():
@@ -184,6 +173,11 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
 @auth.login_required
 def put_requests():
     return update_request(request.json["_id"], request.json)
+
+
+@app.route("/api/requests/update", methods=["PUT"])
+def put_status_requests():
+    return update_request_status(request.json["_id"], request.json["cluster_id"], request.json)
 
 
 @app.route("/api/requests/<request_id>", methods=["GET"])
