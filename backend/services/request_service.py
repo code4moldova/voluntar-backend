@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from models import Beneficiary, Request, Cluster
+from models import Beneficiary, Request, Cluster, Volunteer
 
 from utils import search
 
@@ -11,8 +11,19 @@ def requests_by_filters(filters, page=1, per_page=10):
     records = Request.objects()
 
     if filters.get("b_id"):
-        beneficiary = Beneficiary.objects(id=filters.get("b_id")).get()
-        records = records.filter(beneficiary=beneficiary)
+        beneficiary = Beneficiary.objects(id=filters.get("b_id"))
+        if not beneficiary:
+            return jsonify({"list": [], "count": 0})
+        records = records.filter(beneficiary=beneficiary.get())
+
+    if filters.get("v_id"):
+        volunteer = Volunteer.objects(id=filters.get("v_id"))
+        if not volunteer:
+            return jsonify({"list": [], "count": 0})
+        cluster = Cluster.objects(volunteer=volunteer.get())
+        if not cluster:
+            return jsonify({"list": [], "count": 0})
+        records = records.filter(cluster=cluster.get())
 
     if filters.get("query"):
         query_search_fields = ["first_name", "last_name", "phone"]
@@ -28,8 +39,10 @@ def requests_by_filters(filters, page=1, per_page=10):
         records = records.filter(beneficiary__in=beneficiaries)
 
     if filters.get("cluster_id"):
-        cluster = Cluster.objects(id=filters.get("cluster_id")).get()
-        records = records.filter(cluster=cluster)
+        cluster = Cluster.objects(id=filters.get("cluster_id"))
+        if not cluster:
+            return jsonify({"list": [], "count": 0})
+        records = records.filter(cluster=cluster.get())
 
     if filters.get("status"):
         records = records.filter(status=filters.get("status"))
