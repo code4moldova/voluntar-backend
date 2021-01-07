@@ -16,6 +16,7 @@ phonenumbers = "*"
 bandit = "==1.6.2"
 flake8 = "==3.7.9"
 black = "==19.10b0"
+python-dotenv = "==0.15.0"
 
 [dev-packages]
 pylint = "*"

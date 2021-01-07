@@ -26,25 +26,19 @@ from endpoints import (
     get_notifications_by_filters,
     register_cluster,
 )
-from endpoints.requests import update_request, update_request_status
 from endpoints.requests import get_requests_by_id
+from endpoints.requests import update_request, update_request_status
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 
 auth = HTTPBasicAuth()
 
-app = create_application()
+app = create_application(auth)
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 cors = CORS(app)
 
 connect(db=DB_NAME, host=DB_HOST)
-
-
-# old school
-@auth.verify_password
-def verify_password(username, password):
-    return verifyUser(username, password)
 
 
 # volunteers
