@@ -41,6 +41,11 @@ cors = CORS(app)
 connect(db=DB_NAME, host=DB_HOST)
 
 
+@app.route("/auto-reload-test")
+def auto_reload_test():
+    return "auto_reload_test"
+
+
 # volunteers
 @app.route("/api/volunteer", methods=["POST"])
 @auth.login_required
