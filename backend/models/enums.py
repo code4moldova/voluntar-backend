@@ -8,13 +8,13 @@ class Role(Enum):
 
 
 class WeekDay(Enum):
-    monday = 'monday'
-    tuesday = 'tuesday'
-    wednesday = 'wednesday'
-    thursday = 'thursday'
-    friday = 'friday'
-    saturday = 'saturday'
-    sunday = 'sunday'
+    monday = "monday"
+    tuesday = "tuesday"
+    wednesday = "wednesday"
+    thursday = "thursday"
+    friday = "friday"
+    saturday = "saturday"
+    sunday = "sunday"
 
 
 class SpecialCondition(Enum):
