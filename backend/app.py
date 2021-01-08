@@ -30,6 +30,7 @@ from endpoints.requests import get_requests_by_id
 from endpoints.requests import update_request, update_request_status
 from endpoints.volunteer import volunteer_build_csv
 from server import create_application
+from users import users_blueprint
 
 auth = HTTPBasicAuth()
 
@@ -40,10 +41,8 @@ cors = CORS(app)
 
 connect(db=DB_NAME, host=DB_HOST)
 
-
-@app.route("/auto-reload-test")
-def auto_reload_test():
-    return "auto_reload_test"
+user_bp = users_blueprint(auth)
+app.register_blueprint(user_bp, url_prefix="/api/users")
 
 
 # volunteers
