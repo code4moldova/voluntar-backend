@@ -1,12 +1,13 @@
 from typing import NamedTuple
 
 import click
-from flask.cli import with_appcontext
 from faker import Faker
+from flask.cli import with_appcontext
 
-from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
-from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser
-from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
+from endpoints import registerOperator, register_volunteer, registerBeneficiary
+from models import Beneficiary, Cluster, Request, Volunteer, Notification, NotificationUser
+from users import UserDocument
+from models.enums import Zone, VolunteerRole
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
 
@@ -44,7 +45,7 @@ class SeedBeneficiary(NamedTuple):
 @with_appcontext
 def seed_db_command():
     """Clear the existing data and create new tables."""
-    User.objects().delete()
+    UserDocument.objects().delete()
     Volunteer.objects().delete()
     Beneficiary.objects().delete()
     Cluster.objects().delete()
@@ -241,7 +242,7 @@ def seed_db_command():
             latitude=47.03426007926646,
         ),
     ]
-    operator = User.objects().first()
+    operator = UserDocument.objects().first()
 
     for idx, beneficiary in enumerate(beneficiaries):
         beneficiary.save()

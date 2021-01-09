@@ -1,12 +1,13 @@
 import factory
 
-from models import Beneficiary, Operator, Request, Cluster, Volunteer, Notification
 from config import PassHash
+from models import Beneficiary, Request, Cluster, Volunteer, Notification
+from users import UserDocument
 
 
 class OperatorFactory(factory.Factory):
     class Meta:
-        model = Operator
+        model = UserDocument
 
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")

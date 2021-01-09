@@ -5,12 +5,12 @@ from mongoengine import Document, IntField, ReferenceField, DateTimeField, Strin
 from models.beneficiary_model import Beneficiary
 from models.cluster_model import Cluster
 from models.enums import RequestStatus, RequestType
-from models.user_model import User
+from users import UserDocument
 
 
 class Request(Document):
     beneficiary = ReferenceField(Beneficiary, required=True)
-    user = ReferenceField(User, required=True)
+    user = ReferenceField(UserDocument, required=True)
     type = StringField(choices=[item.name for item in RequestType], required=True)
     status = StringField(choices=[item.name for item in RequestStatus], required=True)
     number = IntField()

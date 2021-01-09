@@ -11,7 +11,7 @@ from mongoengine import (
 )
 
 from models.enums import Zone, SpecialCondition
-from models.user_model import User
+from users import UserDocument
 
 
 class Beneficiary(Document):
@@ -71,5 +71,5 @@ class Beneficiary(Document):
         return data
 
 
-class Beneficiary_request(User):
+class Beneficiary_request(UserDocument):
     have_money = BooleanField(default=True)

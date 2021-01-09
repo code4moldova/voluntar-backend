@@ -6,8 +6,7 @@ from mongoengine import Q
 
 from endpoints import volunteer
 from models import Beneficiary
-from models import Operator
-
+from users import UserDocument
 from utils import search
 
 log = logging.getLogger("back")
@@ -17,7 +16,7 @@ def registerBeneficiary(requestjson, created_by):
     """create a new beneficiary"""
     new_beneficiary = requestjson
     if len(created_by) > 30:
-        user = Operator.verify_auth_token(created_by)
+        user = UserDocument.verify_auth_token(created_by)
         created_by = user.get().clean_data()["email"]
     try:
         new_beneficiary["created_by"] = created_by

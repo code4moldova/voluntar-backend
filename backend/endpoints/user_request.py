@@ -1,7 +1,9 @@
 import logging
+
 from flask import jsonify
 
-from models import Request, User, Beneficiary, Cluster, Operator
+from models import Request, Beneficiary
+from users import UserDocument
 
 log = logging.getLogger("user_request")
 
@@ -59,10 +61,10 @@ def create_request(request_json, created_by):
         If the request wasn't created or saved, and there was raised some exception.
     """
     if len(created_by) > 30:
-        user = Operator.verify_auth_token(created_by)
+        user = UserDocument.verify_auth_token(created_by)
         created_by = user.get().clean_data()["email"]
     try:
-        created_by = Operator.objects.get(email=created_by)
+        created_by = UserDocument.objects.get(email=created_by)
         if "beneficiary" in request_json:
             beneficiary = Beneficiary.objects.get(id=request_json["beneficiary"])
             if beneficiary is None:

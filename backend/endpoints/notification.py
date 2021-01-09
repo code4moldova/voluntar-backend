@@ -1,5 +1,6 @@
-from models import Notification, Request, NotificationUser, User
 from flask import jsonify
+
+from models import Notification, Request, NotificationUser
 
 
 def register_notification(request_json):

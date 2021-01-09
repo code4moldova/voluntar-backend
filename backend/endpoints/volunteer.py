@@ -4,16 +4,15 @@ import logging
 from datetime import datetime, timedelta
 from datetime import datetime as dt
 
-from flask import jsonify, make_response, json
+from flask import jsonify, make_response
 
 from config import PassHash
 from endpoints.geo import calc_distance
 from models import Beneficiary
-from models import Operator
+from users import UserDocument
 from models import Volunteer
-
-from utils import volunteer_utils as vu
 from utils import search
+from utils import volunteer_utils as vu
 
 log = logging.getLogger("back")
 
@@ -38,7 +37,7 @@ def register_volunteer(request_json, created_by):
     log.debug("Relay offer for req:%s from ", request_json)
     try:
         if not vu.is_email(created_by):
-            user = Operator.verify_auth_token(created_by)
+            user = UserDocument.verify_auth_token(created_by)
             created_by = user.get().clean_data()["email"]
 
         vu.exists_by_email(request_json["email"])
