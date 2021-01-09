@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Role(Enum):
+class UserRole(Enum):
     administrator = "administrator"
     coordinator = "coordinator"
     operator = "operator"

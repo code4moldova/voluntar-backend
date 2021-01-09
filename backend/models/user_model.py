@@ -5,7 +5,7 @@ from itsdangerous import BadSignature, SignatureExpired, TimedJSONWebSignatureSe
 from mongoengine import BooleanField, DateTimeField, Document, EmailField, FloatField, IntField, ListField, StringField
 
 from config import PassHash
-from models.enums import Role, WeekDay
+from models.enums import UserRole, WeekDay
 
 
 class User(Document):
@@ -14,7 +14,7 @@ class User(Document):
     email = EmailField(required=True)
     password = StringField(required=True, min_length=6)
     phone = StringField(max_length=8, regex=r"\d")
-    roles = ListField(StringField(choices=[role.value for role in Role]), default=[])
+    roles = ListField(StringField(choices=[role.value for role in UserRole]), default=[])
     availability_hours_start = IntField(min_value=8, max_value=20)
     availability_hours_end = IntField(min_value=8, max_value=20)
     availability_days = ListField(StringField(choices=[weekday.value for weekday in WeekDay]), default=[])
