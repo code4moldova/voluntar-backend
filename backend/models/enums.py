@@ -55,13 +55,13 @@ class VolunteerStatus(Enum):
 
 
 class Zone(Enum):
-    botanica = "Botanica"
-    buiucani = "Buiucani"
-    centru = "Centru"
-    ciocana = "Ciocana"
-    riscani = "Riscani"
-    telecentru = "Telecentru"
-    suburbii = "Suburbii"
+    botanica = "botanica"
+    buiucani = "buiucani"
+    centru = "centru"
+    ciocana = "ciocana"
+    riscani = "riscani"
+    telecentru = "telecentru"
+    suburbii = "suburbii"
 
 
 class NotificationType(Enum):
