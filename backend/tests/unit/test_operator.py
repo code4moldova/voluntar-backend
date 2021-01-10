@@ -8,8 +8,3 @@ class TestOperator(DbTestCase):
         # Setup
         beneficiary = BeneficiaryFactory(first_name="John", last_name="Travolta")
         beneficiary.save()
-        # Execute
-        result = operator.get_active_operator()
-
-        # Validate
-        assert result is None
