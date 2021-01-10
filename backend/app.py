@@ -106,7 +106,7 @@ def new_operator():
 @app.route("/api/operator", methods=["GET"])
 @auth.login_required
 def get_operator():
-    return getOperators(request.args.get("id"))
+    return getOperators(request.args.get("id"), request.args.get("is_active"))
 
 
 @app.route("/api/operator", methods=["PUT"])
