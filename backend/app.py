@@ -28,7 +28,6 @@ from endpoints import (
 )
 from endpoints.requests import get_requests_by_id
 from endpoints.requests import update_request, update_request_status
-from endpoints.volunteer import volunteer_build_csv
 from server import create_application
 
 auth = HTTPBasicAuth()
@@ -85,15 +84,6 @@ def parse_user():
     b = request.args.get("b")
     e = request.args.get("e")
     return parseFile(url, b, e, request.args)
-
-
-@app.route("/api/export/csv/volunteers", methods=["GET"])
-@auth.login_required
-def build_csv():
-    try:
-        return volunteer_build_csv()
-    except Exception as error:
-        return jsonify({"error": str(error)}), 400
 
 
 # operators

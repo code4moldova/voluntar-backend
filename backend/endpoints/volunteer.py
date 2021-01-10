@@ -82,6 +82,7 @@ def update_volunteer(volunteer_id, updates):
     updates : dict
         A dictionary including name of fields as key and their values for updating.
     """
+    # todo: to delete
     try:
         Volunteer.objects(id=volunteer_id).get().update(**updates)
     except Exception as error:
@@ -119,6 +120,8 @@ def utc_short_to_user_short(short_time):
 
 
 def makejson(v, user):
+    # used in sort_closest
+    # todo: todelete
     u = {"distance": calc_distance(v, user), "_id": str(v["_id"])}
     for k in [
         "first_name",
@@ -141,6 +144,7 @@ def makejson(v, user):
 
 
 def sort_closest(id, topk, category):
+    # todo: to delete
     topk = int(topk)
     user = Beneficiary.objects(id=id).get().clean_data()
     # get active volunteer with same activity type, with availability>0 and not bussy with other requests
@@ -210,56 +214,3 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
 
 def deleteVolunteer(requestjson, volunteer_id):
     updateVolunteer(requestjson, volunteer_id, delete=True)
-
-
-def boolconv(source, k, tag2v):
-    if source is None:
-        return "0"
-    if type(source) is str:
-        if len(source) == 0:
-            return "0"
-        else:
-            return source
-    if type(source) is bool:
-        if source:
-            return 1
-        else:
-            return 0
-    else:
-        return str(source)
-
-
-def volunteer_build_csv():
-    includelist = [
-        "first_name",
-        "last_name",
-        "phone",
-        "address",
-        "zone_address",
-        "age",
-        "offer",
-        "comments",
-        "urgent",
-        "curator",
-        "has_disabilities",
-        "black_list",
-        "received_contract",
-    ]
-
-    tag2v = {"offer": "offer", "age": "age", "zone_address": "sector"}
-
-    si = io.StringIO()
-    writer = csv.writer(si)
-    volunteers = [v.include_data(includelist) for v in Volunteer.objects().all()]
-
-    # write header
-    writer.writerow(includelist)
-
-    # write data
-    for doc in volunteers:
-        writer.writerow([boolconv(doc[k], k, tag2v) for k in doc])
-
-    output = make_response(si.getvalue())
-    output.headers["Content-type"] = "text/csv"
-    output.headers["Content-Disposition"] = "attachment; filename=volunteer.csv"
-    return output

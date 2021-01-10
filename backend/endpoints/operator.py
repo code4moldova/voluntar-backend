@@ -20,7 +20,7 @@ def registerOperator(requestjson, created_by):
     # new_operator["created_by"] = authenticated_oprator
     try:
         assert (
-                len(new_operator["password"]) >= MIN_PASSWORD_LEN
+            len(new_operator["password"]) >= MIN_PASSWORD_LEN
         ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
         new_operator["password"] = PassHash.hash(new_operator["password"])
         new_operator["created_by"] = created_by
@@ -192,7 +192,7 @@ class OperatorAPI(MethodView):
         # new_Operator["created_by"] = authenticated_oprator
         try:
             assert (
-                    len(new_Operator["password"]) >= MIN_PASSWORD_LEN
+                len(new_Operator["password"]) >= MIN_PASSWORD_LEN
             ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
             new_Operator["password"] = PassHash.hash(new_Operator["password"])
             comment = Operator(**new_Operator)

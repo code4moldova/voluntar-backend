@@ -16,5 +16,5 @@ def register(app, auth):
         writer.writerows(rows)
         output = make_response(buffer.getvalue())
         output.headers["Content-type"] = "text/csv"
-        output.headers["Content-Disposition"] = "attachment; filename=beneficiaries.csv"
+        output.headers["Content-Disposition"] = "attachment; filename={}.csv".format(slug)
         return output
