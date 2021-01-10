@@ -1,12 +1,13 @@
 from datetime import datetime as dt
 from datetime import timedelta
+from typing import Optional
 
 from flask import jsonify, request
 from flask.views import MethodView
 
 from config import MIN_PASSWORD_LEN, PassHash
 from models import Beneficiary, Operator
-from utils import search
+from utils import search, common
 
 
 def registerOperator(requestjson, created_by):
@@ -52,13 +53,14 @@ def updateOperator(requestjson, operator_id, delete=False):
         return jsonify({"error": str(error)}), 400
 
 
-def getOperators(operator_id):
+def getOperators(operator_id, active: Optional[str]):
+    is_active = common.toBool(active)
     try:
         if operator_id:
             operator = Operator.objects(id=operator_id).get().clean_data()
             return jsonify(operator)
         else:
-            operator = [v.clean_data() for v in Operator.objects(is_active=True).all()]
+            operator = [v.clean_data() for v in Operator.objects(is_active=is_active).all()]
             return jsonify({"list": operator})
     except Exception as error:
         return jsonify({"error": str(error)}), 400
