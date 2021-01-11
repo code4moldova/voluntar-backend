@@ -29,6 +29,8 @@ enums_list = dict(
     WeekDay=WeekDay,
 )
 
+# todo: todelete file
+
 
 def registerTag(requestjson, created_by):
     """create a new user"""
