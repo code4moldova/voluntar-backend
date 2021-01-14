@@ -84,18 +84,7 @@ def requests_by_filters(filters, page=1, per_page=10):
             )
         beneficiary = record.beneficiary or None
         if beneficiary:
-            entry.update(
-                dict(
-                    beneficiary=dict(
-                        _id=str(beneficiary.id),
-                        first_name=beneficiary.first_name,
-                        last_name=beneficiary.last_name,
-                        latitude=beneficiary.latitude,
-                        longitude=beneficiary.longitude,
-                        zone=beneficiary.zone,
-                    )
-                )
-            )
+            entry.update(dict(beneficiary=beneficiary.clean_data()))
 
         reqs.append(entry)
 
@@ -155,18 +144,7 @@ def requests_by_cluster(filters, page=1, per_page=10):
             )
         beneficiary = record.beneficiary or None
         if beneficiary:
-            entry.update(
-                dict(
-                    beneficiary=dict(
-                        _id=str(beneficiary.id),
-                        first_name=beneficiary.first_name,
-                        last_name=beneficiary.last_name,
-                        latitude=beneficiary.latitude,
-                        longitude=beneficiary.longitude,
-                        zone=beneficiary.zone,
-                    )
-                )
-            )
+            entry.update(dict(beneficiary=beneficiary.clean_data()))
 
         reqs.append(entry)
 

@@ -1,6 +1,6 @@
 from typing import NamedTuple
 
-import click
+import click, random
 from flask.cli import with_appcontext
 from faker import Faker
 
@@ -22,8 +22,6 @@ class SeedVolunteer(NamedTuple):
     zone: Zone
     address: str
     role: VolunteerRole
-    longitude: float
-    latitude: float
     phone: str = None
     status: str = "active"
 
@@ -67,8 +65,6 @@ def seed_db_command():
             zone="botanica",
             address="str. Stefan cel Mare 6",
             role="delivery",
-            longitude=28.868399974313115,
-            latitude=47.9774200287918,
         ),
         SeedVolunteer(
             first_name="Valerii",
@@ -77,8 +73,6 @@ def seed_db_command():
             zone="centru",
             address="str. Stefan cel Mare 23",
             role="copilot",
-            longitude=28.868399274363115,
-            latitude=47.9774200287918,
         ),
         SeedVolunteer(
             first_name="Ivan",
@@ -87,8 +81,6 @@ def seed_db_command():
             zone="riscani",
             address="str. Stefan cel Mare 43",
             role="copilot",
-            longitude=28.868399974363115,
-            latitude=47.9771200287918,
         ),
         SeedVolunteer(
             first_name="Serghei",
@@ -97,8 +89,6 @@ def seed_db_command():
             address="str. Stefan cel Mare 43",
             role="copilot",
             status="inactive",
-            longitude=28.818399974363115,
-            latitude=47.9774200287918,
         ),
     ]
 
@@ -164,16 +154,15 @@ def seed_db_command():
                 "first_name": volunteer.first_name,
                 "last_name": volunteer.last_name,
                 "email": email,
-                "role": volunteer.role,
+                "role": [volunteer.role],
                 "phone": volunteer.phone,
                 "zone": volunteer.zone,
                 "address": volunteer.address,
                 "status": volunteer.status,
-                "latitude": volunteer.latitude,
-                "longitude": volunteer.longitude,
             },
             f"{users[0].last_name.lower()}@example.com",
         )
+        # print(volunteer_json[0].json)
         click.echo(volunteer_json)
         volunteers.append(Volunteer.objects(email=email).get())
 
@@ -205,7 +194,7 @@ def seed_db_command():
             zone="botanica",
             address="bld Decebal 45",
             created_at="2020-01-01",
-            longitude=28.845019996559724,
+            longitude=28.865019996559724,
             latitude=47.03421007926646,
         ),
         BeneficiaryFactory(
@@ -238,18 +227,37 @@ def seed_db_command():
             special_condition="deaf_mute",
             created_at="2020-01-08",
             longitude=28.845719996559724,
-            latitude=47.03426007926646,
+            latitude=47.03226007926646,
         ),
     ]
+    for i in range(4):
+        beneficiaries.append(
+            BeneficiaryFactory(
+                first_name="Vasile {}".format(i),
+                last_name="Troscot",
+                age=80,
+                phone="6807800{}".format(i + 1),
+                landline="2283560{}".format(i + 1),
+                zone=random.choice(["centru", "botanica", "telecentru"]),
+                address="str G. Asachi 5{}".format(i + 1),
+                entrance="5",
+                floor="5",
+                apartment="5",
+                special_condition="deaf_mute",
+                created_at="2020-01-08",
+                longitude=28.812844986831664 + random.random() * 0.01,
+                latitude=47.01820503506154 + random.random() * 0.01,
+            )
+        )
     operator = User.objects().first()
 
     for idx, beneficiary in enumerate(beneficiaries):
         beneficiary.save()
 
-        if idx > 1:  # Only first two beneficiaries have requests
+        if idx <= 1:  # Only first two beneficiaries do not have requests
             continue
 
-        cluster = ClusterFactory(volunteer=volunteers[idx])
+        cluster = ClusterFactory(volunteer=volunteers[idx % 2])
         cluster.save()
 
         req = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph())
@@ -282,6 +290,17 @@ def seed_db_command():
             type="medicine",
             created_at=f"2020-04-0{idx + 1}",
             cluster=cluster,
+            comments=fake.paragraph(),
+        )
+        req.save()
+
+        # Confirmed request
+        req = RequestFactory(
+            beneficiary=beneficiary,
+            user=operator,
+            status="confirmed",
+            type=random.choice(["medicine", "grocery", "warm_lunch"]),
+            created_at=f"2020-04-0{idx + 1}",
             comments=fake.paragraph(),
         )
         req.save()
