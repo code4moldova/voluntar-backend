@@ -33,11 +33,11 @@ class RequestStatus(Enum):
 
 
 class RequestType(Enum):
-    warm_lunch = "Warm Lunch"
-    grocery = "Grocery"
-    medicine = "Medicine"
-    invoices = "Pay invoices"
-    transport = "Transport person"
+    warm_lunch = "warm_lunch"
+    grocery = "grocery"
+    medicine = "medicine"
+    invoices = "invoices"
+    transport = "transport"
 
 
 class VolunteerRole(Enum):
