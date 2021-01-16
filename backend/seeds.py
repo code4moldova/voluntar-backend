@@ -1,6 +1,7 @@
 from typing import NamedTuple
 
-import click, random
+import click
+import random
 from flask.cli import with_appcontext
 from faker import Faker
 
