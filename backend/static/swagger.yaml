@@ -501,7 +501,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Request'
+              anyOf:
+                - $ref: '#/components/schemas/Request'
+                - $ref: '#/components/schemas/RequestPlusBeneficiary'
       responses:
         '200':
           description: Request created
@@ -849,6 +851,42 @@ components:
         - address
         - zone
         - phone
+    RequestPlusBeneficiary:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+        landline:
+          type: string
+        age:
+          type: integer
+        zone:
+          $ref: '#/components/schemas/Zone'
+        address:
+          type: string
+        special_condition:
+          $ref: '#/components/schemas/SpecialCondition'
+        status:
+          $ref: '#/components/schemas/RequestsStatus'
+        type:
+          $ref: string
+        secret:
+          type: string
+        urgent:
+          type: boolean
+        comments:
+          type: string
+        has_symptoms:
+          type: boolean
+        cluster:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
     Request:
       type: object
       properties:
