@@ -456,20 +456,46 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
-  /requests:
-    get:
-      summary: Returns a list of requests
+  /requests/update:
+    put:
+      summary: Update just the request status and comment(used by Volunteer)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                cluster_id:
+                  type: string
+                comment:
+                  type: string
+                status:
+                  type: string
       responses:
         '200':
-          description: List of requests founded
+          description: List of requests updated
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Request'
+                type: object
+                properties:
+                  response:
+                    type: string
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /requests:
     post:
-      summary: Registers a new request
+      summary: Creates a request
       requestBody:
         required: true
         content:
@@ -477,8 +503,48 @@ paths:
             schema:
               $ref: '#/components/schemas/Request'
       responses:
-        '201':
-          $ref: '#/components/responses/Successful'
+        '200':
+          description: Request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    put:
+      summary: Updates a request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+      responses:
+        '200':
+          description: Request updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+        '400':
+          description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -502,27 +568,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Request'
-    put:
-      summary: Updates a request
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Request'
-      responses:
-        '200':
-          description: A request updated
+        '400':
+          description: Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Request'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '5XX':
-          $ref: '#/components/responses/ServerError'
+                type: object
+                properties:
+                  error:
+                    type: string
 
   /requests/filters/{pages}/{per_page}:
     get:
@@ -543,6 +597,11 @@ paths:
           schema:
             type: string
           description: Search by beneficiary id
+        - in: query
+          name: v_id
+          schema:
+            type: string
+          description: Search by volunteer id
         - in: query
           name: query
           schema:
@@ -578,15 +637,25 @@ paths:
           schema:
             type: string
           description: Search request id
+        - in: query
+          name: by_cluster
+          schema:
+            type: string
+          description: Search one request for each cluster(in_process first)
       responses:
         '200':
-          description: Beneficiaries founded
+          description: Requests founded
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Request'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -595,70 +664,35 @@ paths:
           $ref: '#/components/responses/ServerError'
 
   /clusters:
-    get:
-      summary: Returns a list of clusters
-      responses:
-        '200':
-          description: List of clusters founded
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Cluster'
-
-  /clusters/{cluster_id}:
-    get:
-      summary: Returns a cluster for given ID
-      parameters:
-        - in: path
-          name: cluster_id
-          schema:
-            type: string
-          description: The ID of cluster
-      responses:
-        '200':
-          description: Cluster founded
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cluster'
     post:
-      summary: Registers a new cluster
+      summary: Creates a new cluster and Updates the cluster properties for all requests
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cluster'
+              type: object
+              properties:
+                volunteer:
+                  type: string
+                request_list:
+                  type: array
+                  items:
+                    type: string
       responses:
-        '201':
+        '200':
           description: A cluster created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cluster'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '5XX':
-          $ref: '#/components/responses/ServerError'
-    put:
-      summary: Updates a cluster
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Cluster'
-      responses:
-        '200':
-          description: A request cluster
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cluster'
+                type: object
+                properties:
+                  volunteer:
+                    type: string
+                  _id:
+                    type: string
+                  created_at:
+                    type: string
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -819,9 +853,11 @@ components:
       type: object
       properties:
         beneficiary:
-          type: integer
+          type: string
         status:
           $ref: '#/components/schemas/RequestsStatus'
+        type:
+          $ref: string
         secret:
           type: string
         urgent:

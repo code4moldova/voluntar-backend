@@ -158,6 +158,13 @@ def get_beneficiary_by_filters(pages=15, per_page=10):
     return get_beneficiaries_by_filters(request.args, pages, per_page)
 
 
+# user request
+@app.route("/api/requests", methods=["POST"])
+@auth.login_required
+def new_user_request():
+    return create_request(request.json, auth.username())
+
+
 @app.route("/api/requests", methods=["PUT"])
 @auth.login_required
 def put_requests():
@@ -173,13 +180,6 @@ def put_status_requests():
 @auth.login_required
 def get_requests(request_id):
     return get_requests_by_id(request_id)
-
-
-# user request
-@app.route("/api/requests", methods=["POST"])
-@auth.login_required
-def new_user_request():
-    return create_request(request.json, auth.username())
 
 
 # notifications
