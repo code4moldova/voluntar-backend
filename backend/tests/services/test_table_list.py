@@ -6,10 +6,8 @@ from tests.factories import BeneficiaryFactory
 class TestBeneficiaryList(DbTestCase):
     def test_run(self):
         users = [
-            BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50, address="B", zone_address="A"),
-            BeneficiaryFactory(
-                first_name="Grigore", last_name="Ureche", age=119, address="B", zone_address="A", have_money=False,
-            ),
+            BeneficiaryFactory(first_name="Ion", last_name="Neculce", age=50, address="B"),
+            BeneficiaryFactory(first_name="Grigore", last_name="Ureche", age=119, address="B"),
         ]
 
         for user in users:
