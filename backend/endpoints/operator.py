@@ -121,7 +121,7 @@ def get_operators_by_filters(filters, pages=0, per_page=10000):
 
             return jsonify({"list": users, "count": obj.count()})
         else:
-            obj = Operator.objects(is_active=True)
+            obj = Operator.objects()
             users = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": users, "count": obj.count()})
     except Exception as error:
