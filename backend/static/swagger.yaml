@@ -237,10 +237,20 @@ paths:
             type: string
           description: Search filter by zone
         - in: query
+          name: availability_days
+          schema:
+            type: string
+          description: Search filter by availability_days          
+        - in: query
           name: role
           schema:
             type: string
-          description: Search filter by role
+          description: Search filter by role      
+        - in: query
+          name: status
+          schema:
+            type: string
+          description: Search filter by status
       responses:
         '200':
           description: Volunteers founded

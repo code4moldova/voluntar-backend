@@ -23,6 +23,7 @@ class SeedVolunteer(NamedTuple):
     zone: Zone
     address: str
     role: VolunteerRole
+    availability_days: list = ["monday"]
     phone: str = None
     status: str = "active"
 
@@ -62,10 +63,11 @@ def seed_db_command():
         SeedVolunteer(
             first_name="Serghei",
             last_name="Volkov",
-            phone="69000000",
+            phone="68000000",
             zone="botanica",
             address="str. Stefan cel Mare 6",
             role="delivery",
+            availability_days=["tuesday"],
         ),
         SeedVolunteer(
             first_name="Valerii",
@@ -82,6 +84,7 @@ def seed_db_command():
             zone="riscani",
             address="str. Stefan cel Mare 43",
             role="copilot",
+            availability_days=["tuesday", "friday"],
         ),
         SeedVolunteer(
             first_name="Serghei",
@@ -160,6 +163,7 @@ def seed_db_command():
                 "zone": volunteer.zone,
                 "address": volunteer.address,
                 "status": volunteer.status,
+                "availability_days": volunteer.availability_days,
             },
             f"{users[0].last_name.lower()}@example.com",
         )
