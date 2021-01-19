@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from models import Beneficiary, Request, Cluster, Volunteer
+from models import Beneficiary, Request, Cluster, Volunteer, User
 
 from utils import search
 
@@ -18,6 +18,12 @@ def requests_by_filters(filters, page=1, per_page=10):
         if not beneficiary:
             return jsonify({"list": [], "count": 0})
         records = records.filter(beneficiary=beneficiary.get())
+
+    if filters.get("u_id"):
+        user = User.objects(id=filters.get("u_id"))
+        if not user:
+            return jsonify({"list": [], "count": 0})
+        records = records.filter(user=user.get())
 
     if filters.get("v_id"):
         volunteer = Volunteer.objects(id=filters.get("v_id"))

@@ -615,6 +615,11 @@ paths:
             type: string
           description: Search by volunteer id
         - in: query
+          name: u_id
+          schema:
+            type: string
+          description: Search by user id (created_by)
+        - in: query
           name: query
           schema:
             type: string
