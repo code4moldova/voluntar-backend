@@ -6,6 +6,7 @@ from endpoints import verifyUser
 from endpoints.welcome import register as welcome_register
 from endpoints.auth import register as auth_register
 from endpoints.export import register as export_register
+from endpoints.import_csv import register as import_register
 from endpoints.requests import register as request_register
 from seeds import init_app as seed_cli
 
@@ -28,5 +29,6 @@ def create_application(auth: HTTPBasicAuth):
     auth_register(app, auth)
     request_register(app, auth)
     export_register(app, auth)
+    import_register(app, auth)
 
     return app
