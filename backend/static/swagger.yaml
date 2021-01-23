@@ -680,6 +680,36 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /cluster/{cluster_id}:
+    get:
+      summary: Returns a list of requests for a cluster
+      parameters:
+        - in: path
+          name: cluster_id
+          schema:
+            type: id
+          description: id of the cluster
+      responses:
+        '200':
+          description: Requests founded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Request'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/ServerError'
+
   /clusters:
     post:
       summary: Creates a new cluster and Updates the cluster properties for all requests
