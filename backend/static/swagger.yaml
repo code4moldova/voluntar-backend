@@ -680,6 +680,37 @@ paths:
         '5XX':
           $ref: '#/components/responses/ServerError'
 
+  /import/csv/requests:
+     post:
+       summary: Imports the requests from csv file
+       consumes:
+         - multipart/form-data
+       parameters:
+         - in: formData
+           name: file
+           type: file
+           description: The file to upload.
+  /import/csv/volunteers:
+     post:
+       summary: Imports the volunteers from csv file
+       consumes:
+         - multipart/form-data
+       parameters:
+         - in: formData
+           name: file
+           type: file
+           description: The file to upload.
+  /export/csv/volunteers:
+     get:
+       summary: Export volunteers to csv file
+  /export/csv/requests:
+     get:
+       summary: Export requests to csv file
+  /export/csv/beneficiary:
+     get:
+       summary: Export beneficiary to csv file
+
+
   /cluster/{cluster_id}:
     get:
       summary: Returns a list of requests for a cluster
@@ -709,6 +740,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '5XX':
           $ref: '#/components/responses/ServerError'
+
 
   /clusters:
     post:

@@ -26,7 +26,7 @@ class BeneficiaryList:
 
 class VolunteerList:
     FIELD_TITLE = {}
-    FIELDS = "last_name first_name age phone zone address facebook_profile role availability_hours_start availability_hours_end availability_days status created_at created_by".split()
+    FIELDS = "last_name first_name age phone zone address email facebook_profile role availability_hours_start availability_hours_end availability_days status created_at created_by".split()
 
     def run(self):
         headers = [self.FIELD_TITLE[f] if f in self.FIELD_TITLE else f for f in self.FIELDS]
