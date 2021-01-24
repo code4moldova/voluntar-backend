@@ -122,6 +122,10 @@ def register(app, auth):
     @app.route("/api/import/csv/<slug>", methods=["POST"])
     @auth.login_required
     def import_from_csv(slug):
+        if slug not in SERVICES:
+            return jsonify({"error": "Url is not valid"}), 400
+        if "file" not in request.files:
+            return jsonify({"error": "No file"}), 400
         f = request.files["file"]
         if not f:
             return jsonify({"error": "No file"}), 400
