@@ -40,6 +40,15 @@ class RequestType(Enum):
     transport = "transport"
 
 
+class BeneficiarySource(Enum):
+    linia_verde = "linia_verde"
+    social_media = "social_media"
+    friends = "friends"
+    local_authorities = "local_authorities"
+    web_site = "web_site"
+    others = "others"
+
+
 class VolunteerRole(Enum):
     delivery = "delivery"
     copilot = "copilot"

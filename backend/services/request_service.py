@@ -75,6 +75,7 @@ def requests_by_filters(filters, page=1, per_page=10):
             comments=record.comments,
             has_symptoms=record.has_symptoms,
             created_at=record.created_at,
+            user=record.user.clean_data(),
         )
         volunteer = record.cluster and record.cluster.volunteer or None
         if volunteer:
@@ -135,6 +136,7 @@ def requests_by_cluster(filters, page=1, per_page=10):
             comments=record.comments,
             has_symptoms=record.has_symptoms,
             created_at=record.created_at,
+            user=record.user.clean_data(),
         )
         volunteer = record.cluster and record.cluster.volunteer or None
         if volunteer:

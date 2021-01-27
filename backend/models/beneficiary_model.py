@@ -10,7 +10,7 @@ from mongoengine import (
     FloatField,
 )
 
-from models.enums import Zone, SpecialCondition
+from models.enums import Zone, SpecialCondition, BeneficiarySource
 from models.user_model import User
 
 
@@ -21,6 +21,7 @@ class Beneficiary(Document):
     landline = StringField(max_length=8, regex=r"\d")
     age = IntField(min_value=16, max_value=120)
     zone = StringField(choices=[zone.name for zone in Zone], required=True)
+    source = StringField(choices=[i.name for i in BeneficiarySource], required=False, default="linia_verde")
     address = StringField(max_length=500, required=True)
     apartment = StringField(max_length=10)
     entrance = StringField(max_length=10)
