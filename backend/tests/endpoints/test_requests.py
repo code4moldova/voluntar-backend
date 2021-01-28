@@ -37,6 +37,8 @@ class TestRequests(ApiTestCase):
             data["list"][i]["beneficiary"] = {
                 k: req["beneficiary"][k] for k in ["_id", "first_name", "last_name", "latitude", "longitude", "zone"]
             }
+            del data["list"][i]["user"]
+            del data["list"][i]["secret"]
         self.assertEqual(
             dict(
                 count=2,
