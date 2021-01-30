@@ -31,7 +31,10 @@ def update_request(request_id, updates):
         """
     try:
         updates.pop("_id")
-        Request.objects(id=request_id).get().update(**updates)
+        n = Request.objects(id=request_id).get()#.update(**updates)
+        for key in updates.keys():
+            n.__setattr__(key, updates[key])
+        n.save()
         return jsonify({"response": "success"})
     except Exception as error:
         log.error("An error occurred on updating Request. {}".format(str(error)))
