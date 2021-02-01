@@ -1,4 +1,3 @@
-import config
 import random
 from typing import NamedTuple
 
