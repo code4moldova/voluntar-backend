@@ -32,6 +32,13 @@ class TestRequests(ApiTestCase):
         response = self.get(url=f"/api/requests/filters/1/10?b_id={beneficiary.id}", user=operator)
 
         assert response.status_code == 200
+        data = json.loads(response.data)
+        for i, req in enumerate(data["list"]):
+            data["list"][i]["beneficiary"] = {
+                k: req["beneficiary"][k] for k in ["_id", "first_name", "last_name", "latitude", "longitude", "zone"]
+            }
+            del data["list"][i]["user"]
+            del data["list"][i]["secret"]
         self.assertEqual(
             dict(
                 count=2,
@@ -80,5 +87,5 @@ class TestRequests(ApiTestCase):
                     },
                 ],
             ),
-            json.loads(response.data),
+            data,
         )

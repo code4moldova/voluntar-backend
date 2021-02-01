@@ -14,6 +14,10 @@ def register(app, auth):
     def get_requests_by_filters(page=1, per_page=10):
         return requests_by_filters(request.args, page, per_page)
 
+    @app.route("/api/cluster/<cluster_id>", methods=["GET"])
+    def get_requests_by_cluster(cluster_id):
+        return requests_by_filters(dict(cluster_id=cluster_id), 1, 100)
+
 
 def update_request(request_id, updates):
     """Updates a request by ID.
@@ -27,7 +31,10 @@ def update_request(request_id, updates):
         """
     try:
         updates.pop("_id")
-        Request.objects(id=request_id).get().update(**updates)
+        n = Request.objects(id=request_id).get()#.update(**updates)
+        for key in updates.keys():
+            n.__setattr__(key, updates[key])
+        n.save()
         return jsonify({"response": "success"})
     except Exception as error:
         log.error("An error occurred on updating Request. {}".format(str(error)))

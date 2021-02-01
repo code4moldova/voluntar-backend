@@ -181,7 +181,7 @@ def get_volunteers_by_filters(filters, pages=0, per_page=10000):
         offset = (int(pages) - 1) * item_per_age
         if len(filters) > 0:
             flt = {}
-            case = ["zone", "role", "status"]
+            case = ["zone", "role", "status", "availability_days"]
 
             for key, value in filters.items():
                 if key not in case and key != "query":

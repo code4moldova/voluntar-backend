@@ -1,20 +1,20 @@
 from enum import Enum
 
 
-class Role(Enum):
+class UserRole(Enum):
     administrator = "administrator"
     coordinator = "coordinator"
     operator = "operator"
 
 
 class WeekDay(Enum):
-    monday = 1
-    tuesday = 2
-    wednesday = 3
-    thursday = 4
-    friday = 5
-    saturday = 6
-    sunday = 7
+    monday = "monday"
+    tuesday = "tuesday"
+    wednesday = "wednesday"
+    thursday = "thursday"
+    friday = "friday"
+    saturday = "saturday"
+    sunday = "sunday"
 
 
 class SpecialCondition(Enum):
@@ -33,9 +33,20 @@ class RequestStatus(Enum):
 
 
 class RequestType(Enum):
-    warm_lunch = "Warm Lunch"
-    grocery = "Grocery"
-    medicine = "Medicine"
+    warm_lunch = "warm_lunch"
+    grocery = "grocery"
+    medicine = "medicine"
+    invoices = "invoices"
+    transport = "transport"
+
+
+class BeneficiarySource(Enum):
+    linia_verde = "linia_verde"
+    social_media = "social_media"
+    friends = "friends"
+    local_authorities = "local_authorities"
+    web_site = "web_site"
+    others = "others"
 
 
 class VolunteerRole(Enum):
@@ -53,13 +64,13 @@ class VolunteerStatus(Enum):
 
 
 class Zone(Enum):
-    botanica = "Botanica"
-    buiucani = "Buiucani"
-    centru = "Centru"
-    ciocana = "Ciocana"
-    riscani = "Riscani"
-    telecentru = "Telecentru"
-    suburbii = "Suburbii"
+    botanica = "botanica"
+    buiucani = "buiucani"
+    centru = "centru"
+    ciocana = "ciocana"
+    riscani = "riscani"
+    telecentru = "telecentru"
+    suburbii = "suburbii"
 
 
 class NotificationType(Enum):

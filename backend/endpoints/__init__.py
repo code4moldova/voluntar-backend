@@ -1,5 +1,4 @@
 from .beneficiary import get_beneficiaries_by_filters, getBeneficiary, registerBeneficiary, updateBeneficiary
-from .beneficiary_requests import Beneficiary_requestAPI
 from .operator import (
     get_active_operator,
     get_operators_by_filters,

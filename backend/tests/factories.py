@@ -22,16 +22,8 @@ class BeneficiaryFactory(factory.Factory):
     last_name = factory.Faker("last_name")
     age = 20
     address = "Botanica"
-    zone_address = "Botanica"
     zone = "botanica"
-    secret = "G900"
     phone = "11112222"
-    offer = "1"
-    comments = ""
-    urgent = False
-    curator = False
-    has_disabilities = False
-    black_list = False
 
 
 class VolunteerFactory(factory.Factory):

@@ -1,11 +1,11 @@
-import os
+import config
+import random
 from typing import NamedTuple
 
 import click
 from faker import Faker
 from flask.cli import with_appcontext
 
-import config
 from endpoints import register_volunteer, registerBeneficiary, registerOperator
 from models import Beneficiary, Cluster, Notification, NotificationUser, Request, User, Volunteer
 from models.enums import VolunteerRole, Zone
@@ -24,8 +24,7 @@ class SeedVolunteer(NamedTuple):
     zone: Zone
     address: str
     role: VolunteerRole
-    longitude: float
-    latitude: float
+    availability_days: list = ["monday"]
     phone: str = None
     status: str = "active"
 
@@ -67,12 +66,11 @@ def seed_db_command():
             SeedVolunteer(
                 first_name="Serghei",
                 last_name="Volkov",
-                phone="69000000",
+                phone="68000000",
                 zone="botanica",
                 address="str. Stefan cel Mare 6",
                 role="delivery",
-                longitude=28.868399974313115,
-                latitude=47.9774200287918,
+                availability_days=["tuesday"],
             ),
             SeedVolunteer(
                 first_name="Valerii",
@@ -81,8 +79,6 @@ def seed_db_command():
                 zone="centru",
                 address="str. Stefan cel Mare 23",
                 role="copilot",
-                longitude=28.868399274363115,
-                latitude=47.9774200287918,
             ),
             SeedVolunteer(
                 first_name="Ivan",
@@ -91,8 +87,7 @@ def seed_db_command():
                 zone="riscani",
                 address="str. Stefan cel Mare 43",
                 role="copilot",
-                longitude=28.868399974363115,
-                latitude=47.9771200287918,
+                availability_days=["tuesday", "friday"],
             ),
             SeedVolunteer(
                 first_name="Serghei",
@@ -101,8 +96,6 @@ def seed_db_command():
                 address="str. Stefan cel Mare 43",
                 role="copilot",
                 status="inactive",
-                longitude=28.818399974363115,
-                latitude=47.9774200287918,
             ),
         ]
 
@@ -168,49 +161,16 @@ def seed_db_command():
                     "first_name": volunteer.first_name,
                     "last_name": volunteer.last_name,
                     "email": email,
-                    "role": volunteer.role,
+                    "role": [volunteer.role],
                     "phone": volunteer.phone,
                     "zone": volunteer.zone,
                     "address": volunteer.address,
                     "status": volunteer.status,
+                    "availability_days": volunteer.availability_days,
                 },
                 f"{users[0].last_name.lower()}@example.com",
             )
-            click.echo(volunteer_json)
-            volunteers.append(Volunteer.objects(email=email).get())
-
-        for beneficiary in beneficiaries:
-            beneficiary = registerBeneficiary(
-                {
-                    "first_name": beneficiary.first_name,
-                    "last_name": beneficiary.last_name,
-                    "phone": beneficiary.phone,
-                    "zone": beneficiary.zone,
-                    "address": beneficiary.address,
-                    "is_active": beneficiary.is_active,
-                },
-                f"{users[0].last_name.lower()}@example.com",
-            )
-            click.echo(beneficiary)
-
-        volunteers = []
-        for volunteer in volunteer_list:
-            email = f"{volunteer.last_name.lower()}@example.com"
-            volunteer_json = register_volunteer(
-                {
-                    "first_name": volunteer.first_name,
-                    "last_name": volunteer.last_name,
-                    "email": email,
-                    "role": volunteer.role,
-                    "phone": volunteer.phone,
-                    "zone": volunteer.zone,
-                    "address": volunteer.address,
-                    "status": volunteer.status,
-                    "latitude": volunteer.latitude,
-                    "longitude": volunteer.longitude,
-                },
-                f"{users[0].last_name.lower()}@example.com",
-            )
+            # print(volunteer_json[0].json)
             click.echo(volunteer_json)
             volunteers.append(Volunteer.objects(email=email).get())
 
@@ -242,7 +202,7 @@ def seed_db_command():
                 zone="botanica",
                 address="bld Decebal 45",
                 created_at="2020-01-01",
-                longitude=28.845019996559724,
+                longitude=28.865019996559724,
                 latitude=47.03421007926646,
             ),
             BeneficiaryFactory(
@@ -275,66 +235,40 @@ def seed_db_command():
                 special_condition="deaf_mute",
                 created_at="2020-01-08",
                 longitude=28.845719996559724,
-                latitude=47.03426007926646,
+                latitude=47.03226007926646,
             ),
         ]
-        operator = User.objects().first()
-
-        # More beneficiaries ;-)
-        beneficiaries = [
-            BeneficiaryFactory(
-                first_name="Jora",
-                last_name="Bricică",
-                age=56,
-                phone="79779034",
-                landline="22242424",
-                zone="botanica",
-                address="bld Decebal 45",
-                created_at="2020-01-01",
-            ),
-            BeneficiaryFactory(
-                first_name="Nicolae",
-                last_name="Popa",
-                age=66,
-                phone="79700515",
-                landline="22830685",
-                zone="botanica",
-                address="bld Decebal 560",
-                entrance="3",
-                floor="3",
-                apartment="3",
-                special_condition="blind_weak_seer",
-                created_at="2020-01-04",
-            ),
-            BeneficiaryFactory(
-                first_name="Vasile",
-                last_name="Troscot",
-                age=80,
-                phone="68078000",
-                landline="22835600",
-                zone="centru",
-                address="str G. Asachi 56",
-                entrance="5",
-                floor="5",
-                apartment="5",
-                special_condition="deaf_mute",
-                created_at="2020-01-08",
-            ),
-        ]
+        for i in range(4):
+            beneficiaries.append(
+                BeneficiaryFactory(
+                    first_name="Vasile {}".format(i),
+                    last_name="Troscot",
+                    age=80,
+                    phone="6807800{}".format(i + 1),
+                    landline="2283560{}".format(i + 1),
+                    zone=random.choice(["centru", "botanica", "telecentru"]),
+                    address="str G. Asachi 5{}".format(i + 1),
+                    entrance="5",
+                    floor="5",
+                    apartment="5",
+                    special_condition="deaf_mute",
+                    created_at="2020-01-08",
+                    longitude=28.812844986831664 + random.random() * 0.01,
+                    latitude=47.01820503506154 + random.random() * 0.01,
+                )
+            )
         operator = User.objects().first()
 
         for idx, beneficiary in enumerate(beneficiaries):
             beneficiary.save()
 
-            if idx > 1:  # Only first two beneficiaries have requests
+            if idx <= 1:  # Only first two beneficiaries do not have requests
                 continue
 
-            cluster = ClusterFactory(volunteer=volunteers[idx])
+            cluster = ClusterFactory(volunteer=volunteers[idx % 2])
             cluster.save()
 
-            req = RequestFactory(
-                beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph()
-            )
+            req = RequestFactory(beneficiary=beneficiary, user=operator, created_at="2020-01-01", comments=fake.paragraph())
             req.save()
             req = RequestFactory(
                 beneficiary=beneficiary,
@@ -368,6 +302,17 @@ def seed_db_command():
             )
             req.save()
 
+            # Confirmed request
+            req = RequestFactory(
+                beneficiary=beneficiary,
+                user=operator,
+                status="confirmed",
+                type=random.choice(["medicine", "grocery", "warm_lunch"]),
+                created_at=f"2020-04-0{idx + 1}",
+                comments=fake.paragraph(),
+            )
+            req.save()
+
             # Archived request
             req = RequestFactory(
                 beneficiary=beneficiary,
@@ -379,6 +324,24 @@ def seed_db_command():
                 comments=fake.paragraph(),
             )
             req.save()
+
+        for idx, request in enumerate(Request.objects()):
+            # New request
+            notification = NotificationFactory(
+                request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+            )
+            notification.save()
+            # Assign new notification to user who created Request
+            NotificationUser.assign_notification_to_users(self=notification, status="new")
+
+            # Cancelled request
+            notification = NotificationFactory(
+                request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
+            )
+            notification.save()
+            # Assign seen notification to user who created Request
+            NotificationUser.assign_notification_to_users(self=notification, status="seen")
+
     elif config.FLASK_ENV == "production":
         registerOperator(
             {
@@ -388,23 +351,6 @@ def seed_db_command():
             },
             "admin",
         )
-
-    for idx, request in enumerate(Request.objects()):
-        # New request
-        notification = NotificationFactory(
-            request=request, type="new_request", subject=fake.sentence(), created_at=fake.date_this_month(),
-        )
-        notification.save()
-        # Assign new notification to user who created Request
-        NotificationUser.assign_notification_to_users(self=notification, status="new")
-
-        # Cancelled request
-        notification = NotificationFactory(
-            request=request, type="canceled_request", subject=fake.sentence(), created_at=fake.date_this_month(),
-        )
-        notification.save()
-        # Assign seen notification to user who created Request
-        NotificationUser.assign_notification_to_users(self=notification, status="seen")
 
     click.echo("Initialized the database.")
 
