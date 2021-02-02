@@ -11,8 +11,8 @@ API_URL = "/static/swagger.yaml"
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(SWAGGER_URL, API_URL, config={"app_name": "Python-Flask-REST"})
 
 DB_NAME = "covid-19"
-DB_ADDRESS = os.environ.get('DB_HOST', 'mongodb_container:27017')
-DB_USERNAME = os.environ.get('DB_USERNAME')
+DB_ADDRESS = os.environ.get("DB_HOST", "mongodb_container:27017")
+DB_USERNAME = os.environ.get("DB_USERNAME")
 if DB_USERNAME is None:
     DB_HOST = f"mongodb://{DB_USERNAME}:{os.environ.get('DB_PASSWORD', '123456')}@{DB_ADDRESS}"
 else:
