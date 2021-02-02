@@ -14,7 +14,7 @@ DB_NAME = "covid-19"
 DB_ADDRESS = os.environ.get("DB_HOST", "mongodb_container:27017")
 DB_USERNAME = os.environ.get("DB_USERNAME")
 if DB_USERNAME is None:
-    DB_HOST = f"mongodb://{DB_USERNAME}:{os.environ.get('DB_PASSWORD', '123456')}@{DB_ADDRESS}"
+    DB_HOST = f"mongodb+srv://{DB_USERNAME}:{os.environ.get('DB_PASSWORD', '123456')}@{DB_ADDRESS}"
 else:
     DB_HOST = f"mongodb://{DB_ADDRESS}"
 
