@@ -1,11 +1,13 @@
 import pytest
+from flask_httpauth import HTTPBasicAuth
 
 from server import create_application
 
 
 @pytest.fixture
 def app():
-    application = create_application()
+    auth = HTTPBasicAuth()
+    application = create_application(auth)
     yield application
 
 
@@ -16,7 +18,8 @@ def client(app):
 
 @pytest.fixture(scope="class")
 def api_client(request):
-    request.cls.client = create_application().test_client()
+    auth = HTTPBasicAuth()
+    request.cls.client = create_application(auth).test_client()
 
 
 @pytest.fixture

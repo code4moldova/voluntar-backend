@@ -7,7 +7,7 @@ from models.enums import (
     VolunteerStatus,
     Zone,
     WeekDay,
-    Role,
+    UserRole,
     SpecialCondition,
     RequestStatus,
     NotificationType,
@@ -19,7 +19,7 @@ enums_list = dict(
     sector=Zone,
     VolunteerStatus=VolunteerStatus,
     VolunteerRole=VolunteerRole,
-    Role=Role,
+    Role=UserRole,
     SpecialCondition=SpecialCondition,
     RequestStatus=RequestStatus,
     RequestType=RequestType,
@@ -28,6 +28,8 @@ enums_list = dict(
     Zone=Zone,
     WeekDay=WeekDay,
 )
+
+# todo: todelete file
 
 
 def registerTag(requestjson, created_by):

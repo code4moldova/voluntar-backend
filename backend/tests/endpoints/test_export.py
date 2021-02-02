@@ -13,7 +13,7 @@ class TestExportCsvBeneficiaries(ApiTestCase):
 
         assert response.status_code == 200
         body = response.data.decode("utf-8")
-        assert "Nume" in body
-        assert "Prenume" in body
+        assert "last_name" in body
+        assert "first_name" in body
         assert "Ion" in body
         assert "Neculce" in body

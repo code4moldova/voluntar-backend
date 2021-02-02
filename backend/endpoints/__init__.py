@@ -1,6 +1,5 @@
 from .beneficiary import get_beneficiaries_by_filters, getBeneficiary, registerBeneficiary, updateBeneficiary
 from .operator import (
-    get_active_operator,
     get_operators_by_filters,
     getOperators,
     getToken,

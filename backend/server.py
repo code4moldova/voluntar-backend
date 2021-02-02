@@ -11,7 +11,7 @@ from endpoints.requests import register as request_register
 from seeds import init_app as seed_cli
 
 
-def create_application():
+def create_application(auth: HTTPBasicAuth):
     app = Flask(__name__)
 
     if FLASK_ENV == "test":
@@ -19,8 +19,6 @@ def create_application():
 
     if FLASK_ENV == "development":
         seed_cli(app)
-
-    auth = HTTPBasicAuth()
 
     @auth.verify_password
     def verify_password(username, password):
