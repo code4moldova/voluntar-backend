@@ -43,6 +43,18 @@ class SeedBeneficiary(NamedTuple):
 @click.command("init-db")
 @with_appcontext
 def seed_db_command():
+    if config.FLASK_ENV == "production":
+        registerOperator(
+            {
+                "first_name": os.environ.get("DEFAULT_USERNAME"),
+                "last_name": user.last_name,
+                "email": f"{os.environ.get('DEFAULT_USERNAME').lower()}@example.com",
+                "password": os.environ.get("DEFAULT_PASSWORD"),
+                "roles": ["admin"],
+            },
+            "admin",
+        )
+        return
     """Clear the existing data and create new tables."""
     User.objects().delete()
     Volunteer.objects().delete()
