@@ -11,7 +11,6 @@ from endpoints import (
     getBeneficiary,
     getOperators,
     getVolunteers,
-    parseFile,
     register_volunteer,
     registerBeneficiary,
     registerOperator,
@@ -20,8 +19,6 @@ from endpoints import (
     updateVolunteer,
     verifyUser,
     create_request,
-    getTags,
-    registerTag,
     register_notification,
     get_notifications_by_filters,
     register_cluster,
@@ -77,15 +74,6 @@ def delete_user():
     return updateVolunteer(request.json, request.json["_id"], True)
 
 
-@app.route("/api/volunteer/parse/", methods=["GET"])
-@auth.login_required
-def parse_user():
-    url = request.args.get("url")
-    b = request.args.get("b")
-    e = request.args.get("e")
-    return parseFile(url, b, e, request.args)
-
-
 # operators
 @app.route("/api/operator", methods=["POST"])
 @auth.login_required
@@ -116,20 +104,6 @@ def delete_operator():
 @auth.login_required
 def get_operator_by_filters(pages=15, per_page=10):
     return get_operators_by_filters(request.args, pages, per_page)
-
-
-# tag
-@app.route("/api/tag", methods=["GET"])
-@app.route("/api/tag/<select>", methods=["GET"])
-@auth.login_required
-def get_tag(select="all"):
-    return getTags(request.args.get("id"), select)
-
-
-@app.route("/api/tag", methods=["POST"])
-@auth.login_required
-def newregisterTag():
-    return registerTag(request.json, auth.username())
 
 
 # beneficiari

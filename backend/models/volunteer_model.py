@@ -7,23 +7,6 @@ from models.enums import VolunteerRole, VolunteerStatus, Zone, WeekDay
 FACEBOOK_URL_REGEX = r"http(?:s):\/\/(?:www\.)facebook\.com\/.+"
 
 
-# Will be deleted after frontend changes
-class Tags(Document):
-    # TODO: Each volunteer must have a reference to operator that was created by
-    # created_by = ReferenceField("operator")
-    select = StringField(max_length=50)
-    ro = StringField(max_length=500)
-    ru = StringField(max_length=500)
-    created_by = StringField(max_length=500)
-    en = StringField(max_length=500)
-    is_active = BooleanField(default=True)
-
-    def clean_data(self) -> dict:
-        data = self.to_mongo()
-        data["_id"] = str(data["_id"])
-        return data
-
-
 class Volunteer(Document):
     first_name = StringField(max_length=500, required=True)
     last_name = StringField(max_length=500, required=True)

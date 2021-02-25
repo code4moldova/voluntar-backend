@@ -8,7 +8,7 @@ from endpoints.auth import register as auth_register
 from endpoints.export import register as export_register
 from endpoints.import_csv import register as import_register
 from endpoints.requests import register as request_register
-from seeds import init_app as seed_cli
+from seeds import init_app as seed_cli, register_super_user
 
 
 def create_application(auth: HTTPBasicAuth):
@@ -17,8 +17,7 @@ def create_application(auth: HTTPBasicAuth):
     if FLASK_ENV == "test":
         app.config.from_mapping({"TESTING": True})
 
-    if FLASK_ENV == "development":
-        seed_cli(app)
+    seed_cli(app)
 
     @auth.verify_password
     def verify_password(username, password):
