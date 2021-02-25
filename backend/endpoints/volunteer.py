@@ -7,7 +7,6 @@ from datetime import datetime as dt
 from flask import jsonify, make_response, json
 
 from config import PassHash
-from endpoints.geo import calc_distance
 from models import Beneficiary
 from models import Operator
 from models import Volunteer
@@ -117,66 +116,6 @@ def utc_short_to_user_short(short_time):
     raw = datetime.strptime(short_time, "%H:%M")
     localized = raw + timedelta(hours=3)
     return localized.strftime("%H:%M")
-
-
-def makejson(v, user):
-    # used in sort_closest
-    # todo: todelete
-    u = {"distance": calc_distance(v, user), "_id": str(v["_id"])}
-    for k in [
-        "first_name",
-        "last_name",
-        "phone",
-        "email",
-        "activity_types",
-        "latitude",
-        "longitude",
-    ]:
-        if k in v:
-            u[k] = v[k]
-    u["accepted_offer"] = False
-    for it in v["offer_list"]:
-        if it["id"] == user["_id"]:
-            u["availability_day"] = utc_short_to_user_short(it["offer"])
-            u["accepted_offer"] = True
-    u["count"] = Beneficiary.objects(volunteer=str(v["_id"]), created_at__lte=dt.now() - timedelta(days=1)).count()
-    return u
-
-
-def sort_closest(id, topk, category):
-    # todo: to delete
-    topk = int(topk)
-    user = Beneficiary.objects(id=id).get().clean_data()
-    # get active volunteer with same activity type, with availability>0 and not bussy with other requests
-    if "offer" in user and user["offer"] != "":
-        category = user["offer"]
-        volunteers = sorted(
-            [
-                makejson(v.clean_data(), user)
-                for v in Volunteer.objects(
-                    is_active=True, offer=category  # availability__gt=0,
-                ).all()  # if not Beneficiary.objects(volunteer=str(v.clean_data()['_id']),status__ne='done')
-            ],
-            key=lambda x: x["distance"],
-        )
-    else:
-        volunteers = sorted(
-            [
-                makejson(v.clean_data(), user)
-                for v in Volunteer.objects(
-                    is_active=True, activity_types__in=user["activity_types"]  # availability__gt=0,
-                ).all()
-            ],
-            key=lambda x: x["distance"],
-        )
-    volunteers = [i for i in volunteers if i["distance"] < 100000]
-    # todo: find the best threshhold!!!
-
-    if "volunteer" in user and user["volunteer"] != "":
-        volunteers = [makejson(Volunteer.objects(id=user["volunteer"]).get().clean_data(), user)] + [
-            i for i in volunteers if i["_id"] != user["volunteer"]
-        ]
-    return jsonify({"list": volunteers[:topk]})
 
 
 def get_volunteers_by_filters(filters, pages=0, per_page=10000):

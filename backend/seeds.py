@@ -4,9 +4,11 @@ import click
 import random
 from flask.cli import with_appcontext
 from faker import Faker
+import config
+import os
 
 from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
-from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser
+from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser, Operator
 from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
@@ -40,9 +42,30 @@ class SeedBeneficiary(NamedTuple):
     is_active: bool = False
 
 
+def register_super_user():
+    email = f"{os.environ.get('DEFAULT_USERNAME').lower()}@example.com"
+    if not Operator.objects(email=email):
+        registerOperator(
+            {
+                "first_name": os.environ.get("DEFAULT_USERNAME"),
+                "last_name": os.environ.get("DEFAULT_USERNAME"),
+                "email": email,
+                "password": os.environ.get("DEFAULT_PASSWORD"),
+                "roles": ["admin"],
+            },
+            "admin",
+        )
+        print("Created superuser")
+    print(os.environ.get("DEFAULT_USERNAME"))
+    print(os.environ.get("DEFAULT_PASSWORD"))
+
+
 @click.command("init-db")
 @with_appcontext
 def seed_db_command():
+    if config.FLASK_ENV == "production":
+        register_super_user()
+        return
     """Clear the existing data and create new tables."""
     User.objects().delete()
     Volunteer.objects().delete()

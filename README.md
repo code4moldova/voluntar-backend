@@ -37,7 +37,8 @@ Flask
 
 Python 3
 
-### Development
+### Run & Development
+#### Docker
 Docker is used to run the development version, so you'll need to install [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/).
 
 In case you are using WSL with Docker for Desktop (version 2.2.0.4) on Windows: you need to have your repository on the Windows file system rather than on the WSL one because otherwise the volume won't be mounted (solution inspired from this work around: https://github.com/docker/for-win/issues/2151#issuecomment-402163189)
@@ -56,6 +57,32 @@ cd backend && flask init-db
 
 You can login with default admin user. email: ureche@example.com, pass: 123456
 
+#### Pycharm
+To run the application using Pycharm you need to install MongoDB Community Edition following steps from [documentation](https://docs.mongodb.com/manual/installation/).
+Steps below work for all OS where Pycharm is available.
+1. Install pycharm community edition
+2. Open the project in pycharm
+3. Open terminal from pycharm Alt+F12 or View -> Tool Windows -> Terminal
+4. Install pipenv from terminal if it's not installed yet:
+    ```
+    $ pip install pipenv
+    ```
+5. Install dependencies from Pipfile
+    ```
+    $ pipenv install
+    ```
+6. Add new configuration for python:
+Run -> Edit Configurations... -> + -> Python
+7. Change option "Script Path" to "Module Name"
+8. Enter "flask" in input for "Module Name"
+9. Enter **run** in input "Parameters"
+10. Open and add new Environment variables:
+    - FLASK_APP=app.py
+    - FLASK_DEBUG=1
+    - SECRET_KEY=whatever 
+    - DB_HOST=localhost:27017 (If you are using another port, change to your one)
+10. Press Ok
+11. To init databases execute command in terminal from Pycharm
 
 ## Feedback
 
