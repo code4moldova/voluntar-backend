@@ -19,7 +19,7 @@ class Request(Document):
     comments = StringField(max_length=1000)
     has_symptoms = BooleanField(default=False)
     cluster = ReferenceField(Cluster)
-    created_at = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
 
     def clean_data(self) -> dict:
         data = self.to_mongo()

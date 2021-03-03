@@ -9,7 +9,7 @@ class Cluster(Document):
     """This is like a batch of Requests that volunteer can take in single delivery"""
 
     volunteer = ReferenceField(Volunteer, required=True)
-    created_at = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
 
     def clean_data(self) -> dict:
         data = self.to_mongo()
