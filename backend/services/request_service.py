@@ -44,7 +44,7 @@ def requests_by_filters(filters, page=1, per_page=10):
         records = records.filter(beneficiary__in=beneficiaries)
 
     if filters.get("created_at"):
-        date_from = datetime.datetime.strptime(filters.get("created_at"), "%Y-%m-%d")
+        date_from = datetime.datetime.strptime(filters.get("created_at").split("T")[0], "%Y-%m-%d")
         date_to = date_from + datetime.timedelta(minutes=24 * 60 - 1)
         records = records.filter(created_at__gte=date_from, created_at__lte=date_to)
 
