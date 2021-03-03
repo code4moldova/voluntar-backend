@@ -1,6 +1,7 @@
 import io
 import csv
 import json
+import os
 from flask import jsonify, request
 from flask import make_response
 
@@ -8,6 +9,24 @@ from bson import ObjectId
 
 from models import Beneficiary, Volunteer, Request, User, Operator
 from utils import volunteer_utils as vu
+import requests
+
+
+def geocoding(q):
+    api = os.environ.get("API_KEY_TOMTOM")
+    try:
+        response = requests.get(
+            "https://api.tomtom.com/search/2/geocode/" + q + ".json?lat=47.9774200&lon=28.868399&key=" + api
+        )
+    except:
+        return False, "requests error"
+    try:
+        w = json.loads(response.content)
+    except:
+        return False, "json error"
+    if "results" in w and len(w["results"]) > 0 and "" in w["results"]:
+        return True, w["results"][0]["position"]
+    return False, "No result"
 
 
 def clean_phone(text, max_length=8):
@@ -52,12 +71,21 @@ class ImportRequests:
                     new_beneficiary = old_beneficiary.get()
                 else:
                     new_beneficiary_data["created_by"] = created_by
+                    if "address" in new_beneficiary_data:
+                        status, position = geocoding(new_beneficiary_data["address"])
+                        created.append([status, position])
+                        if status and (
+                            "latitude" not in new_beneficiary_data or len(new_beneficiary_data["latitude"]) == 0
+                        ):
+                            new_beneficiary_data["latitude"] = position["lat"]
+                            new_beneficiary_data["longitude"] = position["lon"]
                     new_beneficiary = Beneficiary(**new_beneficiary_data)
                     new_beneficiary.save()
                     created.append(new_beneficiary.clean_data())
 
                 user = User.objects(email=created_by).get()
-                new_request_data = dict(status="new", type="medicine", beneficiary=new_beneficiary, user=user)
+                request_type = item["type"] if "type" in item else "medicine"
+                new_request_data = dict(status="new", type=request_type, beneficiary=new_beneficiary, user=user)
                 new_request = Request(**new_request_data)
                 new_request.save()
                 created.append(new_request.clean_data())
