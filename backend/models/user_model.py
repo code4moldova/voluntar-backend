@@ -76,8 +76,8 @@ class User(Document):
 # Will be deleted after frontend changes
 class Operator(User):
     created_by = StringField(max_length=500)
-    role = ListField(default=["fixer"])  # TODO remove the field
-    roles = ListField(default=["fixer"])
+    role = ListField(default=[UserRole.coordinator.value])  # TODO remove the field
+    roles = ListField(default=[UserRole.coordinator.value])
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
