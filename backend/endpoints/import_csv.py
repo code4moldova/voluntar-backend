@@ -18,12 +18,12 @@ def geocoding(q):
         response = requests.get(
             "https://api.tomtom.com/search/2/geocode/" + q + ".json?lat=47.9774200&lon=28.868399&key=" + api
         )
-    except:
-        return False, "requests error"
+    except Exception as e:
+        return False, "requests error" + str(e)
     try:
         w = json.loads(response.content)
-    except:
-        return False, "json error"
+    except Exception as e:
+        return False, "json error:" + str(e)
     if "results" in w and len(w["results"]) > 0 and "" in w["results"]:
         return True, w["results"][0]["position"]
     return False, "No result"
