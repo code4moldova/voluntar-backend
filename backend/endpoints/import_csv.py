@@ -123,7 +123,7 @@ class ImportVolunteers:
                 clean_json(new_volunteer_data, self.FIELDS_INT, int)
                 clean_json(new_volunteer_data, self.FIELDS_LIST, load_lists)
                 clean_json(new_volunteer_data, ["phone", "landline"], clean_phone)
-                
+
                 if Volunteer.objects(phone=new_volunteer_data["phone"]) or Volunteer.objects(
                     email=new_volunteer_data["email"]
                 ):
