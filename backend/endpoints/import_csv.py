@@ -34,6 +34,10 @@ def clean_phone(text, max_length=8):
     return "".join(digits[-max_length:])
 
 
+def load_lists(text):
+    return text.split(",")
+
+
 def clean_json(data, fields, f):
     for k in fields:
         if k in data:
@@ -117,13 +121,9 @@ class ImportVolunteers:
                         return jsonify({"error": "field {} is required".format(k), "d": new_volunteer_data}), 400
 
                 clean_json(new_volunteer_data, self.FIELDS_INT, int)
-
-                # todo: load the list from csv
-                new_volunteer_data["role"] = ["delivery"]
-                new_volunteer_data["availability_days"] = ["saturday"]
-                # clean_json(new_volunteer_data, self.FIELDS_LIST, json.loads)
-
+                clean_json(new_volunteer_data, self.FIELDS_LIST, load_lists)
                 clean_json(new_volunteer_data, ["phone", "landline"], clean_phone)
+                
                 if Volunteer.objects(phone=new_volunteer_data["phone"]) or Volunteer.objects(
                     email=new_volunteer_data["email"]
                 ):
