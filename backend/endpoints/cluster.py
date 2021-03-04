@@ -45,7 +45,7 @@ def register_cluster(request_json):
             request = Request.objects.get(id=request_id)
             request.cluster = new_cluster
             request.status = "in_process"
-            # request.save()
+            request.save()
 
         vu.send_email(new_cluster.clean_data()["_id"], volunteer.clean_data()["email"])
 
