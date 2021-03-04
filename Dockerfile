@@ -20,6 +20,9 @@ RUN pip install --upgrade pip && \
 
 ADD . /app
 
+RUN pip install dnspython 
+RUN pip install sendgrid
+
 EXPOSE 5000
 
 CMD flask run --host=0.0.0.0

@@ -1,9 +1,13 @@
 import re
+import os
 
 import phonenumbers
 
 from config import MIN_PASSWORD_LEN
 from models import Volunteer
+
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 def convert_phone_to_regional(phone):
@@ -69,3 +73,22 @@ def exists_by_email(email):
         If volunteer with given email already exists in database.
     """
     assert not Volunteer.objects(email=email), "User with this email already exists"
+
+
+def send_email(cluster_id, to):
+
+    html = "<a href='{}/cluster/{}'>Detalii sarcina</a>".format(os.environ.get("URL_SITE"), cluster_id)
+
+    message = Mail(from_email="moshnoi2000@gmail.com", to_emails=to, subject="Voluntar.md sarcina", html_content=html)
+
+    try:
+        sg = SendGridAPIClient(os.environ.get("API_KEY_SENDGRID"))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e)
+        print(e.body)
+        return False
+    return True
