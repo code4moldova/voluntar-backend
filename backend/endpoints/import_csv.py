@@ -133,7 +133,7 @@ class ImportVolunteers:
                     continue
 
                 new_volunteer_data["created_by"] = created_by
-                new_volunteer_data["status"] = 'active'
+                new_volunteer_data["status"] = "active"
                 new_volunteer = Volunteer(**new_volunteer_data)
                 new_volunteer.save()
                 created.append(new_volunteer.clean_data())
