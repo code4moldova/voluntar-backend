@@ -1,7 +1,7 @@
 from flask import jsonify
 
 from models import Beneficiary, Request, Cluster, Volunteer, User
-
+import datetime
 from utils import search
 
 
@@ -44,8 +44,9 @@ def requests_by_filters(filters, page=1, per_page=10):
         records = records.filter(beneficiary__in=beneficiaries)
 
     if filters.get("created_at"):
-        beneficiaries = Beneficiary.objects(created_at=filters.get("created_at"))
-        records = records.filter(beneficiary__in=beneficiaries)
+        date_from = datetime.datetime.strptime(filters.get("created_at").split("T")[0], "%Y-%m-%d")
+        date_to = date_from + datetime.timedelta(minutes=24 * 60 - 1)
+        records = records.filter(created_at__gte=date_from, created_at__lte=date_to)
 
     if filters.get("cluster_id"):
         cluster = Cluster.objects(id=filters.get("cluster_id"))

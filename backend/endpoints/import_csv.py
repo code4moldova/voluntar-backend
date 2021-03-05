@@ -18,13 +18,15 @@ def geocoding(q):
         response = requests.get(
             "https://api.tomtom.com/search/2/geocode/" + q + ".json?lat=47.9774200&lon=28.868399&key=" + api
         )
-    except:
-        return False, "requests error"
+
+    except Exception as e:
+        return False, "requests error" + str(e)
     try:
         w = json.loads(response.content)
-    except:
-        return False, "json error"
-    if "results" in w and len(w["results"]) > 0 and "" in w["results"]:
+    except Exception as e:
+        return False, "json error:" + str(e)
+
+    if "results" in w and len(w["results"]) > 0 and "position" in w["results"][0]:
         return True, w["results"][0]["position"]
     return False, "No result"
 
@@ -32,6 +34,10 @@ def geocoding(q):
 def clean_phone(text, max_length=8):
     digits = [i for i in text if i.isnumeric()]
     return "".join(digits[-max_length:])
+
+
+def load_lists(text):
+    return text.split(",")
 
 
 def clean_json(data, fields, f):
@@ -42,7 +48,7 @@ def clean_json(data, fields, f):
 
 
 class ImportRequests:
-    FIELDS = "last_name first_name age phone zone address apartment entrance floor special_condition latitude longitude".split()
+    FIELDS = "last_name first_name age phone landline zone address apartment entrance floor special_condition latitude longitude".split()
     FIELDS_FLOAT = "latitude longitude".split()
     FIELDS_INT = "age".split()
     FIELDS_REQUIRED = "last_name first_name age phone address zone".split()
@@ -117,13 +123,9 @@ class ImportVolunteers:
                         return jsonify({"error": "field {} is required".format(k), "d": new_volunteer_data}), 400
 
                 clean_json(new_volunteer_data, self.FIELDS_INT, int)
-
-                # todo: load the list from csv
-                new_volunteer_data["role"] = ["delivery"]
-                new_volunteer_data["availability_days"] = ["saturday"]
-                # clean_json(new_volunteer_data, self.FIELDS_LIST, json.loads)
-
+                clean_json(new_volunteer_data, self.FIELDS_LIST, load_lists)
                 clean_json(new_volunteer_data, ["phone", "landline"], clean_phone)
+
                 if Volunteer.objects(phone=new_volunteer_data["phone"]) or Volunteer.objects(
                     email=new_volunteer_data["email"]
                 ):
@@ -131,6 +133,7 @@ class ImportVolunteers:
                     continue
 
                 new_volunteer_data["created_by"] = created_by
+                new_volunteer_data["status"] = 'active'
                 new_volunteer = Volunteer(**new_volunteer_data)
                 new_volunteer.save()
                 created.append(new_volunteer.clean_data())

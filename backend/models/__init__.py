@@ -1,4 +1,4 @@
-from .volunteer_model import Volunteer, Tags
+from .volunteer_model import Volunteer
 from .beneficiary_model import Beneficiary
 from .user_model import User, Operator
 from .request_model import Request

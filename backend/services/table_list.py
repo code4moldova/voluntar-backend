@@ -38,6 +38,8 @@ class VolunteerList:
                 value = getattr(user, field)
                 if isinstance(value, bool):
                     row.append(1 if value else 0)
+                if isinstance(value, list):
+                    row.append(",".join(value))
                 else:
                     row.append(value)
             rows.append(row)

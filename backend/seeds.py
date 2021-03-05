@@ -1,20 +1,22 @@
+import os
+import random
 from typing import NamedTuple
 
 import click
-import random
-from flask.cli import with_appcontext
 from faker import Faker
+from flask.cli import with_appcontext
 
-from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
-from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser
-from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
+import config
+from endpoints import registerOperator, register_volunteer, registerBeneficiary
+from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser, Operator
+from models.enums import Zone, VolunteerRole, UserRole
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
 
 class SeedUser(NamedTuple):
     first_name: str
     last_name: str
-    roles: list = ["fixer"]
+    roles: list = [UserRole.coordinator.value]
 
 
 class SeedVolunteer(NamedTuple):
@@ -40,9 +42,30 @@ class SeedBeneficiary(NamedTuple):
     is_active: bool = False
 
 
+def register_super_user():
+    email = f"{os.environ.get('DEFAULT_USERNAME').lower()}@example.com"
+    if not Operator.objects(email=email):
+        registerOperator(
+            {
+                "first_name": os.environ.get("DEFAULT_USERNAME"),
+                "last_name": os.environ.get("DEFAULT_USERNAME"),
+                "email": email,
+                "password": os.environ.get("DEFAULT_PASSWORD"),
+                "roles": [UserRole.administrator.value],
+            },
+            UserRole.administrator.value,
+        )
+        print("Created superuser")
+    print(os.environ.get("DEFAULT_USERNAME"))
+    print(os.environ.get("DEFAULT_PASSWORD"))
+
+
 @click.command("init-db")
 @with_appcontext
 def seed_db_command():
+    if config.FLASK_ENV == "production":
+        register_super_user()
+        return
     """Clear the existing data and create new tables."""
     User.objects().delete()
     Volunteer.objects().delete()
@@ -54,7 +77,7 @@ def seed_db_command():
     fake = Faker()
 
     users = [
-        SeedUser(first_name="Grigore", last_name="Ureche", roles=["admin"],),
+        SeedUser(first_name="Grigore", last_name="Ureche", roles=[UserRole.administrator.value],),
         SeedUser(first_name="Ion", last_name="Neculce",),
         SeedUser(first_name="Alexandru", last_name="Donici",),
     ]
@@ -147,7 +170,7 @@ def seed_db_command():
                 "password": "123456",
                 "roles": user.roles,
             },
-            "admin",
+            UserRole.administrator.value,
         )
 
     volunteers = []

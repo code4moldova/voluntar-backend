@@ -33,7 +33,7 @@ class Beneficiary(Document):
     black_list = BooleanField(default=False)
 
     fixer = StringField(max_length=500)
-    created_at = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
     created_by = StringField(max_length=500)
 
     def clean_data(self) -> dict:
