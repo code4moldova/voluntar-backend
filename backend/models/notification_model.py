@@ -10,7 +10,7 @@ class Notification(Document):
     type = StringField(choices=[type.name for type in NotificationType], required=True)
     subject = StringField(max_length=100)
     request = ReferenceField(Request, required=True)
-    created_at = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
 
     def clean_data(self) -> dict:
         data = self.to_mongo()

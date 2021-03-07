@@ -24,6 +24,7 @@ def registerOperator(requestjson, created_by):
         ), f"Password is to short, min length is {MIN_PASSWORD_LEN}"
         new_operator["password"] = PassHash.hash(new_operator["password"])
         new_operator["created_by"] = created_by
+        new_operator["created_at"] = dt.utcnow()
         assert not Operator.objects(email=new_operator["email"]), "user with this email already exists"
         comment = Operator(**new_operator)
         comment.save()
@@ -117,11 +118,11 @@ def get_operators_by_filters(filters, pages=0, per_page=10000):
             else:
                 obj = Operator.objects().filter(**flt)
 
-            users = [user.clean_data() for user in obj.skip(offset).limit(item_per_age)]
+            users = [user.clean_data() for user in obj.order_by("-created_at").skip(offset).limit(item_per_age)]
 
             return jsonify({"list": users, "count": obj.count()})
         else:
-            obj = Operator.objects()
+            obj = Operator.objects().order_by("-created_at")
             users = [v.clean_data() for v in obj.skip(offset).limit(item_per_age)]
             return jsonify({"list": users, "count": obj.count()})
     except Exception as error:

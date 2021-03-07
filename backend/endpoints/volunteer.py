@@ -14,6 +14,7 @@ from models import Volunteer
 from utils import volunteer_utils as vu
 from utils import search
 
+
 log = logging.getLogger("back")
 
 
@@ -43,6 +44,7 @@ def register_volunteer(request_json, created_by):
         vu.exists_by_email(request_json["email"])
         new_volunteer_data = request_json
         new_volunteer_data["created_by"] = created_by
+        new_volunteer_data["created_at"] = dt.utcnow()
         new_volunteer = Volunteer(**new_volunteer_data)
         new_volunteer.save()
         return jsonify({"response": "success", "user": new_volunteer.clean_data()})

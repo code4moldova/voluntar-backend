@@ -11,7 +11,7 @@ class NotificationUser(Document):
     user = ReferenceField(User, required=True)
     status = StringField(choices=[status.name for status in NotificationStatus], required=True)
     notification = ReferenceField(Notification, required=True)
-    created_at = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
 
     def assign_notification_to_users(self, status="new"):
         users = User.objects().filter(is_active=True)

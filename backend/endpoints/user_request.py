@@ -1,5 +1,6 @@
 import logging
 from flask import jsonify
+from datetime import datetime as dt
 
 from models import Request, User, Beneficiary, Cluster, Operator
 
@@ -70,11 +71,13 @@ def create_request(request_json, created_by):
         else:
             new_beneficiary = {k: request_json[k] for k in beneficiary_fields if k in request_json}
             new_beneficiary["created_by"] = created_by.clean_data()["email"]
+            new_beneficiary["created_at"] = dt.utcnow()
             beneficiary = Beneficiary(**new_beneficiary)
             beneficiary.save()
 
         user_request_data = {k: v for k, v in request_json.items() if k not in beneficiary_fields}
         user_request_data["user"] = created_by
+        user_request_data["created_at"] = dt.utcnow()
         user_request_data["beneficiary"] = beneficiary
         log.debug(request_json)
         user_request = Request(**user_request_data)

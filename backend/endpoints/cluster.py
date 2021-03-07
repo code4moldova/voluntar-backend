@@ -1,5 +1,6 @@
 from models import Request, Volunteer, Cluster
 from flask import jsonify
+from utils import volunteer_utils as vu
 
 
 def register_cluster(request_json):
@@ -32,6 +33,11 @@ def register_cluster(request_json):
         if len(request_list) == 0:
             return jsonify({"error": "request_list is empty"}), 400
 
+        for request_id in request_list:
+            request = Request.objects.get(id=request_id, status="confirmed")
+            if request is None:
+                return jsonify({"error": "request {} 's status is not confirmed".format(request_id)}), 400
+
         new_cluster = Cluster(volunteer=volunteer)
         new_cluster.save()
 
@@ -40,6 +46,8 @@ def register_cluster(request_json):
             request.cluster = new_cluster
             request.status = "in_process"
             request.save()
+
+        vu.send_email(new_cluster.clean_data()["_id"], volunteer.clean_data()["email"])
 
         return jsonify({"response": "success", "cluster": new_cluster.clean_data()}), 201
     except Exception as error:

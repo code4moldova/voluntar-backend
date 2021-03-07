@@ -1,22 +1,22 @@
+import os
+import random
 from typing import NamedTuple
 
 import click
-import random
-from flask.cli import with_appcontext
 from faker import Faker
-import config
-import os
+from flask.cli import with_appcontext
 
-from endpoints import registerOperator, register_volunteer, registerBeneficiary, register_notification
+import config
+from endpoints import registerOperator, register_volunteer, registerBeneficiary
 from models import Beneficiary, Cluster, Request, User, Volunteer, Notification, NotificationUser, Operator
-from models.enums import Zone, VolunteerRole, NotificationType, NotificationStatus
+from models.enums import Zone, VolunteerRole, UserRole
 from tests.factories import BeneficiaryFactory, ClusterFactory, RequestFactory, NotificationFactory
 
 
 class SeedUser(NamedTuple):
     first_name: str
     last_name: str
-    roles: list = ["fixer"]
+    roles: list = [UserRole.coordinator.value]
 
 
 class SeedVolunteer(NamedTuple):
@@ -51,9 +51,9 @@ def register_super_user():
                 "last_name": os.environ.get("DEFAULT_USERNAME"),
                 "email": email,
                 "password": os.environ.get("DEFAULT_PASSWORD"),
-                "roles": ["admin"],
+                "roles": [UserRole.administrator.value],
             },
-            "admin",
+            UserRole.administrator.value,
         )
         print("Created superuser")
     print(os.environ.get("DEFAULT_USERNAME"))
@@ -77,7 +77,7 @@ def seed_db_command():
     fake = Faker()
 
     users = [
-        SeedUser(first_name="Grigore", last_name="Ureche", roles=["admin"],),
+        SeedUser(first_name="Grigore", last_name="Ureche", roles=[UserRole.administrator.value],),
         SeedUser(first_name="Ion", last_name="Neculce",),
         SeedUser(first_name="Alexandru", last_name="Donici",),
     ]
@@ -170,7 +170,7 @@ def seed_db_command():
                 "password": "123456",
                 "roles": user.roles,
             },
-            "admin",
+            UserRole.administrator.value,
         )
 
     volunteers = []

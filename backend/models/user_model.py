@@ -19,8 +19,8 @@ class User(Document):
     availability_hours_end = IntField(min_value=8, max_value=20)
     availability_days = ListField(StringField(choices=[weekday.value for weekday in WeekDay]), default=[])
     is_active = BooleanField(default=True)  # we don't delete users just deactivating them
-    created_at = DateTimeField(default=datetime.now())
-    last_access = DateTimeField(default=datetime.now())
+    created_at = DateTimeField(default=datetime.utcnow())
+    last_access = DateTimeField(default=datetime.utcnow())
     created_by = StringField(max_length=500)
 
     # Will be deleted after frontend changes
@@ -39,7 +39,7 @@ class User(Document):
     def generate_auth_token(self, expiration=60000):
         secret = os.environ["SECRET_KEY"]
         s = Serializer(secret, expires_in=expiration)
-        User.objects(id=str(self.id)).get().update(last_access=datetime.now())
+        User.objects(id=str(self.id)).get().update(last_access=datetime.utcnow())
         obj = self.clean_data()
         del obj["role"]
         for k in obj.keys():
@@ -76,8 +76,8 @@ class User(Document):
 # Will be deleted after frontend changes
 class Operator(User):
     created_by = StringField(max_length=500)
-    role = ListField(default=["fixer"])  # TODO remove the field
-    roles = ListField(default=["fixer"])
+    role = ListField(default=[UserRole.coordinator.value])  # TODO remove the field
+    roles = ListField(default=[UserRole.coordinator.value])
     address = StringField(max_length=500)
     latitude = FloatField(min_value=0, max_value=50)
     longitude = FloatField(min_value=0, max_value=50)
