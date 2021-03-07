@@ -21,6 +21,7 @@ def registerBeneficiary(requestjson, created_by):
         created_by = user.get().clean_data()["email"]
     try:
         new_beneficiary["created_by"] = created_by
+        new_beneficiary["created_at"] = dt.utcnow()
         new_beneficiary = Beneficiary(**new_beneficiary)
         new_beneficiary.save()
         return jsonify({"response": "success", "user": new_beneficiary.clean_data()})
