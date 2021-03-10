@@ -35,7 +35,7 @@ def requests_by_filters(filters, page=1, per_page=10):
         records = records.filter(cluster=cluster.get())
 
     if filters.get("query"):
-        query_search_fields = ["first_name", "last_name", "phone"]
+        query_search_fields = ["first_name", "last_name", "phone", "landline"]
         beneficiaries = search.model_keywords_search(Beneficiary, query_search_fields, filters.get("query").split())
         records = records.filter(beneficiary__in=beneficiaries)
 

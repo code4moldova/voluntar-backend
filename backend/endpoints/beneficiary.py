@@ -20,6 +20,8 @@ def registerBeneficiary(requestjson, created_by):
         user = Operator.verify_auth_token(created_by)
         created_by = user.get().clean_data()["email"]
     try:
+        if "phone" not in new_beneficiary and "landline" not in new_beneficiary:
+            assert False, "Need at least one phone number"
         new_beneficiary["created_by"] = created_by
         new_beneficiary["created_at"] = dt.utcnow()
         new_beneficiary = Beneficiary(**new_beneficiary)
@@ -115,7 +117,7 @@ def get_beneficiaries_by_filters(filters, pages=0, per_page=10000):
                     flt[key] = value
 
             if len(search_query):
-                query_search_fields = ["first_name", "last_name", "phone"]
+                query_search_fields = ["first_name", "last_name", "phone", "landline"]
                 obj = search.model_keywords_search(Beneficiary, query_search_fields, search_query.split()).filter(**flt)
             else:
                 obj = Beneficiary.objects().filter(**flt)
