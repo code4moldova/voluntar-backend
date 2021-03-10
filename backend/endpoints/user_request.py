@@ -70,6 +70,8 @@ def create_request(request_json, created_by):
                 return jsonify({"error": "beneficiary not found"}), 400
         else:
             new_beneficiary = {k: request_json[k] for k in beneficiary_fields if k in request_json}
+            if "phone" not in new_beneficiary and "landline" not in new_beneficiary:
+                assert False, "Need at least one phone number"
             new_beneficiary["created_by"] = created_by.clean_data()["email"]
             new_beneficiary["created_at"] = dt.utcnow()
             beneficiary = Beneficiary(**new_beneficiary)
