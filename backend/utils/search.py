@@ -29,7 +29,7 @@ def model_keywords_search(model, search_fields, search_words_list, search_result
 
         db_query = None
         for field in search_fields:
-            q = Q(**{"%s__istartswith" % field: search_words_list[0]})
+            q = Q(**{"%s__icontains" % field: search_words_list[0]})
             if db_query:
                 db_query = db_query | q
             else:
