@@ -29,10 +29,13 @@ def requests_by_filters(filters, page=1, per_page=10):
         volunteer = Volunteer.objects(id=filters.get("v_id"))
         if not volunteer:
             return jsonify({"list": [], "count": 0})
-        cluster = Cluster.objects(volunteer=volunteer.get())
-        if not cluster:
+        cluster_objects = Cluster.objects(volunteer=volunteer.get())
+        if not cluster_objects:
             return jsonify({"list": [], "count": 0})
-        records = records.filter(cluster=cluster.get())
+        clusters = []
+        for custer in cluster_objects:
+            clusters.append(custer)
+        records = records.filter(cluster__in=clusters)
 
     if filters.get("query"):
         query_search_fields = ["first_name", "last_name", "phone", "landline"]
